@@ -5,7 +5,9 @@ var gameData = {
  lastUpdate: Date.now(),
  leaves: 0,
  leavesPerTick: 0,
- tickSpeedMultiplier: 1,
+ tickSpeedMultiplier: 0,
+ treeAge: 0,
+ treeAgePerTick: 0,
  gameStarted: false,
 
  refreshRate: 10
@@ -20,6 +22,9 @@ document.getElementById("L1").disabled = false;
 document.getElementById("L2").disabled = false;
 document.getElementById("L3").disabled = false;
 
+console.log(`on startup, gameData.gameData.leavesPerTick is ${gameData.leavesPerTick}`);
+console.log(`on startup, gameData.tickSpeedMultiplier is ${gameData.tickSpeedMultiplier}`);
+
 function gameLoop() {
   if (gameData.gameStarted == true) {
   const now = Date.now();
@@ -28,9 +33,13 @@ function gameLoop() {
   const ticksToProcess = (deltaTime / 1000) * gameData.tickSpeedMultiplier;
 
   gameData.leaves += gameData.leavesPerTick * ticksToProcess;
+  gameData.treeAge += deltaTime;
+  gameData.treeAgePerTick = gameData.tickSpeedMultiplier;
   
   document.getElementById("pleaseWork").innerHTML = truncateToDecimalPlaces(gameData.leaves, 3) + " Leaves";
-  document.getElementById("leavesPerSecond").innerHTML = truncateToDecimalPlaces(gameData.leavesPerTick, 3) + " Leaves/Second";
+  document.getElementById("leavesPerSecond").innerHTML = truncateToDecimalPlaces(gameData.leavesPerTick, 3) + " Leaves/s";
+  document.getElementById("treeAgeCounter").innerHTML = truncateToDecimalPlaces((gameData.treeAge / 1000), 3) + " Seconds";
+  document.getElementById("treeAgePerSecond").innerHTML = truncateToDecimalPlaces(gameData.treeAgePerTick, 3) + " Seconds/s";
 
   setInterval(gameLoop, gameData.refreshRate);
 
@@ -51,7 +60,10 @@ function truncateToDecimalPlaces(num, decimalPlaces) {
 
 function startGeneration() {
   gameData.gameStarted = true;
-  gameData.leavesPerTick = 1;
+  gameData.leavesPerTick = 1000;
+  gameData.tickSpeedMultiplier = 1;
+  gameData.treeAgePerTick = 1;
+
   document.getElementById("L1").disabled = true;
   console.log(`startGeneration function called, value of gameData.gameStarted is ${gameData.gameStarted}`);
   gameLoop();
