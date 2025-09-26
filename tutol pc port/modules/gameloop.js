@@ -8,6 +8,12 @@ var gameData = {
  refreshRate: 10
 }
 
+const leafUpgradeCost = {
+    LU1: 10
+}
+
+document.getElementById("L1").disabled = false;
+
 function gameLoop() {
   if (gameData.gameStarted == true) {
   const now = Date.now();
@@ -40,6 +46,16 @@ function startGeneration() {
   gameData.gameStarted = true;
   console.log(`startGeneration function called, value of gameData.gameStarted is ${gameData.gameStarted}`);
   gameLoop();
+}
+
+function L1() {
+  if (gameData.leaves >= leafUpgradeCost.LU1) {
+    gameData.leaves -= leafUpgradeCost.LU1;
+    gameData.leavesPerTick += 1;
+    document.getElementById("pleaseWork").innerHTML = gameData.leaves + " Leaves";
+    document.getElementById("L1").innerHTML = "Grow I (Bought) <br> x2 Leaves <br> Cost: " + leafUpgradeCost.LU1 + " Leaves";
+    document.getElementById("L1").disabled = true;
+  }
 }
 
 gameLoop();
