@@ -60,7 +60,7 @@ function truncateToDecimalPlaces(num, decimalPlaces) {
 
 function startGeneration() {
   gameData.gameStarted = true;
-  gameData.leavesPerTick = 1000;
+  gameData.leavesPerTick = 1;
   gameData.tickSpeedMultiplier = 1;
   gameData.treeAgePerTick = 1;
 
