@@ -266,7 +266,7 @@ function L10() {
     }
 }
 function L10UpgradeUpdater() {
-  if (leafUpgradeFactor.L4Bought == true) {
+  if (leafUpgradeFactor.L10Bought == true) {
   setTimeout(L10UpgradeFormula, (gameData.refreshRate * 2));
   const deltaL10U = leafUpgradeFactor.L10 - leafUpgradeFactor.L10AtUpgradeBought;
   gameData.leavesPerTick *= (deltaL10U + 1);
