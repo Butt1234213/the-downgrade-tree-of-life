@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>The Upgrade Tree of Life</title>
+    <style>
+      .resource-container {
+        display: inline-flex;
+        position: relative;
+        top: 8px;
+        left: 16px;
+        height: 100px;
+        gap: 20px;
+      }
+      .leaves {line-height: 0.4;}
+      .tree-age {
+        line-height: 0.4;
+        position: fixed;
+        left: 175px;
+      }
+      .buttons {
+        position: relative;
+        line-height: 0.4;
+        top: 40px;
+      }
+      .options-boxes {
+        position: relative;
+        top: 60px;
+      }
+      .italic {
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="resource-container">
+        <div class="leaves">
+        <p id="pleaseWork">0 Leaves</p>
+        <p id="leavesPerSecond">0 Leaves/s</p>
+        <img src="../src/images/leaf.png" alt="Leaves"><br>
+      </div>
+      <div class="tree-age">
+        <p id="treeAgeCounter">0 Seconds</p>
+        <p id="treeAgePerSecond">0 Seconds/s</p>
+        <img src="../src/images/clock.png" alt="Tree Age"><br>
+      </div>
+    </div>
+    <div class="buttons">
+      <button id="L1" onclick="startGeneration()">L1<br>Start Generating Leaves</button>
+      <button id="L2" onclick="L2()">L2<br>Grow I<br>x2 Leaves<br>Cost: 10 Leaves</button>
+      <button id="L3" onclick="L3()">L3<br>Grow II<br>x3 Leaves<br>Cost: 35 Leaves</button>
+      <button id="L4" onclick="L4()">L4<br>Develop I<br>Tree Age boosts Leaves<br>Cost: 150 Leaves</button>
+      <button id="L5" onclick="L5()">L5<br>Grow III<br>x2.5 Leaves<br>Cost: 500 Leaves</button>
+      <button id="L6" onclick="L6()">L6<br>Grow IV<br>x3 Leaves<br>Cost: 1500 Leaves</button>
+      <button id="L7" onclick="L7()">L7<br>Grow V<br>xpi Leaves for no reason<br>Cost: 5000 Leaves</button>
+      <button id="L8" onclick="L8()">L8<br>Grow VI<br>x1.75 Leaves<br>Cost: 7500 Leaves</button>
+      <button id="L9" onclick="L9()">L9<br>Develop II<br>Increase L4's Boost<br>Cost: 24000 Leaves</button>
+    </div>
+    <div class="options-boxes">
+      <p>Global Refresh Rate</p>
+      <div class="italic"><p>Note: not all functions use the global refresh rate,<br>some use a relative version of it</p></div>
+      <input type="text" id="refreshRateCounter" placeholder="Refresh Rate" onchange="updateRefreshRate()">
+      <p>Current value: <span id="refreshRate"></span> ms</p>
+    </div>
+
+    <script src="../src/gameloop.js" charset="utf-8"></script>
+  </body>
+</html>

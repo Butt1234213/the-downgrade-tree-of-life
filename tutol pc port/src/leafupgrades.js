@@ -1,4 +1,4 @@
-import { gameData } from './modules/bunchobullshit.mjs'
+import { gameData } from './modules/bunchobullshit.js'
 
 function L2() {
     if (gameData.leaves >= leafUpgradeCost.LU2) {

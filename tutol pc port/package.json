@@ -1,0 +1,19 @@
+{
+   "name": "tutol-pc-port",
+   "version": "1.0.2",
+   "description": "tutol pc port",
+   "scripts": {
+      "start": "node server.js"
+   },
+   "keywords": [],
+   "author": "smeh8",
+   "license": "MIT",
+   "devDependencies": {
+      "webpack": "^5.101.3",
+      "webpack-cli": "^6.0.1"
+   },
+   "main": "gameloop.js",
+   "dependencies": {
+      "express": "^5.1.0"
+   }
+}
