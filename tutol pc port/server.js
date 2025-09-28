@@ -1,13 +1,11 @@
- const http = require('http');
+const express = require('express');
+const path = require('path');
+const app = express();
+const port = 3000;
 
-    const server = http.createServer((req, res) => {
-      res.writeHead(200, { 'Content-Type': 'text/plain' });
-      res.end('Hello World from Node.js!');
-    });
+app.use(express.static(path.join(__dirname, 'node_modules/break_eternity.js/dist')));
+app.use(express.static(path.join(__dirname, 'public')));
 
-    const port = 3000;
-    const host = 'localhost';
-
-    server.listen(port, host, () => {
-      console.log(`Server running at http://${host}:${port}/`);
-    });
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}/`);
+});

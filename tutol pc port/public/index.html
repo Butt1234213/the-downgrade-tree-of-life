@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>The Upgrade Tree of Life</title>
+    <style>
+      .resource-container {
+        display: inline-flex;
+        position: relative;
+        top: 8px;
+        left: 16px;
+        height: 100px;
+        gap: 20px;
+      }
+      .leaves {line-height: 0.4;}
+      .tree-age {
+        line-height: 0.4;
+        position: fixed;
+        left: 175px;
+      }
+      .buttons {
+        position: relative;
+        line-height: 0.4;
+        top: 40px;
+      }
+      .options-boxes {
+        position: relative;
+        top: 60px;
+      }
+      .italic {
+        font-style: italic;
+      }
+      .cheat-box-hehe {
+        position: absolute;
+        top: 8px;
+        right: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="resource-container">
+        <div class="leaves">
+        <p id="pleaseWork">0 Leaves</p>
+        <p id="leavesPerSecond">0 Leaves/s</p>
+        <img src="./src/images/leaf.png" alt="Leaves"><br>
+      </div>
+      <div class="tree-age">
+        <p id="treeAgeCounter">0 Seconds</p>
+        <p id="treeAgePerSecond">0 Seconds/s</p>
+        <img src="./src/images/clock.png" alt="Tree Age"><br>
+      </div>
+    </div>
+      <div class="cheat-box-hehe">
+        <p>You're a fuckin' cheater<br>for changing this value</p>
+        <input type="text" id="cheaterBox" placeholder="x Leaves Per Tick">
+        <p>Current value: <span id="cheaterValue"></span> x Leaves/tick</p>
+      </div>
+    <div class="buttons">
+      <button id="L1">L1<br>Start Generating Leaves</button>
+      <button id="L2">L2<br>Grow I<br>x2 Leaves<br>Cost: 10 Leaves</button>
+      <button id="L3">L3<br>Grow II<br>x3 Leaves<br>Cost: 35 Leaves</button>
+      <button id="L4">L4<br>Develop I<br>Tree Age boosts Leaves<br>Cost: 150 Leaves</button>
+      <button id="L5">L5<br>Grow III<br>x2.5 Leaves<br>Cost: 500 Leaves</button>
+      <button id="L6">L6<br>Grow IV<br>x3 Leaves<br>Cost: 1500 Leaves</button>
+      <button id="L7">L7<br>Grow V<br>xpi Leaves for no reason<br>Cost: 5000 Leaves</button>
+      <button id="L8">L8<br>Grow VI<br>x1.75 Leaves<br>Cost: 7500 Leaves</button>
+      <button id="L9">L9<br>Develop II<br>Increase L4's Boost<br>Cost: 24000 Leaves</button>
+      <button id="L10">L10<br>Grow Power<br>Every LU Bought<br>Multiplies Leaves by 1.1<br>Cost: 200000 Leaves</button>
+      <button id="L11">L11<br>Self-Synergy<br>Leaves boost their own production<br>Cost: 650000 Leaves</button>
+      <button id="L12">L12<br>Grow VII<br>x5 Leaves<br>Cost: 2.25e+7 Leaves</button>
+      <button id="L13">L13<br>Grow VIII<br>x4 Leaves<br>Cost: 1.75e+8 Leaves</button>
+      <button id="L14">L14<br>Grow IX<br>x5 Leaves<br>Cost: 6e+10 Leaves</button>
+      <button id="L15">L15<br>Booster<br>L11's effect is squared<br>Cost: 1e+9 Leaves</button>
+    </div>
+    <div class="options-boxes">
+      <p>Global Refresh Rate</p>
+      <div class="italic"><p>Note: not all functions use the global refresh rate,<br>some use a relative version of it</p></div>
+      <input type="text" id="refreshRateCounter" placeholder="Refresh Rate">
+      <p>Current value: <span id="refreshRate"></span> ms</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/break_eternity.js@2.1.2"></script>
+    <script src="./src/modules/leafupgrades.mjs" type="module"></script>
+    <script src="./src/modules/gameloopbutmodule.mjs" type="module"></script>
+    <script src="./src/modules/bunchobullshit.mjs" type="module"></script>
+  </body>
+</html>
