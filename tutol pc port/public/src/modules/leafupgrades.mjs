@@ -58,7 +58,6 @@ function L4() {
         }
         if (leafUpgradeFactor.L4Bought == true) {
             L4UpgradeFormula();
-            gameData.leavesPerTick *= leafUpgradeFactor.L4;
             gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
             gameData.leavesPerTick = gameData.leavesPerTick.times(leafUpgradeFactor.L4);
             document.getElementById("L4").innerHTML = `L4 <br> Develop I (Bought) <br> Tree Age boosts Leaves <br> Cost: ` + leafUpgradeCost.LU4 + ` Leaves <br> Effect: ${truncateToDecimalPlaces(leafUpgradeFactor.L4, 3)}x`;
