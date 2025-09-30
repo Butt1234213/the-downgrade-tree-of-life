@@ -1,4 +1,4 @@
-import {gameData, truncateToDecimalPlaces, toExp } from './bunchobullshit.mjs';
+import {gameData, truncateToDecimalPlaces, seedsCalculation, softCalculation } from './bunchobullshit.mjs';
 import * as leafUpgrades from './leafupgrades.mjs';
 
 const testBEDecimal = new Decimal.fromComponents(1, 1, 80.1);
@@ -14,11 +14,6 @@ console.log(gameData.leaves);
 
 export function gameLoop() {
   if (gameData.gameStarted == true) {
-  
-  toExp(gameData.leaves);
-  toExp(gameData.leavesPerTick);
-  toExp(gameData.treeAge);
-  toExp(gameData.treeAgePerTick);
 
   const now = new Decimal(Date.now());
   const deltaTime = now.minus(gameData.lastUpdate);
@@ -29,9 +24,12 @@ export function gameLoop() {
   leafUpgrades.L10UpgradeUpdater();
   leafUpgrades.L11UpgradeUpdater();
 
-  gameData.treeAgePerTick = gameData.tickSpeedMultiplier.times(new Decimal(0.5));
+  gameData.treeAgePerTick = gameData.tickSpeedMultiplier.times(new Decimal(1));
   gameData.leaves = gameData.leaves.plus(gameData.leavesPerTick.times(ticksToProcess));
-  gameData.treeAge = gameData.treeAge.plus(deltaTime.times(gameData.tickSpeedMultiplier.times(new Decimal(0.5))));
+  gameData.treeAge = gameData.treeAge.plus(deltaTime.times(gameData.tickSpeedMultiplier.times(gameData.treeAgePerTick)));
+
+  softCalculation("leafSoftcap", new Decimal(1e7), new Decimal(0.9));
+  seedsCalculation(gameData.leaves);
 
   document.getElementById("pleaseWork").innerHTML = truncateToDecimalPlaces(gameData.leaves, 3) + " Leaves";
   document.getElementById("leavesPerSecond").innerHTML = truncateToDecimalPlaces(gameData.leavesPerTick, 3) + " Leaves/s";
