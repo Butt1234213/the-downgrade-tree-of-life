@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>The Downgrade Tree of Life</title>
+    <link rel="icon" type="image/x-icon" href="./src/images/favicon.ico"> 
+    <style>
+      .resource-container {
+        display: inline-flex;
+        position: relative;
+        top: 8px;
+        left: 16px;
+        height: 100px;
+        gap: 20px;
+      }
+      .leaves {
+        line-height: 0.4;
+        font-family: Verdana;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      .tree-age {
+        line-height: 0.4;
+        position: absolute;
+        left: 135px;
+        font-family: Verdana;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      .seeds {
+        line-height: 0.4;
+        position: absolute;
+        left: 270px;
+        font-family: Verdana;
+        font-size: 12px;
+        z-index: 1;
+        white-space: nowrap;
+      }
+      .fruits {
+        line-height: 0.4;
+        position: absolute;
+        left: 435px;
+        font-family: Verdana;
+        font-size: 12px;
+        z-index: 1;
+        white-space: nowrap;
+      }
+      .buttons-lu {
+        position: absolute;
+        line-height: 0.4;
+        top: 200px;
+        left: 10px;
+      }
+      .buttons-lu-color {
+        background-color: rgb(80, 187, 80);
+        color: #ffffffff;
+        font-family: Verdana;
+        font-size: 12px;
+      }
+      .options-boxes {
+        position: fixed;
+        top: 500px;
+        font-family: Verdana;
+        font-size: 12px;
+      }
+      .italic {
+        font-style: italic;
+        font-family: Verdana;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+      .cheat-box-hehe {
+        position: absolute;
+        top: 8px;
+        right: 16px;
+        font-family: Verdana;
+        font-size: 12px;
+      }
+      .buttons-tab {
+        position: absolute;
+        display: inline-block;
+        line-height: 0.4;
+        top: 150px;
+        left: 10px;
+      }
+      .buttons-lu-tab-color {
+        background-color: rgb(80, 187, 80);
+        color: #ffffffff;
+        font-family: Verdana;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 5px;
+      }
+      .buttons-su-tab-color {
+        position: relative;
+        left: 10px;
+        background-color: #dc8616ff;
+        font-family: Verdana;
+        font-size: 16px;
+        color: #ffffffff;
+        border-style: outset;
+        border-color: #dc4b16ff;
+        font-weight: bold;
+        padding: 5px;
+      }
+      .buttons-ach-tab-color {
+        position: relative;
+        left: 20px;
+        font-family: Verdana;
+        font-size: 16px;
+        font-weight: bold;
+        border-style: outset;
+        border-color: #000000ff;
+        padding: 5px;
+
+      }
+      .seeds-reset-button {
+        position: absolute;
+        left: 350px;
+        top: 80px;
+        z-index: 2;
+        color: #ffffffff;
+        border-width: 5px;
+        border-radius: 5px;
+        border-style: solid;
+        border-color: #dc4b16ff;
+        background-color: #dc8616ff;
+        visibility: hidden;
+      }
+      .fruits-reset-button {
+        position: absolute;
+        left: 475px;
+        top: 65px;
+        z-index: 2;
+        color: #ffffffff;
+        border-width: 5px;
+        border-radius: 5px;
+        border-style: solid;
+        border-color: rgb(222, 14, 14);
+        background-color: rgb(154, 22, 22);
+        visibility: hidden;
+      }
+      .buttons-fu {
+        position: absolute;
+        line-height: 1.2;
+        top: 200px;
+        left: 10px;
+      }
+      .buttons-fu-color {
+        background-color: rgb(154, 22, 22);
+        font-family: Verdana;
+        font-size: 12px;
+        color: #ffffffff;
+        border-style: solid;
+        border-color: rgb(222, 14, 14);
+      }
+      .buttons-su {
+        position: absolute;
+        line-height: 1.2;
+        top: 200px;
+        left: 10px;
+      }
+      .buttons-su-color {
+        background-color: #dc8616ff;
+        font-family: Verdana;
+        font-size: 12px;
+        color: #ffffffff;
+        border-style: outset;
+        border-color: #dc4b16ff;
+      }
+      .softcap {
+        font-family: Verdana;
+        font-size: 12px;
+        color: rgb(169, 0, 0);
+        font-weight: bold;
+      }
+      .achievements {
+        top: 200px;
+        left: 10px;
+      }
+      .achievements.hover {
+        font-family: Verdana;
+        font-size: 12px;
+      }
+      .scroll {
+        height: 2000px;
+      }
+      .funny {
+        position: relative;
+        top: 1500px;
+        left: 555px;
+      }
+
+      
+    </style>
+  </head>
+  <body>
+
+    <div class="resource-container">
+        <div class="leaves">
+        <p id="pleaseWork">0 Leaves</p>
+        <p id="leavesPerSecond">0 Leaves/s</p>
+        <p id="leafSoftcap" class="softcap"></p>
+        <img src="./src/images/leaf.png" alt="Leaves"><br>
+      </div>
+      <div class="tree-age">
+        <p id="treeAgeCounter">0 Seconds</p>
+        <p id="treeAgePerSecond">0 Seconds/s</p>
+        <img src="./src/images/clock.png" alt="Tree Age"><br>
+      </div>
+      <div class="seeds">
+        <p id="seedCounter">0 Seeds</p>
+        <div class="italic">
+          <p id="seedUpdateCounter">1e7 Leaves Required</p>
+        </div>
+        <p id="seedSoftcap" class="softcap"></p>
+        <img src="./src/images/seed.png" alt="Seeds"><br>
+      </div>
+      <div class="seeds-reset-button">
+        <button id="decompolize" class="buttons-su-color">Decompolize</button>
+      </div>
+      <div class="fruits">
+        <p id="fruitCounter">0 Fruits</p>
+        <div class="italic">
+          <p id="fruitUpdateCounter">1e7 Seeds Required</p>
+        </div>
+        <p id="fruitSoftcap" class="softcap"></p>
+        <img src="./src/images/fruit.png" alt="Fruits"><br>
+      </div>
+      <div class="fruits-reset-button">
+        <button id="harvest" class="buttons-fu-color">Harvest</button>
+      </div>
+    </div>
+
+      <div class="cheat-box-hehe">
+        <p>You're a fuckin' cheater<br>for changing this value</p>
+        <input type="text" id="cheaterBox" placeholder="x Leaves Per Tick">
+        <p>Current value: <span id="cheaterValue"></span> x Leaves/tick</p>
+      </div>
+
+    <div class="buttons-tab">
+      <button id="leafTab" class="buttons-lu-tab-color">Leaf Upgrades</button>
+      <button id="seedTab" class="buttons-su-tab-color">Seed Upgrades</button>
+      <button id="achievementTab" class="buttons-ach-tab-color">Achievements</button>
+    </div>
+
+    <div class="buttons-lu" id="buttons-lu">
+      <button id="L1" class="buttons-lu-color">L1<br>Start Generating<br>Leaves</button>
+      <button id="L2" class="buttons-lu-color">L2<br>Grow I<br>x2 Leaves<br>Cost: 10 Leaves</button>
+      <button id="L3" class="buttons-lu-color">L3<br>Grow II<br>x3 Leaves<br>Cost: 35 Leaves</button>
+      <button id="L4" class="buttons-lu-color">L4<br>Develop I<br>Tree Age boosts Leaves<br>Cost: 150 Leaves</button>
+      <button id="L5" class="buttons-lu-color">L5<br>Grow III<br>x2.5 Leaves<br>Cost: 500 Leaves</button>
+      <button id="L6" class="buttons-lu-color">L6<br>Grow IV<br>x3 Leaves<br>Cost: 1500 Leaves</button>
+      <button id="L7" class="buttons-lu-color">L7<br>Grow V<br>xπ Leaves for no reason<br>Cost: 5000 Leaves</button>
+      <button id="L8" class="buttons-lu-color">L8<br>Grow VI<br>x1.75 Leaves<br>Cost: 7500 Leaves</button>
+      <button id="L9" class="buttons-lu-color">L9<br>Develop II<br>Increase L4's Boost<br>Cost: 24000 Leaves</button>
+      <button id="L10" class="buttons-lu-color">L10<br>Grow Power<br>Every LU Bought<br>Multiplies Leaves by 1.1<br>Cost: 200000 Leaves</button>
+      <button id="L11" class="buttons-lu-color">L11<br>Self-Synergy<br>Leaves boost their own production<br>Cost: 650000 Leaves</button>
+      <button id="L12" class="buttons-lu-color">L12<br>Grow VII<br>x5 Leaves<br>Cost: 2.25e7 Leaves</button>
+      <button id="L13" class="buttons-lu-color">L13<br>Grow VIII<br>x4 Leaves<br>Cost: 1.75e8 Leaves</button>
+      <button id="L14" class="buttons-lu-color">L14<br>Grow IX<br>x5 Leaves<br>Cost: 6e10 Leaves</button>
+      <button id="L15" class="buttons-lu-color">L15<br>Booster<br>L11's effect is doubled<br>Cost: 1e9 Leaves</button>
+      <button id="L16" class="buttons-lu-color">L16<br>Develop III<br>Tree Age boosts Leaves (again)<br>Cost: 1e12 Leaves</button>
+    </div>
+
+    <div class="buttons-su" id="buttons-su">
+      <div class="italic">
+        <p>Remember to buy L1 after every reset! &#128512</p>
+      </div>
+      <button id="S1" class="buttons-su-color">S1<br>Branch I<br>x6 Leaves<br>Cost: 1 Seed</button>
+      <button id="S2" class="buttons-su-color">S2<br>Branch II<br>x3 Leaves<br>Cost: 3 Seeds</button>
+      <button id="S3" class="buttons-su-color">S3<br>Anti-Cap I<br>Leaves Softcap starts later<br>based upon Seeds<br>Cost: 5 Seeds</button>
+      <button id="S4" class="buttons-su-color">S4<br>Nutritious Leaves<br>Seeds multiply Leaves<br>Cost: 35 Seeds</button>
+      <button id="S5" class="buttons-su-color">S5<br>Branch III<br>x10 Leaves<br>Cost: 175 Seeds</button>
+      <button id="S6" class="buttons-su-color">S6<br>Decompolize Method I<br>x3 Seeds<br>Cost: 2500 Seeds</button>
+      <button id="S7" class="buttons-su-color">S7<br>Branch IV<br>x3 Leaves<br>Cost: 20000 Seeds</button>
+      <button id="S8" class="buttons-su-color">S8<br>Seeds-ergy<br>Leaves boost themselves<br>Cost: 150000 Seeds</button>
+    </div>
+
+    <div class="options-boxes">
+      <p>Global Refresh Rate</p>
+      <div class="italic"><p>Note: not all functions use the global refresh rate,<br>some use a relative version of it</p></div>
+      <input type="text" id="refreshRateCounter" placeholder="Refresh Rate">
+      <p>Current value: <span id="refreshRate"></span> ms</p>
+    </div>
+
+    <div class="scroll">
+        <img src="./src/images/homerLEDs.png" class="funny" alt="Haha you have no internet connection">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/break_eternity.js@2.1.2"></script>
+    <script src="./src/modules/tabhandler.mjs" type="module"></script>
+    <script src="./src/modules/leafupgrades.mjs" type="module"></script>
+    <script src="./src/modules/seedupgrades.mjs" type="module"></script>
+    <script src="./src/modules/gameloopbutmodule.mjs" type="module"></script>
+    <script src="./src/modules/bunchobullshit.mjs" type="module"></script>
+    
+  </body>
+</html>
