@@ -1,20 +1,37 @@
 {
-   "name": "tutol-pc-port",
-   "version": "1.0.5",
+   "name": "the-downgrade-tree-of-life",
+   "version": "1.0.1",
    "description": "tutol pc port",
+   "keywords": [],
+   "repository": {
+      "type": "git",
+      "url": "tutol-pc-port"
+   },
+   "license": "MIT",
+   "author": "smeh8",
+   "type": "commonjs",
+   "main": "gameloop.mjs",
    "scripts": {
       "start": "node server.js"
    },
-   "keywords": [],
-   "author": "smeh8",
-   "license": "MIT",
+   "dependencies": {
+      "break_eternity.js": "^2.1.2",
+      "express": "^5.1.0",
+      "globby": "^15.0.0",
+      "helmet": "^8.1.0"
+   },
    "devDependencies": {
       "webpack": "^5.101.3",
       "webpack-cli": "^6.0.1"
    },
-   "main": "gameloop.js",
-   "dependencies": {
-      "break_eternity.js": "^2.1.2",
-      "express": "^5.1.0"
+   "pkg": {
+      "scripts": "src/**/*",
+      "assets": [
+         "src/**/*",
+         "images/**/*"
+      ],
+      "targets": [
+         "node18-windows-x64"
+      ]
    }
 }
