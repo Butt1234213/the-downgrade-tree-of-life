@@ -4,195 +4,11 @@
     <meta charset="utf-8">
     <title>The Downgrade Tree of Life</title>
     <link rel="icon" type="image/x-icon" href="./src/images/favicon.ico"> 
-    <style>
-      .resource-container {
-        display: inline-flex;
-        position: relative;
-        top: 8px;
-        left: 16px;
-        height: 100px;
-        gap: 20px;
-      }
-      .leaves {
-        line-height: 0.4;
-        font-family: Verdana;
-        font-size: 12px;
-        white-space: nowrap;
-      }
-      .tree-age {
-        line-height: 0.4;
-        position: absolute;
-        left: 135px;
-        font-family: Verdana;
-        font-size: 12px;
-        white-space: nowrap;
-      }
-      .seeds {
-        line-height: 0.4;
-        position: absolute;
-        left: 270px;
-        font-family: Verdana;
-        font-size: 12px;
-        z-index: 1;
-        white-space: nowrap;
-      }
-      .fruits {
-        line-height: 0.4;
-        position: absolute;
-        left: 435px;
-        font-family: Verdana;
-        font-size: 12px;
-        z-index: 1;
-        white-space: nowrap;
-      }
-      .buttons-lu {
-        position: absolute;
-        line-height: 0.4;
-        top: 200px;
-        left: 10px;
-      }
-      .buttons-lu-color {
-        background-color: rgb(80, 187, 80);
-        color: #ffffffff;
-        font-family: Verdana;
-        font-size: 12px;
-      }
-      .options-boxes {
-        position: fixed;
-        top: 500px;
-        font-family: Verdana;
-        font-size: 12px;
-      }
-      .italic {
-        font-style: italic;
-        font-family: Verdana;
-        font-size: 12px;
-        line-height: 1.5;
-      }
-      .cheat-box-hehe {
-        position: absolute;
-        top: 8px;
-        right: 16px;
-        font-family: Verdana;
-        font-size: 12px;
-      }
-      .buttons-tab {
-        position: absolute;
-        display: inline-block;
-        line-height: 0.4;
-        top: 150px;
-        left: 10px;
-      }
-      .buttons-lu-tab-color {
-        background-color: rgb(80, 187, 80);
-        color: #ffffffff;
-        font-family: Verdana;
-        font-size: 16px;
-        font-weight: bold;
-        padding: 5px;
-      }
-      .buttons-su-tab-color {
-        position: relative;
-        left: 10px;
-        background-color: #dc8616ff;
-        font-family: Verdana;
-        font-size: 16px;
-        color: #ffffffff;
-        border-style: outset;
-        border-color: #dc4b16ff;
-        font-weight: bold;
-        padding: 5px;
-      }
-      .buttons-ach-tab-color {
-        position: relative;
-        left: 20px;
-        font-family: Verdana;
-        font-size: 16px;
-        font-weight: bold;
-        border-style: outset;
-        border-color: #000000ff;
-        padding: 5px;
-
-      }
-      .seeds-reset-button {
-        position: absolute;
-        left: 350px;
-        top: 80px;
-        z-index: 2;
-        color: #ffffffff;
-        border-width: 5px;
-        border-radius: 5px;
-        border-style: solid;
-        border-color: #dc4b16ff;
-        background-color: #dc8616ff;
-        visibility: hidden;
-      }
-      .fruits-reset-button {
-        position: absolute;
-        left: 475px;
-        top: 65px;
-        z-index: 2;
-        color: #ffffffff;
-        border-width: 5px;
-        border-radius: 5px;
-        border-style: solid;
-        border-color: rgb(222, 14, 14);
-        background-color: rgb(154, 22, 22);
-        visibility: hidden;
-      }
-      .buttons-fu {
-        position: absolute;
-        line-height: 1.2;
-        top: 200px;
-        left: 10px;
-      }
-      .buttons-fu-color {
-        background-color: rgb(154, 22, 22);
-        font-family: Verdana;
-        font-size: 12px;
-        color: #ffffffff;
-        border-style: solid;
-        border-color: rgb(222, 14, 14);
-      }
-      .buttons-su {
-        position: absolute;
-        line-height: 1.2;
-        top: 200px;
-        left: 10px;
-      }
-      .buttons-su-color {
-        background-color: #dc8616ff;
-        font-family: Verdana;
-        font-size: 12px;
-        color: #ffffffff;
-        border-style: outset;
-        border-color: #dc4b16ff;
-      }
-      .softcap {
-        font-family: Verdana;
-        font-size: 12px;
-        color: rgb(169, 0, 0);
-        font-weight: bold;
-      }
-      .achievements {
-        top: 200px;
-        left: 10px;
-      }
-      .achievements.hover {
-        font-family: Verdana;
-        font-size: 12px;
-      }
-      .scroll {
-        height: 2000px;
-      }
-      .funny {
-        position: relative;
-        top: 1500px;
-        left: 555px;
-      }
-
-      
-    </style>
+    <link rel="stylesheet" href="./src/stylesheets/achievements.css">
+    <link rel="stylesheet" href="./src/stylesheets/others.css">
+    <link rel="stylesheet" href="./src/stylesheets/resources.css">
+    <link rel="stylesheet" href="./src/stylesheets/tabs.css">
+    <link rel="stylesheet" href="./src/stylesheets/upgradebuttons.css">
   </head>
   <body>
 
@@ -206,7 +22,7 @@
       <div class="tree-age">
         <p id="treeAgeCounter">0 Seconds</p>
         <p id="treeAgePerSecond">0 Seconds/s</p>
-        <img src="./src/images/clock.png" alt="Tree Age"><br>
+        <img src="./src/images/clock.png" alt="Tree Age" width="32" height="32"><br>
       </div>
       <div class="seeds">
         <p id="seedCounter">0 Seeds</p>
@@ -236,12 +52,16 @@
         <p>You're a fuckin' cheater<br>for changing this value</p>
         <input type="text" id="cheaterBox" placeholder="x Leaves Per Tick">
         <p>Current value: <span id="cheaterValue"></span> x Leaves/tick</p>
+        <button id="animationTrigger">Trigger Achievement Animation</button>
       </div>
 
     <div class="buttons-tab">
       <button id="leafTab" class="buttons-lu-tab-color">Leaf Upgrades</button>
       <button id="seedTab" class="buttons-su-tab-color">Seed Upgrades</button>
+      <button id="fruitTab" class="buttons-fu-tab-color">Fruit Upgrades</button>
+      <button id="composterTab" class="buttons-composter-tab-color">Composter</button>
       <button id="achievementTab" class="buttons-ach-tab-color">Achievements</button>
+      <button id="settingsTab" class="buttons-settings-tab-color">Settings</button>
     </div>
 
     <div class="buttons-lu" id="buttons-lu">
@@ -253,14 +73,18 @@
       <button id="L6" class="buttons-lu-color">L6<br>Grow IV<br>x3 Leaves<br>Cost: 1500 Leaves</button>
       <button id="L7" class="buttons-lu-color">L7<br>Grow V<br>xπ Leaves for no reason<br>Cost: 5000 Leaves</button>
       <button id="L8" class="buttons-lu-color">L8<br>Grow VI<br>x1.75 Leaves<br>Cost: 7500 Leaves</button>
-      <button id="L9" class="buttons-lu-color">L9<br>Develop II<br>Increase L4's Boost<br>Cost: 24000 Leaves</button>
+      <button id="L9" class="buttons-lu-color">L9<br>Develop II<br>Tree Age boosts Leaves (again)<br>Cost: 24000 Leaves</button>
       <button id="L10" class="buttons-lu-color">L10<br>Grow Power<br>Every LU Bought<br>Multiplies Leaves by 1.1<br>Cost: 200000 Leaves</button>
       <button id="L11" class="buttons-lu-color">L11<br>Self-Synergy<br>Leaves boost their own production<br>Cost: 650000 Leaves</button>
       <button id="L12" class="buttons-lu-color">L12<br>Grow VII<br>x5 Leaves<br>Cost: 2.25e7 Leaves</button>
       <button id="L13" class="buttons-lu-color">L13<br>Grow VIII<br>x4 Leaves<br>Cost: 1.75e8 Leaves</button>
       <button id="L14" class="buttons-lu-color">L14<br>Grow IX<br>x5 Leaves<br>Cost: 6e10 Leaves</button>
-      <button id="L15" class="buttons-lu-color">L15<br>Booster<br>L11's effect is doubled<br>Cost: 1e9 Leaves</button>
-      <button id="L16" class="buttons-lu-color">L16<br>Develop III<br>Tree Age boosts Leaves (again)<br>Cost: 1e12 Leaves</button>
+      <button id="L15" class="buttons-lu-color">L15<br>Booster<br>L11's effect is squared<br>Cost: 1e9 Leaves</button>
+      <button id="L16" class="buttons-lu-color">L16<br>Develop III<br>Tree Age boosts Leaves (again)<br>Cost: 4.5e12 Leaves</button>
+      <button id="L17" class="buttons-lu-color">L17<br>Bigger Leaves<br>Leaves boost Seeds (again)<br>Cost: 1e15 Leaves</button>
+      <button id="L18" class="buttons-lu-color">L18<br>More Seeds I<br>x3 Seeds<br>Cost: 7.5e15 Leaves</button>
+      <button id="L19" class="buttons-lu-color">L19<br>More Seeds II<br>x3 Seeds<br>Cost: 5e17 Leaves</button>
+      <button id="L20" class="buttons-lu-color">L20<br>Exponentially Branching<br>Leaves boost their own production<br>(exponentially)<br>Cost: 1e23 Leaves</button>
     </div>
 
     <div class="buttons-su" id="buttons-su">
@@ -269,31 +93,163 @@
       </div>
       <button id="S1" class="buttons-su-color">S1<br>Branch I<br>x6 Leaves<br>Cost: 1 Seed</button>
       <button id="S2" class="buttons-su-color">S2<br>Branch II<br>x3 Leaves<br>Cost: 3 Seeds</button>
-      <button id="S3" class="buttons-su-color">S3<br>Anti-Cap I<br>Leaves Softcap starts later<br>based upon Seeds<br>Cost: 5 Seeds</button>
+      <button id="S3" class="buttons-su-color">S3<br>Develop IV<br>Tree Age boosts Leaves (again)<br>Cost: 5 Seeds</button>
       <button id="S4" class="buttons-su-color">S4<br>Nutritious Leaves<br>Seeds multiply Leaves<br>Cost: 35 Seeds</button>
       <button id="S5" class="buttons-su-color">S5<br>Branch III<br>x10 Leaves<br>Cost: 175 Seeds</button>
       <button id="S6" class="buttons-su-color">S6<br>Decompolize Method I<br>x3 Seeds<br>Cost: 2500 Seeds</button>
       <button id="S7" class="buttons-su-color">S7<br>Branch IV<br>x3 Leaves<br>Cost: 20000 Seeds</button>
-      <button id="S8" class="buttons-su-color">S8<br>Seeds-ergy<br>Leaves boost themselves<br>Cost: 150000 Seeds</button>
+      <button id="S8" class="buttons-su-color">S8<br>Seeds-ergy<br>Seeds boost themselves<br>Cost: 150000 Seeds</button>
     </div>
 
-    <div class="options-boxes">
-      <p>Global Refresh Rate</p>
-      <div class="italic"><p>Note: not all functions use the global refresh rate,<br>some use a relative version of it</p></div>
-      <input type="text" id="refreshRateCounter" placeholder="Refresh Rate">
-      <p>Current value: <span id="refreshRate"></span> ms</p>
+    <div class="buttons-fu" id="buttons-fu">
+      <div class="italic">
+        <p>Remember to buy L1 after every reset! &#128512</p>
+      </div>
+      <button id="F1" class="buttons-fu-color">F1<br>The Composter I<br>Unlock the Composter<br>Cost: 1 Fruit</button>
+      <button id="F2" class="buttons-fu-color">F2<br>The Composter II<br>Unlock the second Composter<br>Cost: 4 Fruit</button>
+      <button id="F3" class="buttons-fu-color">F3<br>Anti-Cap I<br>Fruits push back Leaves Softcap<br>Cost: 9 Fruit</button>
     </div>
+
+    <div class="buttons-composter" id="buttons-composter">
+      <div class="leaf-composter-background">
+        <div class="center-align">
+          <p class="bold">Leaf Composter</p>
+          <p id="leafFertilizerCounter">The Leaf Composter has made 0 Fertilizers,</p>
+          <p id="leafFertilizerEffect">boosting Tree Aging Speed by 1x</p>
+          <p class="italic">(1.5x every Fertilizer)</p>
+          <button id="leafComposterButton" class="buttons-lu-color">Make a Fertilizer<br>Cost: 1 Leaf</button>
+          <p id="leafCompostingTimer">Composting takes 0.5 seconds</p>
+          <div class="leaf-progress-container">
+            <div class="leaf-progress-bar" style="width: 100%;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="seed-composter-background">
+        <div class="center-align">
+          <p class="bold">Seed Composter</p>
+          <p id="seedFertilizerCounter">The Seed Composter has made 0 Fertilizers,</p>
+          <p id="seedFertilizerEffect">boosting Tree Aging Speed by 1x</p>
+          <p class="italic">(1.5x every Fertilizer)</p>
+          <button id="seedComposterButton" class="buttons-su-color">Make a Fertilizer<br>Cost: 1 Seed</button>
+          <p id="seedCompostingTimer">Composting takes 0.5 seconds</p>
+          <div class="seed-progress-container">
+            <div class="seed-progress-bar" style="width: 100%;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="fruit-composter-background">
+        <div class="center-align">
+          <p class="bold">Fruit Composter</p>
+          <p id="fruitFertilizerCounter">The Fruit Composter has made 0 Fertilizers,</p>
+          <p id="fruitFertilizerEffect">boosting Tree Aging Speed by 1x</p>
+          <p class="italic">(1.5x every Fertilizer)</p>
+          <button id="fruitComposterButton" class="buttons-fu-color">Make a Fertilizer<br>Cost: 1 Fruit</button>
+          <p id="fruitCompostingTimer">Composting takes 0.5 seconds</p>
+          <div class="fruit-progress-container">
+            <div class="fruit-progress-bar" style="width: 100%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="achievements" id="achievements">
+      <div class="ach11">
+        <img src="./src/images/achievements/11.png" alt="11" width="100" height="100">
+        <span class="achievements-hover">It starts here (11)<br>Buy L1</span>
+      </div>
+      <div class="ach12">
+        <img src="./src/images/achievements/12.png" alt="12" width="100" height="100">
+        <span class="achievements-hover">Oh that's what that does (12)<br>Buy L4</span>
+      </div>
+      <div class="ach13">
+        <img src="./src/images/achievements/13.png" alt="13" width="100" height="100">
+        <span class="achievements-hover">Leafsplosion (13)<br>Buy L11</span>
+      </div>
+      <div class="ach14">
+        <img src="./src/images/achievements/14.png" alt="14" width="100" height="100">
+        <span class="achievements-hover">Mommy I don't wanna reset (14)<br>Decompolize your tree for Seeds</span>
+      </div>
+      <div class="ach15">
+        <img src="./src/images/achievements/15.png" alt="15" width="100" height="100">
+        <span class="achievements-hover">I had to nerf this (15)<br>Buy L15</span>
+      </div>
+      <div class="ach21">
+        <img src="./src/images/achievements/21.png" alt="21" width="100" height="100">
+        <span class="achievements-hover">Pucker up boys...<br>(21)<br>Buy S3</span>
+      </div>
+      <div class="ach22">
+        <img src="./src/images/achievements/22.png" alt="22" width="100" height="100">
+        <span class="achievements-hover">Trapped behind the glass wall (22)<br>Reach the dreaded leaves softcap</span>
+      </div>
+      <div class="ach23">
+        <img src="./src/images/achievements/23.png" alt="23" width="100" height="100">
+        <span class="achievements-hover">appel..... &#128523 (23)<br>Harvest your tree for Fruits</span>
+      </div>
+      <div class="ach24">
+        <img src="./src/images/achievements/24.png" alt="24" width="100" height="100">
+        <span class="achievements-hover">Tree Age crafting recipe (24)<br>Unlock the Composter</span>
+      </div>
+      <div class="ach25">
+        <img src="./src/images/achievements/25.png" alt="25" width="100" height="100">
+        <span class="achievements-hover">That is macerated poop (25)<br>Buy F2</span>
+      </div>
+      <div class="ach31">
+        <img src="./src/images/achievements/31.png" alt="31" width="100" height="100">
+        <span class="achievements-hover">Eternal<br>punishment (31)<br>Buy F3</span>
+      </div>
+    </div>
+    
+    <div class="achievement-text-test"><p class="achievement-text-color">Test</p></div>
+    <div class="ach11-text"><p class="achievement-text-color">It starts here</p></div>
+    <div class="ach12-text"><p class="achievement-text-color">Oh that's what that does</p></div>
+    <div class="ach13-text"><p class="achievement-text-color">Leafsplosion</p></div>
+    <div class="ach14-text"><p class="achievement-text-color">Mommy I don't wanna reset</p></div>
+    <div class="ach15-text"><p class="achievement-text-color">I had to nerf this</p></div>
+    <div class="ach21-text"><p class="achievement-text-color">Pucker up boys...</p></div>
+    <div class="ach22-text"><p class="achievement-text-color">Trapped behind the glass wall</p></div>
+    <div class="ach23-text"><p class="achievement-text-color">appel..... &#128523</p></div>
+    <div class="ach24-text"><p class="achievement-text-color">Tree Age crafting recipe</p></div>
+    <div class="ach25-text"><p class="achievement-text-color">That is macerated poop</p></div>
+    <div class="ach31-text"><p class="achievement-text-color">Eternal punishment</p></div>
+
+    <div class="options-boxes" id="settings">
+      <div class="refresh-rate">
+        <p>Global Refresh Rate</p>
+        <div class="italic"><p>Note: not all functions use the global refresh rate,<br>some use a relative version of it</p></div>
+        <input type="text" id="refreshRateCounter" placeholder="Refresh Rate">
+        <p>Current value: <span id="refreshRate"></span> ms</p>
+      </div>
+      <div class="saving">
+        <p>Saving</p>
+        <div class="italic"><p>By default, the game saves every 60s</p></div>
+        <button id="saveManually">Save Manually</button>
+        <button id="loadSave">Load Save</button>
+        <button id="exportSave">Export Save</button>
+      </div>
+    </div>
+
+    <div class="game-saved-text"><p class="game-saved-text-color">Game Saved</p></div>
+    <div class="game-loaded-text"><p class="game-loaded-text-color">Game Loaded</p></div>
 
     <div class="scroll">
         <img src="./src/images/homerLEDs.png" class="funny" alt="Haha you have no internet connection">
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/break_eternity.js@2.1.2"></script>
+    <script type="importmap">{
+      "imports": {
+      "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+      }
+    }
+    </script>
     <script src="./src/modules/tabhandler.mjs" type="module"></script>
     <script src="./src/modules/leafupgrades.mjs" type="module"></script>
     <script src="./src/modules/seedupgrades.mjs" type="module"></script>
+    <script src="./src/modules/fruitupgrades.mjs" type="module"></script>
+    <script src="./src/modules/composter.mjs" type="module"></script>
     <script src="./src/modules/gameloopbutmodule.mjs" type="module"></script>
     <script src="./src/modules/bunchobullshit.mjs" type="module"></script>
-    
+    <script src="./src/modules/achievements.mjs" type="module"></script>
+    <script src="./src/modules/savefile.mjs" type="module"></script>
   </body>
 </html>

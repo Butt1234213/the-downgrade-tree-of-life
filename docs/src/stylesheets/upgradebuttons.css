@@ -1,0 +1,141 @@
+.buttons-lu {
+    position: absolute;
+    line-height: 0.4;
+    top: 250px;
+    left: 10px;
+}
+.buttons-lu-color {
+    background-color: #50bb50;
+    color: #ffffffff;
+    font-family: Verdana;
+    font-size: 12px;
+}
+.buttons-su {
+    position: absolute;
+    line-height: 1.2;
+    top: 250px;
+    left: 10px;
+}
+.buttons-su-color {
+    background-color: #dc8616ff;
+    font-family: Verdana;
+    font-size: 12px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #dc4b16ff;
+}
+.buttons-fu {
+    position: absolute;
+    line-height: 1.2;
+    top: 250px;
+    left: 10px;
+}
+.buttons-fu-color {
+    background-color: #de0e0e;
+    font-family: Verdana;
+    font-size: 12px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #9a1616;
+}
+.buttons-composter {
+    position: absolute;
+    line-height: 1.2;
+    top: 250px;
+    left: 10px;
+    font-family: Verdana;
+}
+
+.leaf-composter-background {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    height: 260px;
+    width: 300px;
+    padding: 5px 10px;
+    background-color: #743411;
+    border-style: outset;
+    border-color: #58280d;
+    color: #ffffffff;
+    font-size: 12px;
+}
+.leaf-progress-container {
+    position: absolute;
+    top: 220px;
+    left: 32.5px;
+    width: 250px;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.leaf-progress-bar {
+    height: 100%;
+    background-color: #50bb50;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    line-height: 20px;
+}
+.seed-composter-background {
+    position: absolute;
+    top: 0px;
+    left: 350px;
+    height: 260px;
+    width: 300px;
+    padding: 5px 10px;
+    background-color: #743411;
+    border-style: outset;
+    border-color: #58280d;
+    color: #ffffffff;
+    font-size: 12px;
+}
+.seed-progress-container {
+    position: absolute;
+    top: 220px;
+    left: 32.5px;
+    width: 250px;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.seed-progress-bar {
+    height: 100%;
+    background-color: #dc8616;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    line-height: 20px;
+}
+.fruit-composter-background {
+    position: absolute;
+    top: 0px;
+    left: 690px;
+    height: 260px;
+    width: 300px;
+    padding: 5px 10px;
+    background-color: #743411;
+    border-style: outset;
+    border-color: #58280d;
+    color: #ffffffff;
+    font-size: 12px;
+}
+.fruit-progress-container {
+    position: absolute;
+    top: 220px;
+    left: 32.5px;
+    width: 250px;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.fruit-progress-bar {
+    height: 100%;
+    background-color: #de0e0e;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    line-height: 20px;
+}

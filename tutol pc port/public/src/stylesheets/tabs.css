@@ -1,0 +1,82 @@
+.buttons-tab {
+    position: absolute;
+    display: inline-block;
+    line-height: 0.4;
+    top: 150px;
+    left: 10px;
+}
+.buttons-lu-tab-color {
+    background-color: rgb(80, 187, 80);
+    color: #ffffffff;
+    white-space: nowrap;
+    font-family: Verdana;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px;
+}
+.buttons-su-tab-color {
+    position: absolute;
+    left: 155px;
+    background-color: #dc8616ff;
+    white-space: nowrap;
+    font-family: Verdana;
+    font-size: 16px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #dc4b16ff;
+    font-weight: bold;
+    padding: 5px;
+    visibility: hidden;
+}
+.buttons-fu-tab-color {
+    position: absolute;
+    left: 315px;
+    background-color: #de0e0e;
+    white-space: nowrap;
+    font-family: Verdana;
+    font-size: 16px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #9a1616;
+    font-weight: bold;
+    padding: 5px;
+    visibility: hidden;
+}
+.buttons-composter-tab-color {
+    position: absolute;
+    left: 473.5px;
+    background-color: #743411;
+    white-space: nowrap;
+    font-family: Verdana;
+    font-size: 16px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #58280d;
+    font-weight: bold;
+    padding: 5px;
+    visibility: hidden;
+}
+.buttons-ach-tab-color {
+    position: absolute;
+    white-space: nowrap;
+    left: 0px;
+    top: 50px;
+    font-family: Verdana;
+    font-size: 16px;
+    font-weight: bold;
+    border-style: outset;
+    border-color: #000000ff;
+    padding: 5px;
+}
+.buttons-settings-tab-color {
+    position: absolute;
+    white-space: nowrap;
+    left: 155px;
+    top: 50px;
+    font-family: Verdana;
+    font-size: 16px;
+    font-weight: bold;
+    border-style: outset;
+    border-color: #000000ff;
+    padding: 5px;
+}
