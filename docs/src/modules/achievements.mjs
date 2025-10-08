@@ -27,6 +27,10 @@ export var achievements = {
     ach31AnimPlayed: false,
 }
 
+export function updateAchievements(newAchievements) {
+    achievements = newAchievements;
+}
+
 export function achievementAnimation(achText) {
     var element = document.querySelector(achText)
     element.classList.add('show');

@@ -3,6 +3,12 @@ import { achievements, massAchievementChecker } from './achievements.mjs';
 import { startGeneration } from './leafupgrades.mjs'
 import { gameLoop } from './gameloopbutmodule.mjs'
 
+export function laggyAssFunction() {
+    F1();
+    F2();
+    F3();
+}
+
 export function F1() { 
     if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU1)) {
         gameData.fruits = gameData.fruits.minus(fruitUpgradeCost.FU1);
@@ -15,6 +21,7 @@ export function F1() {
 
         achievements.ach24 = true;
         massAchievementChecker();
+
     }
 }
 

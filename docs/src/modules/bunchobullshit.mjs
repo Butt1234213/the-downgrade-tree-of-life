@@ -1,5 +1,8 @@
 import { achievements, massAchievementChecker } from './achievements.mjs';
+import * as leafUpgrades from './leafupgrades.mjs'
 import * as seedUpgrades from './seedupgrades.mjs'
+import * as fruitUpgrades from './fruitupgrades.mjs'
+import { hasInitialized } from './savefile.mjs';
 
 export var gameData = {
     lastUpdate: new Decimal(Date.now()),
@@ -118,7 +121,7 @@ export function debugMult() {
 }
 
 
-export const leafUpgradeCost = {
+export var leafUpgradeCost = {
     LU2: new Decimal(10),
     LU3: new Decimal(35),
     LU4: new Decimal(150),
@@ -470,7 +473,7 @@ export function seedsFormula(leaves, factor) {
 }
 
 export function seedsSoftCalculation(elementID, capFactor) {
-    if (seedsVisualCalculation("false") >= (new Decimal(1e8)).toNumber()) {
+    if (seedsVisualCalculation("false") >= (new Decimal(1e15)).toNumber()) {
         while (gameData.seedsIsSoftcapped == false) {
             gameData.seedsSoftcap = capFactor;
             console.log(gameData.seeds + " is softcapped, gameData.seedsOnDecompolize is now " + gameData.seedsOnDecompolize);
@@ -537,7 +540,7 @@ export function decompolize() {
         document.getElementById("L2").innerHTML = `L2 <br> Grow I <br> x2 Leaves <br> Cost: 10 Leaves`;
         document.getElementById("L3").innerHTML = `L3 <br> Grow II <br> x3 Leaves <br> Cost: 35 Leaves`;
         document.getElementById("L4").innerHTML = `L4 <br> Develop I <br> Tree Age boosts Leaves <br> Cost: 150 Leaves`;
-        document.getElementById("L5").innerHTML = `L5 <br> Grow III <br> x2.5 Leaves <br> Cost: 600 Leaves`;
+        document.getElementById("L5").innerHTML = `L5 <br> Grow III <br> x2.5 Leaves <br> Cost: 500 Leaves`;
         document.getElementById("L6").innerHTML = `L6 <br> Grow IV <br> x3 Leaves <br> Cost: 1500 Leaves`;
         document.getElementById("L7").innerHTML = `L7 <br> Grow V <br> xπ Leaves for no reason <br> Cost: 5000 Leaves`;
         document.getElementById("L8").innerHTML = `L8 <br> Grow VI <br> x1.75 Leaves <br> Cost: 7500 Leaves`;
@@ -691,7 +694,7 @@ export function harvest() {
         document.getElementById("L2").innerHTML = `L2<br>Grow I<br>x2 Leaves<br>Cost: 10 Leaves`;
         document.getElementById("L3").innerHTML = `L3<br>Grow II<br>x3 Leaves<br>Cost: 35 Leaves`;
         document.getElementById("L4").innerHTML = `L4<br>Develop I<br>Tree Age boosts Leaves<br>Cost: 150 Leaves`;
-        document.getElementById("L5").innerHTML = `L5<br>Grow III<br>x2.5 Leaves<br>Cost: 600 Leaves`;
+        document.getElementById("L5").innerHTML = `L5<br>Grow III<br>x2.5 Leaves<br>Cost: 500 Leaves`;
         document.getElementById("L6").innerHTML = `L6<br>Grow IV<br>x3 Leaves<br>Cost: 1500 Leaves`;
         document.getElementById("L7").innerHTML = `L7<br>Grow V<br>xπ Leaves for no reason<br>Cost: 5000 Leaves`;
         document.getElementById("L8").innerHTML = `L8<br>Grow VI<br>x1.75 Leaves<br>Cost: 7500 Leaves`;
@@ -861,20 +864,34 @@ export function updateFruitUpgradeFactor(newData) {
     fruitUpgradeFactor = newData;
 }
 
-console.log(typeof gameData.leaves);
-console.log(gameData.leaves instanceof Decimal);
-//should return Object, then true
+export function laggyAnusFunction() {
+    if (hasInitialized) {
+        try {
+            if (typeof leafUpgradeCost !== undefined) {
+                leafUpgrades.laggyAssFunction();
+                seedUpgrades.laggyAssFunction();
+                fruitUpgrades.laggyAssFunction();
+                gameData.gameStarted = true;
+            }
+        } catch (error) {
+            console.log("the costs for the upgrades haven't been initialized yet")
+            return;
+        }
+    }
+}
 
-Object.entries(gameData).forEach(([key, value]) => {
-    console.log(key);
-    console.log(value);
-    if (value instanceof Decimal) {
-        console.log("this is a decimal");
+export function updateGUIBasedOnAchievements() {
+    if (hasInitialized) {
+        if (achievements.ach14) {
+            document.querySelector('.seeds').style.visibility = 'visible';
+            document.querySelector('.buttons-su-tab-color').style.visibility = 'visible';
+        }
+        if (achievements.ach23) {
+            document.querySelector('.fruits').style.visibility = 'visible';
+            document.querySelector('.buttons-fu-tab-color').style.visibility = 'visible';
+        }
+        if (achievements.ach24) {
+            document.querySelector('.buttons-composter-tab-color').style.visibility = 'visible';
+        }
     }
-    if (value.toString() == "true" || value.toString() == "false") {
-        console.log("this is a boolean");
-    }
-    console.log(value.toString());
-    console.log("/n");
-});
-//oh boy time for 800 lines of bullcrap in the console
+}

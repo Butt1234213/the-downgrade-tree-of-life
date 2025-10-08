@@ -3,6 +3,17 @@ import { achievements, massAchievementChecker } from './achievements.mjs';
 import { startGeneration } from './leafupgrades.mjs'
 import { gameLoop } from './gameloopbutmodule.mjs'
 
+export function laggyAssFunction() {
+    S1();
+    S2();
+    S3();
+    S4();
+    S5();
+    S6();
+    S7();
+    S8();
+}
+
 export function S1() {
     if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU1)) {
         if (seedUpgradeFactor.S1Bought == false) {

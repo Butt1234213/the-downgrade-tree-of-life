@@ -2,6 +2,26 @@ import { gameData, leafUpgradeCost, leafUpgradeFactor, truncateToDecimalPlaces }
 import { gameLoop } from './gameloopbutmodule.mjs'
 import { achievements } from './achievements.mjs';
 
+export function laggyAssFunction() {
+    startGeneration();
+    L2();
+    L3();
+    L4();
+    L5();
+    L6();
+    L7();
+    L8();
+    L9();
+    L10();
+    L11();
+    L12();
+    L13();
+    L14();
+    L15();
+    L16();
+    L17();
+}
+
 export function startGeneration() {
     gameData.gameStarted = true;
     gameData.tickSpeedMultiplier = new Decimal(1);

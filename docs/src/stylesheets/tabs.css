@@ -30,6 +30,7 @@
 }
 .buttons-fu-tab-color {
     position: absolute;
+    top: 0px;
     left: 315px;
     background-color: #de0e0e;
     white-space: nowrap;
