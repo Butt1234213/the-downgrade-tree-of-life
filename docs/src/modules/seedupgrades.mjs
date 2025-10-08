@@ -29,6 +29,7 @@ export function S1() {
             document.getElementById("S1").disabled = true;
             document.getElementById("S1").style.color = '#000000ff'
             document.getElementById("S1").style.borderColor = '#000000ff'
+            gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -48,6 +49,7 @@ export function S2() {
             document.getElementById("S2").disabled = true;
             document.getElementById("S2").style.color = '#000000ff'
             document.getElementById("S2").style.borderColor = '#000000ff'
+            gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -69,6 +71,7 @@ export function S3() {
             document.getElementById("S3").disabled = true;
             document.getElementById("S3").style.color = '#000000ff'
             document.getElementById("S3").style.borderColor = '#000000ff'
+            gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -88,6 +91,7 @@ export function S4() {
             document.getElementById("S4").disabled = true;
             document.getElementById("S4").style.color = '#000000ff'
             document.getElementById("S4").style.borderColor = '#000000ff'
+            gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -107,6 +111,7 @@ export function S5() {
             document.getElementById("S5").disabled = true;
             document.getElementById("S5").style.color = '#000000ff'
             document.getElementById("S5").style.borderColor = '#000000ff'
+            gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -126,6 +131,7 @@ export function S6() {
             document.getElementById("S6").disabled = true;
             document.getElementById("S6").style.color = '#000000ff'
             document.getElementById("S6").style.borderColor = '#000000ff'
+            gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -145,6 +151,7 @@ export function S7() {
             document.getElementById("S7").disabled = true;
             document.getElementById("S7").style.color = '#000000ff'
             document.getElementById("S7").style.borderColor = '#000000ff'
+            gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -164,6 +171,7 @@ export function S8() {
             document.getElementById("S8").disabled = true;
             document.getElementById("S8").style.color = '#000000ff'
             document.getElementById("S8").style.borderColor = '#000000ff'
+            gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         }
     }
 }

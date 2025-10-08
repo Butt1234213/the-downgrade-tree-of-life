@@ -58,6 +58,7 @@ export function L2() {
             document.getElementById("L2").disabled = true;
             document.getElementById("L2").style.color = '#000000ff'
             document.getElementById("L2").style.borderColor = '#000000ff'
+            gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -76,6 +77,7 @@ export function L3() {
             document.getElementById("L3").disabled = true;
             document.getElementById("L3").style.color = '#000000ff'
             document.getElementById("L3").style.borderColor = '#000000ff'
+            gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -97,6 +99,7 @@ export function L4() {
             document.getElementById("L4").disabled = true;
             document.getElementById("L4").style.color = '#000000ff'
             document.getElementById("L4").style.borderColor = '#000000ff'
+            gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -116,6 +119,7 @@ export function L5() {
             document.getElementById("L5").disabled = true;
             document.getElementById("L5").style.color = '#000000ff'
             document.getElementById("L5").style.borderColor = '#000000ff'
+            gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -134,6 +138,7 @@ export function L6() {
             document.getElementById("L6").disabled = true;
             document.getElementById("L6").style.color = '#000000ff'
             document.getElementById("L6").style.borderColor = '#000000ff'
+            gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -152,6 +157,7 @@ export function L7() {
             document.getElementById("L7").disabled = true;
             document.getElementById("L7").style.color = '#000000ff'
             document.getElementById("L7").style.borderColor = '#000000ff'
+            gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -170,6 +176,7 @@ export function L8() {
             document.getElementById("L8").disabled = true;
             document.getElementById("L8").style.color = '#000000ff'
             document.getElementById("L8").style.borderColor = '#000000ff'
+            gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -189,6 +196,7 @@ export function L9() {
             document.getElementById("L9").disabled = true;
             document.getElementById("L9").style.color = '#000000ff'
             document.getElementById("L9").style.borderColor = '#000000ff'
+            gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -208,6 +216,7 @@ export function L10() {
             document.getElementById("L10").disabled = true;
             document.getElementById("L10").style.color = '#000000ff'
             document.getElementById("L10").style.borderColor = '#000000ff'
+            gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -229,6 +238,7 @@ export function L11() {
             document.getElementById("L11").disabled = true;
             document.getElementById("L11").style.color = '#000000ff'
             document.getElementById("L11").style.borderColor = '#000000ff'
+            gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -248,6 +258,7 @@ export function L12() {
             document.getElementById("L12").disabled = true;
             document.getElementById("L12").style.color = '#000000ff'
             document.getElementById("L12").style.borderColor = '#000000ff'
+            gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -266,6 +277,7 @@ export function L13() {
             document.getElementById("L13").disabled = true;
             document.getElementById("L13").style.color = '#000000ff'
             document.getElementById("L13").style.borderColor = '#000000ff'
+            gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -284,6 +296,7 @@ export function L14() {
             document.getElementById("L14").disabled = true;
             document.getElementById("L14").style.color = '#000000ff'
             document.getElementById("L14").style.borderColor = '#000000ff'
+            gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -304,6 +317,7 @@ export function L15() {
             document.getElementById("L15").disabled = true;
             document.getElementById("L15").style.color = '#000000ff'
             document.getElementById("L15").style.borderColor = '#000000ff'
+            gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -323,6 +337,7 @@ export function L16() {
             document.getElementById("L16").disabled = true;
             document.getElementById("L16").style.color = '#000000ff'
             document.getElementById("L16").style.borderColor = '#000000ff'
+            gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
@@ -342,6 +357,7 @@ export function L17() {
             document.getElementById("L17").disabled = true;
             document.getElementById("L17").style.color = '#000000ff'
             document.getElementById("L17").style.borderColor = '#000000ff'
+            gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         }
     }
 }
