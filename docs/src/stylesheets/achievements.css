@@ -1,10 +1,40 @@
-
+.achievement-tab-container {
+    position: absolute;
+    top: 250px;
+    left: 10px;
+}
+.buttons-regular-ach-tab-color {
+    position: absolute;
+    white-space: nowrap;
+    left: 0px;
+    top: 0px;
+    font-family: Verdana;
+    font-size: 16px;
+    font-weight: bold;
+    border-style: outset;
+    border-color: #000000ff;
+    padding: 5px;
+}
+.buttons-secret-ach-tab-color {
+    position: absolute;
+    top: 0px;
+    left: 155px;
+    background-color: #000000;
+    white-space: nowrap;
+    font-family: Verdana;
+    font-size: 16px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #9e9e9e;
+    font-weight: bold;
+    padding: 5px;
+}
 .achievements {
     position: absolute;
     background-color: #565656;
     width: 609px;
     height: 1029px;
-    top: 250px;
+    top: 300px;
     left: 10px;
 }
 .achievements-hover {
@@ -323,6 +353,308 @@
     transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
 }
 .ach31-text.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.ach32 {
+    position: absolute;
+    top: 250px;
+    left: 125px;
+    border-width: 2px;
+    border-radius: 2px;
+    height: 100px;
+    font-family: Verdana;
+    font-size: 12px;
+    border-style: solid;
+    border-color: #000000ff;
+}
+.ach32:hover .achievements-hover {
+    visibility: visible;
+}
+.ach32-text {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.ach32-text.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.ach33 {
+    position: absolute;
+    top: 250px;
+    left: 250px;
+    border-width: 2px;
+    border-radius: 2px;
+    height: 100px;
+    font-family: Verdana;
+    font-size: 12px;
+    border-style: solid;
+    border-color: #000000ff;
+}
+.ach33:hover .achievements-hover {
+    visibility: visible;
+}
+.ach33-text {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.ach33-text.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.ach34 {
+    position: absolute;
+    top: 250px;
+    left: 375px;
+    border-width: 2px;
+    border-radius: 2px;
+    height: 100px;
+    font-family: Verdana;
+    font-size: 12px;
+    border-style: solid;
+    border-color: #000000ff;
+}
+.ach34:hover .achievements-hover {
+    visibility: visible;
+}
+.ach34-text {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.ach34-text.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.ach35 {
+    position: absolute;
+    top: 250px;
+    left: 500px;
+    border-width: 2px;
+    border-radius: 2px;
+    height: 100px;
+    font-family: Verdana;
+    font-size: 12px;
+    border-style: solid;
+    border-color: #000000ff;
+}
+.ach35:hover .achievements-hover {
+    visibility: visible;
+}
+.ach35-text {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.ach35-text.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.ach41 {
+    position: absolute;
+    top: 375px;
+    left: 0px;
+    border-width: 2px;
+    border-radius: 2px;
+    height: 100px;
+    font-family: Verdana;
+    font-size: 12px;
+    border-style: solid;
+    border-color: #000000ff;
+}
+.ach41:hover .achievements-hover {
+    visibility: visible;
+}
+.ach41-text {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.ach41-text.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.ach42 {
+    position: absolute;
+    top: 375px;
+    left: 125px;
+    border-width: 2px;
+    border-radius: 2px;
+    height: 100px;
+    font-family: Verdana;
+    font-size: 12px;
+    border-style: solid;
+    border-color: #000000ff;
+}
+.ach42:hover .achievements-hover {
+    visibility: visible;
+}
+.ach42-text {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.ach42-text.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.ach43 {
+    position: absolute;
+    top: 375px;
+    left: 250px;
+    border-width: 2px;
+    border-radius: 2px;
+    height: 100px;
+    font-family: Verdana;
+    font-size: 12px;
+    border-style: solid;
+    border-color: #000000ff;
+}
+.ach43:hover .achievements-hover {
+    visibility: visible;
+}
+.ach43-text {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.ach43-text.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.ach44 {
+    position: absolute;
+    top: 375px;
+    left: 375px;
+    border-width: 2px;
+    border-radius: 2px;
+    height: 100px;
+    font-family: Verdana;
+    font-size: 12px;
+    border-style: solid;
+    border-color: #000000ff;
+}
+.ach44:hover .achievements-hover {
+    visibility: visible;
+}
+.ach44-text {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.ach44-text.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+
+
+
+
+.secret-achievements {
+    position: absolute;
+    background-color: #565656;
+    width: 609px;
+    height: 1029px;
+    top: 300px;
+    left: 10px;
+}
+.secret-achievement-text-color {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: #000000;
+    color: white;
+    padding: 5px 10px;
+    border-style: solid;
+    border-radius: 4px;
+    border-color: black;
+    font-family: Verdana;
+    font-size: 16px;
+    font-weight: bold;
+    z-index: 10;
+}
+.secret11 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-width: 2px;
+    border-radius: 2px;
+    height: 100px;
+    font-family: Verdana;
+    font-size: 12px;
+    border-style: solid;
+    border-color: #000000ff;
+}
+.secret11:hover .achievements-hover {
+    visibility: visible;
+}
+.secret11-text {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.secret11-text.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.secret12 {
+    position: absolute;
+    top: 0px;
+    left: 125px;
+    border-width: 2px;
+    border-radius: 2px;
+    height: 100px;
+    font-family: Verdana;
+    font-size: 12px;
+    border-style: solid;
+    border-color: #000000ff;
+}
+.secret12:hover .achievements-hover {
+    visibility: visible;
+}
+.secret12-text {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.secret12-text.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.secret13 {
+    position: absolute;
+    top: 0px;
+    left: 250px;
+    border-width: 2px;
+    border-radius: 2px;
+    height: 100px;
+    font-family: Verdana;
+    font-size: 12px;
+    border-style: solid;
+    border-color: #000000ff;
+}
+.secret13:hover .achievements-hover {
+    visibility: visible;
+}
+.secret13-text {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.secret13-text.show {
     opacity: 1;
     visibility: visible;
     transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;

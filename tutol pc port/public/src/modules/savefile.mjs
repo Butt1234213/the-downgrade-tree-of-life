@@ -1,5 +1,5 @@
-import * as storage from './bunchobullshit.mjs';
-import { achievements, updateAchievements } from './achievements.mjs';
+import * as storage from './core/bunchobullshit.mjs';
+import { achievements, secretAchievements, updateAchievements } from './achievements.mjs';
 
 export var gameLoading = false;
 export var hasInitialized = false;
@@ -9,6 +9,7 @@ var temporaryLeafUpgradeFactor = {};
 var temporarySeedUpgradeFactor = {};
 var temporaryFruitUpgradeFactor = {};
 var temporaryAchievements = {};
+var temporarySecretAchievements = {};
 var gameDataKeys = [];
 var leafUpgradeFactorKeys = [];
 var seedUpgradeFactorKeys = [];
@@ -64,6 +65,10 @@ export function saveLoop() {
         temporaryAchievements = achievements;
         localStorage.setItem("achievements", JSON.stringify(temporaryAchievements));
     }
+    if (secretAchievements !== undefined && !gameLoading) {
+        temporarySecretAchievements = secretAchievements;
+        localStorage.setItem("secretAchievements", JSON.stringify(temporarySecretAchievements));
+    }
 
     exportString = 
     " " + localStorage.getItem("gameData") + 
@@ -74,7 +79,8 @@ export function saveLoop() {
     " " + seedUpgradeFactorKeys.toString() + 
     " " + localStorage.getItem("fruitUpgradeFactor") +
     " " + fruitUpgradeFactorKeys.toString() + 
-    " " + localStorage.getItem("achievements");
+    " " + localStorage.getItem("achievements") + 
+    " " + localStorage.getItem("secretAchievements");
 
     exportStrings = exportString.split(" ");
     exportStrings.splice(0, 1);
@@ -86,17 +92,25 @@ export function loadSave() {
     gameLoading = true;
     console.log('Attempting to load save data from localStorage');
 
+    //gameData on initilization
+    let loadedGameData = { ...storage.gameData };
+    let loadedLeafUpgradeFactor = { ...storage.leafUpgradeFactor };
+    let loadedSeedUpgradeFactor = { ...storage.seedUpgradeFactor };
+    let loadedFruitUpgradeFactor = { ...storage.fruitUpgradeFactor };
+
     const gameDataString = localStorage.getItem("gameData");
     const leafUpgradeFactorString = localStorage.getItem("leafUpgradeFactor");
     const seedUpgradeFactorString = localStorage.getItem("seedUpgradeFactor");
     const fruitUpgradeFactorString = localStorage.getItem("fruitUpgradeFactor");
     const achievementsString = localStorage.getItem("achievements");
+    const secretAchievementsString = localStorage.getItem("secretAchievements");
 
     let newGameData = {};
     let newLeafUpgradeFactor = {};
     let newSeedUpgradeFactor = {};
     let newFruitUpgradeFactor = {};
     let newAchievements = {};
+    let newSecretAchievements = {};
 
     let dataWasLoaded = false;
 
@@ -117,6 +131,9 @@ export function loadSave() {
         if (achievementsString) {
             newAchievements = JSON.parse(achievementsString);
         }
+        if (secretAchievementsString) {
+            newSecretAchievements = JSON.parse(secretAchievementsString);
+        }
     } catch (error) {
         console.error("Failed to parse save data. Resetting to defaults.", error);
         newGameData = {};
@@ -124,41 +141,65 @@ export function loadSave() {
         newSeedUpgradeFactor = {};
         newFruitUpgradeFactor = {};
         newAchievements = {};
+        newSecretAchievements = {};
         dataWasLoaded = false;
     }
 
-    // This uses the data gathered from saveLoop() or if it is busted it uses the default data defined in bunchobullshit.mjs
-    const gameDataToUse = Object.keys(newGameData).length > 0 ? newGameData : storage.gameData;
-    const leafUpgradeFactorToUse = Object.keys(newLeafUpgradeFactor).length > 0 ? newLeafUpgradeFactor : storage.leafUpgradeFactor;
-    const seedUpgradeFactorToUse = Object.keys(newSeedUpgradeFactor).length > 0 ? newSeedUpgradeFactor : storage.seedUpgradeFactor;
-    const fruitUpgradeFactorToUse = Object.keys(newFruitUpgradeFactor).length > 0 ? newFruitUpgradeFactor : storage.fruitUpgradeFactor;
-    const achievementsToUse = Object.keys(newAchievements).length > 0 ? newAchievements : achievements;
-
-    // magic
-    const convertToDecimals = (dataObject) => {
-        const converted = { ...dataObject };
-        Object.keys(converted).forEach(key => {
-            const value = converted[key];
-            if (typeof value === 'string' || typeof value === 'number') {
-                converted[key] = new Decimal(value);
+    if (dataWasLoaded) {
+        for (const key in newGameData) {
+            // only update keys that exist in the default gameData
+            if (loadedGameData.hasOwnProperty(key)) {
+                const value = newGameData[key];
+                if (storage.gameData[key] instanceof Decimal) {
+                    loadedGameData[key] = new Decimal(value);
+                } else {
+                    loadedGameData[key] = value;
+                }
             }
-        });
-        return converted;
-    };
+        }
+        for (const key in newLeafUpgradeFactor) {
+            if (loadedLeafUpgradeFactor.hasOwnProperty(key)) {
+                const value = newLeafUpgradeFactor[key];
+                if (storage.leafUpgradeFactor[key] instanceof Decimal) {
+                    loadedLeafUpgradeFactor[key] = new Decimal(value);
+                } else {
+                    loadedLeafUpgradeFactor[key] = value;
+                }
+            }
+        }
+        for (const key in newSeedUpgradeFactor) {
+            if (loadedSeedUpgradeFactor.hasOwnProperty(key)) {
+                const value = newSeedUpgradeFactor[key];
+                if (storage.seedUpgradeFactor[key] instanceof Decimal) {
+                    loadedSeedUpgradeFactor[key] = new Decimal(value);
+                } else {
+                    loadedSeedUpgradeFactor[key] = value;
+                }
+            }
+        }
+        for (const key in newFruitUpgradeFactor) {
+            if (loadedFruitUpgradeFactor.hasOwnProperty(key)) {
+                const value = newFruitUpgradeFactor[key];
+                if (storage.fruitUpgradeFactor[key] instanceof Decimal) {
+                    loadedFruitUpgradeFactor[key] = new Decimal(value);
+                } else {
+                    loadedFruitUpgradeFactor[key] = value;
+                }
+            }
+        }
+    }
 
-    const finalGameData = convertToDecimals(gameDataToUse);
-    const finalLeafUpgradeFactor = convertToDecimals(leafUpgradeFactorToUse);
-    const finalSeedUpgradeFactor = convertToDecimals(seedUpgradeFactorToUse);
-    const finalFruitUpgradeFactor = convertToDecimals(fruitUpgradeFactorToUse);
-
-    storage.updateGameData(finalGameData);
-    storage.updateLeafUpgradeFactor(finalLeafUpgradeFactor);
-    storage.updateSeedUpgradeFactor(finalSeedUpgradeFactor);
-    storage.updateFruitUpgradeFactor(finalFruitUpgradeFactor);
-    updateAchievements(achievementsToUse);
+    storage.updateGameData(loadedGameData);
+    storage.updateLeafUpgradeFactor(loadedLeafUpgradeFactor);
+    storage.updateSeedUpgradeFactor(loadedSeedUpgradeFactor);
+    storage.updateFruitUpgradeFactor(loadedFruitUpgradeFactor);
+    if (hasInitialized) {
+        updateAchievements(newAchievements, newSecretAchievements);
+        console.log("boom");
+    }
 
     if (dataWasLoaded) {
-        console.log('Game data successfully loaded');
+        console.log('Game data successfully loaded!');
         storage.gameLoadedTextAnimation();
 
         //horrible method of checking if buttons have been clicked on loading a save

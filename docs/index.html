@@ -26,9 +26,7 @@
       </div>
       <div class="seeds">
         <p id="seedCounter">0 Seeds</p>
-        <div class="italic">
-          <p id="seedUpdateCounter">1e7 Leaves Required</p>
-        </div>
+        <div class="italic"><p id="seedUpdateCounter">1e7 Leaves Required</p></div>
         <p id="seedSoftcap" class="softcap"></p>
         <img src="./src/images/seed.png" alt="Seeds"><br>
       </div>
@@ -37,78 +35,57 @@
       </div>
       <div class="fruits">
         <p id="fruitCounter">0 Fruits</p>
-        <div class="italic">
-          <p id="fruitUpdateCounter">1e7 Seeds Required</p>
-        </div>
+        <div class="italic"><p id="fruitUpdateCounter">1e7 Seeds Required</p></div>
         <p id="fruitSoftcap" class="softcap"></p>
         <img src="./src/images/fruit.png" alt="Fruits"><br>
       </div>
       <div class="fruits-reset-button">
         <button id="harvest" class="buttons-fu-color">Harvest</button>
       </div>
+      <div class="entropy">
+        <p id="entropyCounter">0 Entropy</p>
+        <div class="italic"><p id="entropyUpdateCounter">5e22 PE Required</p></div>
+        <p id="entropySoftcap" class="softcap"></p>
+        <img src="./src/images/entropy.png" alt="Entropy"><br>
+        <button id="entropyResetButton" class="entropy-reset-button">Transform</button>
+      </div>
     </div>
 
-      <div class="cheat-box-hehe">
-        <p>You're a fuckin' cheater<br>for changing this value</p>
-        <input type="text" id="cheaterBox" placeholder="x Leaves Per Tick">
-        <p>Current value: <span id="cheaterValue"></span> x Leaves/tick</p>
-        <button id="animationTrigger">Trigger Achievement Animation</button>
-      </div>
+    <div class="cheat-box-hehe">
+      <p>You're a fuckin' cheater<br>for changing this value</p>
+      <input type="text" id="cheaterBox" placeholder="x Leaves Per Tick">
+      <p>Current value: <span id="cheaterValue"></span> x Leaves/tick</p>
+      <button id="animationTrigger">Trigger achievement animation</button>
+      <button id="crashTrigger" class="display-block">Click to crash</button>
+    </div>
+      
+    <video id="jumpscareVideo" class="jumpscare-video" width="100%">
+      <source src="./src/images/boom.mp4" type="video/mp4">
+      <source src="./src/images/boom.ogg" type="video/ogg">
+      Your browser does not support HTML video.
+    </video>
 
     <div class="buttons-tab">
       <button id="leafTab" class="buttons-lu-tab-color">Leaf Upgrades</button>
       <button id="seedTab" class="buttons-su-tab-color">Seed Upgrades</button>
       <button id="fruitTab" class="buttons-fu-tab-color">Fruit Upgrades</button>
-      <button id="composterTab" class="buttons-composter-tab-color">Composter</button>
+      <button id="entropyTab" class="buttons-eu-tab-color">Entropy Upgrades</button>
       <button id="achievementTab" class="buttons-ach-tab-color">Achievements</button>
       <button id="settingsTab" class="buttons-settings-tab-color">Settings</button>
     </div>
-
-    <div class="buttons-lu" id="buttons-lu">
-      <button id="L1" class="buttons-lu-color">L1<br>Start Generating<br>Leaves</button>
-      <button id="L2" class="buttons-lu-color">L2<br>Grow I<br>x2 Leaves<br>Cost: 10 Leaves</button>
-      <button id="L3" class="buttons-lu-color">L3<br>Grow II<br>x3 Leaves<br>Cost: 35 Leaves</button>
-      <button id="L4" class="buttons-lu-color">L4<br>Develop I<br>Tree Age boosts Leaves<br>Cost: 150 Leaves</button>
-      <button id="L5" class="buttons-lu-color">L5<br>Grow III<br>x2.5 Leaves<br>Cost: 500 Leaves</button>
-      <button id="L6" class="buttons-lu-color">L6<br>Grow IV<br>x3 Leaves<br>Cost: 1500 Leaves</button>
-      <button id="L7" class="buttons-lu-color">L7<br>Grow V<br>xπ Leaves for no reason<br>Cost: 5000 Leaves</button>
-      <button id="L8" class="buttons-lu-color">L8<br>Grow VI<br>x1.75 Leaves<br>Cost: 7500 Leaves</button>
-      <button id="L9" class="buttons-lu-color">L9<br>Develop II<br>Tree Age boosts Leaves (again)<br>Cost: 24000 Leaves</button>
-      <button id="L10" class="buttons-lu-color">L10<br>Grow Power<br>Every LU Bought<br>Multiplies Leaves by 1.1<br>Cost: 200000 Leaves</button>
-      <button id="L11" class="buttons-lu-color">L11<br>Self-Synergy<br>Leaves boost their own production<br>Cost: 650000 Leaves</button>
-      <button id="L12" class="buttons-lu-color">L12<br>Grow VII<br>x5 Leaves<br>Cost: 2.25e7 Leaves</button>
-      <button id="L13" class="buttons-lu-color">L13<br>Grow VIII<br>x4 Leaves<br>Cost: 1.75e8 Leaves</button>
-      <button id="L14" class="buttons-lu-color">L14<br>Grow IX<br>x5 Leaves<br>Cost: 6e10 Leaves</button>
-      <button id="L15" class="buttons-lu-color">L15<br>Booster<br>L11's effect is squared<br>Cost: 1e9 Leaves</button>
-      <button id="L16" class="buttons-lu-color">L16<br>Develop III<br>Tree Age boosts Leaves (again)<br>Cost: 4.5e12 Leaves</button>
-      <button id="L17" class="buttons-lu-color">L17<br>Bigger Leaves<br>Leaves boost Seeds (again)<br>Cost: 1e15 Leaves</button>
-      <button id="L18" class="buttons-lu-color">L18<br>More Seeds I<br>x3 Seeds<br>Cost: 7.5e15 Leaves</button>
-      <button id="L19" class="buttons-lu-color">L19<br>More Seeds II<br>x3 Seeds<br>Cost: 5e17 Leaves</button>
-      <button id="L20" class="buttons-lu-color">L20<br>Exponentially Branching<br>Leaves boost their own production<br>(exponentially)<br>Cost: 1e23 Leaves</button>
+    
+    <div class="fruit-tab-container" id="fruit-tabs">
+      <button id="composterTab" class="buttons-composter-tab-color">Composter</button>
+      <button id="mossTab" class="buttons-moss-tab-color">Moss</button>
     </div>
 
-    <div class="buttons-su" id="buttons-su">
-      <div class="italic">
-        <p>Remember to buy L1 after every reset! &#128512</p>
-      </div>
-      <button id="S1" class="buttons-su-color">S1<br>Branch I<br>x6 Leaves<br>Cost: 1 Seed</button>
-      <button id="S2" class="buttons-su-color">S2<br>Branch II<br>x3 Leaves<br>Cost: 3 Seeds</button>
-      <button id="S3" class="buttons-su-color">S3<br>Develop IV<br>Tree Age boosts Leaves (again)<br>Cost: 5 Seeds</button>
-      <button id="S4" class="buttons-su-color">S4<br>Nutritious Leaves<br>Seeds multiply Leaves<br>Cost: 35 Seeds</button>
-      <button id="S5" class="buttons-su-color">S5<br>Branch III<br>x10 Leaves<br>Cost: 175 Seeds</button>
-      <button id="S6" class="buttons-su-color">S6<br>Decompolize Method I<br>x3 Seeds<br>Cost: 2500 Seeds</button>
-      <button id="S7" class="buttons-su-color">S7<br>Branch IV<br>x3 Leaves<br>Cost: 20000 Seeds</button>
-      <button id="S8" class="buttons-su-color">S8<br>Seeds-ergy<br>Seeds boost themselves<br>Cost: 150000 Seeds</button>
-    </div>
+    <div class="buttons-lu" id="buttons-lu"><div class="softcap"><p id="leafSoftcapInfo"></p></div></div>
 
-    <div class="buttons-fu" id="buttons-fu">
-      <div class="italic">
-        <p>Remember to buy L1 after every reset! &#128512</p>
-      </div>
-      <button id="F1" class="buttons-fu-color">F1<br>The Composter I<br>Unlock the Composter<br>Cost: 1 Fruit</button>
-      <button id="F2" class="buttons-fu-color">F2<br>The Composter II<br>Unlock the second Composter<br>Cost: 4 Fruit</button>
-      <button id="F3" class="buttons-fu-color">F3<br>Anti-Cap I<br>Fruits push back Leaves Softcap<br>Cost: 9 Fruit</button>
-    </div>
+    <div class="buttons-su" id="buttons-su"><div class="italic"><p>Remember to buy L1 after every reset! &#128512</p></div></div>
+
+    <div class="buttons-fu" id="buttons-fu"><div class="italic"><p>Remember to buy L1 after every reset! &#128512</p></div></div>
+
+    <div class="buttons-eu" id="buttons-eu"><div class="italic"><p>Remember to buy L1 after every reset! &#128512</p></div></div>
 
     <div class="buttons-composter" id="buttons-composter">
       <div class="leaf-composter-background">
@@ -152,6 +129,33 @@
       </div>
     </div>
 
+    <div class="buttons-moss" id="buttons-moss">
+      <div class="moss-background">
+        <div class="center-align">
+          <p class="bold">Moss</p>
+          <p id="mossCounter">You have created 0 Moss,</p>
+          <p id="mossEffect">boosting all LU's base multipliers by +0</p>
+          <p class="italic">Moss roughly equals Leaves * Seeds * Fruits,<br>but the effect is a lot more complicated.<br>f(x) = (log<sup>2</sup>x)/1.5, Effect = f(Moss<sub>elements</sub>) + 1</p>
+        </div>
+      </div>
+      <div class="moss-milestone-background">
+        <div class="center-align">
+          <p class="bold">Moss Milestones</p>
+          <p id="mossMilestoneCounter">You have reached 0 Moss Milestones</p>
+          <div id="mm1Background" class="moss-milestone" style="top: 100px;"><p id="mm1" class="bold">MM1<br>1e100 Moss Required</p></div>
+          <div id="mm2Background" class="moss-milestone" style="top: 100px; left: 160px;"><p id="mm2" class="bold">MM2<br>1e140 Moss Required</p></div>
+          <div id="mm3Background" class="moss-milestone" style="top: 240px;"><p id="mm3" class="bold">MM3<br>1e200 Moss Required</p></div>
+          <div id="mm4Background" class="moss-milestone" style="top: 240px; left: 160px;"><p id="mm4" class="bold">MM4<br>1e250 Moss Required</p></div>
+          <div id="mm5Background" class="moss-milestone" style="top: 380px;"><p id="mm5" class="bold">MM5<br>1.79e308 Moss Required</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="achievement-tab-container" id="achievement-tabs">
+      <button id="regularAchievements" class="buttons-regular-ach-tab-color">Achievements</button>
+      <button id="secretAchievements" class="buttons-secret-ach-tab-color">Secret Achievements</button>
+    </div>
+
     <div class="achievements" id="achievements">
       <div class="ach11">
         <img src="./src/images/achievements/11.png" alt="11" width="100" height="100">
@@ -187,15 +191,62 @@
       </div>
       <div class="ach24">
         <img src="./src/images/achievements/24.png" alt="24" width="100" height="100">
-        <span class="achievements-hover">Tree Age crafting recipe (24)<br>Unlock the Composter</span>
+        <span class="achievements-hover">Tree Age crafting recipe (24)<br>Unlock the Leaves Composter<br>(Buy F1)</span>
       </div>
       <div class="ach25">
         <img src="./src/images/achievements/25.png" alt="25" width="100" height="100">
-        <span class="achievements-hover">That is macerated poop (25)<br>Buy F2</span>
+        <span class="achievements-hover">That is macerated poop (25)<br>Unlock the Seeds Composter<br>(Buy F2)</span>
       </div>
       <div class="ach31">
         <img src="./src/images/achievements/31.png" alt="31" width="100" height="100">
         <span class="achievements-hover">Eternal<br>punishment (31)<br>Buy F3</span>
+      </div>
+      <div class="ach32">
+        <img src="./src/images/achievements/32.png" alt="32" width="100" height="100">
+        <span class="achievements-hover">That is macerated BLOOD (32)<br>Unlock the Fruits Composter<br>(Buy F7)</span>
+      </div>
+      <div class="ach33">
+        <img src="./src/images/achievements/33.png" alt="33" width="100" height="100">
+        <span class="achievements-hover">Camp fire... so very hot.jpg (33)<br>Buy L22</span>
+      </div>
+      <div class="ach34">
+        <img src="./src/images/achievements/34.png" alt="34" width="100" height="100">
+        <span class="achievements-hover">Over the big wall (34)<br>Buy S20</span>
+      </div>
+      <div class="ach35">
+        <img src="./src/images/achievements/35.png" alt="35" width="100" height="100">
+        <span class="achievements-hover">It's time to people the world... (35)<br>Buy L28<br>(Develop Life)</span>
+      </div>
+      <div class="ach41">
+        <img src="./src/images/achievements/41.png" alt="41" width="100" height="100">
+        <span class="achievements-hover">Chaos Control (41)<br>Transform your tree<br>for Entropy</span>
+      </div>
+      <div class="ach42">
+        <img src="./src/images/achievements/42.png" alt="42" width="100" height="100">
+        <span class="achievements-hover">Parting the Red Sea (42)<br>Buy F17</span>
+      </div>
+      <div class="ach43">
+        <img src="./src/images/achievements/43.png" alt="43" width="100" height="100">
+        <span class="achievements-hover">Bye bye (43)<br>Unlock Moss<br>(Buy F19)</span>
+      </div>
+      <div class="ach44">
+        <img src="./src/images/achievements/44.png" alt="44" width="100" height="100">
+        <span class="achievements-hover">Moss Effect (44)<br>Achieve MM1</span>
+      </div>
+    </div>
+
+    <div class="secret-achievements" id="secretAchievementsContainer">
+      <div class="secret11">
+        <img src="./src/images/secret_achievements/placeholder.png" alt="11" width="100" height="100" id="secret11">
+        <span class="achievements-hover" id="secret11Text">????????? (11)<br>????? ?? ??? ??????</span>
+      </div>
+      <div class="secret12">
+        <img src="./src/images/secret_achievements/placeholder.png" alt="12" width="100" height="100" id="secret12">
+        <span class="achievements-hover" id="secret12Text">??????? ???????? ????? ?????? (12)<br>???? ?? ? ????? ??? ??? ????? ???</span>
+      </div>
+      <div class="secret13">
+        <img src="./src/images/secret_achievements/placeholder.png" alt="13" width="100" height="100" id="secret13">
+        <span class="achievements-hover" id="secret13Text">? ????? ????? ?? (13)<br>????? ?? ??? ???????? ???????? ??????</span>
       </div>
     </div>
     
@@ -211,6 +262,18 @@
     <div class="ach24-text"><p class="achievement-text-color">Tree Age crafting recipe</p></div>
     <div class="ach25-text"><p class="achievement-text-color">That is macerated poop</p></div>
     <div class="ach31-text"><p class="achievement-text-color">Eternal punishment</p></div>
+    <div class="ach32-text"><p class="achievement-text-color">That is macerated BLOOD</p></div>
+    <div class="ach33-text"><p class="achievement-text-color">Camp fire... so very hot.jpg</p></div>
+    <div class="ach34-text"><p class="achievement-text-color">Over the big wall</p></div>
+    <div class="ach35-text"><p class="achievement-text-color">It's time to people the world...</p></div>
+    <div class="ach41-text"><p class="achievement-text-color">Chaos Control</p></div>
+    <div class="ach42-text"><p class="achievement-text-color">Parting The Red Sea</p></div>
+    <div class="ach43-text"><p class="achievement-text-color">Bye Bye</p></div>
+    <div class="ach44-text"><p class="achievement-text-color">Moss Effect</p></div>
+
+    <div class="secret11-text"><p class="secret-achievement-text-color">Jumpscare</p></div>
+    <div class="secret12-text"><p class="secret-achievement-text-color">Cheater Cheater, Peter Beater</p></div>
+    <div class="secret13-text"><p class="secret-achievement-text-color">I don't think so</p></div>
 
     <div class="options-boxes" id="settings">
       <div class="refresh-rate">
@@ -227,13 +290,19 @@
         <button id="loadSave">Load Save</button>
         <button id="exportSave">Export Save</button>
       </div>
+      <div class="notations">
+        <p>Notations</p>
+        <div class="italic"><p>Click these buttons to change notations!</p></div>
+        <button id="jumpscareTrigger">Standard Notation</button>
+        <button id="scientificButton">Scientific Notation</button>
+      </div>
     </div>
 
     <div class="game-saved-text"><p class="game-saved-text-color">Game Saved</p></div>
     <div class="game-loaded-text"><p class="game-loaded-text-color">Game Loaded</p></div>
 
     <div class="scroll">
-        <img src="./src/images/homerLEDs.png" class="funny" alt="Haha you have no internet connection">
+        <img src="./src/images/homerLEDs.png" class="funny" alt="Haha you have no internet connection" id="funny">
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/break_eternity.js@2.1.2"></script>
@@ -244,12 +313,15 @@
     }
     </script>
     <script src="./src/modules/tabhandler.mjs" type="module"></script>
+    <script src="./src/modules/core/upgradebuilder.mjs" type="module"></script>
     <script src="./src/modules/leafupgrades.mjs" type="module"></script>
     <script src="./src/modules/seedupgrades.mjs" type="module"></script>
     <script src="./src/modules/fruitupgrades.mjs" type="module"></script>
     <script src="./src/modules/composter.mjs" type="module"></script>
-    <script src="./src/modules/gameloopbutmodule.mjs" type="module"></script>
-    <script src="./src/modules/bunchobullshit.mjs" type="module"></script>
+    <script src="./src/modules/moss.mjs" type="module"></script>
+    <script src="./src/modules/core/gameloopbutmodule.mjs" type="module"></script>
+    <script src="./src/modules/core/bunchobullshit.mjs" type="module"></script>
+    <script src="./src/modules/core/calculations.mjs" type="module"></script>
     <script src="./src/modules/achievements.mjs" type="module"></script>
     <script src="./src/modules/savefile.mjs" type="module"></script>
   </body>

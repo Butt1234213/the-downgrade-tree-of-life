@@ -27,7 +27,7 @@
 .buttons-fu {
     position: absolute;
     line-height: 1.2;
-    top: 250px;
+    top: 300px;
     left: 10px;
 }
 .buttons-fu-color {
@@ -38,14 +38,27 @@
     border-style: outset;
     border-color: #9a1616;
 }
+.buttons-eu {
+    position: absolute;
+    line-height: 1.2;
+    top: 300px;
+    left: 10px;
+}
+.buttons-eu-color {
+    background-color: #2077ba;
+    font-family: Verdana;
+    font-size: 12px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #5ea4da;
+}
 .buttons-composter {
     position: absolute;
     line-height: 1.2;
-    top: 250px;
+    top: 300px;
     left: 10px;
     font-family: Verdana;
 }
-
 .leaf-composter-background {
     position: absolute;
     top: 0px;
@@ -58,6 +71,7 @@
     border-color: #58280d;
     color: #ffffffff;
     font-size: 12px;
+    visibility: hidden;
 }
 .leaf-progress-container {
     position: absolute;
@@ -89,6 +103,7 @@
     border-color: #58280d;
     color: #ffffffff;
     font-size: 12px;
+    visibility: hidden;
 }
 .seed-progress-container {
     position: absolute;
@@ -120,6 +135,7 @@
     border-color: #58280d;
     color: #ffffffff;
     font-size: 12px;
+    visibility: hidden;
 }
 .fruit-progress-container {
     position: absolute;
@@ -138,4 +154,52 @@
     text-align: center;
     color: white;
     line-height: 20px;
+}
+.buttons-moss {
+    position: absolute;
+    line-height: 1.2;
+    top: 300px;
+    left: 10px;
+    font-family: Verdana;
+}
+.moss-background {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    height: 190px;
+    width: 300px;
+    padding: 5px 10px;
+    background-color: #535256;
+    border-style: outset;
+    border-color: #1a8229;
+    color: #ffffffff;
+    font-size: 12px;/* 
+    visibility: hidden; */
+}
+.moss-milestone-background {
+    position: absolute;
+    top: 0px;
+    left: 350px;
+    height: 400px;
+    width: 300px;
+    padding: 5px 10px;
+    background-color: #535256;
+    border-style: outset;
+    border-color: #1a8229;
+    color: #ffffffff;
+    font-size: 12px;/* 
+    visibility: hidden; */
+}
+.moss-milestone {
+    position: absolute;
+    display: flex;
+    height: 125px;
+    width: 125px;
+    padding: 5px 10px;
+    background-color: #535256;
+    border-radius: 2px;
+    border-style: solid;
+    border-color: #1a8229;
+    color: #ffffffff;
+    font-size: 12px;
 }

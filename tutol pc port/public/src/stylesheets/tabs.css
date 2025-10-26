@@ -43,9 +43,15 @@
     padding: 5px;
     visibility: hidden;
 }
+.fruit-tab-container {
+    position: absolute;
+    left: 10px;
+    top: 250px;
+}
 .buttons-composter-tab-color {
     position: absolute;
-    left: 473.5px;
+    left: 0px;
+    top: 0px;
     background-color: #743411;
     white-space: nowrap;
     font-family: Verdana;
@@ -53,6 +59,36 @@
     color: #ffffffff;
     border-style: outset;
     border-color: #58280d;
+    font-weight: bold;
+    padding: 5px;/* 
+    visibility: hidden; */
+}
+.buttons-moss-tab-color {
+    position: absolute;
+    left: 125px;
+    top: 0px;
+    background-color: #535256;
+    white-space: nowrap;
+    font-family: Verdana;
+    font-size: 16px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #1a8229;
+    font-weight: bold;
+    padding: 5px;
+    visibility: hidden;
+}
+.buttons-eu-tab-color {
+    position: absolute;
+    top: 0px;
+    left: 475px;
+    background-color: #2077ba;
+    white-space: nowrap;
+    font-family: Verdana;
+    font-size: 16px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #5ea4da;
     font-weight: bold;
     padding: 5px;
     visibility: hidden;
