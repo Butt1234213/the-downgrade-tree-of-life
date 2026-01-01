@@ -125,6 +125,10 @@ export function compostingSpeedScaling(type) {
 		
         return scalingMult;
     }
+	if (baseFertilizerAmount.lessThan(new Decimal(1))) {
+		scalingMult = new Decimal(1);
+		return scalingMult;
+	}
     return scalingMult;
 }
 

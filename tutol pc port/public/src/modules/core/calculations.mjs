@@ -1651,7 +1651,7 @@ export function calculateComposterSuperScalingEffect() {
 }
 
 export function calculateFertilizerCostDivision() {
-    let totalDivision = new Decimal(1.1);
+    let totalDivision = new Decimal(1);
     if (fruitUpgradeFactor.F40Bought) {
         const x = new Decimal(4.5);
         const y = gameData.compostingSpeed.pow(x);
