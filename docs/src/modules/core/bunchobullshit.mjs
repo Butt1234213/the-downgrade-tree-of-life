@@ -2426,6 +2426,9 @@ export function updateGUIBasedOnAchievements() {
 			}
 			document.getElementById('blizzardCounter').innerHTML = `${truncateToDecimalPlaces(gameData.blizzardBestScore, 3)} / ${truncateToDecimalPlaces(gameData.blizzardBaseRequirement, 3)} Entropy`;
 		}
+		if (achievements.ach114) {
+			document.querySelector('.roots').style.visibility = `visible`;
+		}
     }
 }
 
