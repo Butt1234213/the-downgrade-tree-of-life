@@ -12,7 +12,7 @@
 }
 .buttons-su {
     position: absolute;
-    line-height: 1.2;
+    line-height: 0.4;
     top: 250px;
     left: 10px;
 }
@@ -26,7 +26,7 @@
 }
 .buttons-fu {
     position: absolute;
-    line-height: 1.2;
+    line-height: 0.4;
     top: 300px;
     left: 10px;
 }
@@ -40,7 +40,7 @@
 }
 .buttons-eu {
     position: absolute;
-    line-height: 1.2;
+    line-height: 0.4;
     top: 300px;
     left: 10px;
 }
@@ -52,154 +52,127 @@
     border-style: outset;
     border-color: #5ea4da;
 }
-.buttons-composter {
+.buttons-temple {
     position: absolute;
-    line-height: 1.2;
+    line-height: 0.4;
     top: 300px;
     left: 10px;
-    font-family: Verdana;
 }
-.leaf-composter-background {
+.buttons-lru-holder {
     position: absolute;
+    line-height: 0.4;
     top: 0px;
-    left: 10px;
-    height: 260px;
-    width: 300px;
-    padding: 5px 10px;
-    background-color: #743411;
+    left: 0px;
+    width: 500px;
+    height: 418px;
+    color: #dcd3c9;
+    background-color: #c7b39d;
+    border-color: #b8a38c;
     border-style: outset;
-    border-color: #58280d;
-    color: #ffffffff;
-    font-size: 12px;
+    font-family: Verdana;
     visibility: hidden;
 }
-.leaf-progress-container {
+.buttons-lru {
     position: absolute;
-    top: 220px;
-    left: 32.5px;
-    width: 250px;
-    height: 20px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    overflow: hidden;
+    line-height: 0.4;
+    top: 260px;
+    left: 0.25px;
+    width: 492px;
+    height: 150px;
+    color: #dcd3c9;
+    background-color: #c7b39d;
+    border-color: #b8a38c;
+    border-style: outset;
+    font-family: Verdana;
 }
-.leaf-progress-bar {
-    height: 100%;
+.buttons-sru-holder {
+    position: absolute;
+    line-height: 0.4;
+    top: 0px;
+    left: 520px;
+    width: 500px;
+    height: 418px;
+    color: #dcd3c9;
+    background-color: #c7b39d;
+    border-color: #b8a38c;
+    border-style: outset;
+    font-family: Verdana;
+    visibility: hidden;
+}
+.buttons-sru {
+    position: absolute;
+    line-height: 0.4;
+    top: 260px;
+    left: 0.25px;
+    width: 492px;
+    height: 150px;
+    color: #dcd3c9;
+    background-color: #c7b39d;
+    border-color: #b8a38c;
+    border-style: outset;
+    font-family: Verdana;
+}
+.buttons-fru-holder {
+    position: absolute;
+    line-height: 0.4;
+    top: 438px;
+    left: 0px;
+    width: 500px;
+    height: 418px;
+    color: #dcd3c9;
+    background-color: #c7b39d;
+    border-color: #b8a38c;
+    border-style: outset;
+    font-family: Verdana;
+    visibility: hidden;
+}
+.buttons-fru {
+    position: absolute;
+    line-height: 0.4;
+    top: 260px;
+    left: 0.25px;
+    width: 492px;
+    height: 150px;
+    color: #dcd3c9;
+    background-color: #c7b39d;
+    border-color: #b8a38c;
+    border-style: outset;
+    font-family: Verdana;
+}
+
+.buttons-lu-repeatable-color {
     background-color: #50bb50;
-    border-radius: 10px;
-    text-align: center;
-    color: white;
-    line-height: 20px;
-}
-.seed-composter-background {
-    position: absolute;
-    top: 0px;
-    left: 350px;
-    height: 260px;
-    width: 300px;
-    padding: 5px 10px;
-    background-color: #743411;
-    border-style: outset;
-    border-color: #58280d;
-    color: #ffffffff;
+    color: #dcd3c9;
+    border-color: #c4b2a1;
+    font-family: Verdana;
     font-size: 12px;
-    visibility: hidden;
 }
-.seed-progress-container {
-    position: absolute;
-    top: 220px;
-    left: 32.5px;
-    width: 250px;
-    height: 20px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    overflow: hidden;
-}
-.seed-progress-bar {
-    height: 100%;
+.buttons-su-repeatable-color {
     background-color: #dc8616;
-    border-radius: 10px;
-    text-align: center;
-    color: white;
-    line-height: 20px;
-}
-.fruit-composter-background {
-    position: absolute;
-    top: 0px;
-    left: 690px;
-    height: 260px;
-    width: 300px;
-    padding: 5px 10px;
-    background-color: #743411;
-    border-style: outset;
-    border-color: #58280d;
-    color: #ffffffff;
+    color: #dcd3c9;
+    border-color: #c4b2a1;
+    font-family: Verdana;
     font-size: 12px;
-    visibility: hidden;
 }
-.fruit-progress-container {
-    position: absolute;
-    top: 220px;
-    left: 32.5px;
-    width: 250px;
-    height: 20px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    overflow: hidden;
-}
-.fruit-progress-bar {
-    height: 100%;
+.buttons-fu-repeatable-color {
     background-color: #de0e0e;
-    border-radius: 10px;
-    text-align: center;
-    color: white;
-    line-height: 20px;
+    color: #dcd3c9;
+    border-color: #c4b2a1;
+    font-family: Verdana;
+    font-size: 12px;
 }
-.buttons-moss {
+
+.buttons-rou {
     position: absolute;
-    line-height: 1.2;
+    line-height: 0.4;
     top: 300px;
     left: 10px;
+}
+.buttons-rou-color {
+    background-color: #edac13;
     font-family: Verdana;
-}
-.moss-background {
-    position: absolute;
-    top: 0px;
-    left: 10px;
-    height: 190px;
-    width: 300px;
-    padding: 5px 10px;
-    background-color: #535256;
-    border-style: outset;
-    border-color: #1a8229;
-    color: #ffffffff;
-    font-size: 12px;/* 
-    visibility: hidden; */
-}
-.moss-milestone-background {
-    position: absolute;
-    top: 0px;
-    left: 350px;
-    height: 400px;
-    width: 300px;
-    padding: 5px 10px;
-    background-color: #535256;
-    border-style: outset;
-    border-color: #1a8229;
-    color: #ffffffff;
-    font-size: 12px;/* 
-    visibility: hidden; */
-}
-.moss-milestone {
-    position: absolute;
-    display: flex;
-    height: 125px;
-    width: 125px;
-    padding: 5px 10px;
-    background-color: #535256;
-    border-radius: 2px;
-    border-style: solid;
-    border-color: #1a8229;
-    color: #ffffffff;
     font-size: 12px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #ed9613;
 }

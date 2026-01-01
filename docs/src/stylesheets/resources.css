@@ -77,6 +77,28 @@
     background-color: #2077ba;
     border-style: outset;
     border-color: #5ea4da;
-    
+    visibility: hidden;
+}
+.roots {
+    line-height: 0.4;
+    position: absolute;
+    left: 760px;
+    font-family: Verdana;
+    font-size: 12px;
+    z-index: 1;
+    white-space: nowrap;
+    /* visibility: hidden; */
+}
+.roots-reset-button {
+    position: absolute;
+    left: 40px;
+    top: 62.5px;
+    z-index: 2;
+    font-family: Verdana;
+    font-size: 12px;
+    color: #ffffffff;
+    background-color: #edac13;
+    border-style: outset;
+    border-color: #ed9613;
     visibility: hidden;
 }

@@ -60,8 +60,8 @@
     border-style: outset;
     border-color: #58280d;
     font-weight: bold;
-    padding: 5px;/* 
-    visibility: hidden; */
+    padding: 5px;
+    visibility: hidden;
 }
 .buttons-moss-tab-color {
     position: absolute;
@@ -93,6 +93,86 @@
     padding: 5px;
     visibility: hidden;
 }
+.entropy-tab-container {
+    position: absolute;
+    left: 10px;
+    top: 250px;
+}
+.buttons-cellular-lab-tab-color {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background-color: #76b2d2;
+    white-space: nowrap;
+    font-family: Verdana;
+    font-size: 16px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #1985de;
+    font-weight: bold;
+    padding: 5px;
+    visibility: hidden;
+}
+.buttons-bacteria-tab-color {
+    position: absolute;
+    left: 135px;
+    top: 0px;
+    background-color: #267826;
+    white-space: nowrap;
+    font-family: Verdana;
+    font-size: 16px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #195119;
+    font-weight: bold;
+    padding: 5px;
+    visibility: hidden;
+}
+.buttons-radar-tab-color {
+    position: absolute;
+    left: 240px;
+    top: 0px;
+    background-color: #5848b5;
+    white-space: nowrap;
+    font-family: Verdana;
+    font-size: 16px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #4636a1;
+    font-weight: bold;
+    padding: 5px;
+    visibility: hidden;
+}
+.buttons-protein-tab-color {
+    position: absolute;
+    left: 322.5px;
+    top: 0px;
+    background-color: #b84a2c;
+    white-space: nowrap;
+    font-family: Verdana;
+    font-size: 16px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #8a2a11;
+    font-weight: bold;
+    padding: 5px;
+}
+.buttons-temple-tab-color {
+    position: absolute;
+    left: 662.5px;
+    top: 0px;
+    background-color: #ffffff;
+    background-image: linear-gradient(#dcd3c9, #cfc3b6);
+    white-space: nowrap;
+    font-family: Verdana;
+    font-size: 16px;
+    color: #ffffff;
+    border-style: outset;
+    border-color: #c4b2a1;
+    font-weight: bold;
+    padding: 5px;
+    visibility: hidden;
+}
 .buttons-ach-tab-color {
     position: absolute;
     white-space: nowrap;
@@ -116,4 +196,39 @@
     border-style: outset;
     border-color: #000000ff;
     padding: 5px;
+}
+.buttons-rou-tab-color {
+    position: absolute;
+    top: 0px;
+    left: 792.5px;
+    background-color: #edac13;
+    white-space: nowrap;
+    font-family: Verdana;
+    font-size: 16px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #ed9613;
+    font-weight: bold;
+    padding: 5px;
+    visibility: hidden;
+}
+.root-tab-container {
+    position: absolute;
+    left: 10px;
+    top: 250px;
+}
+.buttons-root-milestone-tab-color {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background-color: #edac13;
+    white-space: nowrap;
+    font-family: Verdana;
+    font-size: 16px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #ed9613;
+    font-weight: bold;
+    padding: 5px;
+    visibility: hidden;
 }

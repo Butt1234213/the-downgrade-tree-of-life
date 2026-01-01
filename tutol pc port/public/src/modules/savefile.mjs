@@ -1,5 +1,7 @@
 import * as storage from './core/bunchobullshit.mjs';
 import { achievements, secretAchievements, updateAchievements } from './achievements.mjs';
+import * as automation from './automation.mjs';
+import * as temple from './temple.mjs';
 
 export var gameLoading = false;
 export var hasInitialized = false;
@@ -8,17 +10,23 @@ var temporaryGameData = {};
 var temporaryLeafUpgradeFactor = {};
 var temporarySeedUpgradeFactor = {};
 var temporaryFruitUpgradeFactor = {};
+var temporaryEntropyUpgradeFactor = {};
+var temporaryRootUpgradeFactor = {};
 var temporaryAchievements = {};
 var temporarySecretAchievements = {};
+var temporaryCircuits = {};
+var temporaryRepeatableUpgradeFactor = {};
 var gameDataKeys = [];
 var leafUpgradeFactorKeys = [];
 var seedUpgradeFactorKeys = [];
 var fruitUpgradeFactorKeys = [];
+var entropyUpgradeFactorKeys = [];
+var rootUpgradeFactorKeys = [];
+var circuitsKeys = [];
+var repeatableUpgradeFactorKeys = [];
 
 var exportString = "";
 var exportStrings = [];
-
-loadSave();
 
 export function saveLoop() {
     if (storage.gameData !== undefined && !gameLoading) {
@@ -61,6 +69,26 @@ export function saveLoop() {
         });
         localStorage.setItem("fruitUpgradeFactor", JSON.stringify(temporaryFruitUpgradeFactor));
     }
+    if (storage.entropyUpgradeFactor !== undefined && !gameLoading) {
+        temporaryEntropyUpgradeFactor = storage.entropyUpgradeFactor;
+        entropyUpgradeFactorKeys = [];
+        Object.entries(temporaryEntropyUpgradeFactor).forEach(([key, value]) => {
+            if (value instanceof Decimal) {
+                entropyUpgradeFactorKeys.push(key);
+            }
+        });
+        localStorage.setItem("entropyUpgradeFactor", JSON.stringify(temporaryEntropyUpgradeFactor));
+    }
+    if (storage.rootUpgradeFactor !== undefined && !gameLoading) {
+        temporaryRootUpgradeFactor = storage.rootUpgradeFactor;
+        rootUpgradeFactorKeys = [];
+        Object.entries(temporaryRootUpgradeFactor).forEach(([key, value]) => {
+            if (value instanceof Decimal) {
+                rootUpgradeFactorKeys.push(key);
+            }
+        });
+        localStorage.setItem("rootUpgradeFactor", JSON.stringify(temporaryRootUpgradeFactor));
+    }
     if (achievements !== undefined && !gameLoading) {
         temporaryAchievements = achievements;
         localStorage.setItem("achievements", JSON.stringify(temporaryAchievements));
@@ -68,6 +96,36 @@ export function saveLoop() {
     if (secretAchievements !== undefined && !gameLoading) {
         temporarySecretAchievements = secretAchievements;
         localStorage.setItem("secretAchievements", JSON.stringify(temporarySecretAchievements));
+    }
+    if (automation.circuits !== undefined && !gameLoading) {
+        temporaryCircuits = automation.circuits;
+        circuitsKeys = [];
+        Object.entries(temporaryCircuits).forEach(([key, value]) => {
+            if (value instanceof Decimal) {
+                circuitsKeys.push(key);
+            }
+        });
+        localStorage.setItem("circuits", JSON.stringify(temporaryCircuits));
+    }
+    if (temple.repeatableUpgradeFactor !== undefined && !gameLoading) {
+        temporaryRepeatableUpgradeFactor = temple.repeatableUpgradeFactor;
+        repeatableUpgradeFactorKeys = [];
+        Object.entries(temporaryRepeatableUpgradeFactor).forEach(([key, value]) => {
+            if (value instanceof Decimal) {
+                repeatableUpgradeFactorKeys.push(key);
+            }
+        });
+        localStorage.setItem("repeatableUpgradeFactor", JSON.stringify(temporaryRepeatableUpgradeFactor));
+    }
+    if (temple.rootUpgradeFactor !== undefined && !gameLoading) {
+        temporaryRootUpgradeFactor = temple.rootUpgradeFactor;
+        rootUpgradeFactorKeys = [];
+        Object.entries(temporaryRootUpgradeFactor).forEach(([key, value]) => {
+            if (value instanceof Decimal) {
+                rootUpgradeFactorKeys.push(key);
+            }
+        });
+        localStorage.setItem("rootUpgradeFactor", JSON.stringify(temporaryRootUpgradeFactor));
     }
 
     exportString = 
@@ -79,8 +137,16 @@ export function saveLoop() {
     " " + seedUpgradeFactorKeys.toString() + 
     " " + localStorage.getItem("fruitUpgradeFactor") +
     " " + fruitUpgradeFactorKeys.toString() + 
+    " " + localStorage.getItem("entropyUpgradeFactor") +
+    " " + entropyUpgradeFactorKeys.toString() + 
     " " + localStorage.getItem("achievements") + 
-    " " + localStorage.getItem("secretAchievements");
+    " " + localStorage.getItem("secretAchievements") +
+    " " + localStorage.getItem("circuits") +
+    " " + circuitsKeys.toString() +
+    " " + localStorage.getItem("repeatableUpgradeFactor") +
+    " " + repeatableUpgradeFactorKeys.toString() +
+    " " + localStorage.getItem("rootUpgradeFactor") +
+    " " + rootUpgradeFactorKeys.toString();
 
     exportStrings = exportString.split(" ");
     exportStrings.splice(0, 1);
@@ -97,20 +163,32 @@ export function loadSave() {
     let loadedLeafUpgradeFactor = { ...storage.leafUpgradeFactor };
     let loadedSeedUpgradeFactor = { ...storage.seedUpgradeFactor };
     let loadedFruitUpgradeFactor = { ...storage.fruitUpgradeFactor };
+    let loadedEntropyUpgradeFactor = { ...storage.entropyUpgradeFactor };
+    let loadedCircuits = { ...automation.circuits };
+    let loadedRepeatableUpgradeFactor = { ...temple.repeatableUpgradeFactor };
+    let loadedRootUpgradeFactor = { ...storage.rootUpgradeFactor };
 
     const gameDataString = localStorage.getItem("gameData");
     const leafUpgradeFactorString = localStorage.getItem("leafUpgradeFactor");
     const seedUpgradeFactorString = localStorage.getItem("seedUpgradeFactor");
     const fruitUpgradeFactorString = localStorage.getItem("fruitUpgradeFactor");
+    const entropyUpgradeFactorString = localStorage.getItem("entropyUpgradeFactor");
     const achievementsString = localStorage.getItem("achievements");
     const secretAchievementsString = localStorage.getItem("secretAchievements");
+    const circuitsString = localStorage.getItem("circuits");
+    const repeatableUpgradeFactorString = localStorage.getItem("repeatableUpgradeFactor");
+    const rootUpgradeFactorString = localStorage.getItem("rootUpgradeFactor");
 
     let newGameData = {};
     let newLeafUpgradeFactor = {};
     let newSeedUpgradeFactor = {};
     let newFruitUpgradeFactor = {};
+    let newEntropyUpgradeFactor = {};
     let newAchievements = {};
     let newSecretAchievements = {};
+    let newCircuits = {};
+    let newRepeatableUpgradeFactor = {};
+    let newRootUpgradeFactor = {};
 
     let dataWasLoaded = false;
 
@@ -128,20 +206,36 @@ export function loadSave() {
         if (fruitUpgradeFactorString) {
             newFruitUpgradeFactor = JSON.parse(fruitUpgradeFactorString);
         }
+        if (entropyUpgradeFactorString) {
+            newEntropyUpgradeFactor = JSON.parse(entropyUpgradeFactorString);
+        }
         if (achievementsString) {
             newAchievements = JSON.parse(achievementsString);
         }
         if (secretAchievementsString) {
             newSecretAchievements = JSON.parse(secretAchievementsString);
         }
+        if (circuitsString) {
+            newCircuits = JSON.parse(circuitsString);
+        }
+        if (repeatableUpgradeFactorString) {
+            newRepeatableUpgradeFactor = JSON.parse(repeatableUpgradeFactorString);
+        }
+        if (rootUpgradeFactorString) {
+            newRootUpgradeFactor = JSON.parse(rootUpgradeFactorString);
+        }
     } catch (error) {
-        console.error("Failed to parse save data. Resetting to defaults.", error);
+        console.error("Something fucked up in the saving process. Resetting all game variables to their defaults.", error);
         newGameData = {};
         newLeafUpgradeFactor = {};
         newSeedUpgradeFactor = {};
         newFruitUpgradeFactor = {};
+        newEntropyUpgradeFactor = {};
         newAchievements = {};
         newSecretAchievements = {};
+        newCircuits = {};
+        newRepeatableUpgradeFactor = {};
+        newRootUpgradeFactor = {};
         dataWasLoaded = false;
     }
 
@@ -187,12 +281,60 @@ export function loadSave() {
                 }
             }
         }
+        for (const key in newEntropyUpgradeFactor) {
+            if (loadedEntropyUpgradeFactor.hasOwnProperty(key)) {
+                const value = newEntropyUpgradeFactor[key];
+                if (storage.entropyUpgradeFactor[key] instanceof Decimal) {
+                    loadedEntropyUpgradeFactor[key] = new Decimal(value);
+                } else {
+                    loadedEntropyUpgradeFactor[key] = value;
+                }
+            }
+        }
+        for (const key in newCircuits) {
+            if (loadedCircuits.hasOwnProperty(key)) {
+                const value = newCircuits[key];
+                if (automation.circuits[key] instanceof Decimal) {
+                    loadedCircuits[key] = new Decimal(value);
+                } else {
+                    loadedCircuits[key] = value;
+                }
+            }
+        }
+        for (const key in newRepeatableUpgradeFactor) {
+            if (loadedRepeatableUpgradeFactor.hasOwnProperty(key)) {
+                const value = newRepeatableUpgradeFactor[key];
+                if (temple.repeatableUpgradeFactor[key] instanceof Decimal) {
+                    loadedRepeatableUpgradeFactor[key] = new Decimal(value);
+                } else {
+                    loadedRepeatableUpgradeFactor[key] = value;
+                }
+            }
+        }
+        for (const key in newRootUpgradeFactor) {
+            if (loadedRootUpgradeFactor.hasOwnProperty(key)) {
+                const value = newRootUpgradeFactor[key];
+                if (storage.rootUpgradeFactor[key] instanceof Decimal) {
+                    loadedRootUpgradeFactor[key] = new Decimal(value);
+                } else {
+                    loadedRootUpgradeFactor[key] = value;
+                }
+            }
+        }
     }
+    console.log(newRepeatableUpgradeFactor);
+    console.log(loadedRepeatableUpgradeFactor);
 
     storage.updateGameData(loadedGameData);
     storage.updateLeafUpgradeFactor(loadedLeafUpgradeFactor);
     storage.updateSeedUpgradeFactor(loadedSeedUpgradeFactor);
     storage.updateFruitUpgradeFactor(loadedFruitUpgradeFactor);
+    storage.updateEntropyUpgradeFactor(loadedEntropyUpgradeFactor);
+    automation.loadCircuits(loadedCircuits);
+    temple.updateRepeatableUpgradeFactor(loadedRepeatableUpgradeFactor);
+    storage.updateRootUpgradeFactor(loadedRootUpgradeFactor);
+
+    storage.updateUpgradeCount();
     if (hasInitialized) {
         updateAchievements(newAchievements, newSecretAchievements);
         console.log("boom");
@@ -229,4 +371,17 @@ export async function copySaveFileToClipboard() {
     }
 }
 
-window.setInterval(saveLoop, 60000);
+function saveInterval() {
+    window.setInterval(saveLoop, 60000);
+}
+setTimeout(saveInterval, 60000);
+
+function loadSaveButActually() {
+    //I have no idea why I have to do this but if you only call the function once it doesn't work
+    loadSave();
+    loadSave();
+}
+
+document.getElementById("saveManually").addEventListener("click", saveLoop);
+document.getElementById("loadSave").addEventListener("click", loadSaveButActually);
+document.getElementById("exportSave").addEventListener("click", copySaveFileToClipboard);

@@ -1,0 +1,71 @@
+.circuits-background {
+    position: absolute;
+    top: 0px;
+    left: 550px;
+    height: 675px;
+    width: 675px;
+    padding: 5px 10px;
+    background-color: #76b2d2;
+    border-style: outset;
+    border-color: #1985de;
+    color: #ffffffff;
+    font-size: 12px;
+}
+.upgrade-automation-background {
+    position: absolute;
+    top: 10px;
+    left: 250px;
+    height: 200px;
+    width: 400px;
+    padding: 5px 10px;
+    background-color: #ffffff;
+    border-style: outset;
+    border-color: #353535;
+    color: #000000;
+    font-size: 12px;
+}
+.upgrade-automation-form {
+    width: 97.5%;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Verdana';
+}
+.composter-automation-background {
+    position: absolute;
+    top: 240px;
+    left: 10px;
+    height: 200px;
+    width: 280px;
+    padding: 5px 10px;
+    background-color: #743411;
+    border-style: outset;
+    border-color: #58280d;
+    color: #ffffff;
+    font-size: 12px;
+}
+.bacteria-types-automation-background {
+    position: absolute;
+    top: 240px;
+    left: 333px;
+    height: 200px;
+    width: 317.5px;
+    padding: 5px 10px;
+    background-color: #267826;
+    border-style: outset;
+    border-color: #195119;
+    color: #ffffff;
+    font-size: 12px;
+}
+.cell-upgrades-automation-background {
+    position: absolute;
+    top: 472.5px;
+    left: 10px;
+    height: 200px;
+    width: 280px;
+    padding: 5px 10px;
+    background-color: #76b2d2;
+    border-style: outset;
+    border-color: #1985de;
+    color: #ffffff;
+    font-size: 12px;
+}

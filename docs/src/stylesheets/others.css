@@ -45,6 +45,20 @@
     border-color: black;
     z-index: 11;
 }
+.cheat-box-hehe {
+    text-align: center;
+    position: absolute;
+    left: 0px;
+    top: 172.5px;
+    width: 305px;
+    font-family: Verdana;
+    font-size: 12px;
+    background-color: white;
+    padding: 5px 10px;
+    border-style: solid;
+    border-color: black;
+    z-index: 11;
+}
 .game-saved-text-color {
     position: fixed;
     left: 550px;
@@ -110,21 +124,86 @@
 .center-align {
     text-align: center;
 }
-.cheat-box-hehe {
-    position: absolute;
-    top: 8px;
-    right: 16px;
-    font-family: Verdana;
-    font-size: 12px;
-}
 .display-block {
     display: block;
 }
 .softcap {
     font-family: Verdana;
     font-size: 12px;
-    color: rgb(169, 0, 0);
+    color: #a90000;
     font-weight: bold;
+}
+.softcap2 {
+    font-family: Verdana;
+    font-size: 12px;
+    color: #640000;
+    font-weight: bold;
+}
+.softcap3 {
+    font-family: Verdana;
+    font-size: 12px;
+    color: #c96b00;
+    font-weight: bold;
+}
+.softcap4 {
+    font-family: Verdana;
+    font-size: 12px;
+    color: #e2de00;
+    font-weight: bold;
+}
+.softcap5 {
+    font-family: Verdana;
+    font-size: 12px;
+    color: #22cd00;
+    font-weight: bold;
+}
+.softcap6 {
+    font-family: Verdana;
+    font-size: 12px;
+    color: #00cd7b;
+    font-weight: bold;
+}
+.softcap7 {
+    font-family: Verdana;
+    font-size: 12px;
+    color: #0071cd;
+    font-weight: bold;
+}
+.softcap8 {
+    font-family: Verdana;
+    font-size: 12px;
+    color: #5c00cd;
+    font-weight: bold;
+}
+.supercap {
+	color: #ffffff;
+	font-family: Verdana;
+	font-size: 12px;
+	height: 15px;
+    width: 350px;
+	background: linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red);
+	text-shadow: -1px 1px #000000;
+    font-weight: bold;
+}
+.top30 {
+	position: relative;
+	left: 1px;
+	top: 30%; 
+}
+.softcap-storm {
+    font-family: Verdana;
+    font-size: 12px;
+    color: #0d1378;
+    font-weight: bold;
+}
+.game-speed {
+	color: #ffffff;
+	font-family: Verdana;
+	font-size: 12px;
+	height: 15px;
+    width: 130px;
+	background: blue;
+	text-shadow: -1px 1px #000000;
 }
 .scroll {
     height: 2000px;

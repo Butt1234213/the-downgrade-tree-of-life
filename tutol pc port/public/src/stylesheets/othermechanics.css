@@ -1,0 +1,563 @@
+
+.buttons-composter-total {
+    position: absolute;
+    line-height: 1.2;
+    top: 300px;
+    left: 10px;
+    font-family: Verdana;
+}
+.composter-total-background {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    height: 100px;
+    width: 980px;
+    padding: 5px 10px;
+    background-color: #743411;
+    border-style: outset;
+    border-color: #58280d;
+    color: #ffffffff;
+    font-size: 12px;
+}
+.buttons-composter {
+    position: absolute;
+    line-height: 1.2;
+    top: 425px;
+    left: 10px;
+    font-family: Verdana;
+}
+.fertilizer-time-increase-counter {
+	position: relative;
+	top: -30px;
+}
+.leaf-composter-background {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    height: 260px;
+    width: 300px;
+    padding: 5px 10px;
+    background-color: #743411;
+    border-style: outset;
+    border-color: #58280d;
+    color: #ffffffff;
+    font-size: 12px;
+    visibility: hidden;
+}
+.leaf-progress-container {
+    position: absolute;
+    top: 220px;
+    left: 32.5px;
+    width: 250px;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.leaf-progress-bar {
+    height: 100%;
+    background-color: #50bb50;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    line-height: 20px;
+}
+.seed-composter-background {
+    position: absolute;
+    top: 0px;
+    left: 350px;
+    height: 260px;
+    width: 300px;
+    padding: 5px 10px;
+    background-color: #743411;
+    border-style: outset;
+    border-color: #58280d;
+    color: #ffffffff;
+    font-size: 12px;
+    visibility: hidden;
+}
+.seed-progress-container {
+    position: absolute;
+    top: 220px;
+    left: 32.5px;
+    width: 250px;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.seed-progress-bar {
+    height: 100%;
+    background-color: #dc8616;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    line-height: 20px;
+}
+.fruit-composter-background {
+    position: absolute;
+    top: 0px;
+    left: 690px;
+    height: 260px;
+    width: 300px;
+    padding: 5px 10px;
+    background-color: #743411;
+    border-style: outset;
+    border-color: #58280d;
+    color: #ffffffff;
+    font-size: 12px;
+    visibility: hidden;
+}
+.fruit-progress-container {
+    position: absolute;
+    top: 220px;
+    left: 32.5px;
+    width: 250px;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.fruit-progress-bar {
+    height: 100%;
+    background-color: #de0e0e;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    line-height: 20px;
+}
+.entropy-composter-background {
+    position: absolute;
+    top: 290px;
+    left: 10px;
+    height: 260px;
+    width: 300px;
+    padding: 5px 10px;
+    background-color: #743411;
+    border-style: outset;
+    border-color: #58280d;
+    color: #ffffffff;
+    font-size: 12px;
+    visibility: hidden;
+}
+.entropy-progress-container {
+    position: absolute;
+    top: 220px;
+    left: 32.5px;
+    width: 250px;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.entropy-progress-bar {
+    height: 100%;
+    background-color: #2077ba;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    line-height: 20px;
+}
+.buttons-moss {
+    position: absolute;
+    line-height: 1.2;
+    top: 300px;
+    left: 10px;
+    font-family: Verdana;
+}
+.moss-background {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    height: 190px;
+    width: 300px;
+    padding: 5px 10px;
+    background-color: #535256;
+    border-style: outset;
+    border-color: #1a8229;
+    color: #ffffffff;
+    font-size: 12px;
+    visibility: hidden;
+}
+.moss-milestone-background {
+    position: absolute;
+    top: 0px;
+    left: 350px;
+    height: 410px;
+    width: 750px;
+    padding: 5px 10px;
+    background-color: #535256;
+    border-style: outset;
+    border-color: #1a8229;
+    color: #ffffffff;
+    font-size: 12px;
+    visibility: hidden;
+}
+.moss-milestone {
+    position: absolute;
+    display: flex;
+    height: 125px;
+    width: 125px;
+    padding: 5px 10px;
+    background-color: #535256;
+    border-radius: 2px;
+    border-style: solid;
+    border-color: #1a8229;
+    color: #ffffffff;
+    font-size: 12px;
+}
+.moss-upgrade-background {
+    position: absolute;
+    top: 440px;
+    left: 10px;
+    height: 200px;
+    width: 1220px;
+    padding: 5px 10px;
+    background-color: #535256;
+    border-style: outset;
+    border-color: #1a8229;
+    color: #ffffffff;
+    font-size: 12px;
+    visibility: hidden;
+}
+.buttons-mu-color {
+    background-color: #535256;
+    font-family: Verdana;
+    font-size: 12px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #1a8229;
+    background-image: radial-gradient(circle at center, #535256, #1a8229);
+}
+.buttons-cellular-lab {
+    position: absolute;
+    line-height: 1.2;
+    top: 300px;
+    left: 10px;
+    font-family: Verdana;
+}
+.cells-background {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    height: 275px;
+    width: 500px;
+    padding: 5px 10px;
+    background-color: #76b2d2;
+    border-style: outset;
+    border-color: #1985de;
+    color: #ffffffff;
+    font-size: 12px;/* 
+    visibility: hidden; */
+}
+.bacteria-reset-background {
+    position: absolute;
+    top: 305px;
+    left: 10px;
+    height: 185px;
+    width: 500px;
+    padding: 5px 10px;
+    background-color: #76b2d2;
+    border-style: outset;
+    border-color: #1985de;
+    color: #ffffffff;
+    font-size: 12px;/* 
+    visibility: hidden; */
+}
+.buttons-bacteria-color {
+    background-color: #267826;
+    border-color: #195119;
+    border-style: outset;
+    color: #ffffffff;
+    font-family: Verdana;
+    font-size: 12px;
+}
+.buttons-bacteria {
+    position: absolute;
+    line-height: 1.2;
+    top: 300px;
+    left: 10px;
+    font-family: Verdana;
+}
+.bacteria-background {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    height: 250px;
+    width: 750px;
+    padding: 5px 10px;
+    background-color: #267826;
+    border-style: outset;
+    border-color: #195119;
+    color: #ffffffff;
+    font-size: 12px;
+}
+.buttons-radar {
+    position: absolute;
+    line-height: 1.2;
+    top: 300px;
+    left: 10px;
+    font-family: Verdana;
+}
+.radar-background {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    height: 1000px;
+    width: 1135px;
+    padding: 5px 10px;
+    background-color: #5848b5;
+    border-style: outset;
+    border-color: #4636a1;
+    color: #ffffffff;
+    font-size: 12px;/* 
+    visibility: hidden; */
+}
+.storm-button {
+    position: relative;
+    left: 55px;
+    display: block;
+    padding: 5px 10px;
+    border-radius: 2px;
+    border-color: #780d0d;
+    background-color: #9b1a1a;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 12px;
+}
+.challenge-storm {
+    position: absolute;
+    display: block;
+    height: 375px;
+    width: 250px;
+    padding: 5px 10px;
+    border-radius: 2px;
+    border-style: solid;
+    background-image: radial-gradient(#3036b0, #151b88);
+    border-color: #0d1378;
+    color: #ffffffff;
+    font-size: 12px;
+	visibility: hidden;
+}
+.challenge-wildfire {
+    position: absolute;
+    display: inline-block;
+    left: 295px;
+    height: 375px;
+    width: 250px;
+    padding: 5px 10px;
+    border-radius: 2px;
+    border-style: solid;
+    background-image: radial-gradient(#e3df20, #c55f1b);
+    border-color: #780d0d;
+    color: #ffffffff;
+    font-size: 12px;
+	visibility: hidden;
+}
+.wildfire-button {
+    position: relative;
+    left: 45px;
+    display: block;
+    padding: 5px 10px;
+    border-radius: 2px;
+    border-color: #780d0d;
+    background-color: #9b1a1a;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 12px;
+}
+.challenge-drought {
+    position: absolute;
+    display: inline-block;
+    left: 580px;
+    height: 375px;
+    width: 250px;
+    padding: 5px 10px;
+    border-radius: 2px;
+    border-style: solid;
+    background-image: radial-gradient(#c79b40, #a69e8d);
+    border-color: #b8b19e;
+    color: #ffffffff;
+    font-size: 12px;
+	visibility: hidden;
+}
+.drought-button {
+    position: relative;
+    left: 45px;
+    display: block;
+    padding: 5px 10px;
+    border-radius: 2px;
+    border-color: #780d0d;
+    background-color: #9b1a1a;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 12px;
+}
+.challenge-blizzard {
+    position: absolute;
+    display: inline-block;
+    left: 867.5px;
+    height: 375px;
+    width: 250px;
+    padding: 5px 10px;
+    border-radius: 2px;
+    border-style: solid;
+    background-image: radial-gradient(#afcccc, #b8baba);
+    border-color: #bae6e6;
+    color: #ffffffff;
+    font-size: 12px;
+	visibility: hidden;
+}
+.blizzard-button {
+    position: relative;
+    left: 45px;
+    display: block;
+    padding: 5px 10px;
+    border-radius: 2px;
+    border-color: #780d0d;
+    background-color: #9b1a1a;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 12px;
+}
+.buttons-protein {
+    position: absolute;
+    line-height: 1.2;
+    top: 300px;
+    left: 10px;
+    font-family: Verdana;
+}
+.protein-background {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    height: 1050px;
+    width: 450px;
+    padding: 5px 10px;
+    background-color: #6e2715;
+    border-style: outset;
+    border-color: #541f12;
+    color: #ffffffff;
+    font-size: 12px;
+}
+.protein-individual-background {
+	display: block;
+    top: 0px;
+    left: 10px;
+    height: 100px;
+    width: auto;
+    padding: 5px 10px;
+    background-color: #b84a2c;
+    border-style: outset;
+    border-color: #8a2a11;
+}
+.buttons-protein-color {
+    background-color: #b84a2c;
+    font-family: Verdana;
+    font-size: 12px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #8a2a11;
+}
+.dna-background {
+    position: absolute;
+    top: 0px;
+    left: 500px;
+    height: 250px;
+    width: 730px;
+    padding: 5px 10px;
+    background-color: #2b4ae3;
+    border-style: outset;
+    border-color: #2440c9;
+    color: #ffffffff;
+    font-size: 12px;/* 
+    visibility: hidden; */
+}
+.buttons-dna-color {
+    background-color: #2b4ae3;
+    font-family: Verdana;
+    font-size: 12px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #2440c9;
+}
+.dna-progress-container {
+    position: absolute;
+    top: 220px;
+    left: 25px;
+    width: 690px;
+    height: 20px;
+    background-color: #111111;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.dna-progress-bar {
+    height: 100%;
+    background-color: #2b4ae3;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    line-height: 20px;
+}
+.rna-background {
+    position: absolute;
+    top: 280px;
+    left: 500px;
+    height: 250px;
+    width: 730px;
+    padding: 5px 10px;
+    background-color: #e32b2b;
+    border-style: outset;
+    border-color: #bd1a1a;
+    color: #ffffffff;
+    font-size: 12px;/* 
+    visibility: hidden; */
+}
+.buttons-rna-color {
+    background-color: #e32b2b;
+    font-family: Verdana;
+    font-size: 12px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #bd1a1a;
+}
+.dna-rna-upgrades-background {
+    top: 100px;
+	width: 700px;
+    height: 120px;
+    padding: 5px 10px;
+	background-color: #333333;
+	border-color: #111111;
+    border-style: outset;
+}
+.buttons-root-milestone {
+    position: absolute;
+    line-height: 1.2;
+    top: 300px;
+    left: 10px;
+    font-family: Verdana;
+}
+.root-milestone-background {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    height: 1505px;
+    width: 450px;
+    padding: 5px 10px;
+    background-color: #edac13;
+    border-style: outset;
+    border-color: #ed9613;
+    color: #ffffffff;
+    font-size: 12px;
+}
+.root-milestone-individual-background {
+	display: block;
+    top: 0px;
+    left: 10px;
+    height: 100px;
+    width: auto;
+    padding: 5px 10px;
+    background-color: #edac13;
+    border-style: outset;
+    border-color: #ed9613;
+}
