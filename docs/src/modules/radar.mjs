@@ -31,7 +31,8 @@ function stormChallenge() {
         storage.transform();
     }
     else {
-        storage.gameData.stormBestScore = storage.gameData.seeds.clamp(storage.gameData.stormBestScore, storage.gameData.stormBaseRequirement);
+		const scoreCap = storage.gameData.stormBaseRequirement.pow(new Decimal(1.5));
+        storage.gameData.stormBestScore = storage.gameData.seeds.clamp(storage.gameData.stormBestScore, scoreCap);
         if (storage.gameData.stormCompletable) {
             storage.gameData.stormLevel = storage.gameData.stormLevel.plus(new Decimal(1));
             storage.gameData.stormcapBaseFactor = new Decimal(0.75).pow(storage.gameData.stormLevel);
@@ -102,7 +103,8 @@ function wildfireChallenge() {
         storage.transform();
     }
     else {
-        storage.gameData.wildfireBestScore = storage.gameData.totalFertilizers.clamp(storage.gameData.wildfireBestScore, storage.gameData.wildfireBaseRequirement);
+		const scoreCap = storage.gameData.wildfireBaseRequirement.times(new Decimal(1.5));
+        storage.gameData.wildfireBestScore = storage.gameData.totalFertilizers.clamp(storage.gameData.wildfireBestScore, scoreCap);
         if (storage.gameData.wildfireCompletable) {
             storage.gameData.wildfireLevel = storage.gameData.wildfireLevel.plus(new Decimal(1));
             storage.gameData.wildfireBaseFactor = new Decimal(2).pow(storage.gameData.wildfireLevel);
@@ -174,7 +176,8 @@ function droughtChallenge() {
         storage.transform();
     }
     else {
-        storage.gameData.droughtBestScore = storage.gameData.fruits.clamp(storage.gameData.droughtBestScore, storage.gameData.droughtBaseRequirement);
+		const scoreCap = storage.gameData.droughtBaseRequirement.pow(new Decimal(1.5));
+        storage.gameData.droughtBestScore = storage.gameData.fruits.clamp(storage.gameData.droughtBestScore, scoreCap);
         if (storage.gameData.droughtCompletable) {
             storage.gameData.droughtLevel = storage.gameData.droughtLevel.plus(new Decimal(1));
             storage.gameData.droughtBaseFactor = new Decimal(1e-2).pow(storage.gameData.droughtLevel);
@@ -238,7 +241,8 @@ function blizzardChallenge() {
 		bacteria.resetCells();
     }
     else {
-		storage.gameData.blizzardBestScore = storage.gameData.entropyOnTransform.clamp(storage.gameData.blizzardBestScore, storage.gameData.blizzardBaseRequirement);
+		const scoreCap = storage.gameData.blizzardBaseRequirement.pow(new Decimal(1.5));
+		storage.gameData.blizzardBestScore = storage.gameData.entropyOnTransform.clamp(storage.gameData.blizzardBestScore, scoreCap);
         if (storage.gameData.blizzardCompletable) {
             storage.gameData.blizzardLevel = storage.gameData.blizzardLevel.plus(new Decimal(1));
             storage.gameData.blizzardBasePEFactor = new Decimal(0.075).pow(storage.gameData.blizzardLevel);
