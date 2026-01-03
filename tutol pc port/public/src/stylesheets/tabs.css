@@ -156,6 +156,7 @@
     border-color: #8a2a11;
     font-weight: bold;
     padding: 5px;
+    visibility: hidden;
 }
 .buttons-temple-tab-color {
     position: absolute;

@@ -1508,6 +1508,31 @@
     visibility: visible;
     transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
 }
+.ach123 {
+    position: absolute;
+    top: 1375px;
+    left: 250px;
+    border-width: 2px;
+    border-radius: 2px;
+    height: 100px;
+    font-family: Verdana;
+    font-size: 12px;
+    border-style: solid;
+    border-color: #000000ff;
+}
+.ach123:hover .achievements-hover {
+    visibility: visible;
+}
+.ach123-text {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.ach123-text.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
 
 
 

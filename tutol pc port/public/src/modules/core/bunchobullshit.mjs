@@ -2304,6 +2304,7 @@ export function updateGUIBasedOnAchievements() {
             document.getElementById('bacteriaResetButton').style.display = 'none';
             document.getElementById('B1').innerHTML = `Free Fertilizers (${truncateToDecimalPlaces(entropyUpgradeFactor.B1Amount.trunc(), 3)})<br>Requires ${truncateToDecimalPlaces(entropyUpgradeFactor.B1Cost, 3)} Bacteria<br>Effect: +${truncateToDecimalPlaces(entropyUpgradeFactor.B1Effect, 3)} Fertilizers from all Composters`;
             document.getElementById('B2').innerHTML = `Softcap Dampener (${truncateToDecimalPlaces(entropyUpgradeFactor.B2Amount.trunc(), 3)} / 10)<br>Requires ${truncateToDecimalPlaces(entropyUpgradeFactor.B2Cost, 3)} Bacteria<br>Effect: -${truncateToDecimalPlaces(entropyUpgradeFactor.B2Effect, 3)} to Leaf softcap root`;
+            document.getElementById('B3').innerHTML = `Cleanroom (${truncateToDecimalPlaces(entropyUpgradeFactor.B3Amount.trunc(), 3)})<br>Requires ${truncateToDecimalPlaces(entropyUpgradeFactor.B3Cost, 3)} Roots<br>Effect: x${truncateToDecimalPlaces(entropyUpgradeFactor.B3Effect, 3)} Bacteria`;
         }
         if (achievements.ach64) {
             gameData.stormBaseRequirement = new Decimal(1e40).pow(gameData.stormLevel);
@@ -2331,6 +2332,7 @@ export function updateGUIBasedOnAchievements() {
                 document.getElementById('stormIndicator').innerHTML = `Harsh winds and lightning blasts make Leaves, Seeds, and Fruits way harder to sustainably produce. (base of ^${truncateToDecimalPlaces((new Decimal(0.75).pow(gameData.stormLevel)), 3)})<br>(INACTIVE)`;
             }
             document.getElementById('stormCounter').innerHTML = `${truncateToDecimalPlaces(gameData.stormBestScore, 3)} / ${truncateToDecimalPlaces((new Decimal(1e40).pow(gameData.stormLevel)), 3)} Seeds`;
+			document.querySelector('.composter-automation-background').style.visibility = `visible`;
         }
         if (achievements.ach81) {
             gameData.wildfireBaseRequirement = new Decimal(50).times(gameData.wildfireLevel);
@@ -2378,6 +2380,8 @@ export function updateGUIBasedOnAchievements() {
 			document.getElementById('droughtCounter').innerHTML = `${truncateToDecimalPlaces(gameData.droughtBestScore, 3)} / ${truncateToDecimalPlaces(gameData.droughtBaseRequirement, 3)} Fruits`;
 		}
 		if (achievements.ach102) {
+			document.querySelector('.buttons-protein-tab-color').style.visibility = `visible`;
+			
 			document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${truncateToDecimalPlaces(gameData.dnaBlueprints, 3)} currently) (${truncateToDecimalPlaces(gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your Cell Replication speed and Bacteria`;
 			document.getElementById('blueprintCounter').innerHTML = `${truncateToDecimalPlaces(gameData.dnaBlueprints, 3)} / ${truncateToDecimalPlaces(gameData.dnaBlueprintsTotal, 3)} DNA Blueprints`;
 			const v = gameData.dnaBlueprintTime.div(new Decimal(1000));
@@ -2428,13 +2432,17 @@ export function updateGUIBasedOnAchievements() {
 		}
 		if (achievements.ach114) {
 			document.querySelector('.roots').style.visibility = `visible`;
+			document.querySelector('.bacteria-types-automation-background').style.visibility = `visible`;
 		}
     }
 }
 
 function loadEndgame() {
-    gameData.roots = new Decimal(1);
-    document.getElementById('entropyCounter').innerHTML = `5e25 Entropy`;
+    gameData.roots = new Decimal(10);
+    gameData.reinforcements = new Decimal(10);
+    gameData.highestCircuitsTrue = new Decimal(5000);
+	gameData.suAutomationUnlocked = true;
+	gameData.fuAutomationUnlocked = true;
     achievements.ach11 = true;
     achievements.ach12 = true;
     achievements.ach13 = true;
@@ -2491,6 +2499,8 @@ function loadEndgame() {
     achievements.ach114 = true;
     achievements.ach115 = true;
     achievements.ach121 = true;
+    achievements.ach122 = true;
+    achievements.ach123 = true;
     massAchievementChecker();
 }
 

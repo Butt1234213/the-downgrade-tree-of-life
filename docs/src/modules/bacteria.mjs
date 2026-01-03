@@ -102,7 +102,7 @@ function buyB3() {
     if (storage.gameData.roots.greaterThanOrEqualTo(storage.entropyUpgradeFactor.B3Cost)) {
         storage.entropyUpgradeFactor.B3Cost = storage.entropyUpgradeFactor.B3Cost.times(new Decimal(1.5));
         storage.entropyUpgradeFactor.B3Amount = storage.entropyUpgradeFactor.B3Amount.plus(new Decimal(1));
-        storage.entropyUpgradeFactor.B3Effect = new Decimal(1e6).pow(storage.entropyUpgradeFactor.B3Amount);
+        storage.entropyUpgradeFactor.B3Effect = new Decimal(1e3).pow(storage.entropyUpgradeFactor.B3Amount);
 
         document.getElementById('B3').innerHTML = `Cleanroom (${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.B3Amount.trunc(), 3)})<br>Requires ${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.B3Cost, 3)} Roots<br>Effect: x${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.B3Effect, 3)} Bacteria`;
     }
@@ -110,3 +110,4 @@ function buyB3() {
 
 document.getElementById("B1").addEventListener("click", buyB1);
 document.getElementById("B2").addEventListener("click", buyB2);
+document.getElementById("B3").addEventListener("click", buyB3);

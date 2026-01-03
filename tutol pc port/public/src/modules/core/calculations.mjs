@@ -1869,7 +1869,7 @@ export function calculateBacteriaMult() {
 		totalMultiplier = totalMultiplier.times(entropyUpgradeFactor.asparagineEffect);
 		document.getElementById('asparagineCounter').innerHTML = `${truncateToDecimalPlaces(entropyUpgradeFactor.asparagine, 3)} Asparagine Proteins<br> Game speed boosts Bacteria base mult (x${truncateToDecimalPlaces(entropyUpgradeFactor.asparagineEffect, 3)})`;
 	}
-    if (rootUpgradeFactor.RM5Achieved) {
+    if (entropyUpgradeFactor.B3Amount.greaterThanOrEqualTo(new Decimal(1))) {
         const x = entropyUpgradeFactor.B3Effect;
         totalMultiplier = totalMultiplier.times(x);
     }
@@ -2110,7 +2110,7 @@ export function calculateSupercaps() {
         const y = x.times(temple.repeatableUpgradeFactor.LR2);
 		const z = y.div(new Decimal(3));
 		totalMultiplier = totalMultiplier.plus(z);
-		document.getElementById('RO8').innerHTML = `RO8 (Bought)<br>Price of Power<br>LR2 increases all supercap roots<br>with reduced rate<br>Cost: 0.5 Roots<br>Effect: ${truncateToDecimalPlaces(z, 3)}`;
+		document.getElementById('RO8').innerHTML = `RO8 (Bought)<br>Price of Power<br>LR2 increases all supercap roots<br>with reduced rate<br>Cost: 0.5 Roots<br>Effect: +${truncateToDecimalPlaces(z, 3)}`;
 	}
 	
 	if (gameData.leavesIsSupercapped) {

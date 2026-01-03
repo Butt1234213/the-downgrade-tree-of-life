@@ -397,12 +397,15 @@ export function E35() {
         entropyUpgradeFactor.E35Bought = true;
     }
 }
+function unlockBacteriaTypesAutomation() {
+	document.querySelector('.bacteria-types-automation-background').style.visibility = `visible`;
+}
 export function E36() {
     if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU36) || entropyUpgradeFactor.E36Bought) {
         document.getElementById("E36").innerHTML = `E36 (Bought)<br>"robloxretrotycoon"<br>Unlock Bacteria Types automation<br>Cost: 5e55 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
-        createCallableUpgrade('entropy', 36, entropyUpgradeCost.EU36, false, null);
+        createCallableUpgrade('entropy', 36, entropyUpgradeCost.EU36, true, unlockBacteriaTypesAutomation());
         entropyUpgradeFactor.E36Bought = true;
     }
 }

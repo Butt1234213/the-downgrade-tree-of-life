@@ -28,6 +28,7 @@ export function rootMilestoneChecker() {
 		if (storage.gameData.reinforcements.greaterThanOrEqualTo(storage.rootUpgradeCost.RM4)) {
 			storage.rootUpgradeFactor.RM4 = true;
 			document.getElementById("RM4").style.backgroundImage = `radial-gradient(#edac13, #55d941)`;
+			document.querySelector('.cell-upgrades-automation-background').style.visibility = `visible`;
 		}
 		if (storage.gameData.reinforcements.greaterThanOrEqualTo(storage.rootUpgradeCost.RM5)) {
 			storage.rootUpgradeFactor.RM5 = true;
@@ -41,6 +42,8 @@ export function rootMilestoneChecker() {
 		if (storage.gameData.reinforcements.greaterThanOrEqualTo(storage.rootUpgradeCost.RM7)) {
 			storage.rootUpgradeFactor.RM7 = true;
 			document.getElementById("RM7").style.backgroundImage = `radial-gradient(#edac13, #55d941)`;
+			achievements.ach123 = true;
+			massAchievementChecker();
 		}
 	}
 }
