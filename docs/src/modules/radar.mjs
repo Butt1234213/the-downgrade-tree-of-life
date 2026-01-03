@@ -31,7 +31,7 @@ function stormChallenge() {
         storage.transform();
     }
     else {
-		const scoreCap = storage.gameData.stormBaseRequirement.pow(new Decimal(1.5));
+		const scoreCap = storage.gameData.stormBaseRequirement.times(new Decimal(1e20));
         storage.gameData.stormBestScore = storage.gameData.seeds.clamp(storage.gameData.stormBestScore, scoreCap);
         if (storage.gameData.stormCompletable) {
             storage.gameData.stormLevel = storage.gameData.stormLevel.plus(new Decimal(1));
@@ -103,7 +103,7 @@ function wildfireChallenge() {
         storage.transform();
     }
     else {
-		const scoreCap = storage.gameData.wildfireBaseRequirement.times(new Decimal(1.5));
+		const scoreCap = storage.gameData.wildfireBaseRequirement.plus(new Decimal(25));
         storage.gameData.wildfireBestScore = storage.gameData.totalFertilizers.clamp(storage.gameData.wildfireBestScore, scoreCap);
         if (storage.gameData.wildfireCompletable) {
             storage.gameData.wildfireLevel = storage.gameData.wildfireLevel.plus(new Decimal(1));
@@ -176,7 +176,7 @@ function droughtChallenge() {
         storage.transform();
     }
     else {
-		const scoreCap = storage.gameData.droughtBaseRequirement.pow(new Decimal(1.5));
+		const scoreCap = storage.gameData.droughtBaseRequirement.times(new Decimal.fromComponents(1, 1, 100));
         storage.gameData.droughtBestScore = storage.gameData.fruits.clamp(storage.gameData.droughtBestScore, scoreCap);
         if (storage.gameData.droughtCompletable) {
             storage.gameData.droughtLevel = storage.gameData.droughtLevel.plus(new Decimal(1));
