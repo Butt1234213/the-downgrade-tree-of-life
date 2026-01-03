@@ -31,6 +31,7 @@ function stormChallenge() {
         storage.transform();
     }
     else {
+        storage.gameData.stormBestScore = storage.gameData.seeds.clamp(storage.gameData.stormBestScore, storage.gameData.stormBaseRequirement);
         if (storage.gameData.stormCompletable) {
             storage.gameData.stormLevel = storage.gameData.stormLevel.plus(new Decimal(1));
             storage.gameData.stormcapBaseFactor = new Decimal(0.75).pow(storage.gameData.stormLevel);
@@ -45,7 +46,6 @@ function stormChallenge() {
         document.getElementById('enterStorm').innerHTML = `ENTER THE STORM`;
         document.getElementById('enterStorm').style.left = `55px`;
         
-        storage.gameData.stormBestScore = storage.gameData.seeds.clamp(storage.gameData.stormBestScore, new Decimal(Infinity));
 		const x = new Decimal(0.000542868).times(Decimal.ln(storage.gameData.stormBestScore.plus(new Decimal(1))));
 		const y = x.plus(new Decimal(1));
 		const z = y.pow(storage.gameData.blizzardReward);
@@ -102,6 +102,7 @@ function wildfireChallenge() {
         storage.transform();
     }
     else {
+        storage.gameData.wildfireBestScore = storage.gameData.totalFertilizers.clamp(storage.gameData.wildfireBestScore, storage.gameData.wildfireBaseRequirement);
         if (storage.gameData.wildfireCompletable) {
             storage.gameData.wildfireLevel = storage.gameData.wildfireLevel.plus(new Decimal(1));
             storage.gameData.wildfireBaseFactor = new Decimal(2).pow(storage.gameData.wildfireLevel);
@@ -118,7 +119,6 @@ function wildfireChallenge() {
         document.getElementById('enterWildfire').innerHTML = `ENTER THE WILDFIRE`;
         document.getElementById('enterWildfire').style.left = `45px`;
         
-        storage.gameData.wildfireBestScore = storage.gameData.totalFertilizers;
         const x = new Decimal(1.01396).pow(storage.gameData.wildfireBestScore);
         const y = x.clamp(new Decimal(1), new Decimal(Infinity));
         document.getElementById('wildfireRewardCounter').innerHTML = `Unlock FU automation, Seed generation, and x${storage.truncateToDecimalPlaces(y, 3)} M1 and M3's effects.`;
@@ -174,6 +174,7 @@ function droughtChallenge() {
         storage.transform();
     }
     else {
+        storage.gameData.droughtBestScore = storage.gameData.fruits.clamp(storage.gameData.droughtBestScore, storage.gameData.droughtBaseRequirement);
         if (storage.gameData.droughtCompletable) {
             storage.gameData.droughtLevel = storage.gameData.droughtLevel.plus(new Decimal(1));
             storage.gameData.droughtBaseFactor = new Decimal(1e-2).pow(storage.gameData.droughtLevel);
@@ -185,7 +186,6 @@ function droughtChallenge() {
         document.getElementById('enterDrought').innerHTML = `ENTER THE DROUGHT`;
         document.getElementById('enterDrought').style.left = `45px`;
         
-        storage.gameData.droughtBestScore = storage.gameData.fruits.clamp(storage.gameData.droughtBestScore, new Decimal(Infinity));
 		const x = Decimal.log10(storage.gameData.droughtBestScore.plus(new Decimal(1)));
         const y = x.pow(new Decimal(0.0413927));
 		const z = y.times(new Decimal(0.909091));
@@ -238,6 +238,7 @@ function blizzardChallenge() {
 		bacteria.resetCells();
     }
     else {
+		storage.gameData.blizzardBestScore = storage.gameData.entropyOnTransform.clamp(storage.gameData.blizzardBestScore, storage.gameData.blizzardBaseRequirement);
         if (storage.gameData.blizzardCompletable) {
             storage.gameData.blizzardLevel = storage.gameData.blizzardLevel.plus(new Decimal(1));
             storage.gameData.blizzardBasePEFactor = new Decimal(0.075).pow(storage.gameData.blizzardLevel);
@@ -250,7 +251,6 @@ function blizzardChallenge() {
         document.getElementById('enterBlizzard').innerHTML = `ENTER THE BLIZZARD`;
         document.getElementById('enterBlizzard').style.left = `45px`;
         
-        storage.gameData.blizzardBestScore = storage.gameData.entropyOnTransform.clamp(storage.gameData.blizzardBestScore, new Decimal(Infinity));
 		const x = Decimal.log10(storage.gameData.blizzardBestScore.plus(new Decimal(1)));
 		const y = (x.times(new Decimal(0.270346))).plus(new Decimal(1));
         const z = y.clamp(new Decimal(1), new Decimal(Infinity));
