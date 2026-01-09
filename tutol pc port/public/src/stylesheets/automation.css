@@ -72,3 +72,18 @@
     font-size: 12px;
 	visibility: hidden;
 }
+.moss-upgrades-automation-background {
+    position: absolute;
+    top: 472.5px;
+    left: 333px;
+    height: 200px;
+    width: 317.5px;
+    padding: 5px 10px;
+    background-color: #535256;
+    border-style: outset;
+    border-color: #1a8229;
+    background-image: radial-gradient(circle at center, #535256, #1a8229);
+    color: #ffffff;
+    font-size: 12px;
+	visibility: hidden;
+}

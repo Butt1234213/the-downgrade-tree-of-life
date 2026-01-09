@@ -103,7 +103,7 @@
     </div>
 
     <div class="buttons-lu" id="buttons-lu">
-	  <div class="white-background">
+	  <div>
         <p class="softcap" id="leafSoftcapInfo"></p>
         <p class="softcap2" id="leafSoftcap2Info"></p>
         <p class="softcap3" id="leafSoftcap3Info"></p>
@@ -119,7 +119,7 @@
     </div>
 
     <div class="buttons-su" id="buttons-su">
-	  <div class="white-background">
+	  <div>
         <p class="softcap" id="seedSoftcapInfo"></p>
         <p class="softcap2" id="seedSoftcap2Info"></p>
 	    <div id="seedSupercap" class="supercap" style="display: none;">
@@ -131,7 +131,7 @@
     </div>
 
     <div class="buttons-fu" id="buttons-fu">
-	  <div class="white-background">
+	  <div>
         <p class="softcap" id="fruitSoftcapInfo"></p>
 	    <div id="fruitSupercap" class="supercap" style="display: none;">
 		  <p id="fruitSupercapInfo" class="top30">The Fruit supercap starts at 1.08e2466 (^1)</p>
@@ -142,7 +142,7 @@
     </div>
 
     <div class="buttons-eu" id="buttons-eu">
-	  <div class="white-background">
+	  <div>
 	    <p class="italic">Remember to buy L1 after every reset! &#128512</p>
 	  </div>
 	</div>
@@ -164,6 +164,7 @@
           <img src="./src/images/seedStatue.png" alt="seedStatue" width="200" height="200">
           <div class="buttons-sru">
             <button class="buttons-su-repeatable-color" id="SR1">SR1 (0 / 10)<br>x4L, x4TAS<br>Cost: 1e1000 Seeds<br>Effect: x1</button>
+            <button class="buttons-su-repeatable-color" id="SR2" style="display: none;">SR2 (0 / 10)<br>x1.5 Game speed<br>Cost: 1e8000 Seeds<br>Effect: x1</button>
           </div>
         </div>
       </div>
@@ -179,7 +180,7 @@
     </div>
 	
     <div class="buttons-rou" id="buttons-rou">
-	  <div class="white-background">
+	  <div>
 	    <p class="italic">Since you keep your circuit assignments on Reinforcement, you don't have to buy L1! &#128512</p>
 	  </div>
 	</div>
@@ -360,6 +361,13 @@
           <p id="cellUpgradesAutomationFLOPSRequiredCounter">(1000 Circuits required to max the interval)</p>
           <input type="number" id="cellUpgradesAutomationCircuitsAssigner" class="upgrade-automation-form" placeholder="Assign x Circuits">
         </div>
+		<div class="moss-upgrades-automation-background">
+          <p class="bold">Moss Upgrades Automation</p>
+          <p id="mossUpgradesAutomationCircuitsCounter">You currently have 0 Circuits assigned to Moss Upgrades automation,</p>
+          <p id="mossUpgradesAutomationFLOPSCounter">computing 0 FLOPs/s, buying every ∞s.</p>
+          <p id="mossUpgradesAutomationFLOPSRequiredCounter">(2000 Circuits required to max the interval)</p>
+          <input type="number" id="mossUpgradesAutomationCircuitsAssigner" class="upgrade-automation-form" placeholder="Assign x Circuits">
+        </div>
       </div>
     </div>
 
@@ -473,9 +481,9 @@
 				<p class="bold">DNA</p>
 				<p id="dnaCounter">You have 0 strands of DNA (next at 1e10000 Cells)</p>
 				<p id="dnaEffectCounter">+1 DNA Blueprint cap each strand (0 max DNA Blueprints)</p>
-				<div class="dna-rna-upgrades-background">
+				<div class="dna-upgrades-background">
 					<div>
-						<button id="makeBlueprints" class="buttons-dna-color">Fabricate a DNA Blueprint (0 currently) (0 total)<br>Fabricating a DNA Blueprint will ^0.95 your Cell Replication speed and Bacteria</button>
+						<button id="makeBlueprints" class="buttons-dna-color">Fabricate a DNA Blueprint (0 currently) (0 total)<br>Fabricating a DNA Blueprint will ^0.95 your CRS and Bacteria</button>
 						<button id="respecBlueprints" class="buttons-eu-color">Reset your total DNA Blueprints<br>(Performs a Transformation)</button>
 					</div>
 					<p id="blueprintNerfCounter" class="softcap">CRS and Bacteria are powered to ^1</p>
@@ -491,7 +499,7 @@
 				<p class="bold">RNA</p>
 				<p id="rnaCounter">You have 0 strands of RNA (next at 1e55 Bacteria)</p>
 				<p id="rnaEffectCounter">+0.1 Game speed mult every second each strand (+0/s)</p>
-				<div class="dna-rna-upgrades-background">
+				<div class="rna-upgrades-background">
 					<button id="R1" class="buttons-rna-color">More Game speed (0)<br>Requires 5 RNA strands<br>Effect: x1 Game speed</button>
 					<button id="R2" class="buttons-rna-color">Delay Super Scaling (0)<br>Requires 2 RNA strands<br>Effect: +0 Super Scaling delay</button>
 					<button id="R3" class="buttons-rna-color">Softcap Dampener (0 / 10)<br>Requires 10 RNA strands<br>Effect: -0 from Fruit softcap root</button>
@@ -799,6 +807,14 @@
         <img src="./src/images/achievements/123.png" alt="123" width="100" height="100">
         <span class="achievements-hover">Two roots (123)<br>Achieve RM7</span>
       </div>
+      <div class="ach124">
+        <img src="./src/images/achievements/124.png" alt="124" width="100" height="100">
+        <span class="achievements-hover">One of my favorite game series (124)<br>Create 10 strands of DNA</span>
+      </div>
+      <div class="ach125">
+        <img src="./src/images/achievements/125.png" alt="125" width="100" height="100">
+        <span class="achievements-hover">Six figures of cells (125)<br>Create 1e100000 Cells</span>
+      </div>
     </div>
 
     <div class="secret-achievements" id="secretAchievementsContainer">
@@ -875,6 +891,8 @@
     <div class="ach121-text"><p class="achievement-text-color">The thrill of the double life</p></div>
     <div class="ach122-text"><p class="achievement-text-color">Can you get infinite bacteria?</p></div>
     <div class="ach123-text"><p class="achievement-text-color">Two roots</p></div>
+    <div class="ach124-text"><p class="achievement-text-color">One of my favorite game series</p></div>
+    <div class="ach125-text"><p class="achievement-text-color">Six figures of cells</p></div>
 
     <div class="secret11-text"><p class="secret-achievement-text-color">Jumpscare</p></div>
     <div class="secret12-text"><p class="secret-achievement-text-color">Cheater Cheater, Peter Beater</p></div>
@@ -895,6 +913,7 @@
         <button id="loadSave">Load Save</button>
         <button id="exportSave">Export Save</button>
         <button id="loadEndgame">Load the current endgame state</button>
+		<button id="resetSave" class="scaryButton">Reset your progress<br>0 / 10s of button being held</button>
       </div>
       <div class="notations">
         <p>Notations</p>

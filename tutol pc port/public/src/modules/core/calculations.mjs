@@ -1243,6 +1243,15 @@ export function calculateGameSpeed() {
 		totalMultiplier = totalMultiplier.times(x);
 		document.getElementById('R1').innerHTML = `More Game speed (${truncateToDecimalPlaces(entropyUpgradeFactor.R1Amount, 3)})<br>Requires ${truncateToDecimalPlaces(entropyUpgradeFactor.R1Cost, 3)} RNA strands<br>Effect: x${truncateToDecimalPlaces(x, 3)} Game speed`;
 	}
+    if (temple.repeatableUpgradeFactor.SR2.greaterThanOrEqualTo(new Decimal(1))) {
+        const x = temple.repeatableUpgradeFactor.SR2Effect;
+        const y = x.pow(temple.repeatableUpgradeFactor.SR2);
+        totalMultiplier = totalMultiplier.times(y);
+        document.getElementById("SR2").innerHTML = `SR2 (${truncateToDecimalPlaces(temple.repeatableUpgradeFactor.SR2, 3)} / ${truncateToDecimalPlaces(temple.repeatableUpgradeFactor.SR2Cap, 3)})<br>x${truncateToDecimalPlaces(temple.repeatableUpgradeFactor.SR2Effect, 3)} Game speed<br>Cost: ${truncateToDecimalPlaces(temple.SR2CostCalculation(), 3)} Seeds<br>Effect: x${truncateToDecimalPlaces(y, 3)}`;
+    }
+	else {
+        document.getElementById("SR2").innerHTML = `SR2 (0 / 0)<br>x${truncateToDecimalPlaces(temple.repeatableUpgradeFactor.SR2Effect, 3)} Game speed<br>Cost: ${truncateToDecimalPlaces(temple.SR2CostCalculation(), 3)} Seeds<br>Effect: x1`;
+	}
 	if (gameData.isInChallengeBlizzard) {
 		totalMultiplier = totalMultiplier.div(gameData.blizzardBaseGameSpeedFactor);
 	}
@@ -1437,6 +1446,10 @@ export function calculateEntropyMult() {
         totalMultiplier = totalMultiplier.times(x);
         document.getElementById('S45').innerHTML = `S45 (Bought)<br>Twig IV<br>x100L, x2.5S<br>Cost: 1e1459 Seeds`;
     }
+	if (entropyUpgradeFactor.R4Amount.greaterThanOrEqualTo(new Decimal(1))) {
+		totalMultiplier = totalMultiplier.times(entropyUpgradeFactor.R4Effect);
+		document.getElementById('R4').innerHTML = `Entropificator (${truncateToDecimalPlaces(entropyUpgradeFactor.R4Amount, 3)})<br>Requires ${truncateToDecimalPlaces(entropyUpgradeFactor.R4Cost, 3)} RNA strands<br>Effect: x${truncateToDecimalPlaces(entropyUpgradeFactor.R4Effect, 3)} Entropy`;
+	}
 	if (gameData.isInChallengeBlizzard) {
 		totalMultiplier = new Decimal(1);
 	}
@@ -1454,6 +1467,17 @@ export function calculateRootsMult() {
 		const z = y.clamp(new Decimal(1), new Decimal(Infinity));
 		totalMultiplier = totalMultiplier.times(z);
 		document.getElementById('RM7Effect').innerHTML = `Potential Energy multiplies Root gain<br>Effect: x${truncateToDecimalPlaces(z, 3)}`;
+	}
+	if (rootUpgradeFactor.RO10Bought) {
+		totalMultiplier = totalMultiplier.times(new Decimal(1.15));
+	}
+	if (rootUpgradeFactor.RO17Bought) {
+		const x = gameData.entropy.plus(new Decimal(1));
+		const y = (Decimal.log10(x)).plus(new Decimal(1));
+		const z = Decimal.log10(y);
+		const w = z.clamp(new Decimal(1), new Decimal(Infinity));
+		totalMultiplier = totalMultiplier.times(w);
+        document.getElementById("RO17").innerHTML = `RO17 (Bought)<br>Tap-root<br>Entropy boosts Roots<br>Cost: 15 Roots<br>Effect: x${truncateToDecimalPlaces(w, 3)}`;
 	}
 	gameData.rootsMult = totalMultiplier;
 }
@@ -1610,9 +1634,13 @@ export function calculateComposterSuperScalingStart() {
         const x = new Decimal(2);
 		const y = x.times(fruitUpgradeFactor.M1EffectMult);
         var z = y.times(fruitUpgradeFactor.M1);
-		if (z.greaterThanOrEqualTo(new Decimal(100))) {
+		var softcap = new Decimal(100);
+		if (rootUpgradeFactor.RO15Bought) {
+			softcap = new Decimal(300);
+		}
+		if (z.greaterThanOrEqualTo(softcap)) {
 			const w = z.pow(new Decimal(0.5));
-			z = new Decimal(100).plus(w);
+			z = softcap.plus(w);
 		}
         totalDelay = totalDelay.plus(z);
         document.getElementById('M1').innerHTML = `M1<br>Delay Super Scaling (${truncateToDecimalPlaces(fruitUpgradeFactor.M1, 3)})<br>Delays Fertilizer Super Scaling by +${truncateToDecimalPlaces((fruitUpgradeFactor.M1EffectMult.times(x)), 3)}<br>per upgrade<br>Requires ${truncateToDecimalPlaces(moss.M1CostCalculation(), 3)} Moss<br>Effect: +${truncateToDecimalPlaces(z, 3)}`;
@@ -1687,11 +1715,20 @@ export function calculateFertilizerBulk() {
 
 export function calculateCellUpgradesBulk() {
     let totalBulk = new Decimal(1);
-    if (rootUpgradeFactor.RM1) {
+    if (rootUpgradeFactor.RM1Achieved) {
         const x = new Decimal(4);
         totalBulk = totalBulk.plus(x);
     }
     gameData.cellUpgradesBulk = totalBulk;
+}
+
+export function calculateBacteriaTypesBulk() {
+	let totalBulk = new Decimal(1);
+	if (rootUpgradeFactor.RO18Bought) {
+		const x = new Decimal(1);
+		totalBulk = totalBulk.plus(x);
+	}
+	gameData.bacteriaTypesBulk = totalBulk
 }
 
 export function calculateCellsEffectMult() {
@@ -1777,6 +1814,20 @@ export function calculateCellsIntervalDiv() {
     gameData.intervalDivision = totalDivision;
 }
 
+export function calculateCellsReplicationCap() {
+	let totalMultiplier = new Decimal.fromComponents(1, 1, 1000);
+	
+	if (fruitUpgradeFactor.F44Bought) {
+		totalMultiplier = totalMultiplier.pow(new Decimal(5));
+		document.getElementById('F44').innerHTML = `F44 (Bought)<br>Super Replication<br>The Cell replication cap is better<br>1e1000 -> 1e5000<br>Cost: 1e1600 Fruits`;
+	}
+	if (rootUpgradeFactor.RO9Bought) {
+		totalMultiplier = totalMultiplier.pow(new Decimal(5));
+	}
+	
+	gameData.cellsReplicationCap = totalMultiplier;
+}
+
 export function calculateCellsMult() {
 	let totalMultiplier = new Decimal(1);
 	if (entropyUpgradeFactor.extensin.greaterThanOrEqualTo(new Decimal(1))) {
@@ -1816,7 +1867,7 @@ export function calculateBaseFruitSoftcapFactor() {
     }
 	if (entropyUpgradeFactor.R3Amount.greaterThanOrEqualTo(new Decimal(1))) {
 		totalMultiplier = totalMultiplier.plus(entropyUpgradeFactor.R3Effect);
-		document.getElementById('R3').innerHTML = `Softcap Dampener (${truncateToDecimalPlaces(entropyUpgradeFactor.R3Amount, 3)})<br>Requires ${truncateToDecimalPlaces(entropyUpgradeFactor.R3Cost, 3)} RNA strands<br>Effect: -${truncateToDecimalPlaces(entropyUpgradeFactor.R3Effect, 3)} from Fruit softcap root`;
+		document.getElementById('R3').innerHTML = `Softcap Dampener (${truncateToDecimalPlaces(entropyUpgradeFactor.R3Amount, 3)} / 10)<br>Requires ${truncateToDecimalPlaces(entropyUpgradeFactor.R3Cost, 3)} RNA strands<br>Effect: -${truncateToDecimalPlaces(entropyUpgradeFactor.R3Effect, 3)} from Fruit softcap root`;
 	}
 
     gameData.baseFruitSoftcapFactor = totalMultiplier;
@@ -1859,7 +1910,9 @@ export function calculateBacteriaMult() {
     let totalMultiplier = new Decimal(1);
     if (moss.mossMilestoneFactor.MM7Achieved) {
         const x = new Decimal(0.25).times(gameData.entropy.pow(new Decimal(0.150515)));
-        totalMultiplier = totalMultiplier.times(x.clamp(new Decimal(1), new Decimal(Infinity)));
+		var y = x.clamp(new Decimal(1), new Decimal(Infinity));
+        totalMultiplier = totalMultiplier.times(y);
+		moss.mossMilestoneFactor.MM7 = y;
     }
 	if (entropyUpgradeFactor.asparagine.greaterThanOrEqualTo(new Decimal(1))) {
 		const x = entropyUpgradeFactor.asparagine;
@@ -1933,6 +1986,14 @@ export function calculateBacteriaCapMult() {
 		const x = gameData.entropy.plus(new Decimal(1));
 		totalMultiplier = totalMultiplier.times(x);
 		document.getElementById('E29').innerHTML = `E29 (Bought)<br>Bacteria Ribosomes<br>Entropy boosts Bacteria cap<br>Cost: 7.5e23 Entropy<br>Effect: x${truncateToDecimalPlaces(x, 3)}`;
+	}
+	if (entropyUpgradeFactor.E43Bought) {
+		const x = gameData.roots.plus(new Decimal(1));
+		const y = Decimal.log10(x);
+		const z = y.div(new Decimal(5));
+		const w = z.plus(new Decimal(1));
+		totalMultiplier = totalMultiplier.pow(w);
+		document.getElementById('E43').innerHTML = `E43 (Bought)<br>Island of Stability<br>Roots boost Bacteria cap<br>Cost: 1e180 Entropy<br>Effect: ^${truncateToDecimalPlaces(w, 3)}`;
 	}
     gameData.bacteriaCapMult = totalMultiplier;
 }
@@ -2008,6 +2069,9 @@ export function calculateLR2Cap() {
 		totalMultiplier = totalMultiplier.plus(y);
 		document.getElementById('S51').innerHTML = `S51 (Bought)<br>Statue Power VII<br>Every five M5 Levels, +1 to LR2's cap<br>Cost: 1e5000 Seeds<br>Effect: +${truncateToDecimalPlaces(y.trunc(), 3)}`;
 	}
+	if (rootUpgradeFactor.RO11Bought) {
+		totalMultiplier = totalMultiplier.plus(new Decimal(15));
+	}
     temple.repeatableUpgradeFactor.LR2Cap = totalMultiplier.trunc();
 }
 
@@ -2058,8 +2122,24 @@ export function calculateSR1Effect() {
 		else {
 			document.getElementById('S47').innerHTML = `S47 (Bought)<br>Statue Power V<br>Every M6 Level, +0.15 to SR1's effect<br>Cost: 1e2000 Seeds<br>Effect: +0`;
 		}
+		if (rootUpgradeFactor.RO11Bought) {
+			totalMultiplier = totalMultiplier.plus(new Decimal(15));
+		}
 	}
     temple.repeatableUpgradeFactor.SR1Effect = totalMultiplier;
+}
+
+export function calculateSR2Cap() {
+    let totalMultiplier = new Decimal(10);
+	if (rootUpgradeFactor.RO12Bought) {
+		totalMultiplier = totalMultiplier.plus(new Decimal(15));
+	}
+    temple.repeatableUpgradeFactor.SR2Cap = totalMultiplier.trunc();
+}
+
+export function calculateSR2Effect() {
+    let totalMultiplier = new Decimal(1.5);
+    temple.repeatableUpgradeFactor.SR2Effect = totalMultiplier;
 }
 
 export function calculateFR1Cap() {
@@ -2069,9 +2149,8 @@ export function calculateFR1Cap() {
 		totalMultiplier = totalMultiplier.plus(x);
     }
 	if (entropyUpgradeFactor.glutamateFree.greaterThan(new Decimal(0))) {
-		const x = new Decimal(10).times(entropyUpgradeFactor.glutamateFree);
-		const y = entropyUpgradeFactor.glutamateEffect.plus(x);
-		totalMultiplier = totalMultiplier.plus(x);
+		const y = entropyUpgradeFactor.glutamateEffect;
+		totalMultiplier = totalMultiplier.plus(y);
 		document.getElementById("glutamateCounter").innerHTML = `${truncateToDecimalPlaces(entropyUpgradeFactor.glutamate, 3)} (+${truncateToDecimalPlaces(entropyUpgradeFactor.glutamateFree, 3)}) Glutamate Proteins<br>+${truncateToDecimalPlaces(y, 3)} to LR1, SR1, and FR1 caps`
 	}
     temple.repeatableUpgradeFactor.FR1Cap = totalMultiplier;
@@ -2148,6 +2227,9 @@ export function calculateFreeRuBisCoProteins() {
 	if (rootUpgradeFactor.RO6Bought) {
 		totalAdd = totalAdd.plus(new Decimal(1));
 	}
+	if (rootUpgradeFactor.RO16Bought) {
+		totalAdd = totalAdd.plus(new Decimal(1));
+	}
 	entropyUpgradeFactor.rubiscoFree = totalAdd;
 }
 export function calculateFreeExtensinProteins() {
@@ -2155,7 +2237,10 @@ export function calculateFreeExtensinProteins() {
 	if (rootUpgradeFactor.RO6Bought) {
 		totalAdd = totalAdd.plus(new Decimal(1));
 	}
-	if (rootUpgradeFactor.RM3) {
+	if (rootUpgradeFactor.RO16Bought) {
+		totalAdd = totalAdd.plus(new Decimal(1));
+	}
+	if (rootUpgradeFactor.RM3Achieved) {
 		const x = gameData.rna;
 		const y = x.pow(new Decimal(0.5));
 		totalAdd = totalAdd.plus(y);
@@ -2168,11 +2253,17 @@ export function calculateFreeArganineProteins() {
 	if (rootUpgradeFactor.RO6Bought) {
 		totalAdd = totalAdd.plus(new Decimal(1));
 	}
+	if (rootUpgradeFactor.RO16Bought) {
+		totalAdd = totalAdd.plus(new Decimal(1));
+	}
 	entropyUpgradeFactor.arganineFree = totalAdd;
 }
 export function calculateFreeGlutamineProteins() {
 	let totalAdd = new Decimal(0);
 	if (rootUpgradeFactor.RO6Bought) {
+		totalAdd = totalAdd.plus(new Decimal(1));
+	}
+	if (rootUpgradeFactor.RO16Bought) {
 		totalAdd = totalAdd.plus(new Decimal(1));
 	}
 	entropyUpgradeFactor.glutamineFree = totalAdd;
@@ -2182,7 +2273,10 @@ export function calculateFreeGlutamateProteins() {
 	if (rootUpgradeFactor.RO6Bought) {
 		totalAdd = totalAdd.plus(new Decimal(1));
 	}
-	if (rootUpgradeFactor.RM2) {
+	if (rootUpgradeFactor.RO16Bought) {
+		totalAdd = totalAdd.plus(new Decimal(1));
+	}
+	if (rootUpgradeFactor.RM2Achieved) {
 		const x = gameData.dnaBlueprintsTotal;
 		const y = x.div(new Decimal(2));
 		totalAdd = totalAdd.plus(y);
@@ -2195,6 +2289,9 @@ export function calculateFreeAsparagineProteins() {
 	if (rootUpgradeFactor.RO6Bought) {
 		totalAdd = totalAdd.plus(new Decimal(1));
 	}
+	if (rootUpgradeFactor.RO16Bought) {
+		totalAdd = totalAdd.plus(new Decimal(1));
+	}
 	entropyUpgradeFactor.asparagineFree = totalAdd;
 }
 export function calculateFreeAGPProteins() {
@@ -2202,7 +2299,10 @@ export function calculateFreeAGPProteins() {
 	if (rootUpgradeFactor.RO6Bought) {
 		totalAdd = totalAdd.plus(new Decimal(1));
 	}
-	if (rootUpgradeFactor.RM3) {
+	if (rootUpgradeFactor.RO16Bought) {
+		totalAdd = totalAdd.plus(new Decimal(1));
+	}
+	if (rootUpgradeFactor.RM3Achieved) {
 		const x = gameData.rna;
 		const y = x.pow(new Decimal(0.5));
 		totalAdd = totalAdd.plus(y);
@@ -2213,6 +2313,9 @@ export function calculateFreeAGPProteins() {
 export function calculateFreeTRBProteins() {
 	let totalAdd = new Decimal(0);
 	if (rootUpgradeFactor.RO6Bought) {
+		totalAdd = totalAdd.plus(new Decimal(1));
+	}
+	if (rootUpgradeFactor.RO16Bought) {
 		totalAdd = totalAdd.plus(new Decimal(1));
 	}
 	entropyUpgradeFactor.trbFree = totalAdd;

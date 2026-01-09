@@ -14,7 +14,7 @@ const mossMilestoneCost = {
     MM10: new Decimal.fromComponents(1, 1, 6000),
 }
 
-const mossUpgradeCost = {
+export const mossUpgradeCost = {
     M1: new Decimal.fromComponents(1, 1, 1000),
     M2: new Decimal.fromComponents(1, 1, 1500),
     M3: new Decimal.fromComponents(1, 1, 1000),
@@ -33,6 +33,7 @@ export var mossMilestoneFactor = {
     MM6Achieved: false,
     MM6: new Decimal(1),
     MM7Achieved: false,
+    MM7: new Decimal(1),
     MM8Achieved: false,
     MM9Achieved: false,
     MM9: new Decimal(1),
@@ -88,7 +89,7 @@ export function mossMilestoneChecker() {
     let localMossMilestoneCount = new Decimal(0);
 
     if (storage.gameData.mossUnlocked) {
-        if (storage.gameData.moss.greaterThanOrEqualTo(mossMilestoneCost.MM1)) {
+        if ((storage.gameData.moss.greaterThanOrEqualTo(mossMilestoneCost.MM1)) || (storage.rootUpgradeFactor.RO14Bought)) {
             mossMilestoneFactor.MM1Achieved = true;
             localMossMilestoneCount = localMossMilestoneCount.plus(new Decimal(1));
             document.getElementById('mm1').innerHTML = `Base Leaves Multiplier is raised by 1.15`;
@@ -97,25 +98,25 @@ export function mossMilestoneChecker() {
             achievements.ach44 = true;
             massAchievementChecker();
         }
-        if (storage.gameData.moss.greaterThanOrEqualTo(mossMilestoneCost.MM2)) {
+        if ((storage.gameData.moss.greaterThanOrEqualTo(mossMilestoneCost.MM2)) || (storage.rootUpgradeFactor.RO14Bought)) {
             mossMilestoneFactor.MM2Achieved = true;
             localMossMilestoneCount = localMossMilestoneCount.plus(new Decimal(1));
             document.getElementById('mm2').innerHTML = `Base Leaves Multiplier is raised by 1.1`;
             document.getElementById('mm2Background').style.backgroundImage = 'radial-gradient(circle at center, #535256, #1a8229)';
         }
-        if (storage.gameData.moss.greaterThanOrEqualTo(mossMilestoneCost.MM3)) {
+        if ((storage.gameData.moss.greaterThanOrEqualTo(mossMilestoneCost.MM3)) || (storage.rootUpgradeFactor.RO14Bought)) {
             mossMilestoneFactor.MM3Achieved = true;
             localMossMilestoneCount = localMossMilestoneCount.plus(new Decimal(1));
             document.getElementById('mm3').innerHTML = `x20 Composting speed`;
             document.getElementById('mm3Background').style.backgroundImage = 'radial-gradient(circle at center, #535256, #1a8229)';
         }
-        if (storage.gameData.moss.greaterThanOrEqualTo(mossMilestoneCost.MM4)) {
+        if ((storage.gameData.moss.greaterThanOrEqualTo(mossMilestoneCost.MM4)) || (storage.rootUpgradeFactor.RO14Bought)) {
             mossMilestoneFactor.MM4Achieved = true;
             localMossMilestoneCount = localMossMilestoneCount.plus(new Decimal(1));
             document.getElementById('mm4').innerHTML = `x5 Composting speed`;
             document.getElementById('mm4Background').style.backgroundImage = 'radial-gradient(circle at center, #535256, #1a8229)';
         }
-        if (storage.gameData.moss.greaterThanOrEqualTo(mossMilestoneCost.MM5)) {
+        if ((storage.gameData.moss.greaterThanOrEqualTo(mossMilestoneCost.MM5)) || (storage.rootUpgradeFactor.RO14Bought)) {
             mossMilestoneFactor.MM5Achieved = true;
             localMossMilestoneCount = localMossMilestoneCount.plus(new Decimal(1));
             document.getElementById('mm5').innerHTML = `Finally an Entropy Mult!<br>x2 Entropy`;
@@ -133,7 +134,7 @@ export function mossMilestoneChecker() {
         if (storage.gameData.moss.greaterThanOrEqualTo(mossMilestoneCost.MM7)) {
             mossMilestoneFactor.MM7Achieved = true;
             localMossMilestoneCount = localMossMilestoneCount.plus(new Decimal(1));
-            document.getElementById('mm7').innerHTML = `Entropy multiplies Bacteria and its cap`;
+            document.getElementById('mm7').innerHTML = `Entropy multiplies Bacteria and its cap<br>Effect: x${storage.truncateToDecimalPlaces(mossMilestoneFactor.MM7, 3)}`;
             document.getElementById('mm7Background').style.backgroundImage = 'radial-gradient(circle at center, #535256, #1a8229)';
 
             achievements.ach63 = true;

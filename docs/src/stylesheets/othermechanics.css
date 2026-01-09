@@ -503,7 +503,7 @@
     position: absolute;
     top: 280px;
     left: 500px;
-    height: 250px;
+    height: 330px;
     width: 730px;
     padding: 5px 10px;
     background-color: #e32b2b;
@@ -521,10 +521,19 @@
     border-style: outset;
     border-color: #bd1a1a;
 }
-.dna-rna-upgrades-background {
+.dna-upgrades-background {
     top: 100px;
 	width: 700px;
     height: 120px;
+    padding: 5px 10px;
+	background-color: #333333;
+	border-color: #111111;
+    border-style: outset;
+}
+.rna-upgrades-background {
+    top: 100px;
+	width: 700px;
+    height: 200px;
     padding: 5px 10px;
 	background-color: #333333;
 	border-color: #111111;

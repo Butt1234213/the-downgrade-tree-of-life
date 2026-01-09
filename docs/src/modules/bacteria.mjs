@@ -3,15 +3,15 @@ import * as cellularLab from './cellularlab.mjs'
 import { achievements, massAchievementChecker } from './achievements.mjs';
 
 export function resetCells() {
-    storage.gameData.bacteriaTypes = storage.gameData.bacteriaTypes.plus(new Decimal(1));
+    storage.gameData.bacteriaTypes = storage.gameData.bacteriaTypes.plus(storage.gameData.bacteriaTypesBulk);
     cellularLab.resetCells();
-	var x = new Decimal(1.79e308).pow(storage.gameData.bacteriaTypes.plus(new Decimal(1)));
+	var x = new Decimal(1.79e308).pow(storage.gameData.bacteriaTypes.plus(storage.gameData.bacteriaTypesBulk));
 	if (storage.gameData.bacteriaTypes.greaterThanOrEqualTo(new Decimal(100))) {
 		const y = storage.gameData.bacteriaTypes.minus(new Decimal(100));
 		const z = y.div(new Decimal(10));
 		const w = z.plus(new Decimal(1));
 		const v = new Decimal(1.79e308).pow(w);
-		x = v.pow(storage.gameData.bacteriaTypes.plus(new Decimal(1)));
+		x = v.pow(storage.gameData.bacteriaTypes.plus(storage.gameData.bacteriaTypesBulk));
 		
 		achievements.ach112 = true;
 		massAchievementChecker();

@@ -623,6 +623,7 @@ document.addEventListener('DOMContentLoaded', () => {
     upgradeBuilder('entropy', 40, `Bacteria Cytoplasm<br>Bacteria's Fertilizer base effectiveness<br>very slightly affects the Entropy Composter`, '1e89', new Decimal(1e50), entropyUpgrades.E40);
     upgradeBuilder('entropy', 41, `Helping Hand III<br>^1.5 Fruit base mult in the Drought`, '1e95', new Decimal(1e50), entropyUpgrades.E41);
     upgradeBuilder('entropy', 42, `30 Below Zero<br>Unlock the Blizzard Challenge`, '1e100', new Decimal(1e100), entropyUpgrades.E42);
+    upgradeBuilder('entropy', 43, `Island of Stability<br>Roots boost Bacteria cap`, '1e180', new Decimal(1e100), entropyUpgrades.E43);
 	
 	upgradeBuilder('root', 1, `Price of Power<br>^1.1 RuBisCo's effect`, '0.5', new Decimal.fromComponents(1, 1, 1000), rootUpgrades.RO1);
 	upgradeBuilder('root', 2, `Price of Power<br>Storm reward boosts Seeds base mult<br>with reduced rate`, '0.5', new Decimal.fromComponents(1, 1, 1000), rootUpgrades.RO2);
@@ -632,4 +633,16 @@ document.addEventListener('DOMContentLoaded', () => {
 	upgradeBuilder('root', 6, `Price of Power<br>Every Protein gains 1 free level`, '0.5', new Decimal.fromComponents(1, 1, 1000), rootUpgrades.RO6);
 	upgradeBuilder('root', 7, `Price of Power<br>x100 Game speed`, '0.5', new Decimal.fromComponents(1, 1, 1000), rootUpgrades.RO7);
 	upgradeBuilder('root', 8, `Price of Power<br>LR2 increases all supercap roots<br>with reduced rate`, '0.5', new Decimal.fromComponents(1, 1, 1000), rootUpgrades.RO8);
+	upgradeBuilder('root', 9, `Price of Power<br>^5 Cell replication cap`, '0.5', new Decimal.fromComponents(1, 1, 1000), rootUpgrades.RO9);
+	upgradeBuilder('root', 10, `Price of Power<br>x1.15 Roots`, '0.5', new Decimal.fromComponents(1, 1, 1000), rootUpgrades.RO10);
+	upgradeBuilder('root', 11, `Statue Power VII<br>+15 to LR2's cap`, '2', new Decimal.fromComponents(1, 1, 1100), rootUpgrades.RO11);
+	upgradeBuilder('root', 12, `Statue Power VIII<br>+15 to SR2's cap`, '2', new Decimal.fromComponents(1, 1, 1100), rootUpgrades.RO12);
+	upgradeBuilder('root', 13, `Composting Journies<br>Keep the Entropy Composter<br>on Reinforcement and x1.5 its effect`, '5', new Decimal.fromComponents(1, 1, 1100), rootUpgrades.RO13);
+	upgradeBuilder('root', 14, `Mossy Roots I<br>MM1 - MM5 become<br>permanentally active`, '5', new Decimal.fromComponents(1, 1, 1100), rootUpgrades.RO14);
+	upgradeBuilder('root', 15, `Mossy Roots II<br>M1's effect softcap is pushed back<br>+100 -> +300`, '5', new Decimal.fromComponents(1, 1, 1100), rootUpgrades.RO15);
+	upgradeBuilder('root', 16, `Protein Shake<br>Every Protein gains another free level`, '10', new Decimal.fromComponents(1, 1, 1500), rootUpgrades.RO16);
+	upgradeBuilder('root', 17, `Tap-root<br>Entropy boosts Roots`, '15', new Decimal.fromComponents(1, 1, 1500), rootUpgrades.RO17);
+	upgradeBuilder('root', 18, `Bacterial Rooting<br>+1 Bacteria Types bulk`, '20', new Decimal.fromComponents(1, 1, 1500), rootUpgrades.RO18);
+	upgradeBuilder('root', 19, `Growth Hormones<br>Unlock Fruit generation`, '50', new Decimal.fromComponents(1, 1, 1500), rootUpgrades.RO19);
+	upgradeBuilder('root', 20, `Microscopic Life<br>Manufacture a Petri Dish`, '100', new Decimal.fromComponents(1, 1, 1500), rootUpgrades.RO20);
 });

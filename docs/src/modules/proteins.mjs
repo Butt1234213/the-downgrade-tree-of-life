@@ -29,6 +29,17 @@ export function DNACalculation() {
 		if (storage.gameData.dna.greaterThanOrEqualTo(new Decimal(1))) {
 			document.getElementById('dnaEffectCounter').innerHTML = `+1 DNA Blueprint cap each strand (${storage.truncateToDecimalPlaces(storage.gameData.dna, 3)} max DNA Blueprints)`;
 		}
+		if (storage.gameData.dna.greaterThanOrEqualTo(new Decimal(10))) {
+			achievements.ach124 = true;
+			massAchievementChecker();
+		}
+		if (storage.entropyUpgradeFactor.R5Amount.greaterThanOrEqualTo(new Decimal(1))) {
+			const a = new Decimal(0.95);
+			const x = new Decimal(0.005);
+			const y = storage.entropyUpgradeFactor.R5Amount.times(x);
+			const z = a.plus(y);
+			document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^${storage.truncateToDecimalPlaces(z, 3)} your CRS and Bacteria`;
+		}
 	}
 }
 
@@ -83,7 +94,7 @@ function dnaBlueprintOperation(bulk) {
     storage.gameData.dnaBlueprints = storage.gameData.dnaBlueprints.plus(bulk);
     storage.gameData.dnaBlueprintsTotal = storage.gameData.dnaBlueprintsTotal.plus(bulk);
 
-    document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your Cell Replication speed and Bacteria`;
+    document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your CRS and Bacteria`;
 	
 	document.getElementById('blueprintCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} DNA Blueprints`;
 
@@ -110,7 +121,7 @@ function dnaBlueprintOperation(bulk) {
 function respecDNABlueprints() {
     storage.gameData.dnaBlueprints = new Decimal(0);
     storage.gameData.dnaBlueprintsTotal = new Decimal(0);
-    document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (0 currently) (0 total)<br>Fabricating a DNA Blueprint will ^0.95 your Cell Replication speed and Bacteria`;
+    document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (0 currently) (0 total)<br>Fabricating a DNA Blueprint will ^0.95 your CRS and Bacteria`;
 	document.getElementById('blueprintCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} DNA Blueprints`;
 	
 	storage.gameData.dnaBlueprintTime = new Decimal(60000);
@@ -201,6 +212,10 @@ function R3() {
 		storage.entropyUpgradeFactor.R3Effect = storage.entropyUpgradeFactor.R3Effect.plus(new Decimal(0.01));
 		document.getElementById('R3').innerHTML = `Softcap Dampener (${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.R3Amount, 3)} / 10)<br>Requires ${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.R3Cost, 3)} RNA strands<br>Effect: -${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.R3Effect, 3)} from Fruit softcap root`;
 	}
+	if (storage.entropyUpgradeFactor.R3Amount.greaterThanOrEqualTo(new Decimal(10))) {
+		storage.entropyUpgradeFactor.R3Cost = new Decimal(Infinity);
+		document.getElementById('R3').innerHTML = `Softcap Dampener (${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.R3Amount, 3)} / 10)<br>Requires ${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.R3Cost, 3)} RNA strands<br>Effect: -${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.R3Effect, 3)} from Fruit softcap root`;
+	}
 }
 document.getElementById('R3').addEventListener("click", R3);
 
@@ -208,7 +223,7 @@ function R4() {
 	if (storage.gameData.rna.greaterThanOrEqualTo(storage.entropyUpgradeFactor.R4Cost)) {
 		storage.entropyUpgradeFactor.R4Amount = storage.entropyUpgradeFactor.R4Amount.plus(new Decimal(1));
 		storage.entropyUpgradeFactor.R4Cost = storage.entropyUpgradeFactor.R4Cost.pow(new Decimal(1.1));
-		storage.entropyUpgradeFactor.R4Effect = storage.entropyUpgradeFactor.R4Effect.times(new Decimal(2));
+		storage.entropyUpgradeFactor.R4Effect = storage.entropyUpgradeFactor.R4Effect.times(new Decimal(3));
 		document.getElementById('R4').innerHTML = `Entropificator (${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.R4Amount, 3)})<br>Requires ${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.R4Cost, 3)} RNA strands<br>Effect: x${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.R4Effect, 3)} Entropy`;
 	}
 }
@@ -219,6 +234,10 @@ function R5() {
 		storage.entropyUpgradeFactor.R5Amount = storage.entropyUpgradeFactor.R5Amount.plus(new Decimal(1));
 		storage.entropyUpgradeFactor.R5Cost = storage.entropyUpgradeFactor.R5Cost.pow(new Decimal(1.1));
 		storage.entropyUpgradeFactor.R5Effect = storage.entropyUpgradeFactor.R5Effect.plus(new Decimal(0.005));
+		document.getElementById('R5').innerHTML = `Blueprint Dampener (${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.R5Amount, 3)} / 5)<br>Requires ${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.R5Cost, 3)} RNA strands<br>Effect: -${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.R5Effect, 3)} from DNA Blueprint nerf root`;
+	}
+	if (storage.entropyUpgradeFactor.R5Amount.greaterThanOrEqualTo(new Decimal(5))) {
+		storage.entropyUpgradeFactor.R5Cost = new Decimal(Infinity);
 		document.getElementById('R5').innerHTML = `Blueprint Dampener (${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.R5Amount, 3)} / 5)<br>Requires ${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.R5Cost, 3)} RNA strands<br>Effect: -${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.R5Effect, 3)} from DNA Blueprint nerf root`;
 	}
 }
@@ -257,7 +276,7 @@ document.getElementById('makeExtensin').addEventListener("click", Extensin);
 function Arganine() {
 	if (storage.gameData.dnaBlueprints.greaterThanOrEqualTo(new Decimal(1))) {
 		storage.gameData.dnaBlueprints = storage.gameData.dnaBlueprints.minus(new Decimal(1));
-		document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your Cell Replication speed and Bacteria`;
+		document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your CRS and Bacteria`;
 		document.getElementById('blueprintCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} DNA Blueprints`;
 		storage.entropyUpgradeFactor.arganine = storage.entropyUpgradeFactor.arganine.plus(new Decimal(1));
 	}
@@ -267,7 +286,7 @@ document.getElementById('makeArganine').addEventListener("click", Arganine);
 function Glutamine() {
 	if (storage.gameData.dnaBlueprints.greaterThanOrEqualTo(new Decimal(1))) {
 		storage.gameData.dnaBlueprints = storage.gameData.dnaBlueprints.minus(new Decimal(1));
-		document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your Cell Replication speed and Bacteria`;
+		document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your CRS and Bacteria`;
 		document.getElementById('blueprintCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} DNA Blueprints`;
 		storage.entropyUpgradeFactor.glutamine = storage.entropyUpgradeFactor.glutamine.plus(new Decimal(1));
 	}
@@ -277,7 +296,7 @@ document.getElementById('makeGlutamine').addEventListener("click", Glutamine);
 function Glutamate() {
 	if (storage.gameData.dnaBlueprints.greaterThanOrEqualTo(new Decimal(1))) {
 		storage.gameData.dnaBlueprints = storage.gameData.dnaBlueprints.minus(new Decimal(1));
-		document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your Cell Replication speed and Bacteria`;
+		document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your CRS and Bacteria`;
 		document.getElementById('blueprintCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} DNA Blueprints`;
 		storage.entropyUpgradeFactor.glutamate = storage.entropyUpgradeFactor.glutamate.plus(new Decimal(1));
 	}
@@ -287,7 +306,7 @@ document.getElementById('makeGlutamate').addEventListener("click", Glutamate);
 function Asparagine() {
 	if (storage.gameData.dnaBlueprints.greaterThanOrEqualTo(new Decimal(1))) {
 		storage.gameData.dnaBlueprints = storage.gameData.dnaBlueprints.minus(new Decimal(1));
-		document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your Cell Replication speed and Bacteria`;
+		document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your CRS and Bacteria`;
 		document.getElementById('blueprintCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} DNA Blueprints`;
 		storage.entropyUpgradeFactor.asparagine = storage.entropyUpgradeFactor.asparagine.plus(new Decimal(1));
 	}
@@ -297,7 +316,7 @@ document.getElementById('makeAsparagine').addEventListener("click", Asparagine);
 function AGP() {
 	if (storage.gameData.dnaBlueprints.greaterThanOrEqualTo(new Decimal(1))) {
 		storage.gameData.dnaBlueprints = storage.gameData.dnaBlueprints.minus(new Decimal(1));
-		document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your Cell Replication speed and Bacteria`;
+		document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your CRS and Bacteria`;
 		document.getElementById('blueprintCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} DNA Blueprints`;
 		
 		storage.entropyUpgradeFactor.agp = storage.entropyUpgradeFactor.agp.plus(new Decimal(1));
@@ -308,7 +327,7 @@ document.getElementById('makeAGP').addEventListener("click", AGP);
 function TRB() {
 	if (storage.gameData.dnaBlueprints.greaterThanOrEqualTo(new Decimal(1))) {
 		storage.gameData.dnaBlueprints = storage.gameData.dnaBlueprints.minus(new Decimal(1));
-		document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your Cell Replication speed and Bacteria`;
+		document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your CRS and Bacteria`;
 		document.getElementById('blueprintCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} DNA Blueprints`;
 		storage.entropyUpgradeFactor.trb = storage.entropyUpgradeFactor.trb.plus(new Decimal(1));
 	}

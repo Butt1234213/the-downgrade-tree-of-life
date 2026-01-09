@@ -120,6 +120,10 @@ export var achievements = {
     ach122AnimPlayed: false,
     ach123: false,
     ach123AnimPlayed: false,
+    ach124: false,
+    ach124AnimPlayed: false,
+    ach125: false,
+    ach125AnimPlayed: false,
 }
 
 export function updateAchievements(newAchievements, newSecretAchievements) {
@@ -215,6 +219,8 @@ export function massAchievementChecker() {
     achievementChecker(achievements, 'ach121');
     achievementChecker(achievements, 'ach122');
     achievementChecker(achievements, 'ach123');
+    achievementChecker(achievements, 'ach124');
+    achievementChecker(achievements, 'ach125');
 }
 
 export var secretAchievements = {

@@ -1,6 +1,7 @@
 import * as storage from './core/bunchobullshit.mjs';
 import { achievements, secretAchievements, updateAchievements } from './achievements.mjs';
 import * as automation from './automation.mjs';
+import * as leafUpgrades from './leafupgrades.mjs';
 import * as temple from './temple.mjs';
 
 export var gameLoading = false;
@@ -385,3 +386,61 @@ function loadSaveButActually() {
 document.getElementById("saveManually").addEventListener("click", saveLoop);
 document.getElementById("loadSave").addEventListener("click", loadSaveButActually);
 document.getElementById("exportSave").addEventListener("click", copySaveFileToClipboard);
+
+document.addEventListener('DOMContentLoaded', () => {
+	const resettingGame = localStorage.getItem("resettingGame");
+	console.info(resettingGame);
+	
+	if (!(resettingGame === "true")) {
+		loadSaveButActually();
+		leafUpgrades.L1();
+	}
+	storage.gameData.resettingGame = false;
+	localStorage.setItem("resettingGame", JSON.stringify(storage.gameData.resettingGame));
+});
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+const resetButton = document.getElementById('resetSave');
+export async function resetButtonUpdater() {
+	if (!storage.gameData.resetButtonHeld) {
+		resetButton.innerHTML = `Reset your progress<br>0 / 10s of button being held`;
+		return;
+	}
+	const x = storage.gameData.ticksToProcess;
+	storage.gameData.resetDataCounter = storage.gameData.resetDataCounter.plus(x);
+	resetButton.innerHTML = `Reset your progress<br>${storage.truncateToDecimalPlaces(storage.gameData.resetDataCounter, 3)} / 10s of button being held`;
+	
+	if (storage.gameData.resetDataCounter.greaterThanOrEqualTo(new Decimal(10))) {
+		storage.gameData.resettingGame = true;
+		storage.gameData.resetDataCounter = new Decimal(0);
+		storage.gameData.resetButtonHeld = false;
+		localStorage.setItem("resettingGame", true);
+		saveLoop();
+		sleep(100);
+		window.location.reload();
+	}
+}
+resetButton.addEventListener('mousedown', function() {
+    storage.gameData.resetButtonHeld = true;
+    console.info(`Dangerous game we're playing here`);
+	storage.gameData.resetDataCounter = new Decimal(0);
+});
+
+resetButton.addEventListener('mouseup', function() {
+    if (storage.gameData.resetButtonHeld) {
+        storage.gameData.resetButtonHeld = false;
+        console.info(`Changed your mind, haven't you?`);
+		storage.gameData.resetDataCounter = new Decimal(0);
+    }
+});
+
+resetButton.addEventListener('mouseleave', function() {
+    if (storage.gameData.resetButtonHeld) {
+        storage.gameData.resetButtonHeld = false;
+        console.info(`Oop! Caught you flinch!`);
+		storage.gameData.resetDataCounter = new Decimal(0);
+    }
+});

@@ -1,6 +1,6 @@
 import * as storage from './bunchobullshit.mjs';
 import * as calculations from './calculations.mjs';
-import { loadSave, gameLoading } from '../savefile.mjs';
+import { loadSave, gameLoading, resetButtonUpdater } from '../savefile.mjs';
 import * as challenges from '../radar.mjs';
 import * as proteins from '../proteins.mjs';
 import * as composter from '../composter.mjs';
@@ -20,6 +20,7 @@ console.log(testBEDecimal);
 console.log(`or`);
 console.log(`${testBEDecimal} is the Decimal()`);
 console.log(`${testBEString} is the Decimal().toString()`)
+
 
 export function gameLoop() {
     if (storage.gameData.gameStarted) {
@@ -81,10 +82,12 @@ export function gameLoop() {
             calculations.calculateCellUpgradesBulk();
             calculations.calculateCellsEffectMult();
             calculations.calculateCellsIntervalDiv();
+            calculations.calculateCellsReplicationCap();
             calculations.calculateCellsMult();
             cellularLab.cellsCalculation();
             cellularLab.bacteriaChecker();
             
+            calculations.calculateBacteriaTypesBulk();
             calculations.calculateBacteriaMult();
             calculations.calculateBacteriaPower();
             calculations.calculateBacteriaCapMult();
@@ -104,10 +107,13 @@ export function gameLoop() {
 			proteins.RNACalculation();
 
             automation.circuitsCalculation();
-            automation.upgradeAutobuyerChecker();
+            automation.automateLeafUpgrades();
+            automation.automateSeedUpgrades();
+            automation.automateFruitUpgrades();
             automation.composterAutobuyerChecker();
             automation.bacteriaTypesAutobuyerChecker();
             automation.cellUpgradesAutobuyerChecker();
+            automation.mossUpgradesAutobuyerChecker();
 
             calculations.calculateM1Effect();
             calculations.calculateM3Effect();
@@ -123,6 +129,8 @@ export function gameLoop() {
             calculations.calculateLR2Effect();
             calculations.calculateSR1Cap();
             calculations.calculateSR1Effect();
+            calculations.calculateSR2Cap();
+            calculations.calculateSR2Effect();
             calculations.calculateFR1Cap();
             calculations.calculateFR1Effect();
 
@@ -238,12 +246,18 @@ export function gameLoop() {
               const y = x.times(new Decimal(0.01));
               storage.gameData.seeds = storage.gameData.seeds.plus(y);
             }
+			if (storage.rootUpgradeFactor.RO19Bought) {
+				const x = storage.gameData.fruitsOnHarvest;
+				const y = x.times(new Decimal(0.01));
+				storage.gameData.fruits = storage.gameData.fruits.plus(y);
+			}
 
             storage.fruitsCalculation(storage.gameData.seeds);
 
             storage.updateResourceGUI();
 
             massAchievementChecker();
+			resetButtonUpdater();
 
             document.getElementById("pleaseWork").innerHTML = storage.truncateToDecimalPlaces(storage.gameData.leaves, 3) + " Leaves";
             document.getElementById("leavesPerSecond").innerHTML = storage.truncateToDecimalPlaces(storage.gameData.leavesPerTick, 3) + " Leaves/s";

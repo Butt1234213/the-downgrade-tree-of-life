@@ -14,36 +14,41 @@ export function rootMilestoneChecker() {
 		document.getElementById("reinforcementEffectCounter").innerHTML = `x${storage.truncateToDecimalPlaces(leafMult, 3)}L, x${storage.truncateToDecimalPlaces(seedMult, 3)}S, x${storage.truncateToDecimalPlaces(fruitMult, 3)}F,`;
 		
 		if (storage.gameData.reinforcements.greaterThanOrEqualTo(storage.rootUpgradeCost.RM1)) {
-			storage.rootUpgradeFactor.RM1 = true;
+			storage.rootUpgradeFactor.RM1Achieved = true;
 			document.getElementById("RM1").style.backgroundImage = `radial-gradient(#edac13, #55d941)`;
 		}
 		if (storage.gameData.reinforcements.greaterThanOrEqualTo(storage.rootUpgradeCost.RM2)) {
-			storage.rootUpgradeFactor.RM2 = true;
+			storage.rootUpgradeFactor.RM2Achieved = true;
 			document.getElementById("RM2").style.backgroundImage = `radial-gradient(#edac13, #55d941)`;
 		}
 		if (storage.gameData.reinforcements.greaterThanOrEqualTo(storage.rootUpgradeCost.RM3)) {
-			storage.rootUpgradeFactor.RM3 = true;
+			storage.rootUpgradeFactor.RM3Achieved = true;
 			document.getElementById("RM3").style.backgroundImage = `radial-gradient(#edac13, #55d941)`;
 		}
 		if (storage.gameData.reinforcements.greaterThanOrEqualTo(storage.rootUpgradeCost.RM4)) {
-			storage.rootUpgradeFactor.RM4 = true;
+			storage.rootUpgradeFactor.RM4Achieved = true;
 			document.getElementById("RM4").style.backgroundImage = `radial-gradient(#edac13, #55d941)`;
 			document.querySelector('.cell-upgrades-automation-background').style.visibility = `visible`;
 		}
 		if (storage.gameData.reinforcements.greaterThanOrEqualTo(storage.rootUpgradeCost.RM5)) {
-			storage.rootUpgradeFactor.RM5 = true;
+			storage.rootUpgradeFactor.RM5Achieved = true;
 			document.getElementById("RM5").style.backgroundImage = `radial-gradient(#edac13, #55d941)`;
 			document.getElementById("B3").style.display = `inline-block`;
 		}
 		if (storage.gameData.reinforcements.greaterThanOrEqualTo(storage.rootUpgradeCost.RM6)) {
-			storage.rootUpgradeFactor.RM6 = true;
+			storage.rootUpgradeFactor.RM6Achieved = true;
 			document.getElementById("RM6").style.backgroundImage = `radial-gradient(#edac13, #55d941)`;
 		}
 		if (storage.gameData.reinforcements.greaterThanOrEqualTo(storage.rootUpgradeCost.RM7)) {
-			storage.rootUpgradeFactor.RM7 = true;
+			storage.rootUpgradeFactor.RM7Achieved = true;
 			document.getElementById("RM7").style.backgroundImage = `radial-gradient(#edac13, #55d941)`;
 			achievements.ach123 = true;
 			massAchievementChecker();
+		}
+		if (storage.gameData.reinforcements.greaterThanOrEqualTo(storage.rootUpgradeCost.RM8)) {
+			storage.rootUpgradeFactor.RM8Achieved = true;
+			document.getElementById("RM8").style.backgroundImage = `radial-gradient(#edac13, #55d941)`;
+			document.querySelector('.moss-upgrades-automation-background').style.visibility = `visible`;
 		}
 	}
 }

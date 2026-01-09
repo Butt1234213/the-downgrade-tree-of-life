@@ -45,6 +45,7 @@ export function laggyAssFunction() {
     E40();
     E41();
     E42();
+    E43();
 }
 function ach45() {
     achievements.ach45 = true;
@@ -470,5 +471,14 @@ export function E42() {
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('entropy', 42, entropyUpgradeCost.EU42, true, ach113());
         entropyUpgradeFactor.E42Bought = true;
+    }
+}
+export function E43() {
+    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU43) || entropyUpgradeFactor.E43Bought) {
+        document.getElementById("E43").innerHTML = `E43 (Bought)<br>Island of Stability<br>Roots boost Bacteria cap<br>Cost: 1e180 Entropy`;
+        gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('entropy', 43, entropyUpgradeCost.EU43, false, null);
+        entropyUpgradeFactor.E43Bought = true;
     }
 }

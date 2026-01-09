@@ -6,7 +6,7 @@ import * as entropyUpgrades from '../entropyupgrades.mjs';
 import * as rootUpgrades from '../rootupgrades.mjs';
 import * as composter from '../composter.mjs';
 import { hasInitialized } from '../savefile.mjs';
-import { upgradeAutobuyerChecker, circuits } from '../automation.mjs';
+import { automateLeafUpgrades, circuits } from '../automation.mjs';
 import * as upgradeBuilder from './upgradebuilder.mjs';
 import * as moss from '../moss.mjs';
 import * as challenges from '../radar.mjs';
@@ -14,6 +14,9 @@ import * as temple from '../temple.mjs';
 
 export var gameData = {
     lastUpdate: new Decimal(Date.now()),
+    resetDataCounter: new Decimal(0),
+    resetButtonHeld: false,
+	resettingGame: false,
     totalUpgradeCounter: new Decimal(0),
 
     leaves: new Decimal(0),
@@ -158,6 +161,7 @@ export var gameData = {
     baseOverpopulationFactor: new Decimal(1),
     cellsReplicationChance: new Decimal(0.01),
     cellsReplicationAmount: new Decimal(1),
+	cellsReplicationCap: new Decimal.fromComponents(1, 1, 1000),
     cellsEffectMult: new Decimal(1),
     cellsLeafEffect: new Decimal(1),
     cellsSeedEffect: new Decimal(1),
@@ -165,6 +169,7 @@ export var gameData = {
     cellUpgradesBulk: new Decimal(1),
     
     bacteriaTypes: new Decimal(0),
+    bacteriaTypesBulk: new Decimal(1),
     bacteria: new Decimal(0),
     bacteriaMult: new Decimal(1),
     bacteriaPow: new Decimal(1),
@@ -549,6 +554,7 @@ export var entropyUpgradeCost = {
     EU40: new Decimal(1e89),
     EU41: new Decimal(1e95),
     EU42: new Decimal(1e100),
+    EU43: new Decimal(1e180),
 }
 
 export var entropyUpgradeFactor = {
@@ -634,6 +640,18 @@ export var rootUpgradeCost = {
 	ROU6: new Decimal(0.5),
 	ROU7: new Decimal(0.5),
 	ROU8: new Decimal(0.5),
+	ROU9: new Decimal(0.5),
+	ROU10: new Decimal(0.5),
+	ROU11: new Decimal(2),
+	ROU12: new Decimal(2),
+	ROU13: new Decimal(5),
+	ROU14: new Decimal(5),
+	ROU15: new Decimal(5),
+	ROU16: new Decimal(10),
+	ROU17: new Decimal(15),
+	ROU18: new Decimal(20),
+	ROU19: new Decimal(50),
+	ROU20: new Decimal(100),
 	
 	RM1: new Decimal(1),
 	RM2: new Decimal(2),
@@ -1012,7 +1030,7 @@ export function decompolize() {
         document.querySelector('.fruits').style.left = '435px';
         document.querySelector('.fruits-reset-button').style.left = '475px';
         
-        setTimeout(upgradeAutobuyerChecker, 500);
+        setTimeout(automateLeafUpgrades, 500);
     }
 }
 
@@ -1194,6 +1212,8 @@ export function harvest() {
         temple.repeatableUpgradeFactor.LR2Cap = new Decimal(10);
         temple.repeatableUpgradeFactor.SR1 = new Decimal(0);
         temple.repeatableUpgradeFactor.SR1Cap = new Decimal(10);
+        temple.repeatableUpgradeFactor.SR2 = new Decimal(0);
+        temple.repeatableUpgradeFactor.SR2Cap = new Decimal(10);
         
         gameData.moss = new Decimal(0);
         moss.mossMilestoneFactor.MM1Achieved = false;
@@ -1263,7 +1283,7 @@ export function harvest() {
         document.getElementById("seedSoftcap").innerHTML = ""
         document.getElementById("fruitSoftcap").innerHTML = ""
         
-        setTimeout(upgradeAutobuyerChecker, 500);
+        setTimeout(automateLeafUpgrades, 500);
     }
 }
 
@@ -1462,6 +1482,8 @@ export function transform() {
         temple.repeatableUpgradeFactor.LR2Cap = new Decimal(10);
         temple.repeatableUpgradeFactor.SR1 = new Decimal(0);
         temple.repeatableUpgradeFactor.SR1Cap = new Decimal(10);
+        temple.repeatableUpgradeFactor.SR2 = new Decimal(0);
+        temple.repeatableUpgradeFactor.SR2Cap = new Decimal(10);
         temple.repeatableUpgradeFactor.FR1 = new Decimal(0);
         temple.repeatableUpgradeFactor.FR1Cap = new Decimal(10);
 
@@ -1573,7 +1595,7 @@ export function transform() {
         document.getElementById("seedSoftcap").innerHTML = ""
         document.getElementById("fruitSoftcap").innerHTML = ""
 
-        setTimeout(upgradeAutobuyerChecker, 500);
+        setTimeout(automateLeafUpgrades, 500);
     }
 }
 
@@ -1732,7 +1754,9 @@ export function reinforce() {
 		gameData.leafComposterUnlocked = false;
 		gameData.seedComposterUnlocked = false;
 		gameData.fruitComposterUnlocked = false;
-		gameData.entropyComposterUnlocked = false;
+		if (!(rootUpgradeFactor.RO13Bought)) {
+			gameData.entropyComposterUnlocked = false;	
+		}
 
         gameData.totalFertilizers = new Decimal(0);
 		
@@ -1760,7 +1784,9 @@ export function reinforce() {
         gameData.fruitComposterEffect = new Decimal(1);
         gameData.fruitComposterIsActive = false;
 		
-		gameData.entropyComposterUnlocked = false;
+		if (!rootUpgradeFactor.RO13Bought) {
+			gameData.entropyComposterUnlocked = false;
+		}
 		gameData.entropyComposterCost = new Decimal(1);
 		gameData.entropyComposterAmount = new Decimal(0);
 		gameData.entropyComposterDiscount = new Decimal(1);
@@ -1984,6 +2010,8 @@ export function reinforce() {
         temple.repeatableUpgradeFactor.LR2Cap = new Decimal(10);
         temple.repeatableUpgradeFactor.SR1 = new Decimal(0);
         temple.repeatableUpgradeFactor.SR1Cap = new Decimal(10);
+        temple.repeatableUpgradeFactor.SR2 = new Decimal(0);
+        temple.repeatableUpgradeFactor.SR2Cap = new Decimal(10);
         temple.repeatableUpgradeFactor.FR1 = new Decimal(0);
         temple.repeatableUpgradeFactor.FR1Cap = new Decimal(10);
 
@@ -2093,7 +2121,9 @@ export function reinforce() {
 		document.querySelector('.leaf-composter-background').style.visibility = 'hidden';
 		document.querySelector('.seed-composter-background').style.visibility = 'hidden';
 		document.querySelector('.fruit-composter-background').style.visibility = 'hidden';
-		document.querySelector('.entropy-composter-background').style.visibility = 'hidden';
+		if (!(rootUpgradeFactor.RO13Bought)) {
+			document.querySelector('.entropy-composter-background').style.visibility = 'hidden';	
+		}
 		
         document.querySelector('.moss-background').style.visibility = 'hidden';
         document.querySelector('.moss-milestone-background').style.visibility = 'hidden';
@@ -2180,7 +2210,7 @@ export function reinforce() {
         document.getElementById("seedSoftcap").innerHTML = ""
         document.getElementById("fruitSoftcap").innerHTML = ""
 
-        setTimeout(upgradeAutobuyerChecker, 500);
+        setTimeout(automateLeafUpgrades, 500);
     }
 }
 

@@ -1533,6 +1533,56 @@
     visibility: visible;
     transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
 }
+.ach124 {
+    position: absolute;
+    top: 1375px;
+    left: 375px;
+    border-width: 2px;
+    border-radius: 2px;
+    height: 100px;
+    font-family: Verdana;
+    font-size: 12px;
+    border-style: solid;
+    border-color: #000000ff;
+}
+.ach124:hover .achievements-hover {
+    visibility: visible;
+}
+.ach124-text {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.ach124-text.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.ach125 {
+    position: absolute;
+    top: 1375px;
+    left: 500px;
+    border-width: 2px;
+    border-radius: 2px;
+    height: 100px;
+    font-family: Verdana;
+    font-size: 12px;
+    border-style: solid;
+    border-color: #000000ff;
+}
+.ach125:hover .achievements-hover {
+    visibility: visible;
+}
+.ach125-text {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+.ach125-text.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
 
 
 

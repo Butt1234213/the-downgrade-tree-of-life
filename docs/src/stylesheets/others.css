@@ -141,6 +141,12 @@
 .display-block {
     display: block;
 }
+.scaryButton {
+	color: white;
+	background-color: #d61e1e;
+	border-color: #991212;
+	border-style: outset;
+}
 .softcap {
     font-family: Verdana;
     font-size: 12px;

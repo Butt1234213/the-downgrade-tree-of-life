@@ -1,4 +1,5 @@
 import * as storage from './core/bunchobullshit.mjs'
+import { achievements, massAchievementChecker } from './achievements.mjs'
 
 export function cellsCalculation() {
     if (storage.entropyUpgradeFactor.E1Bought) {
@@ -27,11 +28,8 @@ export function cellsCalculation() {
         const w = new Decimal(1).div(x);
         const v = w.times(y.times(z));
         const u = new Decimal(2).pow(v);
-		var t = u.clamp(new Decimal(1), new Decimal(1e100));
-		if (storage.fruitUpgradeFactor.F44Bought) {
-			t = u.clamp(new Decimal(1), new Decimal.fromComponents(1, 1, 500));
-			document.getElementById('F44').innerHTML = `F44 (Bought)<br>Super Replication<br>The Cell replication cap is better<br>1e1000 -> 1e5000<br>Cost: 1e1600 Fruits`;
-		}
+		const clampingConstant = storage.gameData.cellsReplicationCap.pow(new Decimal(0.1));
+		const t = u.clamp(new Decimal(1), clampingConstant);
         var s = t;
 		if (storage.gameData.isInChallengeBlizzard) {
 			s = new Decimal(1);
@@ -55,6 +53,11 @@ export function cellsCalculation() {
         storage.gameData.cellsSeedEffect = ((Decimal.log2(storage.gameData.cells)).plus(new Decimal(1))).times(storage.gameData.cellsEffectMult.pow(new Decimal(0.5)));
         storage.gameData.cellsFruitEffect = ((new Decimal(0.5).times(Decimal.log2(storage.gameData.cells))).plus(new Decimal(1))).times(storage.gameData.cellsEffectMult.pow(new Decimal(0.25)));
         document.getElementById('cellsEffectCounter').innerHTML = `x${storage.truncateToDecimalPlaces(storage.gameData.cellsLeafEffect, 3)}, x${storage.truncateToDecimalPlaces(storage.gameData.cellsSeedEffect, 3)}, and x${storage.truncateToDecimalPlaces(storage.gameData.cellsFruitEffect, 3)}`
+		
+		if (storage.gameData.cells.greaterThanOrEqualTo(new Decimal.fromComponents(1, 1, 100000))) {
+			achievements.ach125 = true;
+			massAchievementChecker();
+		}
     }
 }
 export function C1() {

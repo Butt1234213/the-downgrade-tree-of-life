@@ -4,6 +4,7 @@ import * as leafUpgrades from './leafupgrades.mjs';
 import * as seedUpgrades from './seedupgrades.mjs';
 import * as fruitUpgrades from './fruitupgrades.mjs';
 import * as composter from './composter.mjs';
+import * as moss from './moss.mjs';
 import * as cellularLab from './cellularlab.mjs';
 import * as bacteria from './bacteria.mjs';
 import * as temple from './temple.mjs';
@@ -40,6 +41,8 @@ export var circuits = {
     bacteriaTypesAutobuyerFLOPS: new Decimal(0),
     cellUpgradesAutobuyer: new Decimal(0),
     cellUpgradesAutobuyerFLOPS: new Decimal(0),
+    mossUpgradesAutobuyer: new Decimal(0),
+    mossUpgradesAutobuyerFLOPS: new Decimal(0),
 }
 
 function flopsFormula(circuits) {
@@ -80,14 +83,16 @@ export function loadCircuits(newValue) {
     document.getElementById("bacteriaTypesAutomationFLOPSCounter").innerHTML = `computing ${storage.truncateToDecimalPlaces(flopsFormula(circuits.bacteriaTypesAutobuyer), 3)} FLOPs/s, resetting every ${storage.truncateToDecimalPlaces(bacteriaTypesAutobuyerFormula('w'), 3)}s`;
     document.getElementById("cellUpgradesAutomationCircuitsCounter").innerHTML = `You currently have ${storage.truncateToDecimalPlaces(circuits.cellUpgradesAutobuyer, 3)} Circuits assigned to Cell Upgrades automation,`;
     document.getElementById("cellUpgradesAutomationFLOPSCounter").innerHTML = `computing ${storage.truncateToDecimalPlaces(flopsFormula(circuits.cellUpgradesAutobuyer), 3)} FLOPs/s, buying every ${storage.truncateToDecimalPlaces(cellUpgradesAutobuyerFormula('w'), 3)}s`;
+    document.getElementById("mossUpgradesAutomationCircuitsCounter").innerHTML = `You currently have ${storage.truncateToDecimalPlaces(circuits.mossUpgradesAutobuyer, 3)} Circuits assigned to Moss Upgrades automation,`;
+    document.getElementById("mossUpgradesAutomationFLOPSCounter").innerHTML = `computing ${storage.truncateToDecimalPlaces(flopsFormula(circuits.mossUpgradesAutobuyer), 3)} FLOPs/s, buying every ${storage.truncateToDecimalPlaces(mossUpgradesAutobuyerFormula('w'), 3)}s`;
 }
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-export async function upgradeAutobuyerChecker() {
-    if ((storage.entropyUpgradeFactor.E1Bought) || (storage.gameData.suAutomationUnlocked)) {
+export async function automateLeafUpgrades() {
+    if ((storage.entropyUpgradeFactor.E1Bought) || (storage.gameData.reinforcements.greaterThanOrEqualTo(new Decimal(1)))) {
         circuits.upgradeAutobuyerFLOPS = circuits.upgradeAutobuyerFLOPS.plus((flopsFormula(circuits.upgradeAutobuyer)).times(storage.gameData.ticksToProcess));
         document.getElementById("upgradeAutomationFLOPSCounter").innerHTML = `computing ${storage.truncateToDecimalPlaces(flopsFormula(circuits.upgradeAutobuyer), 3)} FLOPs/s. (${storage.truncateToDecimalPlaces(circuits.upgradeAutobuyerFLOPS, 3)} FLOPs)`;
 
@@ -109,43 +114,51 @@ export async function upgradeAutobuyerChecker() {
 				}
             }
         }
-        if (storage.gameData.suAutomationUnlocked) {
-            for (let i = 1; i < 52; i++) {
-                if (circuits.upgradeAutobuyerFLOPS.greaterThanOrEqualTo(storage.seedAutomationFactor[`S${i}`]))  {
-                    if (!storage.seedUpgradeFactor[`S${i}Bought`]) {
-                        seedUpgrades.functions[`S${i}`]();
-                        await sleep(100);
-                    }
-                }
-            }
-            if (storage.seedUpgradeFactor.S42Bought) {
-                for (let i = 1; i < 2; i++) {
-                    if (circuits.upgradeAutobuyerFLOPS.greaterThanOrEqualTo(temple.repeatableAutomationFactor[`SR${i}`]))  {
-                        temple.functions[`SR${i}`]();
-                        await sleep(100);
-                    }
-                }
-            } 
-        }
-        if (storage.gameData.fuAutomationUnlocked) {
-            for (let i = 1; i < 46; i++) {
-                if (circuits.upgradeAutobuyerFLOPS.greaterThanOrEqualTo(storage.fruitAutomationFactor[`F${i}`]))  {
-                    if (!storage.fruitUpgradeFactor[`F${i}Bought`]) {
-                        fruitUpgrades.functions[`F${i}`]();
-                        await sleep(100);
-                    }
-                }
-            }
-            if (storage.fruitUpgradeFactor.F41Bought) {
-                for (let i = 1; i < 2; i++) {
-                    if (circuits.upgradeAutobuyerFLOPS.greaterThanOrEqualTo(temple.repeatableAutomationFactor[`FR${i}`]))  {
-                        temple.functions[`FR${i}`]();
-                        await sleep(100);
-                    }
-                }
-            } 
-        }
     }
+}
+
+export async function automateSeedUpgrades() {
+	if (storage.gameData.suAutomationUnlocked) {
+		for (let i = 1; i < 52; i++) {
+			if (circuits.upgradeAutobuyerFLOPS.greaterThanOrEqualTo(storage.seedAutomationFactor[`S${i}`]))  {
+				if (!storage.seedUpgradeFactor[`S${i}Bought`]) {
+					seedUpgrades.functions[`S${i}`]();
+					await sleep(100);
+				}
+			}
+		}
+		if (storage.seedUpgradeFactor.S42Bought) {
+			for (let i = 1; i < 3; i++) {
+				if (temple.repeatableUpgradeFactor[`SR${i}Unlocked`]) {
+					if (circuits.upgradeAutobuyerFLOPS.greaterThanOrEqualTo(temple.repeatableAutomationFactor[`SR${i}`]))  {
+						temple.functions[`SR${i}`]();
+						await sleep(100);
+					}	
+				}
+			}
+		}
+	}
+}
+
+export async function automateFruitUpgrades() {
+	if (storage.gameData.fuAutomationUnlocked) {
+		for (let i = 1; i < 46; i++) {
+			if (circuits.upgradeAutobuyerFLOPS.greaterThanOrEqualTo(storage.fruitAutomationFactor[`F${i}`]))  {
+				if (!storage.fruitUpgradeFactor[`F${i}Bought`]) {
+					fruitUpgrades.functions[`F${i}`]();
+					await sleep(100);
+				}
+			}
+		}
+		if (storage.fruitUpgradeFactor.F41Bought) {
+			for (let i = 1; i < 2; i++) {
+				if (circuits.upgradeAutobuyerFLOPS.greaterThanOrEqualTo(temple.repeatableAutomationFactor[`FR${i}`]))  {
+					temple.functions[`FR${i}`]();
+					await sleep(100);
+				}
+			}
+		} 
+	}
 }
 
 function updateComposterAutobuyerCircuits() {
@@ -307,7 +320,7 @@ function updateCellUpgradesAutobuyerCircuits() {
 }
 
 export async function cellUpgradesAutobuyerChecker() {
-    if ((storage.rootUpgradeFactor.RM4Achieved) || (achievements.ach121)) {
+    if (storage.rootUpgradeFactor.RM4Achieved) {
         if (circuits.cellUpgradesAutobuyer.lessThan(new Decimal(1))) {
             document.getElementById('cellUpgradesAutomationFLOPSCounter').innerHTML = `computing 0 FLOPs/s, buying every ∞s.`;
             return;
@@ -336,11 +349,84 @@ export async function cellUpgradesAutobuyerChecker() {
     }
 }
 
+function mossUpgradesAutobuyerFormula(type) {
+	const x = circuits.mossUpgradesAutobuyer;
+	const m = new Decimal(-99.9).div(new Decimal(2000));
+	const z = x.minus(new Decimal(1));
+	const y = (z.times(m)).plus(new Decimal(99.9));
+	const w = y.clamp(new Decimal(0.1), new Decimal(100));
+	const v = w.times(new Decimal(1000));
+	if (type === 'w') {
+		return w;
+	}
+	else {
+		return v;
+	}
+}
+
+function updateMossUpgradesAutobuyerCircuits() {
+    let newValue = new Decimal(document.getElementById("mossUpgradesAutomationCircuitsAssigner").value);
+    if (newValue.greaterThanOrEqualTo(storage.gameData.circuits)) {
+        newValue = storage.gameData.circuits;
+    }
+    else if (newValue.greaterThanOrEqualTo(new Decimal(1000))) {
+        newValue = new Decimal(1000);
+    }
+
+    newValue = newValue.minus(circuits.mossUpgradesAutobuyer);
+
+    circuits.mossUpgradesAutobuyer = circuits.mossUpgradesAutobuyer.plus(newValue);
+    storage.gameData.circuitsUsed = storage.gameData.circuitsUsed.plus(newValue);
+    console.log(circuits.mossUpgradesAutobuyer);
+    document.getElementById('mossUpgradesAutomationCircuitsAssigner').value = '';
+
+    document.getElementById("mossUpgradesAutomationCircuitsCounter").innerHTML = `You currently have ${storage.truncateToDecimalPlaces(circuits.mossUpgradesAutobuyer, 3)} Circuits assigned to Moss Upgrades automation,`;
+    document.getElementById("mossUpgradesAutomationFLOPSCounter").innerHTML = `computing ${storage.truncateToDecimalPlaces(flopsFormula(circuits.mossUpgradesAutobuyer), 3)} FLOPs/s, buying every ${storage.truncateToDecimalPlaces(mossUpgradesAutobuyerFormula('w'), 3)}s`;
+}
+
+export async function mossUpgradesAutobuyerChecker() {
+    if (storage.rootUpgradeFactor.RM8Achieved) {
+        if (circuits.mossUpgradesAutobuyer.lessThan(new Decimal(1))) {
+            document.getElementById('mossUpgradesAutomationFLOPSCounter').innerHTML = `computing 0 FLOPs/s, buying every ∞s.`;
+            return;
+        }
+        if (circuits.mossUpgradesAutobuyer.lessThan(new Decimal(1000))) {
+            document.getElementById("mossUpgradesAutomationFLOPSCounter").innerHTML = `computing ${storage.truncateToDecimalPlaces(flopsFormula(circuits.mossUpgradesAutobuyer), 3)} FLOPs/s, buying every ${storage.truncateToDecimalPlaces(mossUpgradesAutobuyerFormula('w'), 3)}s`;
+            //this should calculate the delay for each automation
+			const v = mossUpgradesAutobuyerFormula('v');
+            await sleep(v.toNumber());
+        }
+        else {
+            await sleep(100);
+        }
+		
+		if (storage.gameData.moss.greaterThanOrEqualTo(moss.mossUpgradeCost.M1)) {
+			moss.M1();
+		}
+		if (storage.gameData.moss.greaterThanOrEqualTo(moss.mossUpgradeCost.M2)) {
+			moss.M2();
+		}
+		if (storage.gameData.moss.greaterThanOrEqualTo(moss.mossUpgradeCost.M3)) {
+			moss.M3();
+		}
+		if (storage.gameData.moss.greaterThanOrEqualTo(moss.mossUpgradeCost.M4)) {
+			moss.M4();
+		}
+		if (storage.gameData.moss.greaterThanOrEqualTo(moss.mossUpgradeCost.M5)) {
+			moss.M5();
+		}
+		if (storage.gameData.moss.greaterThanOrEqualTo(moss.mossUpgradeCost.M6)) {
+			moss.M6();
+		}
+    }
+}
+
 function respecCircuits() {
     circuits.upgradeAutobuyer = new Decimal(0);
     circuits.composterAutobuyer = new Decimal(0);
     circuits.bacteriaTypesAutobuyer = new Decimal(0);
     circuits.cellUpgradesAutobuyer = new Decimal(0);
+    circuits.mossUpgradesAutobuyer = new Decimal(0);
     document.getElementById("upgradeAutomationCircuitsCounter").innerHTML = `You currently have 0 Circuits assigned to Upgrade automation,`;
     document.getElementById("upgradeAutomationFLOPSCounter").innerHTML = `computing 0 FLOPs/s.`;
     document.getElementById("composterAutomationCircuitsCounter").innerHTML = `You currently have 0 Circuits assigned to Composter automation,`;
@@ -349,6 +435,8 @@ function respecCircuits() {
     document.getElementById("bacteriaTypesAutomationFLOPSCounter").innerHTML = `computing 0 FLOPs/s, resetting every ∞s`;
     document.getElementById("cellUpgradesAutomationCircuitsCounter").innerHTML = `You currently have 0 Circuits assigned to Cell Upgrades automation,`;
     document.getElementById("cellUpgradesAutomationFLOPSCounter").innerHTML = `computing 0 FLOPs/s, buying every ∞s`;
+    document.getElementById("mossUpgradesAutomationCircuitsCounter").innerHTML = `You currently have 0 Circuits assigned to Moss Upgrades automation,`;
+    document.getElementById("mossUpgradesAutomationFLOPSCounter").innerHTML = `computing 0 FLOPs/s, buying every ∞s`;
     storage.gameData.circuitsUsed = new Decimal(0);
     storage.gameData.circuits = storage.gameData.highestCircuits;
 }
@@ -357,4 +445,5 @@ document.getElementById("upgradeAutomationCircuitsAssigner").addEventListener("c
 document.getElementById("composterAutomationCircuitsAssigner").addEventListener("change", updateComposterAutobuyerCircuits);
 document.getElementById("bacteriaTypesAutomationCircuitsAssigner").addEventListener("change", updateBacteriaTypesAutobuyerCircuits);
 document.getElementById("cellUpgradesAutomationCircuitsAssigner").addEventListener("change", updateCellUpgradesAutobuyerCircuits);
+document.getElementById("mossUpgradesAutomationCircuitsAssigner").addEventListener("change", updateMossUpgradesAutobuyerCircuits);
 document.getElementById("respecCircuits").addEventListener("click", respecCircuits);

@@ -453,6 +453,10 @@ export function calculateComposterMult() {
 		v = v.plus(y);
         document.getElementById("E40").innerHTML = `E40 (Bought)<br>Bacteria Cytoplasm<br>Bacteria's Fertilizer Base effectiveness<br>very slightly affects the Entropy Composter<br>Cost: 1e89 Entropy<br>Effect: +${storage.truncateToDecimalPlaces(y, 3)}`;
 	}
+	if (storage.rootUpgradeFactor.RO13Bought) {
+		const x = new Decimal(1.5);
+		v = v.pow(x);
+	}
     document.getElementById('entropyComposterBaseEffect').innerHTML = `(x${storage.truncateToDecimalPlaces(v, 3)} every Fertilizer)`
 
     var y = x.pow(storage.gameData.leafComposterCount.plus(storage.gameData.freeLeafFertilizers));
