@@ -483,7 +483,6 @@ export function calculateLeavesPerTick() {
         totalMultiplier = totalMultiplier.pow(z);
 		if (gameData.stormLevel.greaterThan(new Decimal(2))) {
 			achievements.ach85 = true;
-			massAchievementChecker();
 		}
         document.getElementById('stormRewardCounter').innerHTML = `Unlock Composter and SU automation, ^${truncateToDecimalPlaces(z, 3)} Leaf base mult, and the Bacteria formula is better.`;
     }
@@ -501,7 +500,6 @@ export function calculateLeavesPerTick() {
         totalMultiplier = totalMultiplier.pow(gameData.baseLeafSoftcapFactor);
         document.getElementById('leafSoftcap').innerHTML = '(Softcapped)';
         achievements.ach22 = true;
-        massAchievementChecker();
     }
     else {
         document.getElementById('leafSoftcap').innerHTML = '';
@@ -509,7 +507,6 @@ export function calculateLeavesPerTick() {
     if (gameData.leavesIsSoftcapped2) {
         totalMultiplier = totalMultiplier.pow(gameData.baseLeafSoftcapFactor);
         achievements.ach62 = true;
-        massAchievementChecker();
     }
     if (gameData.leavesIsSoftcapped3) {
         totalMultiplier = totalMultiplier.pow(gameData.baseLeafSoftcapFactor);
@@ -1512,7 +1509,6 @@ export function calculateLeavesSoftcap() {
     if (gameData.leavesIsSoftcapped4) {
         document.getElementById('leafSoftcap4Info').innerHTML = `The (Leaf softcap^4)^2 starts at 1e1000`;
         achievements.ach75 = true;
-        massAchievementChecker();
     }
     if (gameData.leavesIsSoftcapped5) {
         document.getElementById('leafSoftcap5Info').innerHTML = `The (Leaf softcap^5)^2 starts at 1e2000`;

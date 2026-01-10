@@ -96,7 +96,6 @@ export function mossMilestoneChecker() {
             document.getElementById('mm1Background').style.backgroundImage = 'radial-gradient(circle at center, #535256, #1a8229)';
 
             achievements.ach44 = true;
-            massAchievementChecker();
         }
         if ((storage.gameData.moss.greaterThanOrEqualTo(mossMilestoneCost.MM2)) || (storage.rootUpgradeFactor.RO14Bought)) {
             mossMilestoneFactor.MM2Achieved = true;
@@ -123,7 +122,6 @@ export function mossMilestoneChecker() {
             document.getElementById('mm5Background').style.backgroundImage = 'radial-gradient(circle at center, #535256, #1a8229)';
 
             achievements.ach52 = true;
-            massAchievementChecker();
         }
         if (storage.gameData.moss.greaterThanOrEqualTo(mossMilestoneCost.MM6)) {
             mossMilestoneFactor.MM6Achieved = true;
@@ -138,7 +136,6 @@ export function mossMilestoneChecker() {
             document.getElementById('mm7Background').style.backgroundImage = 'radial-gradient(circle at center, #535256, #1a8229)';
 
             achievements.ach63 = true;
-            massAchievementChecker();
         }
         if (storage.gameData.moss.greaterThanOrEqualTo(mossMilestoneCost.MM8)) {
             mossMilestoneFactor.MM8Achieved = true;
@@ -147,7 +144,6 @@ export function mossMilestoneChecker() {
             document.getElementById('mm8Background').style.backgroundImage = 'radial-gradient(circle at center, #535256, #1a8229)';
 
             achievements.ach74 = true;
-            massAchievementChecker();
 
             document.querySelector('.moss-upgrade-background').style.visibility = `visible`;
         }

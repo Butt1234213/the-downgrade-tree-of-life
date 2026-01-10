@@ -186,11 +186,9 @@ export function checkTotalComposter() {
 
     if (storage.gameData.totalFertilizers.greaterThanOrEqualTo(new Decimal(500))) {
         achievements.ach73 = true;
-        massAchievementChecker();
     }
     if (storage.gameData.totalFertilizers.greaterThanOrEqualTo(new Decimal(1500))) {
         achievements.ach94 = true;
-        massAchievementChecker();
     }
 }
 

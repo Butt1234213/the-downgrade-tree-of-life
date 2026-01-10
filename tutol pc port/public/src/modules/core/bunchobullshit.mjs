@@ -789,7 +789,6 @@ export function seedsVisualCalculation(ifTrunc) {
             document.getElementById('seedSoftcap').innerHTML = `(Softcapped)`;
             z = z.pow(gameData.baseSeedSoftcapFactor); 
             achievements.ach51 = true; 
-            massAchievementChecker();
 			if (gameData.seedsIsSoftcapped2) {
 				z = z.pow(gameData.baseSeedSoftcapFactor); 
 			}
@@ -817,7 +816,6 @@ export function seedsVisualCalculation(ifTrunc) {
             document.getElementById('seedSoftcap').innerHTML = `(Softcapped)`;
             z = z.pow(gameData.baseSeedSoftcapFactor); 
             achievements.ach51 = true; 
-            massAchievementChecker();
 			if (gameData.seedsIsSoftcapped2) {
 				z = z.pow(gameData.baseSeedSoftcapFactor); 
 			}

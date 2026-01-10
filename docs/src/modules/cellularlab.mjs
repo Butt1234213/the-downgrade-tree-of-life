@@ -56,7 +56,6 @@ export function cellsCalculation() {
 		
 		if (storage.gameData.cells.greaterThanOrEqualTo(new Decimal.fromComponents(1, 1, 100000))) {
 			achievements.ach125 = true;
-			massAchievementChecker();
 		}
     }
 }

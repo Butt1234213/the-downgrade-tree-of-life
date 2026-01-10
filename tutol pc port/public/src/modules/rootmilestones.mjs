@@ -43,7 +43,6 @@ export function rootMilestoneChecker() {
 			storage.rootUpgradeFactor.RM7Achieved = true;
 			document.getElementById("RM7").style.backgroundImage = `radial-gradient(#edac13, #55d941)`;
 			achievements.ach123 = true;
-			massAchievementChecker();
 		}
 		if (storage.gameData.reinforcements.greaterThanOrEqualTo(storage.rootUpgradeCost.RM8)) {
 			storage.rootUpgradeFactor.RM8Achieved = true;

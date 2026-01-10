@@ -177,16 +177,13 @@ export function gameLoop() {
 			if (storage.gameData.leaves.greaterThanOrEqualTo(storage.gameData.leafSupercapStart)) {
 				storage.gameData.leavesIsSupercapped = true;
 				achievements.ach95 = true;
-				massAchievementChecker();
 				document.getElementById('leafSupercap').style.display = 'block';
 			}
 			if (storage.gameData.leaves.greaterThanOrEqualTo(new Decimal.fromComponents(1, 1, 1500))) {
 			  achievements.ach84 = true;
-			  massAchievementChecker();
 			}
 			if (storage.gameData.leaves.greaterThanOrEqualTo(new Decimal.fromComponents(1, 1, 10000))) {
 			  achievements.ach115 = true;
-			  massAchievementChecker();
 			}
 			
             if (storage.seedsVisualCalculation("true").greaterThanOrEqualTo(storage.gameData.seedSoftcapStart)) {
@@ -208,31 +205,24 @@ export function gameLoop() {
             }
             if (storage.entropyUpgradeFactor.B1Amount.greaterThanOrEqualTo(new Decimal(100))) {
               achievements.ach92 = true;
-			  massAchievementChecker();
             }
             if (storage.gameData.leafSoftcapStart.greaterThanOrEqualTo(new Decimal.fromComponents(1, 1, 2000))) {
               achievements.ach93 = true;
-			  massAchievementChecker();
             }
             if (storage.gameData.droughtLevel.greaterThan(new Decimal(1))) {
               achievements.ach102 = true;
-			  massAchievementChecker();
             }
             if (storage.gameData.blizzardLevel.greaterThan(new Decimal(1))) {
               achievements.ach114 = true;
-			  massAchievementChecker();
             }
 			if (storage.gameData.highestCircuits.greaterThanOrEqualTo(new Decimal(1000))) {
 				achievements.ach103 = true;
-				massAchievementChecker();
 			}
 			if (storage.gameData.gameSpeed.greaterThanOrEqualTo(new Decimal(3.155e7))) {
 				achievements.ach104 = true;
-				massAchievementChecker();
 			}
             if (storage.gameData.bacteria.greaterThanOrEqualTo(new Decimal(1.79e308))) {
               achievements.ach122 = true;
-			  massAchievementChecker();
             }
             if (storage.gameData.leaves >= new Decimal(1e7).toNumber()) {
               storage.seedsFormula(storage.gameData.leaves, (new Decimal(2).div(new Decimal(3))));
@@ -256,7 +246,7 @@ export function gameLoop() {
 
             storage.updateResourceGUI();
 
-            massAchievementChecker();
+			massAchievementChecker();
 			resetButtonUpdater();
 
             document.getElementById("pleaseWork").innerHTML = storage.truncateToDecimalPlaces(storage.gameData.leaves, 3);
