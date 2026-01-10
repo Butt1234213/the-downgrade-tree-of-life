@@ -48,6 +48,7 @@ export function laggyAssFunction() {
     F43();
     F44();
     F45();
+    F46();
 }
 
 export var functions = {};
@@ -473,6 +474,14 @@ export function F45() {
         fruitUpgradeFactor.F45Bought = true;
     }
 }
+export function F46() {
+    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU46)) {
+        gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('fruit', 46, fruitUpgradeCost.FU46, false, null);
+        fruitUpgradeFactor.F46Bought = true;
+    }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     functions.F1 = F1;
@@ -520,4 +529,5 @@ document.addEventListener('DOMContentLoaded', () => {
     functions.F43 = F43;
     functions.F44 = F44;
     functions.F45 = F45;
+    functions.F46 = F46;
 });

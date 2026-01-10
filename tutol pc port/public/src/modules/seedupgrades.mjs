@@ -54,6 +54,7 @@ export function laggyAssFunction() {
     S49();
     S50();
     S51();
+    S52();
 }
 
 export var functions = {};
@@ -482,6 +483,14 @@ export function S51() {
         seedUpgradeFactor.S51Bought = true;
     }
 }
+export function S52() {
+    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU52)) {
+        gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('seed', 52, seedUpgradeCost.SU52, false, null);
+        seedUpgradeFactor.S52Bought = true;
+    }
+}
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -536,4 +545,5 @@ document.addEventListener('DOMContentLoaded', () => {
     functions.S49 = S49;
     functions.S50 = S50;
     functions.S51 = S51;
+    functions.S52 = S52;
 });

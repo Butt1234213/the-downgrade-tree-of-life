@@ -482,6 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
     upgradeBuilder('leaf', 61, `Mossy Leaves<br>Moss boosts Leaves`, '1e2750', new Decimal(1e20), leafUpgrades.L61);
     upgradeBuilder('leaf', 62, `Base Power III<br>Potential Energy boosts CRS`, '1.79e3008', new Decimal(1e20), leafUpgrades.L62);
     upgradeBuilder('leaf', 63, `Oh we're &radic;way there<br>^1.1 RuBisCo's effect`, '1e5000', new Decimal(1e50), leafUpgrades.L63);
+    upgradeBuilder('leaf', 64, `Statue Power IX<br>+20 levels to LR2's cap`, '1e25000', new Decimal(1e100), leafUpgrades.L64);
 
     upgradeBuilder('seed', 1, 'Branch I<br>x6 Leaves', '1', new Decimal(400), seedUpgrades.S1);
     upgradeBuilder('seed', 2, 'Branch II<br>x3 Leaves', '3', new Decimal(400), seedUpgrades.S2);
@@ -534,6 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
     upgradeBuilder('seed', 49, `Base Power V<br>Potential Energy boosts Bacteria again`, '1.08e2466', new Decimal(1e25), seedUpgrades.S49);
     upgradeBuilder('seed', 50, `Fortification<br>+0.1 to all supercap roots`, '1.79e3008', new Decimal(1e40), seedUpgrades.S50);
     upgradeBuilder('seed', 51, `Statue Power VII<br>Every five M5 levels, +1 to LR2's cap`, '1e5000', new Decimal(1e100), seedUpgrades.S51);
+    upgradeBuilder('seed', 52, `Statue Power X<br>Every five M5 levels, +1 to SR2's cap`, '1e10000', new Decimal(1e100), seedUpgrades.S52);
 
     upgradeBuilder('fruit', 1, 'The Composter I<br>Unlock the Composter', '1', new Decimal(50000), fruitUpgrades.F1);
     upgradeBuilder('fruit', 2, 'The Composter II<br>Unlock the second Composter', '4', new Decimal(50000), fruitUpgrades.F2);
@@ -580,6 +582,7 @@ document.addEventListener('DOMContentLoaded', () => {
     upgradeBuilder('fruit', 43, 'The Composter IV<br>Unlock the fourth Composter', '1e1500', new Decimal(1e30), fruitUpgrades.F43);
     upgradeBuilder('fruit', 44, 'Super Replication<br>The Cell replication cap is better<br>1e1000 -> 1e5000', '1e1600', new Decimal(1e30), fruitUpgrades.F44);
     upgradeBuilder('fruit', 45, 'Bloom XIV<br>x4 Game speed', '1.79e3008', new Decimal(1e30), fruitUpgrades.F45);
+    upgradeBuilder('fruit', 46, 'Glutenous Fruits<br>+4 Glutamine and Glutamate Proteins', '6.66e6666', new Decimal(1e100), fruitUpgrades.F46);
 
     upgradeBuilder('entropy', 1, 'Cellular Lab<br>Unlock the Cellular Lab', '1', new Decimal(1e21), entropyUpgrades.E1);
     upgradeBuilder('entropy', 2, 'Split of Decisions<br>Base Leaf Multiplier is ^ 1.5', '1', new Decimal(1e21), entropyUpgrades.E2);
@@ -624,6 +627,7 @@ document.addEventListener('DOMContentLoaded', () => {
     upgradeBuilder('entropy', 41, `Helping Hand III<br>^1.5 Fruit base mult in the Drought`, '1e95', new Decimal(1e50), entropyUpgrades.E41);
     upgradeBuilder('entropy', 42, `30 Below Zero<br>Unlock the Blizzard Challenge`, '1e100', new Decimal(1e100), entropyUpgrades.E42);
     upgradeBuilder('entropy', 43, `Island of Stability<br>Roots boost Bacteria cap`, '1e180', new Decimal(1e100), entropyUpgrades.E43);
+    upgradeBuilder('entropy', 44, `DNA Polymerase II<br>DNA's formula is even better<br>1e10000<sup>1.25x</sup> -> 1e10000<sup>1.1x</sup>`, '1e250', new Decimal(1e100), entropyUpgrades.E44);
 	
 	upgradeBuilder('root', 1, `Price of Power<br>^1.1 RuBisCo's effect`, '0.5', new Decimal.fromComponents(1, 1, 1000), rootUpgrades.RO1);
 	upgradeBuilder('root', 2, `Price of Power<br>Storm reward boosts Seeds base mult<br>with reduced rate`, '0.5', new Decimal.fromComponents(1, 1, 1000), rootUpgrades.RO2);
@@ -645,4 +649,5 @@ document.addEventListener('DOMContentLoaded', () => {
 	upgradeBuilder('root', 18, `Bacterial Rooting<br>+1 Bacteria Types bulk`, '20', new Decimal.fromComponents(1, 1, 1500), rootUpgrades.RO18);
 	upgradeBuilder('root', 19, `Growth Hormones<br>Unlock Fruit generation`, '50', new Decimal.fromComponents(1, 1, 1500), rootUpgrades.RO19);
 	upgradeBuilder('root', 20, `Microscopic Life<br>Manufacture a Petri Dish`, '100', new Decimal.fromComponents(1, 1, 1500), rootUpgrades.RO20);
+	upgradeBuilder('root', 21, `Synchronizer<br>Keep all challenge progress upon Reinforcement<br>(if you play EUT you'll recognize this)`, '1000', new Decimal.fromComponents(1, 1, 2000), rootUpgrades.RO21);
 });

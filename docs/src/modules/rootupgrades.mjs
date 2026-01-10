@@ -23,6 +23,7 @@ export function laggyAssFunction() {
     RO18();
     RO19();
     RO20();
+    RO21();
 }
 
 export function RO1() {
@@ -207,5 +208,14 @@ export function RO20() {
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('root', 20, rootUpgradeCost.ROU20, true, ach131());
         rootUpgradeFactor.RO20Bought = true;
+    }
+}
+export function RO21() {
+    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU21) || rootUpgradeFactor.RO21Bought) {
+        document.getElementById("RO21").innerHTML = `RO21 (Bought)<br>Synchronizer<br>Keep all challenge progress upon Reinforcement<br>(if you play EUT you'll recognize this)<br>Cost: 50 Roots`
+        gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('root', 21, rootUpgradeCost.ROU21, false, null);
+        rootUpgradeFactor.RO21Bought = true;
     }
 }

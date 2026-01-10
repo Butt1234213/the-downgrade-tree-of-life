@@ -67,6 +67,7 @@ export function laggyAssFunction() {
     L61();
     L62();
     L63();
+    L64();
 }
 
 export var functions = {};
@@ -614,6 +615,14 @@ export function L63() {
         leafUpgradeFactor.L63Bought = true;
     }
 }
+export function L64() {
+    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU64)) {
+        gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('leaf', 64, leafUpgradeCost.LU64, false, null);
+        leafUpgradeFactor.L64Bought = true;
+    }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     functions.L1 = L1;
@@ -679,4 +688,5 @@ document.addEventListener('DOMContentLoaded', () => {
     functions.L61 = L61;
     functions.L62 = L62;
     functions.L63 = L63;
+    functions.L64 = L64;
 });

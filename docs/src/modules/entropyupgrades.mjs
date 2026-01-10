@@ -46,6 +46,7 @@ export function laggyAssFunction() {
     E41();
     E42();
     E43();
+    E44();
 }
 function ach45() {
     achievements.ach45 = true;
@@ -480,5 +481,14 @@ export function E43() {
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('entropy', 43, entropyUpgradeCost.EU43, false, null);
         entropyUpgradeFactor.E43Bought = true;
+    }
+}
+export function E44() {
+    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU44) || entropyUpgradeFactor.E44Bought) {
+        document.getElementById("E44").innerHTML = `E44 (Bought)<br>DNA Polymerase II<br>DNA's formula is even better<br>1e10000<sup>1.25x</sup> -> 1e10000<sup>1.1x</sup><br>Cost: 1e180 Entropy`;
+        gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('entropy', 44, entropyUpgradeCost.EU44, false, null);
+        entropyUpgradeFactor.E44Bought = true;
     }
 }

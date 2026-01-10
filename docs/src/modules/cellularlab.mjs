@@ -49,9 +49,9 @@ export function cellsCalculation() {
 
         document.getElementById('cellsCounter').innerHTML = `You have created ${storage.truncateToDecimalPlaces(storage.gameData.cells, 3)} Cells (x${storage.truncateToDecimalPlaces(s.pow(new Decimal(10)), 3)}/s),`
 
-        storage.gameData.cellsLeafEffect = ((new Decimal(2).times(Decimal.log2(storage.gameData.cells))).plus(new Decimal(1))).times(storage.gameData.cellsEffectMult);
-        storage.gameData.cellsSeedEffect = ((Decimal.log2(storage.gameData.cells)).plus(new Decimal(1))).times(storage.gameData.cellsEffectMult.pow(new Decimal(0.5)));
-        storage.gameData.cellsFruitEffect = ((new Decimal(0.5).times(Decimal.log2(storage.gameData.cells))).plus(new Decimal(1))).times(storage.gameData.cellsEffectMult.pow(new Decimal(0.25)));
+        storage.gameData.cellsLeafEffect = ((new Decimal(2).times(Decimal.log2(storage.gameData.cells.plus(new Decimal(1))))).plus(new Decimal(1))).times(storage.gameData.cellsEffectMult);
+        storage.gameData.cellsSeedEffect = ((Decimal.log2(storage.gameData.cells.plus(new Decimal(1)))).plus(new Decimal(1))).times(storage.gameData.cellsEffectMult.pow(new Decimal(0.5)));
+        storage.gameData.cellsFruitEffect = ((new Decimal(0.5).times(Decimal.log2(storage.gameData.cells.plus(new Decimal(1))))).plus(new Decimal(1))).times(storage.gameData.cellsEffectMult.pow(new Decimal(0.25)));
         document.getElementById('cellsEffectCounter').innerHTML = `x${storage.truncateToDecimalPlaces(storage.gameData.cellsLeafEffect, 3)}, x${storage.truncateToDecimalPlaces(storage.gameData.cellsSeedEffect, 3)}, and x${storage.truncateToDecimalPlaces(storage.gameData.cellsFruitEffect, 3)}`
 		
 		if (storage.gameData.cells.greaterThanOrEqualTo(new Decimal.fromComponents(1, 1, 100000))) {
@@ -121,7 +121,7 @@ export function resetCells() {
 		storage.gameData.cells = storage.gameData.cells.pow(new Decimal(0.75));
 		return;
 	}
-    storage.gameData.cells = new Decimal(0);
+    storage.gameData.cells = new Decimal(1);
 }
 
 export function bacteriaChecker() {

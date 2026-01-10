@@ -337,6 +337,7 @@ export var leafUpgradeCost = {
     LU61: new Decimal.fromComponents(1, 1, 2750),
     LU62: new Decimal.fromComponents(1, 1, 3008.25285),
     LU63: new Decimal.fromComponents(1, 1, 5000),
+    LU64: new Decimal.fromComponents(1, 1, 25000),
 }
 
 export var leafUpgradeFactor = {
@@ -428,6 +429,7 @@ export var seedUpgradeCost = {
     SU49: new Decimal.fromComponents(1, 1, 2466.03342),
     SU50: new Decimal.fromComponents(1, 1, 3008.25285),
     SU51: new Decimal.fromComponents(1, 1, 5000),
+    SU52: new Decimal.fromComponents(1, 1, 10000),
 }
 
 export var seedUpgradeFactor = {
@@ -492,6 +494,7 @@ export var fruitUpgradeCost = {
     FU43: new Decimal.fromComponents(1, 1, 1500),
     FU44: new Decimal.fromComponents(1, 1, 1600),
     FU45: new Decimal.fromComponents(1, 1, 3008.25285),
+    FU46: new Decimal.fromComponents(1, 1, 6666.82386),
 }
 
 export var fruitUpgradeFactor = {
@@ -555,6 +558,7 @@ export var entropyUpgradeCost = {
     EU41: new Decimal(1e95),
     EU42: new Decimal(1e100),
     EU43: new Decimal(1e180),
+    EU44: new Decimal(1e250),
 }
 
 export var entropyUpgradeFactor = {
@@ -652,6 +656,7 @@ export var rootUpgradeCost = {
 	ROU18: new Decimal(20),
 	ROU19: new Decimal(50),
 	ROU20: new Decimal(100),
+	ROU21: new Decimal(1000),
 	
 	RM1: new Decimal(1),
 	RM2: new Decimal(2),
