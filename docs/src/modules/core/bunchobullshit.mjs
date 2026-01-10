@@ -852,8 +852,18 @@ export function seedsCalculation(leaves) {
         seedsClass.style.borderWidth = '5px';
         seedsClass.style.borderRadius = '5px';
         
-        document.getElementById("seedCounter").innerHTML = truncateToDecimalPlaces((gameData.seeds.trunc()), 3) + " Seeds + (" + truncateToDecimalPlaces(seedsVisualCalculation("true"), 3) + ")"
-        document.getElementById("seedUpdateCounter").innerHTML = "Due to radioactive decay,<br>your seeds will die out over time"
+        document.getElementById("seedCounter").innerHTML = truncateToDecimalPlaces((gameData.seeds.trunc()), 3)
+		if (gameData.fuAutomationUnlocked) {
+			const x = seedsVisualCalculation("false");
+			const y = x.times(new Decimal(0.01));
+			document.getElementById("seedUpdateCounter").innerHTML = `${truncateToDecimalPlaces(y, 3)}/s`;	
+			document.getElementById("seedsOnDecompolizeCounter").innerHTML = ``;
+			seedsClass.style.width = '160px';
+		}
+		else {
+			document.getElementById("seedUpdateCounter").innerHTML = "xe7 Leaves = x<sup>2/3</sup> Seeds"	
+			document.getElementById("seedsOnDecompolizeCounter").innerHTML = `+ (${truncateToDecimalPlaces(seedsVisualCalculation("true"), 3)})`;
+		}
         document.querySelector('.seeds-reset-button').style.visibility = 'visible';
         if (gameData.seedsIsSoftcapped == false) {
             document.querySelector('.seeds-reset-button').style.top = '85px';
@@ -1009,7 +1019,7 @@ export function decompolize() {
         gameData.potentialEnergy = new Decimal(0);
         document.getElementById('entropyUpdateCounter').innerHTML = `5e22 PE Required`
 
-        document.getElementById("seedCounter").innerHTML = truncateToDecimalPlaces((gameData.seeds.trunc()), 3) + " Seeds"
+        document.getElementById("seedCounter").innerHTML = truncateToDecimalPlaces((gameData.seeds.trunc()), 3)
         document.querySelector('.seeds-reset-button').style.top = '60px';
         document.querySelector('.seeds-reset-button').style.visibility = 'hidden';
         const seedsClass = document.querySelector('.seeds');
@@ -1020,10 +1030,10 @@ export function decompolize() {
 
         updateResourceGUI();
         
-        document.getElementById("pleaseWork").innerHTML = "0 Leaves";
-        document.getElementById("leavesPerSecond").innerHTML = "0 Leaves/s";
-        document.getElementById("treeAgeCounter").innerHTML = "0 Seconds";
-        document.getElementById("treeAgePerSecond").innerHTML = "0 Seconds/s"; 
+        document.getElementById("pleaseWork").innerHTML = "0";
+        document.getElementById("leavesPerSecond").innerHTML = "0/s";
+        document.getElementById("treeAgeCounter").innerHTML = "0";
+        document.getElementById("treeAgePerSecond").innerHTML = "0/s"; 
         document.getElementById("leafSoftcap").innerHTML = ""
         document.getElementById("seedSoftcap").innerHTML = ""
         
@@ -1066,14 +1076,24 @@ export function fruitsCalculation(seeds) {
         fruitsClass.style.borderRadius = '5px';
 
         if (gameData.fruitsIsSoftcapped) {
-            document.querySelector('.fruits-reset-button').style.top = '85px';
+            document.querySelector('.fruits-reset-button').style.top = '100px';
         }
         else {
-            document.querySelector('.fruits-reset-button').style.top = '70px';
+            document.querySelector('.fruits-reset-button').style.top = '85px';
         }
         
-        document.getElementById("fruitCounter").innerHTML = truncateToDecimalPlaces((gameData.fruits.trunc()), 3) + " Fruits + (" + truncateToDecimalPlaces((gameData.fruitsOnHarvest.trunc()), 3) + ")"
-        document.getElementById("fruitUpdateCounter").innerHTML = "xe7 Seeds = &radic;x * log(x) Fruits"
+        document.getElementById("fruitCounter").innerHTML = truncateToDecimalPlaces((gameData.fruits.trunc()), 3);
+		if (rootUpgradeFactor.RO19Bought) {
+			const x = gameData.fruitsOnHarvest;
+			const y = x.times(new Decimal(0.01));
+			document.getElementById("fruitUpdateCounter").innerHTML = `${truncateToDecimalPlaces(y, 3)}/s`;	
+			document.getElementById("fruitsOnHarvestCounter").innerHTML = ``;
+			fruitsClass.style.width = '160px';
+		}
+		else {
+			document.getElementById("fruitUpdateCounter").innerHTML = "xe7 Seeds = x<sup>2/3</sup> Fruits"
+			document.getElementById("fruitsOnHarvestCounter").innerHTML = `+ (${truncateToDecimalPlaces((gameData.fruitsOnHarvest.trunc()), 3)})`;
+		}
         document.querySelector('.fruits-reset-button').style.visibility = 'visible';
     }
 }
@@ -1254,7 +1274,8 @@ export function harvest() {
 
         document.querySelector('.fruits').style.left = '435px';
 
-        document.getElementById("fruitCounter").innerHTML = truncateToDecimalPlaces((gameData.fruits.trunc()), 3) + " Fruits"
+        document.getElementById("fruitCounter").innerHTML = truncateToDecimalPlaces((gameData.fruits.trunc()), 3)
+		document.getElementById("fruitsOnHarvestCounter").innerHTML = ``;
         document.querySelector('.fruits-reset-button').style.top = '60px';
         document.querySelector('.fruits-reset-button').style.visibility = 'hidden';
         const fruitsClass = document.querySelector('.fruits');
@@ -1263,7 +1284,7 @@ export function harvest() {
         fruitsClass.style.borderWidth = '0px';
         document.getElementById("fruitUpdateCounter").innerHTML = "1e7 Seeds Required"
 
-        document.getElementById("seedCounter").innerHTML = truncateToDecimalPlaces((gameData.seeds.trunc()), 3) + " Seeds"
+        document.getElementById("seedCounter").innerHTML = truncateToDecimalPlaces((gameData.seeds.trunc()), 3)
         document.querySelector('.seeds-reset-button').style.top = '60px';
         document.querySelector('.seeds-reset-button').style.visibility = 'hidden';
         const seedsClass = document.querySelector('.seeds');
@@ -1274,11 +1295,12 @@ export function harvest() {
 
         updateResourceGUI();
         
-        document.getElementById("pleaseWork").innerHTML = "0 Leaves";
-        document.getElementById("leavesPerSecond").innerHTML = "0 Leaves/s";
-        document.getElementById("treeAgeCounter").innerHTML = "0 Seconds";
-        document.getElementById("treeAgePerSecond").innerHTML = "0 Seconds/s"; 
-        document.getElementById("seedCounter").innerHTML = "0 Seeds"; 
+        document.getElementById("pleaseWork").innerHTML = "0";
+        document.getElementById("leavesPerSecond").innerHTML = "0/s";
+        document.getElementById("treeAgeCounter").innerHTML = "0";
+        document.getElementById("treeAgePerSecond").innerHTML = "0/s"; 
+        document.getElementById("seedCounter").innerHTML = "0"; 
+        document.getElementById("seedsOnDecompolizeCounter").innerHTML = "";
         document.getElementById("leafSoftcap").innerHTML = ""
         document.getElementById("seedSoftcap").innerHTML = ""
         document.getElementById("fruitSoftcap").innerHTML = ""
@@ -1320,7 +1342,8 @@ export function entropyGUI() {
         entropyClass.style.borderWidth = '5px';
         entropyClass.style.borderRadius = '5px';
         
-        document.getElementById("entropyCounter").innerHTML = truncateToDecimalPlaces((gameData.entropy.trunc()), 3) + " Entropy + (" + truncateToDecimalPlaces(((gameData.entropyOnTransform).trunc()), 3) + ")";
+        document.getElementById("entropyCounter").innerHTML = truncateToDecimalPlaces((gameData.entropy.trunc()), 3);
+		document.getElementById("entropyOnTransformCounter").innerHTML = `+ (${truncateToDecimalPlaces(((gameData.entropyOnTransform).trunc()), 3)})`;
         document.querySelector(".entropy-reset-button").style.visibility = "visible";
     }
 }
@@ -1529,15 +1552,17 @@ export function transform() {
 
         document.querySelector('.fruits').style.left = '435px';
 
-        document.getElementById("entropyCounter").innerHTML = truncateToDecimalPlaces((gameData.entropy.trunc()), 3) + " Entropy"
-        document.querySelector('.entropy-reset-button').style.top = '62.5px';
+        document.getElementById("entropyCounter").innerHTML = truncateToDecimalPlaces((gameData.entropy.trunc()), 3)
+		document.getElementById("entropyOnTransformCounter").innerHTML = ``;
+        document.querySelector('.entropy-reset-button').style.top = '80px';
         document.querySelector('.entropy-reset-button').style.visibility = 'hidden';
         const entropyClass = document.querySelector('.entropy');
         entropyClass.style.color = '#000000ff';
         entropyClass.style.backgroundColor = '#ffffffff';
         entropyClass.style.borderWidth = '0px';
 
-        document.getElementById("fruitCounter").innerHTML = truncateToDecimalPlaces((gameData.fruits.trunc()), 3) + " Fruits"
+        document.getElementById("fruitCounter").innerHTML = truncateToDecimalPlaces((gameData.fruits.trunc()), 3)
+		document.getElementById("fruitsOnHarvestCounter").innerHTML = ``;
         document.querySelector('.fruits-reset-button').style.top = '60px';
         document.querySelector('.fruits-reset-button').style.visibility = 'hidden';
         const fruitsClass = document.querySelector('.fruits');
@@ -1546,7 +1571,7 @@ export function transform() {
         fruitsClass.style.borderWidth = '0px';
         document.getElementById("fruitUpdateCounter").innerHTML = "1e7 Seeds Required"
 
-        document.getElementById("seedCounter").innerHTML = truncateToDecimalPlaces((gameData.seeds.trunc()), 3) + " Seeds"
+        document.getElementById("seedCounter").innerHTML = truncateToDecimalPlaces((gameData.seeds.trunc()), 3)
         document.querySelector('.seeds-reset-button').style.top = '60px';
         document.querySelector('.seeds-reset-button').style.visibility = 'hidden';
         const seedsClass = document.querySelector('.seeds');
@@ -1586,11 +1611,12 @@ export function transform() {
         document.querySelector('.moss-background').style.visibility = 'hidden';
         document.querySelector('.moss-milestone-background').style.visibility = 'hidden';
         
-        document.getElementById("pleaseWork").innerHTML = "0 Leaves";
-        document.getElementById("leavesPerSecond").innerHTML = "0 Leaves/s";
-        document.getElementById("treeAgeCounter").innerHTML = "0 Seconds";
-        document.getElementById("treeAgePerSecond").innerHTML = "0 Seconds/s"; 
-        document.getElementById("seedCounter").innerHTML = "0 Seeds"; 
+        document.getElementById("pleaseWork").innerHTML = "0";
+        document.getElementById("leavesPerSecond").innerHTML = "0/s";
+        document.getElementById("treeAgeCounter").innerHTML = "0";
+        document.getElementById("treeAgePerSecond").innerHTML = "0/s"; 
+        document.getElementById("seedCounter").innerHTML = "0";
+        document.getElementById("seedsOnDecompolizeCounter").innerHTML = "";
         document.getElementById("leafSoftcap").innerHTML = ""
         document.getElementById("seedSoftcap").innerHTML = ""
         document.getElementById("fruitSoftcap").innerHTML = ""
@@ -1620,7 +1646,8 @@ export function rootsGUI() {
         rootsClass.style.borderWidth = '5px';
         rootsClass.style.borderRadius = '5px';
         
-        document.getElementById("rootCounter").innerHTML = truncateToDecimalPlaces(gameData.roots, 3) + " Roots + (" + truncateToDecimalPlaces(((gameData.rootsOnReinforce).trunc()), 3) + ")";
+        document.getElementById("rootCounter").innerHTML = truncateToDecimalPlaces(gameData.roots, 3);
+		document.getElementById("rootsOnReinforceCounter").innerHTML = `+ (${truncateToDecimalPlaces(((gameData.rootsOnReinforce).trunc()), 3)})`;
 		document.getElementById("rootUpdateCounter").innerHTML = `x Roots = (log<sub>1e10000</sub>(x Leaves))<sup>3</sup>`;
         document.querySelector(".roots-reset-button").style.visibility = "visible";
     }
@@ -1635,7 +1662,8 @@ export function rootsGUI() {
         rootsClass.style.borderWidth = '5px';
         rootsClass.style.borderRadius = '5px';
 		
-        document.getElementById("rootCounter").innerHTML = truncateToDecimalPlaces((gameData.roots.trunc()), 3) + " Roots";
+        document.getElementById("rootCounter").innerHTML = truncateToDecimalPlaces((gameData.roots.trunc()), 3);
+		document.getElementById("rootsOnReinforceCounter").innerHTML = ``;
 		document.getElementById("rootUpdateCounter").innerHTML = `1e10000 Leaves required`;
         document.querySelector(".roots-reset-button").style.visibility = "hidden";
 	}
@@ -2050,7 +2078,8 @@ export function reinforce() {
         document.getElementById('mm10Background').style.backgroundImage = '';
         document.getElementById('mm10').innerHTML = '1e6000 Moss Required';
 
-        document.getElementById("rootCounter").innerHTML = truncateToDecimalPlaces((gameData.roots.trunc()), 3) + " Roots";
+        document.getElementById("rootCounter").innerHTML = truncateToDecimalPlaces((gameData.roots.trunc()), 3);
+		document.getElementById("rootsOnReinforceCounter").innerHTML = ``;
 		document.getElementById("rootUpdateCounter").innerHTML = `1e10000 Leaves required`;
         document.querySelector(".roots-reset-button").style.visibility = "hidden";
         const rootsClass = document.querySelector('.roots');
@@ -2063,14 +2092,16 @@ export function reinforce() {
         document.querySelector('.fruits').style.left = '435px';
 
         document.getElementById("entropyCounter").innerHTML = truncateToDecimalPlaces((gameData.entropy.trunc()), 3) + " Entropy"
-        document.querySelector('.entropy-reset-button').style.top = '62.5px';
+		document.getElementById("entropyOnTransformCounter").innerHTML = ``;
+        document.querySelector('.entropy-reset-button').style.top = '80px';
         document.querySelector('.entropy-reset-button').style.visibility = 'hidden';
         const entropyClass = document.querySelector('.entropy');
         entropyClass.style.color = '#000000ff';
         entropyClass.style.backgroundColor = '#ffffffff';
         entropyClass.style.borderWidth = '0px';
 
-        document.getElementById("fruitCounter").innerHTML = truncateToDecimalPlaces((gameData.fruits.trunc()), 3) + " Fruits"
+        document.getElementById("fruitCounter").innerHTML = truncateToDecimalPlaces((gameData.fruits.trunc()), 3)
+		document.getElementById("fruitsOnHarvestCounter").innerHTML = ``;
         document.querySelector('.fruits-reset-button').style.top = '60px';
         document.querySelector('.fruits-reset-button').style.visibility = 'hidden';
         const fruitsClass = document.querySelector('.fruits');
@@ -2079,7 +2110,7 @@ export function reinforce() {
         fruitsClass.style.borderWidth = '0px';
         document.getElementById("fruitUpdateCounter").innerHTML = "1e7 Seeds Required"
 
-        document.getElementById("seedCounter").innerHTML = truncateToDecimalPlaces((gameData.seeds.trunc()), 3) + " Seeds"
+        document.getElementById("seedCounter").innerHTML = truncateToDecimalPlaces((gameData.seeds.trunc()), 3)
         document.querySelector('.seeds-reset-button').style.top = '60px';
         document.querySelector('.seeds-reset-button').style.visibility = 'hidden';
         const seedsClass = document.querySelector('.seeds');
@@ -2201,11 +2232,12 @@ export function reinforce() {
 		document.getElementById('R5').innerHTML = `Blueprint Dampener (0 / 5)<br>Requires 20 RNA strands<br>Effect: -0 from DNA Blueprint nerf root`;
 		document.getElementById('R6').innerHTML = `Viral Amplifier (0)<br>Requires 100000 RNA strands<br>Effect: -0 from Game speed Virus root`;
         
-        document.getElementById("pleaseWork").innerHTML = "0 Leaves";
-        document.getElementById("leavesPerSecond").innerHTML = "0 Leaves/s";
-        document.getElementById("treeAgeCounter").innerHTML = "0 Seconds";
-        document.getElementById("treeAgePerSecond").innerHTML = "0 Seconds/s"; 
-        document.getElementById("seedCounter").innerHTML = "0 Seeds"; 
+        document.getElementById("pleaseWork").innerHTML = "0";
+        document.getElementById("leavesPerSecond").innerHTML = "0/s";
+        document.getElementById("treeAgeCounter").innerHTML = "0";
+        document.getElementById("treeAgePerSecond").innerHTML = "0/s"; 
+        document.getElementById("seedCounter").innerHTML = "0"; 
+        document.getElementById("seedsOnDecompolizeCounter").innerHTML = "";
         document.getElementById("leafSoftcap").innerHTML = ""
         document.getElementById("seedSoftcap").innerHTML = ""
         document.getElementById("fruitSoftcap").innerHTML = ""
@@ -2267,12 +2299,12 @@ export function updateGUIBasedOnAchievements() {
         if (achievements.ach14) {
             document.querySelector('.seeds').style.visibility = 'visible';
             document.querySelector('.buttons-su-tab-color').style.visibility = 'visible';
-            document.getElementById("seedCounter").innerHTML = truncateToDecimalPlaces((gameData.seeds.trunc()), 3) + " Seeds"
+            document.getElementById("seedCounter").innerHTML = truncateToDecimalPlaces((gameData.seeds.trunc()), 3)
         }
         if (achievements.ach23) {
             document.querySelector('.fruits').style.visibility = 'visible';
             document.querySelector('.buttons-fu-tab-color').style.visibility = 'visible';
-            document.getElementById("fruitCounter").innerHTML = truncateToDecimalPlaces((gameData.fruits.trunc()), 3) + " Fruits"
+            document.getElementById("fruitCounter").innerHTML = truncateToDecimalPlaces((gameData.fruits.trunc()), 3)
         }
         if (achievements.ach24) {
             document.querySelector('.buttons-composter-tab-color').style.visibility = 'visible';
@@ -2320,7 +2352,7 @@ export function updateGUIBasedOnAchievements() {
         if (achievements.ach41) {
             document.querySelector('.entropy').style.visibility = 'visible';
             document.querySelector('.buttons-eu-tab-color').style.visibility = 'visible';
-            document.getElementById("entropyCounter").innerHTML = truncateToDecimalPlaces((gameData.entropy.trunc()), 3) + " Entropy"
+            document.getElementById("entropyCounter").innerHTML = truncateToDecimalPlaces((gameData.entropy.trunc()), 3)
         }
         if (achievements.ach45) {
             document.getElementById('replicationChance').innerHTML = `Increase Replication Chance (${truncateToDecimalPlaces(entropyUpgradeFactor.C1Amount, 3)})<br>Cost: ${truncateToDecimalPlaces(entropyUpgradeFactor.C1Cost.trunc(), 3)} Entropy<br>Currently ${truncateToDecimalPlaces(entropyUpgradeFactor.C1Amount.plus(new Decimal(1)), 3)}%`;
@@ -2590,9 +2622,9 @@ export function updateResourceGUI() {
     let fruitsOffset = 0;
     let entropyOffset = 0;
     let rootsOffset = 0;
-    const decompolizeOffset = 70;
-    const harvestOffset = 70;
-    const transformOffset = 75;
+    const decompolizeOffset = 30;
+    const harvestOffset = 30;
+    const transformOffset = 40;
 
     if (gameData.canDecompolize) {
         fruitsOffset = fruitsOffset + decompolizeOffset;

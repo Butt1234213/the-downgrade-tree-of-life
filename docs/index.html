@@ -16,23 +16,27 @@
 
     <div class="resource-container">
         <div class="leaves">
-        <p id="pleaseWork">0 Leaves</p>
-        <p id="leavesPerSecond">0 Leaves/s</p>
-        <p id="leafSoftcap" class="softcap"></p>
-        <img src="./src/images/leaf.png" alt="Leaves"><!-- 
-        <p class="bold" style="display: inline-block;">Leaves</p> -->
-      </div>
+			<p>Leaves</p>
+			<p id="pleaseWork">0</p>
+			<p id="leavesPerSecond">0/s</p>
+			<p id="leafSoftcap" class="softcap"></p>
+			<img src="./src/images/leaf.png" alt="Leaves"><!-- 
+			<p class="bold" style="display: inline-block;">Leaves</p> -->
+		</div>
       <div class="tree-age">
-        <p id="treeAgeCounter">0 Seconds</p>
-        <p id="treeAgePerSecond">0 Seconds/s</p>
+		<p>Tree Age</p>
+        <p id="treeAgeCounter">0</p>
+        <p id="treeAgePerSecond">0/s</p>
 		  <div id="gameSpeedHolder" class="game-speed" style="display: none;">
-			<p id="gameSpeedCounter" class="top30">x1 Seconds/s</p>
+			<p id="gameSpeedCounter" class="top30">x1 &#x231B;</p>
 		  </div>
         <img src="./src/images/clock.png" alt="Tree Age" width="32" height="32"><!-- 
         <p class="bold" style="display: inline-block;">Tree Age</p> -->
       </div>
       <div class="seeds">
-        <p id="seedCounter">0 Seeds</p>
+		<p>Seeds</p>
+		<p id="seedCounter" style="display: inline;">0 Seeds</p>
+		<p id="seedsOnDecompolizeCounter" style="display: inline;"></p>
         <div class="italic"><p id="seedUpdateCounter">1e7 Leaves Required</p></div>
         <p id="seedSoftcap" class="softcap"></p>
         <img src="./src/images/seed.png" alt="Seeds"><!-- 
@@ -42,7 +46,9 @@
         <button id="decompolize" class="buttons-su-color">Decompolize</button>
       </div>
       <div class="fruits">
-        <p id="fruitCounter">0 Fruits</p>
+		<p>Fruits</p>
+        <p id="fruitCounter" style="display: inline;">0 Fruits</p>
+		<p id="fruitsOnHarvestCounter" style="display: inline;"></p>
         <div class="italic"><p id="fruitUpdateCounter">1e7 Seeds Required</p></div>
         <p id="fruitSoftcap" class="softcap"></p>
         <img src="./src/images/fruit.png" alt="Fruits"><!-- 
@@ -52,7 +58,9 @@
         <button id="harvest" class="buttons-fu-color">Harvest</button>
       </div>
       <div class="entropy">
-        <p id="entropyCounter">0 Entropy</p>
+		<p>Entropy</p>
+        <p id="entropyCounter" style="display: inline;">0</p>
+		<p id="entropyOnTransformCounter" style="display: inline;"></p>
         <div class="italic"><p id="entropyUpdateCounter">5e22 PE Required</p></div>
         <p id="entropySoftcap" class="softcap"></p>
         <img src="./src/images/entropy.png" alt="Entropy">
@@ -60,7 +68,9 @@
         <p class="bold" style="display: inline-block; bottom: 0px; right: 0px;">Entropy</p> -->
       </div>
       <div class="roots">
-        <p id="rootCounter">0 Roots</p>
+		<p>Roots</p>
+        <p id="rootCounter" style="display: inline;">0</p>
+		<p id="rootsOnReinforceCounter" style="display: inline;"></p>
         <div class="italic"><p id="rootUpdateCounter">1e10000 Leaves Required</p></div>
         <p id="rootSoftcap" class="softcap"></p>
         <img src="./src/images/root.png" alt="Entropy">
@@ -100,6 +110,7 @@
 	
     <div class="root-tab-container" id="root-tabs">
       <button id="rootMilestoneTab" class="buttons-root-milestone-tab-color">Milestones</button>
+      <button id="petriDishTab" class="buttons-petri-dish-tab-color">Petri Dish</button>
     </div>
 
     <div class="buttons-lu" id="buttons-lu">
@@ -815,6 +826,10 @@
         <img src="./src/images/achievements/125.png" alt="125" width="100" height="100">
         <span class="achievements-hover">Six figures of cells (125)<br>Create 1e100000 Cells</span>
       </div>
+      <div class="ach131">
+        <img src="./src/images/achievements/131.png" alt="131" width="100" height="100">
+        <span class="achievements-hover">OH GOD NO (131)<br>Manufacture a<br>Petri Dish<br>(Buy RO20)</span>
+      </div>
     </div>
 
     <div class="secret-achievements" id="secretAchievementsContainer">
@@ -893,6 +908,7 @@
     <div class="ach123-text"><p class="achievement-text-color">Two roots</p></div>
     <div class="ach124-text"><p class="achievement-text-color">One of my favorite game series</p></div>
     <div class="ach125-text"><p class="achievement-text-color">Six figures of cells</p></div>
+    <div class="ach131-text"><p class="achievement-text-color">OH GOD NO</p></div>
 
     <div class="secret11-text"><p class="secret-achievement-text-color">Jumpscare</p></div>
     <div class="secret12-text"><p class="secret-achievement-text-color">Cheater Cheater, Peter Beater</p></div>

@@ -215,7 +215,7 @@ function leafComposterOperation(bulk) {
 export function checkLeafComposter() {
     if ((storage.gameData.leaves.greaterThanOrEqualTo(storage.gameData.leafComposterCost)) && !storage.gameData.leafComposterIsActive) {
         storage.gameData.leaves = storage.gameData.leaves.minus(storage.gameData.leafComposterCost);
-        document.getElementById("pleaseWork").innerHTML = storage.truncateToDecimalPlaces(storage.gameData.leaves, 3) + " Leaves";
+        document.getElementById("pleaseWork").innerHTML = storage.truncateToDecimalPlaces(storage.gameData.leaves, 3);
 
         storage.gameData.leafComposterCost = composterScaling('leaf');
         document.getElementById('leafComposterButton').innerHTML = `Make a Fertilizer<br>Cost: ${storage.truncateToDecimalPlaces(storage.gameData.leafComposterCost, 3)} Leaves`;
@@ -274,7 +274,7 @@ function seedComposterOperation(bulk) {
 export function checkSeedComposter() {
     if ((storage.gameData.seeds.greaterThanOrEqualTo(storage.gameData.seedComposterCost)) && !storage.gameData.seedComposterIsActive) {
         storage.gameData.seeds = storage.gameData.seeds.minus(storage.gameData.seedComposterCost);
-        document.getElementById("seedCounter").innerHTML = storage.truncateToDecimalPlaces(storage.gameData.seeds, 3) + " Seeds";
+        document.getElementById("seedCounter").innerHTML = storage.truncateToDecimalPlaces(storage.gameData.seeds, 3);
 
         storage.gameData.seedComposterCost = composterScaling('seed');
         document.getElementById('seedComposterButton').innerHTML = `Make a Fertilizer<br>Cost: ${storage.truncateToDecimalPlaces(storage.gameData.seedComposterCost, 3)} Seeds`;
@@ -333,7 +333,7 @@ function fruitComposterOperation(bulk) {
 export function checkFruitComposter() {
     if ((storage.gameData.fruits.greaterThanOrEqualTo(storage.gameData.fruitComposterCost)) && !storage.gameData.fruitComposterIsActive) {
         storage.gameData.fruits = storage.gameData.fruits.minus(storage.gameData.fruitComposterCost);
-        document.getElementById("fruitCounter").innerHTML = storage.truncateToDecimalPlaces(storage.gameData.fruits, 3) + " Fruits";
+        document.getElementById("fruitCounter").innerHTML = storage.truncateToDecimalPlaces(storage.gameData.fruits, 3);
 
         storage.gameData.fruitComposterCost = composterScaling('fruit');
         document.getElementById('fruitComposterButton').innerHTML = `Make a Fertilizer<br>Cost: ${storage.truncateToDecimalPlaces(storage.gameData.fruitComposterCost, 3)} Fruits`;
@@ -402,7 +402,7 @@ function entropyComposterOperation(bulk) {
 export function checkEntropyComposter() {
     if ((storage.gameData.entropy.greaterThanOrEqualTo(storage.gameData.entropyComposterCost)) && !storage.gameData.entropyComposterIsActive) {
         storage.gameData.entropy = storage.gameData.entropy.minus(storage.gameData.entropyComposterCost);
-        document.getElementById("entropyCounter").innerHTML = storage.truncateToDecimalPlaces(storage.gameData.entropy, 3) + " Entropy";
+        document.getElementById("entropyCounter").innerHTML = storage.truncateToDecimalPlaces(storage.gameData.entropy, 3);
 
         storage.gameData.entropyComposterCost = composterScaling('entropy');
         document.getElementById('entropyComposterButton').innerHTML = `Make a Complex Fertilizer<br>Cost: ${storage.truncateToDecimalPlaces(storage.gameData.entropyComposterCost, 3)} Entropy`;

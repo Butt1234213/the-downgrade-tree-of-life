@@ -69,7 +69,7 @@
 .entropy-reset-button {
     position: absolute;
     left: 40px;
-    top: 62.5px;
+    top: 80px;
     z-index: 2;
     font-family: Verdana;
     font-size: 12px;
@@ -92,7 +92,7 @@
 .roots-reset-button {
     position: absolute;
     left: 40px;
-    top: 62.5px;
+    top: 85px;
     z-index: 2;
     font-family: Verdana;
     font-size: 12px;

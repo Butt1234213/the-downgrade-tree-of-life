@@ -196,12 +196,16 @@ export function RO19() {
         rootUpgradeFactor.RO19Bought = true;
     }
 }
+function ach131() {
+	achievements.ach131 = true;
+	massAchievementChecker();
+}
 export function RO20() {
     if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU20) || rootUpgradeFactor.RO20Bought) {
         document.getElementById("RO20").innerHTML = `RO20 (Bought)<br>Microscopic Life<br>Manufacture a Petri Dish<br>Cost: 100 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
-        createCallableUpgrade('root', 20, rootUpgradeCost.ROU20, false, null);
+        createCallableUpgrade('root', 20, rootUpgradeCost.ROU20, true, ach131());
         rootUpgradeFactor.RO20Bought = true;
     }
 }

@@ -69,7 +69,7 @@ export function C1() {
 function buyC1() {
     if (storage.gameData.entropy.greaterThanOrEqualTo(storage.entropyUpgradeFactor.C1Cost.trunc())) {
         storage.gameData.entropy = storage.gameData.entropy.minus(storage.entropyUpgradeFactor.C1Cost.trunc());
-        document.getElementById('entropyCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.entropy, 3)} Entropy`;
+        document.getElementById('entropyCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.entropy, 3)}`;
         storage.entropyUpgradeFactor.C1Cost = storage.entropyUpgradeFactor.C1Cost.times(storage.entropyUpgradeFactor.C1Increase);
         storage.entropyUpgradeFactor.C1Amount = storage.entropyUpgradeFactor.C1Amount.plus(new Decimal(1));
 
@@ -87,7 +87,7 @@ export function C2() {
 function buyC2() {
     if (storage.gameData.fruits.greaterThanOrEqualTo(storage.entropyUpgradeFactor.C2Cost.trunc())) {
         storage.gameData.fruits = storage.gameData.fruits.minus(storage.entropyUpgradeFactor.C2Cost.trunc());
-        document.getElementById('fruitCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.fruits, 3)} Fruits`;
+        document.getElementById('fruitCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.fruits, 3)}`;
         storage.entropyUpgradeFactor.C2Cost = storage.entropyUpgradeFactor.C2Cost.times(storage.entropyUpgradeFactor.C2Increase);
         storage.entropyUpgradeFactor.C2Amount = storage.entropyUpgradeFactor.C2Amount.plus(new Decimal(1));
 		
@@ -106,7 +106,7 @@ export function C3() {
 function buyC3() {
     if (storage.gameData.entropy.greaterThanOrEqualTo(storage.entropyUpgradeFactor.C3Cost.trunc())) {
         storage.gameData.entropy = storage.gameData.entropy.minus(storage.entropyUpgradeFactor.C3Cost.trunc());
-        document.getElementById('entropyCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.entropy, 3)} Entropy`;
+        document.getElementById('entropyCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.entropy, 3)}`;
         storage.entropyUpgradeFactor.C3Cost = storage.entropyUpgradeFactor.C3Cost.times(storage.entropyUpgradeFactor.C3Increase);
         storage.entropyUpgradeFactor.C3Amount = storage.entropyUpgradeFactor.C3Amount.plus(new Decimal(1));
 

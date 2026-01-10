@@ -388,6 +388,7 @@ document.getElementById("loadSave").addEventListener("click", loadSaveButActuall
 document.getElementById("exportSave").addEventListener("click", copySaveFileToClipboard);
 
 document.addEventListener('DOMContentLoaded', () => {
+	sleep(100);
 	const resettingGame = localStorage.getItem("resettingGame");
 	console.info(resettingGame);
 	

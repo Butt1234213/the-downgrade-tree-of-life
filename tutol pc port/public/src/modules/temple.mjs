@@ -65,7 +65,7 @@ function LR1() {
     if (storage.gameData.leaves.greaterThanOrEqualTo(LR1CostCalculation())) {
         storage.gameData.leaves = storage.gameData.leaves.minus(LR1CostCalculation());
         repeatableUpgradeFactor.LR1 = repeatableUpgradeFactor.LR1.plus(new Decimal(1));
-        document.getElementById('pleaseWork').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.leaves, 3)} Leaves`;
+        document.getElementById('pleaseWork').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.leaves, 3)}`;
     }
 }
 
@@ -88,7 +88,7 @@ function LR2() {
 		if (storage.gameData.leaves.greaterThanOrEqualTo(LR2CostCalculation())) {
 			storage.gameData.leaves = storage.gameData.leaves.minus(LR2CostCalculation());
 			repeatableUpgradeFactor.LR2 = repeatableUpgradeFactor.LR2.plus(new Decimal(1));
-			document.getElementById('pleaseWork').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.leaves, 3)} Leaves`;
+			document.getElementById('pleaseWork').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.leaves, 3)}`;
 		}
 	}
 }
@@ -111,7 +111,7 @@ function SR1() {
     if (storage.gameData.seeds.greaterThanOrEqualTo(SR1CostCalculation())) {
         storage.gameData.seeds = storage.gameData.seeds.minus(SR1CostCalculation());
         repeatableUpgradeFactor.SR1 = repeatableUpgradeFactor.SR1.plus(new Decimal(1));
-        document.getElementById('seedCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.seeds, 3)} Seeds`;
+        document.getElementById('seedCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.seeds, 3)}`;
     }
 }
 
@@ -133,7 +133,7 @@ function SR2() {
     if (storage.gameData.seeds.greaterThanOrEqualTo(SR2CostCalculation())) {
         storage.gameData.seeds = storage.gameData.seeds.minus(SR2CostCalculation());
         repeatableUpgradeFactor.SR2 = repeatableUpgradeFactor.SR2.plus(new Decimal(1));
-        document.getElementById('seedCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.seeds, 3)} Seeds`;
+        document.getElementById('seedCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.seeds, 3)}`;
     }
 }
 
@@ -155,7 +155,7 @@ function FR1() {
     if (storage.gameData.fruits.greaterThanOrEqualTo(FR1CostCalculation())) {
         storage.gameData.fruits = storage.gameData.fruits.minus(FR1CostCalculation());
         repeatableUpgradeFactor.FR1 = repeatableUpgradeFactor.FR1.plus(new Decimal(1));
-        document.getElementById('fruitCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.fruits, 3)} Fruits`;
+        document.getElementById('fruitCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.fruits, 3)}`;
     }
 }
 
