@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./src/stylesheets/upgradebuttons.css">
     <link rel="stylesheet" href="./src/stylesheets/othermechanics.css">
     <link rel="stylesheet" href="./src/stylesheets/automation.css">
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
   </head>
   <body>
 
@@ -579,6 +580,135 @@
 			</div>
 		</div>
 	</div>
+	
+	<template id="petriDishInventorySlot">
+		<div class="petri-dish-inventory-slot"></div>
+	</template>
+	<template id="petriDishOnReinforcementSlot">
+		<div class="petri-dish-on-reinforcement-slot"></div>
+	</template>
+	<template id="microorganism">
+		<div id="clickableMicroorganism" class="microorganism-individual-clickable">
+			<div class="microorganism-individual-background">
+				<div class="microorganism-level-counter"><p class="bold" style="line-height: 0;">1</p></div>
+				<img src="./src/images/amoeba.png" class="centered-element" alt="Test Microorganism" width="64" height="64" draggable="false">
+				<img id="microorganismImg" src="./src/images/leaf.png" class="bottom-right-element" alt="Test Lively Nature" width="32" height="32" draggable="false">
+				<span class="microorganism-hover" style="color: #ffffff;">Level 1 Lively Amoeba<br>
+					x2 all resources<br>^1.1 all secondary resources<br>x10 Game speed<br>-0.01 from all softcap roots<br>^8 Reinforcement multipliers<br>
+					<span style="color: #50bb50;">^1.25 Leaf base mult<br>-0.01 Leaf softcap root<br>x2 LR1's effect<br>x1.02 LR2's effect<br>^1.1 Storm rewards</span>
+				</span>
+			</div>
+		</div>
+	</template>
+	
+	<div class="buttons-petri-dish" id="buttons-petri-dish">
+		<div class="petri-dish-background">
+			<p class="bold">Petri Dish</p>
+			<div class="microorganism-background">
+				<div class="petri-dish-singular" style="left: 110px; top: 220px;"></div>
+				<div class="petri-dish-singular" style="left: 187.78px; top: 187.78px;"></div>
+				<div class="petri-dish-singular" style="left: 220px; top: 110px;"></div>
+				<div class="petri-dish-singular" style="left: 187.78px; top: 33.22px;"></div>
+				<div class="petri-dish-singular" style="left: 110px; top: 0px;"></div>
+				<div class="petri-dish-singular" style="left: 33.22px; top: 33.22px;"></div>
+				<div class="petri-dish-singular" style="left: 0px; top: 110px;"></div>
+				<div class="petri-dish-singular" style="left: 33.22px; top: 187.78px;"></div>
+			</div>
+			<div class="microorganism-effect-background">
+				<div class="center-align">
+					<p class="bold">Microorganism Effects</p>
+					<p id="microorganismTotalTypeCounter">Pure Nothingness</p>
+					<p id="microorganismTotalEffectCounter">Equip a Microorganism to a Petri Dish to see some effects!</p>
+				</div>
+			</div>
+			<div id="microorganismsOnReinforcement" class="microorganism-on-reinforcement-background">
+				<p style="display: inline;">Currently, your Protein setup generates these Microorganisms upon Reinforcement.</p>
+				<button class="buttons-protein-setup-info" style="display: inline;">Protein setup info</button>
+				<p>Clicking a Microorganism will give you it upon Reinforcement. Not clicking will randomly give you one.</p>
+			</div>
+			<div id="microorganismInventory" class="microorganism-inventory-background">
+				<p class="bold">Inventory</p>
+				<div class="petri-dish-inventory-slot">
+					<div id="clickableMicroorganism" class="microorganism-individual-clickable">
+						<div class="microorganism-individual-background">
+							<div class="microorganism-level-counter"><p class="bold" style="line-height: 0;">1</p></div>
+							<img src="./src/images/amoeba.png" class="centered-element" alt="Test Microorganism" width="64" height="64" draggable="false">
+							<img id="microorganismImg" src="./src/images/leaf.png" class="bottom-right-element" alt="Test Lively Nature" width="32" height="32" draggable="false">
+							<span class="microorganism-hover" style="color: #ffffff;">Level 1 <span style="color: #50bb50;">Lively</span> Amoeba<br>
+								x2 all resources<br>^1.1 all secondary resources<br>x10 Game speed<br>-0.01 from all softcap roots<br>^8 Reinforcement multipliers<br>
+								<span style="color: #50bb50;">^1.25 Leaf base mult<br>-0.01 Leaf softcap root<br>x2 LR1's effect<br>x1.02 LR2's effect<br>^1.1 Storm rewards</span>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="petri-dish-inventory-slot">
+					<div id="clickableMicroorganism" class="microorganism-individual-clickable">
+						<div class="microorganism-individual-background">
+							<div class="microorganism-level-counter"><p class="bold" style="line-height: 0;">1</p></div>
+							<img src="./src/images/tardigrade.png" class="centered-element" alt="Test Microorganism" width="64" height="64" draggable="false">
+							<img id="microorganismImg" src="./src/images/clock.png" class="bottom-right-element" alt="Test Chronal Nature" width="32" height="32" draggable="false">
+							<span class="microorganism-hover" style="color: #ab9c84;">Level 1 <span style="color: #bf612e;">Chronal</span> Tardigrade<br>
+								x1.5 all supercap roots<br>-1.5 Leaf and Seed root from PE formula<br>/1.5 Fertilizer Super Scaling effect<br>-0.05 from total DNA Blueprint nerf<br>M1's effect softcap starts +50 later<br>
+								<span style="color: #bf612e;">^1.25 Tree Aging speed<br>x10 Game speed<br>x4 M3's effect<br>^1.25 Composting speed<br>x1.1 SR2's effect</span>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="petri-dish-inventory-slot">
+					<div id="clickableMicroorganism" class="microorganism-individual-clickable">
+						<div class="microorganism-individual-background">
+							<div class="microorganism-level-counter"><p class="bold" style="line-height: 0;">1</p></div>
+							<img src="./src/images/yeast.png" class="centered-element" alt="Test Microorganism" width="64" height="64" draggable="false">
+							<img id="microorganismImg" src="./src/images/seed.png" class="bottom-right-element" alt="Test Grounded Nature" width="32" height="32" draggable="false">
+							<span class="microorganism-hover" style="color: #e8c080;">Level 1 <span style="color: #dc8616;">Grounded</span> Yeast<br>
+								^1.2 Cell Replication speed<br>^1.4 Bacteria cap<br>^1.25 Cells L,S, and F effect<br>AGP's effect softcap starts -0.05 later<br>^1.3 Extensin's effect<br>
+								<span style="color: #dc8616;">^1.25 Seed base mult<br>-0.01 Seed softcap root<br>x2 SR1's effect<br>^1.1 Tree Aging speed<br>x1.6 Seed supercap root</span>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="petri-dish-inventory-slot">
+					<div id="clickableMicroorganism" class="microorganism-individual-clickable">
+						<div class="microorganism-individual-background">
+							<div class="microorganism-level-counter"><p class="bold" style="line-height: 0;">1</p></div>
+							<img src="./src/images/mossSpore.png" class="centered-element" alt="Test Microorganism" width="64" height="64" draggable="false">
+							<img id="microorganismImg" src="./src/images/fruit.png" class="bottom-right-element" alt="Test Bountiful Nature" width="32" height="32" draggable="false">
+							<span class="microorganism-hover" style="color: #1a8229">Level 1 <span style="color: #de0e0e;">Bountiful</span> Moss Spores<br>
+								^1.25 Moss<br>^2 Moss effect<br>x1.1 Moss Milestone effect<br>x1.1 Moss Upgrade effect<br>x1.5 Wildfire rewards<br>
+								<span style="color: #de0e0e;">^1.25 Fruit base mult<br>x1.5 FR1's effect<br>M1's effect softcap starts +50 later<br>x1.6 Fruit supercap root<br>x1.5 Wildfire rewards</span>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="petri-dish-inventory-slot">
+					<div id="clickableMicroorganism" class="microorganism-individual-clickable">
+						<div class="microorganism-individual-background">
+							<div class="microorganism-level-counter"><p class="bold" style="line-height: 0;">1</p></div>
+							<img src="./src/images/algae.png" class="centered-element" alt="Test Microorganism" width="64" height="64" draggable="false">
+							<img id="microorganismImg" src="./src/images/entropy.png" class="bottom-right-element" alt="Test Chaotic Nature" width="32" height="32" draggable="false">
+							<span class="microorganism-hover" style="color: #1cb814;">Level 1 <span style="color: #2077ba;">Chaotic</span> Algae<br>
+								x1.3 L, S, F first repeatable effects<br>^1.3 L, S, F first repeatable cost discounts<br>x1.5 Glutamate's effect<br>+30 Free M6 levels<br>+20 L, S, F second repeatable caps<br>
+								<span style="color: #2077ba;">x1e6 Entropy base mult<br>^1.2 Cell Replication speed<br>^1.4 Bacteria cap<br>x1.25 RNA<br>+1.05 Free proteins</span>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="petri-dish-inventory-slot">
+					<div id="clickableMicroorganism" class="microorganism-individual-clickable">
+						<div class="microorganism-individual-background">
+							<div class="microorganism-level-counter"><p class="bold" style="line-height: 0;">1</p></div>
+							<img src="./src/images/amoeba.png" class="centered-element" alt="Test Microorganism" width="64" height="64" draggable="false">
+							<img id="microorganismImg" src="./src/images/root.png" class="bottom-right-element" alt="Test Reinforced Nature" width="32" height="32" draggable="false">
+							<span class="microorganism-hover" style="color: #ffffff;">Level 1 <span style="color: #edac13;">Reinforced</span> Amoeba<br>
+								x2 all resources<br>^1.1 all secondary resources<br>x10 Game speed<br>-0.01 from all softcap roots<br>^8 Reinforcement multipliers<br>
+								<span style="color: #edac13;">x2.5 Root base mult<br>x2 Reinforcements<br>+0.5 to all supercap roots<br>^1.1 Blizzard rewards<br>x1.5 Fallen Cap and Speed</span>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
     <div class="achievement-tab-container" id="achievement-tabs">
       <button id="regularAchievements" class="buttons-regular-ach-tab-color">Achievements</button>
@@ -830,6 +960,10 @@
         <img src="./src/images/achievements/131.png" alt="131" width="100" height="100">
         <span class="achievements-hover">OH GOD NO (131)<br>Manufacture a<br>Petri Dish<br>(Buy RO20)</span>
       </div>
+      <div class="ach132">
+        <img src="./src/images/achievements/132.png" alt="132" width="100" height="100">
+        <span class="achievements-hover">Worst image ever (132)<br>Have every single type of Microorganism<br>in your inventory at once</span>
+      </div>
     </div>
 
     <div class="secret-achievements" id="secretAchievementsContainer">
@@ -909,6 +1043,7 @@
     <div class="ach124-text"><p class="achievement-text-color">One of my favorite game series</p></div>
     <div class="ach125-text"><p class="achievement-text-color">Six figures of cells</p></div>
     <div class="ach131-text"><p class="achievement-text-color">OH GOD NO</p></div>
+    <div class="ach132-text"><p class="achievement-text-color">Worst image ever</p></div>
 
     <div class="secret11-text"><p class="secret-achievement-text-color">Jumpscare</p></div>
     <div class="secret12-text"><p class="secret-achievement-text-color">Cheater Cheater, Peter Beater</p></div>
@@ -928,7 +1063,6 @@
         <button id="saveManually">Save Manually</button>
         <button id="loadSave">Load Save</button>
         <button id="exportSave">Export Save</button>
-        <button id="loadEndgame">Load the current endgame state</button>
 		<button id="resetSave" class="scaryButton">Reset your progress<br>0 / 10s of button being held</button>
       </div>
       <div class="notations">
@@ -952,6 +1086,22 @@
 		<p class="italic">Use hex codes for these</p>
         <input type="text" id="backgroundColorCounter" placeholder="Background Color">
       </div>
+	  <div class="load-game-stages">
+		<p>Load game stages</p>
+		<p class="italic">Use this if your save file gets corrupted<br>Each button sets your game state to what the button says</p>
+		<button id="loadFirstDecompolization">First Decompolization</button>
+		<button id="loadFirstHarvest">First Harvest</button>
+		<button id="loadMossUnlock">Moss unlocked</button>
+		<button id="loadFirstTransformation">First Transformation</button>
+		<button id="loadStormUnlock">Storm unlocked</button>
+		<button id="loadWildfireUnlock">Wildfire unlocked</button>
+		<button id="loadDroughtUnlock">Drought unlocked</button>
+		<button id="loadBlizzardUnlock">Blizzard unlocked</button>
+		<button id="loadFirstReinforcement">First Reinforcement</button>
+		<button id="loadRM4Achieved">RM4 Achieved</button>
+		<button id="loadRM7Achieved">RM7 Achieved</button>
+        <button id="loadEndgame">Endgame</button>
+	  </div>
     </div>
 
     <div class="game-saved-text"><p class="game-saved-text-color">Game Saved</p></div>
@@ -967,7 +1117,10 @@
       "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
       }
     }
-    </script>
+    </script>  
+	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+	<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+	
     <script src="./src/modules/tabhandler.mjs" type="module"></script>
     <script src="./src/modules/core/upgradebuilder.mjs" type="module"></script>
     <script src="./src/modules/leafupgrades.mjs" type="module"></script>
@@ -988,5 +1141,6 @@
     <script src="./src/modules/core/calculations.mjs" type="module"></script>
     <script src="./src/modules/achievements.mjs" type="module"></script>
     <script src="./src/modules/savefile.mjs" type="module"></script>
+	
   </body>
 </html>

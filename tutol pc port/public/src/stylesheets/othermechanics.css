@@ -570,3 +570,147 @@
     border-style: outset;
     border-color: #ed9613;
 }
+.buttons-petri-dish {
+    position: absolute;
+    line-height: 1.2;
+    top: 300px;
+    left: 10px;
+    font-family: Verdana;
+}
+.petri-dish-background {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    height: 1115px;
+    width: 1135px;
+    padding: 5px 10px;
+    background-color: #8c8c8c;
+    border-style: outset;
+    border-color: #525252;
+    color: #ffffffff;
+    font-size: 12px;/* 
+    visibility: hidden; */
+}
+.microorganism-background {
+	position: absolute;
+	top: 25px;
+	left: 10px;
+	height: 295px;
+	width: 295px;
+	padding: 5px;
+    background-color: #525252;
+	border-radius: 5px;
+}
+.microorganism-effect-background {
+	position: absolute;
+	top: 350px;
+	left: 10px;
+	height: 295px;
+	width: 295px;
+	padding: 5px;
+    background-color: #525252;
+	border-radius: 5px;
+}
+.microorganism-on-reinforcement-background {
+	position: absolute;
+	line-height: 0;
+	top: 25px;
+	left: 335px;
+	height: 125px;
+	width: 625px;
+	padding: 5px;
+    background-color: #525252;
+	border-radius: 5px;
+}
+.buttons-protein-setup-info {
+	color: #000000;
+	background-color: #ffffff;
+	border-color: #b3b3b3;
+	border-style: outset;
+}
+.microorganism-inventory-background {
+	position: absolute;
+	top: 180px;
+	left: 335px;
+	height: 920px;
+	width: 795px;
+	padding: 5px;
+    background-color: #525252;
+	border-radius: 5px;
+}
+.microorganism-individual-clickable {
+	position: absolute;
+	z-index: 20;
+	height: 75px;
+	width: 75px;
+	cursor: move;
+}
+.microorganism-individual-background {
+	position: absolute;
+	height: 75px;
+	width: 75px;
+    background-color: #000000;
+	border-radius: 50%;
+}
+.microorganism-level-counter {
+	position: absolute;
+	background-color: #292929;
+	top: 0px;
+	left: 0px;
+}
+.microorganism-hover {
+    font-family: Verdana;
+    font-size: 12px;
+
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 25;
+    background-color: #333;
+    color: white;
+	line-height: 1.2;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    text-align: center;
+}
+.microorganism-individual-clickable:hover .microorganism-hover {
+    visibility: visible;
+	z-index: 30;
+ }
+.petri-dish-inventory-slot {
+	position: relative;
+	padding: 0px;
+	height: 75px;
+	width: 75px;
+	display: inline-block;
+    background-color: #3d3d3d;
+    border-color: #292929;
+	border-style: solid;
+	border-width: 5px;
+	border-radius: 5px;
+}
+.petri-dish-on-reinforcement-slot {
+	position: relative;
+	padding: 0px;
+	height: 75px;
+	width: 75px;
+	display: inline-block;
+    background-color: #3d3d3d;
+    border-color: #292929;
+	border-style: solid;
+	border-width: 5px;
+	border-radius: 5px;
+}
+.petri-dish-singular {
+	position: absolute;
+	height: 75px;
+	width: 75px;
+	background-color: #c9c9c9;
+	border-color: #a1a1a1;
+	border-style: solid;
+	border-width: 5px;
+	border-radius: 50%;
+}

@@ -23,6 +23,7 @@ export function tab(tab, tabObject) {
     document.getElementById('buttons-rou').style.display = 'none';
     document.getElementById('root-tabs').style.display = 'none';
     document.getElementById('buttons-root-milestone').style.display = 'none';
+    document.getElementById('buttons-petri-dish').style.display = 'none';
     document.getElementById('achievements').style.display = 'none';
     document.getElementById('secretAchievementsContainer').style.display = 'none';
     document.getElementById('achievement-tabs').style.display = 'none';
@@ -40,6 +41,7 @@ export function tab(tab, tabObject) {
     document.getElementById('templeTab').style.borderWidth = '2px';
     document.getElementById('rootTab').style.borderWidth = '2px';
     document.getElementById('rootMilestoneTab').style.borderWidth = '2px';
+    document.getElementById('petriDishTab').style.borderWidth = '2px';
     document.getElementById('achievementTab').style.borderWidth = '2px';
     document.getElementById('regularAchievements').style.borderWidth = '2px';
     document.getElementById('secretAchievements').style.borderWidth = '2px';
@@ -111,6 +113,11 @@ function loadRootMilestoneTab() {
     document.getElementById('root-tabs').style.display = 'inline-block';
     console.log("loadRootMilestoneTab has been called");
 }
+function loadPetriDishTab() {
+    tab('buttons-petri-dish', 'petriDishTab');
+    document.getElementById('root-tabs').style.display = 'inline-block';
+    console.log("loadPetriDishTab has been called");
+}
 function loadAchTab () {
     tab('achievements', 'achievementTab');
     document.getElementById('achievement-tabs').style.display = 'inline-block';
@@ -142,6 +149,7 @@ document.getElementById("proteinTab").addEventListener("click", loadProteinTab);
 document.getElementById("templeTab").addEventListener("click", loadTempleTab);
 document.getElementById("rootTab").addEventListener("click", loadRootTab);
 document.getElementById("rootMilestoneTab").addEventListener("click", loadRootMilestoneTab);
+document.getElementById("petriDishTab").addEventListener("click", loadPetriDishTab);
 document.getElementById("achievementTab").addEventListener("click", loadAchTab);
 document.getElementById("settingsTab").addEventListener("click", loadSettingsTab);
 document.getElementById("regularAchievements").addEventListener("click", loadAchTab);
