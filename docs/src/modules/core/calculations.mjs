@@ -1407,7 +1407,7 @@ export function calculateEntropyMult() {
         document.getElementById("S41").innerHTML = `S41 (Bought)<br>Branch XVI<br>x20L, S, F, x3E<br>Cost: 1e430 Seeds`;
     }
     if (leafUpgradeFactor.L52Bought) {
-        const x = gameData.cells;
+        const x = gameData.cells.plus(new Decimal(1));
         const y = Decimal.log(x, new Decimal(1.79e308));
         const z = y.plus(new Decimal(1));
         const w = z.plus(gameData.mossEffect);
@@ -1859,7 +1859,7 @@ export function calculateBaseFruitSoftcapFactor() {
     let totalMultiplier = new Decimal(0.75);
     if (entropyUpgradeFactor.E17Bought) {
         totalMultiplier = totalMultiplier.plus(new Decimal(0.025));
-        document.getElementById('E32').innerHTML = `E32 (Bought)<br>Free Fruits<br>-0.05 from Fruit softcap root<br>Cost: 3.33e33 Entropy`;
+        document.getElementById('E32').innerHTML = `E32 (Bought)<br>Free Fruits<br>-0.025 from Fruit softcap root<br>Cost: 3.33e33 Entropy`;
     }
 	if (entropyUpgradeFactor.R3Amount.greaterThanOrEqualTo(new Decimal(1))) {
 		totalMultiplier = totalMultiplier.plus(entropyUpgradeFactor.R3Effect);

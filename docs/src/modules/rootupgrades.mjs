@@ -200,6 +200,7 @@ export function RO19() {
 function ach131() {
 	achievements.ach131 = true;
 	massAchievementChecker();
+    document.querySelector('.buttons-petri-dish-tab-color').style.visibility = 'visible';
 }
 export function RO20() {
     if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU20) || rootUpgradeFactor.RO20Bought) {

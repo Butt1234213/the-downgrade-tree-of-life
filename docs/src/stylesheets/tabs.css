@@ -233,3 +233,18 @@
     padding: 5px;
     visibility: hidden;
 }
+.buttons-petri-dish-tab-color {
+    position: absolute;
+    left: 122.5px;
+    top: 0px;
+    background-color: #8c8c8c;
+    white-space: nowrap;
+    font-family: Verdana;
+    font-size: 16px;
+    color: #ffffff;
+    border-style: outset;
+    border-color: #525252;
+    font-weight: bold;
+    padding: 5px;
+    visibility: hidden;
+}
