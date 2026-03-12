@@ -129,28 +129,6 @@ export function saveLoop() {
         localStorage.setItem("rootUpgradeFactor", JSON.stringify(temporaryRootUpgradeFactor));
     }
 
-    exportString = 
-    " " + localStorage.getItem("gameData") + 
-    " " + gameDataKeys.toString() + 
-    " " + localStorage.getItem("leafUpgradeFactor") +
-    " " + leafUpgradeFactorKeys.toString() + 
-    " " + localStorage.getItem("seedUpgradeFactor") +
-    " " + seedUpgradeFactorKeys.toString() + 
-    " " + localStorage.getItem("fruitUpgradeFactor") +
-    " " + fruitUpgradeFactorKeys.toString() + 
-    " " + localStorage.getItem("entropyUpgradeFactor") +
-    " " + entropyUpgradeFactorKeys.toString() + 
-    " " + localStorage.getItem("achievements") + 
-    " " + localStorage.getItem("secretAchievements") +
-    " " + localStorage.getItem("circuits") +
-    " " + circuitsKeys.toString() +
-    " " + localStorage.getItem("repeatableUpgradeFactor") +
-    " " + repeatableUpgradeFactorKeys.toString() +
-    " " + localStorage.getItem("rootUpgradeFactor") +
-    " " + rootUpgradeFactorKeys.toString();
-
-    exportStrings = exportString.split(" ");
-    exportStrings.splice(0, 1);
     console.log('Saved to localStorage');
     storage.gameSavedTextAnimation();
 }
@@ -361,6 +339,31 @@ export function loadSave() {
 }
 
 export async function copySaveFileToClipboard() {
+    saveLoop();
+
+    exportString = 
+    " " + localStorage.getItem("gameData") + 
+    " " + gameDataKeys.toString() + 
+    " " + localStorage.getItem("leafUpgradeFactor") +
+    " " + leafUpgradeFactorKeys.toString() + 
+    " " + localStorage.getItem("seedUpgradeFactor") +
+    " " + seedUpgradeFactorKeys.toString() + 
+    " " + localStorage.getItem("fruitUpgradeFactor") +
+    " " + fruitUpgradeFactorKeys.toString() + 
+    " " + localStorage.getItem("entropyUpgradeFactor") +
+    " " + entropyUpgradeFactorKeys.toString() + 
+    " " + localStorage.getItem("achievements") + 
+    " " + localStorage.getItem("secretAchievements") +
+    " " + localStorage.getItem("circuits") +
+    " " + circuitsKeys.toString() +
+    " " + localStorage.getItem("repeatableUpgradeFactor") +
+    " " + repeatableUpgradeFactorKeys.toString() +
+    " " + localStorage.getItem("rootUpgradeFactor") +
+    " " + rootUpgradeFactorKeys.toString();
+
+    exportStrings = exportString.split(" ");
+    exportStrings.splice(0, 1);
+
     let textToCopy = exportString;
     try {
         await navigator.clipboard.writeText(textToCopy);
