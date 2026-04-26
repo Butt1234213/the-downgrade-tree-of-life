@@ -2859,7 +2859,7 @@ export async function loadFirstReinforcement() {
     const loadState = localStorage.getItem("loadState");
     if (loadState !== "loadFirstReinforcement") {
         localStorage.setItem("resettingGame", true);
-        localStorage.setItem("loadState", "loadReinforcement");
+        localStorage.setItem("loadState", "loadFirstReinforcement");
 	    window.location.reload();
         return;
     }
