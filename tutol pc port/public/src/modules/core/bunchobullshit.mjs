@@ -2604,6 +2604,7 @@ export async function loadStormUnlocked() {
     }
 	gameData.entropy = new Decimal(1e8);
     gameData.highestCircuitsTrue = new Decimal(100);
+    entropyUpgradeFactor.E1Bought = true;
     achievements.ach11 = true;
     achievements.ach12 = true;
     achievements.ach13 = true;
@@ -2646,6 +2647,7 @@ export async function loadWildfireUnlocked() {
 	gameData.entropy = new Decimal(5e22);
     gameData.highestCircuitsTrue = new Decimal(250);
 	gameData.suAutomationUnlocked = true;
+    entropyUpgradeFactor.E1Bought = true;
     achievements.ach11 = true;
     achievements.ach12 = true;
     achievements.ach13 = true;
@@ -2696,6 +2698,7 @@ export async function loadDroughtUnlocked() {
     gameData.highestCircuitsTrue = new Decimal(500);
 	gameData.suAutomationUnlocked = true;
 	gameData.fuAutomationUnlocked = true;
+    entropyUpgradeFactor.E1Bought = true;
     achievements.ach11 = true;
     achievements.ach12 = true;
     achievements.ach13 = true;
@@ -2756,6 +2759,7 @@ export async function loadBlizzardUnlocked() {
     gameData.highestCircuitsTrue = new Decimal(1500);
 	gameData.suAutomationUnlocked = true;
 	gameData.fuAutomationUnlocked = true;
+    entropyUpgradeFactor.E1Bought = true;
     achievements.ach11 = true;
     achievements.ach12 = true;
     achievements.ach13 = true;
@@ -2824,6 +2828,7 @@ export async function loadFirstReinforcement() {
     gameData.highestCircuitsTrue = new Decimal(2000);
 	gameData.suAutomationUnlocked = true;
 	gameData.fuAutomationUnlocked = true;
+    entropyUpgradeFactor.E1Bought = true;
     achievements.ach11 = true;
     achievements.ach12 = true;
     achievements.ach13 = true;
@@ -2895,6 +2900,7 @@ export async function loadRM4() {
     gameData.highestCircuitsTrue = new Decimal(3200);
 	gameData.suAutomationUnlocked = true;
 	gameData.fuAutomationUnlocked = true;
+    entropyUpgradeFactor.E1Bought = true;
     achievements.ach11 = true;
     achievements.ach12 = true;
     achievements.ach13 = true;
@@ -2967,6 +2973,7 @@ export async function loadRM7() {
     gameData.highestCircuitsTrue = new Decimal(5000);
 	gameData.suAutomationUnlocked = true;
 	gameData.fuAutomationUnlocked = true;
+    entropyUpgradeFactor.E1Bought = true;
     achievements.ach11 = true;
     achievements.ach12 = true;
     achievements.ach13 = true;
@@ -3040,6 +3047,7 @@ export async function loadEndgame() {
     gameData.highestCircuitsTrue = new Decimal(10000);
 	gameData.suAutomationUnlocked = true;
 	gameData.fuAutomationUnlocked = true;
+    entropyUpgradeFactor.E1Bought = true;
     achievements.ach11 = true;
     achievements.ach12 = true;
     achievements.ach13 = true;
