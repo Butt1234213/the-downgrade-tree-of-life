@@ -403,8 +403,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	localStorage.setItem("resettingGame", JSON.stringify(storage.gameData.resettingGame));
 
 	const loadState = localStorage.getItem("loadState");
-    if (loadState = "string") {
-        window.storage[loadState]();
+    if (typeof loadState === "string") {
+       storage[loadState]();
     }
 });
 
