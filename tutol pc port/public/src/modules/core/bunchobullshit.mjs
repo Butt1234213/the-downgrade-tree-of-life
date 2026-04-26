@@ -2506,19 +2506,29 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function loadFirstDecompolization() {
+export async function loadFirstDecompolization() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadFirstDecompolization") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadFirstDecompolization");
+	    window.location.reload();
+        return;
+    }
 	gameData.seeds = new Decimal(15);
     achievements.ach11 = true;
     achievements.ach12 = true;
     achievements.ach13 = true;
     achievements.ach14 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
 }
 
-async function loadFirstHarvest() {
+export async function loadFirstHarvest() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadFirstHarvest") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadFirstHarvest");
+	    window.location.reload();
+        return;
+    }
 	gameData.fruits = new Decimal(15);
     achievements.ach11 = true;
     achievements.ach12 = true;
@@ -2527,13 +2537,16 @@ async function loadFirstHarvest() {
     achievements.ach15 = true;
     achievements.ach21 = true;
     achievements.ach23 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
 }
 
-async function loadMossUnlocked() {
+export async function loadMossUnlocked() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadMossUnlocked") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadMossUnlocked");
+	    window.location.reload();
+        return;
+    }
 	gameData.fruits = new Decimal(1e9);
     achievements.ach11 = true;
     achievements.ach12 = true;
@@ -2549,13 +2562,16 @@ async function loadMossUnlocked() {
     achievements.ach32 = true;
     achievements.ach42 = true;
     achievements.ach43 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
 }
 
-async function loadFirstTransformation() {
+export async function loadFirstTransformation() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadFirstTransformation") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadFirstTransformation");
+	    window.location.reload();
+        return;
+    }
 	gameData.entropy = new Decimal(10);
     achievements.ach11 = true;
     achievements.ach12 = true;
@@ -2576,13 +2592,16 @@ async function loadFirstTransformation() {
     achievements.ach42 = true;
     achievements.ach43 = true;
     achievements.ach44 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
 }
 
-async function loadStormUnlocked() {
+export async function loadStormUnlocked() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadStormUnlocked") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadStormUnlocked");
+	    window.location.reload();
+        return;
+    }
 	gameData.entropy = new Decimal(1e8);
     gameData.highestCircuitsTrue = new Decimal(100);
     achievements.ach11 = true;
@@ -2614,13 +2633,16 @@ async function loadStormUnlocked() {
     achievements.ach62 = true;
     achievements.ach63 = true;
     achievements.ach64 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
 }
 
-async function loadWildfireUnlocked() {
+export async function loadWildfireUnlocked() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadWildfireUnlocked") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadWildfireUnlocked");
+	    window.location.reload();
+        return;
+    }
 	gameData.entropy = new Decimal(5e22);
     gameData.highestCircuitsTrue = new Decimal(250);
 	gameData.suAutomationUnlocked = true;
@@ -2660,13 +2682,16 @@ async function loadWildfireUnlocked() {
     achievements.ach74 = true;
     achievements.ach75 = true;
     achievements.ach81 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
 }
 
-async function loadDroughtUnlocked() {
+export async function loadDroughtUnlocked() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadDroughtUnlocked") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadDroughtUnlocked");
+	    window.location.reload();
+        return;
+    }
 	gameData.entropy = new Decimal(1e47);
     gameData.highestCircuitsTrue = new Decimal(500);
 	gameData.suAutomationUnlocked = true;
@@ -2717,13 +2742,16 @@ async function loadDroughtUnlocked() {
     achievements.ach94 = true;
     achievements.ach95 = true;
     achievements.ach101 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
 }
 
-async function loadBlizzardUnlocked() {
+export async function loadBlizzardUnlocked() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadBlizzardUnlocked") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadBlizzardUnlocked");
+	    window.location.reload();
+        return;
+    }
 	gameData.entropy = new Decimal(1e102);
     gameData.highestCircuitsTrue = new Decimal(1500);
 	gameData.suAutomationUnlocked = true;
@@ -2781,13 +2809,16 @@ async function loadBlizzardUnlocked() {
     achievements.ach111 = true;
     achievements.ach112 = true;
     achievements.ach113 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
 }
 
-async function loadFirstReinforcement() {
+export async function loadFirstReinforcement() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadFirstReinforcement") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadReinforcement");
+	    window.location.reload();
+        return;
+    }
 	gameData.roots = new Decimal(1);
 	gameData.reinforcements = new Decimal(1);
     gameData.highestCircuitsTrue = new Decimal(2000);
@@ -2849,13 +2880,16 @@ async function loadFirstReinforcement() {
     achievements.ach114 = true;
     achievements.ach115 = true;
     achievements.ach121 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
 }
 
-async function loadRM4() {
+export async function loadRM4() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadRM4") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadRM4");
+	    window.location.reload();
+        return;
+    }
 	gameData.roots = new Decimal(4);
 	gameData.reinforcements = new Decimal(4);
     gameData.highestCircuitsTrue = new Decimal(3200);
@@ -2918,13 +2952,16 @@ async function loadRM4() {
     achievements.ach115 = true;
     achievements.ach121 = true;
     achievements.ach122 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
 }
 
-async function loadRM7() {
+export async function loadRM7() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadRM7") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadRM7");
+	    window.location.reload();
+        return;
+    }
 	gameData.roots = new Decimal(15);
 	gameData.reinforcements = new Decimal(10);
     gameData.highestCircuitsTrue = new Decimal(5000);
@@ -2988,13 +3025,16 @@ async function loadRM7() {
     achievements.ach121 = true;
     achievements.ach122 = true;
     achievements.ach123 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
 }
 
-async function loadEndgame() {
+export async function loadEndgame() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadEndgame") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadEndgame");
+	    window.location.reload();
+        return;
+    }
     gameData.roots = new Decimal(500);
     gameData.reinforcements = new Decimal(15);
     gameData.highestCircuitsTrue = new Decimal(10000);
@@ -3061,10 +3101,6 @@ async function loadEndgame() {
     achievements.ach124 = true;
     achievements.ach125 = true;
     achievements.ach131 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
 }
 
 document.getElementById("loadFirstDecompolization").addEventListener("click", loadFirstDecompolization);

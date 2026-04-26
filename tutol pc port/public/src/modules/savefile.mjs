@@ -401,6 +401,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 	storage.gameData.resettingGame = false;
 	localStorage.setItem("resettingGame", JSON.stringify(storage.gameData.resettingGame));
+
+	const loadState = localStorage.getItem("loadState");
+    if (loadState = "string") {
+        window.storage[loadState]();
+    }
 });
 
 function sleep(ms) {
