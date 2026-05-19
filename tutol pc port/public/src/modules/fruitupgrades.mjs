@@ -49,6 +49,15 @@ export function laggyAssFunction() {
     F44();
     F45();
     F46();
+    F47();
+    F48();
+    F49();
+    F50();
+    F51();
+    F52();
+    F53();
+    F54();
+    F55();
 }
 
 export var functions = {};
@@ -480,6 +489,95 @@ export function F46() {
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 46, fruitUpgradeCost.FU46, false, null);
         fruitUpgradeFactor.F46Bought = true;
+		document.getElementById('F46').innerHTML = `F46 (Bought)<br>Glutenous Fruits<br>+4 Glutamine and Glutamate Proteins<br>Cost: 6.66e6666 Fruits`;
+    }
+}
+export function F47() {
+    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU47)) {
+        gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('fruit', 47, fruitUpgradeCost.FU47, false, null);
+        fruitUpgradeFactor.F47Bought = true;
+		document.getElementById('F47').innerHTML = `F47 (Bought)<br>Mossy Fruits I<br>M1's effect softcap starts +150 later<br>Cost: 1e16000 Fruits`;
+    }
+}
+export function F48() {
+    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU48)) {
+        gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('fruit', 48, fruitUpgradeCost.FU48, false, null);
+        fruitUpgradeFactor.F48Bought = true;
+		document.getElementById('F48').innerHTML = `F48 (Bought)<br>Mossy Fruits II<br>M1's effect softcap starts +150 later<br>Cost: 1e32000 Fruits`;
+    }
+}
+export function F49() {
+    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU49)) {
+        gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('fruit', 49, fruitUpgradeCost.FU49, false, null);
+        fruitUpgradeFactor.F49Bought = true;
+		document.getElementById('F49').innerHTML = `F49 (Bought)<br>Mossy Fruits III<br>M1's effect softcap starts +150 later<br>Cost: 1e64000 Fruits`;
+    }
+}
+function ach152() {
+	achievements.ach152 = true;
+	massAchievementChecker();
+    gameData.rootComposterUnlocked = true;
+    gameData.totalComposters = new Decimal(5);
+	document.querySelector('.root-composter-background').style.visibility = 'visible';
+}
+export function F50() {
+    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU50)) {
+        gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('fruit', 50, fruitUpgradeCost.FU50, true, ach152());
+        fruitUpgradeFactor.F50Bought = true;
+		document.getElementById('F50').innerHTML = `F50 (Bought)<br>The Composter V<br>Unlock the fifth Composter<br>Cost: e1.75e6 Fruits`;
+    }
+}
+export function F51() {
+    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU51)) {
+        gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('fruit', 51, fruitUpgradeCost.FU51, false, null);
+        fruitUpgradeFactor.F51Bought = true;
+		document.getElementById('F51').innerHTML = `F51 (Bought)<br>Composting Power<br>Total Fertilizers add to all supercap roots<br>Cost: e2.5e6 Fruits`;
+    }
+}
+export function F52() {
+    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU52)) {
+        gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('fruit', 52, fruitUpgradeCost.FU52, false, null);
+        fruitUpgradeFactor.F52Bought = true;
+		document.getElementById('F52').innerHTML = `F52 (Bought)<br>Statue Power XVI<br>x2.5 FR3's effect<br>Cost: e1e7 Fruits`;
+    }
+}
+export function F53() {
+    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU53)) {
+        gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('fruit', 53, fruitUpgradeCost.FU53, false, null);
+        fruitUpgradeFactor.F53Bought = true;
+		document.getElementById('F53').innerHTML = `F53 (Bought)<br>Statue Power XVII<br>x1.5 FR3's effect<br>Cost: e1.5e7 Fruits`;
+    }
+}
+export function F54() {
+    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU54)) {
+        gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('fruit', 54, fruitUpgradeCost.FU54, false, null);
+        fruitUpgradeFactor.F54Bought = true;
+		document.getElementById('F54').innerHTML = `F54 (Bought)<br>Hyper Staked Fertilizers<br>After 10000 Fertilizers,<br>the Fruit Composter makes Entropy Fertilizers<br>Cost: e2e7 Fruits`;
+    }
+}
+export function F55() {
+    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU55)) {
+        gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('fruit', 55, fruitUpgradeCost.FU55, false, null);
+        fruitUpgradeFactor.F55Bought = true;
+		document.getElementById('F55').innerHTML = `F55 (Bought)<br>No More Random Resets!<br>Every 0.1 seconds, each composter<br>recalculates its time requirement<br>Cost: e3e7 Fruits`;
     }
 }
 
@@ -530,4 +628,13 @@ document.addEventListener('DOMContentLoaded', () => {
     functions.F44 = F44;
     functions.F45 = F45;
     functions.F46 = F46;
+    functions.F47 = F47;
+    functions.F48 = F48;
+    functions.F49 = F49;
+    functions.F50 = F50;
+    functions.F51 = F51;
+    functions.F52 = F52;
+    functions.F53 = F53;
+    functions.F54 = F54;
+    functions.F55 = F55;
 });

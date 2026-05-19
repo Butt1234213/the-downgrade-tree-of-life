@@ -3,15 +3,8 @@ import { achievements, massAchievementChecker } from './achievements.mjs';
 
 export function rootMilestoneChecker() {
 	if (storage.gameData.reinforcements.greaterThanOrEqualTo(new Decimal(1))) {
-		let leafBaseMult = new Decimal(100);
-		let leafMult = leafBaseMult.times(storage.gameData.reinforcements);
-		let seedBaseMult = new Decimal(10);
-		let seedMult = seedBaseMult.times(storage.gameData.reinforcements);
-		let fruitBaseMult = new Decimal(2.5);
-		let fruitMult = fruitBaseMult.times(storage.gameData.reinforcements);
-		
 		document.getElementById("reinforcementCounter").innerHTML = `You have Reinforced ${storage.truncateToDecimalPlaces(storage.gameData.reinforcements, 3)} times,`;
-		document.getElementById("reinforcementEffectCounter").innerHTML = `x${storage.truncateToDecimalPlaces(leafMult, 3)}L, x${storage.truncateToDecimalPlaces(seedMult, 3)}S, x${storage.truncateToDecimalPlaces(fruitMult, 3)}F,`;
+		document.getElementById("reinforcementEffectCounter").innerHTML = `x${storage.truncateToDecimalPlaces(storage.rootUpgradeFactor.leafReinforcementMult, 3)}L, x${storage.truncateToDecimalPlaces(storage.rootUpgradeFactor.seedReinforcementMult, 3)}S, x${storage.truncateToDecimalPlaces(storage.rootUpgradeFactor.fruitReinforcementMult, 3)}F,`;
 		
 		if (storage.gameData.reinforcements.greaterThanOrEqualTo(storage.rootUpgradeCost.RM1)) {
 			storage.rootUpgradeFactor.RM1Achieved = true;
@@ -48,6 +41,21 @@ export function rootMilestoneChecker() {
 			storage.rootUpgradeFactor.RM8Achieved = true;
 			document.getElementById("RM8").style.backgroundImage = `radial-gradient(#edac13, #55d941)`;
 			document.querySelector('.moss-upgrades-automation-background').style.visibility = `visible`;
+		}
+		if (storage.gameData.reinforcements.greaterThanOrEqualTo(storage.rootUpgradeCost.RM9)) {
+			storage.rootUpgradeFactor.RM9Achieved = true;
+			document.getElementById("RM9").style.backgroundImage = `radial-gradient(#edac13, #55d941)`;
+			document.querySelector('.bacteria-upgrades-automation-background').style.visibility = `visible`;
+		}
+		if (storage.gameData.reinforcements.greaterThanOrEqualTo(storage.rootUpgradeCost.RM10)) {
+			storage.rootUpgradeFactor.RM10Achieved = true;
+			document.getElementById("RM10").style.backgroundImage = `radial-gradient(#edac13, #55d941)`;
+			document.querySelector('.rna-upgrades-automation-background').style.visibility = `visible`;
+		}
+		if (storage.gameData.reinforcements.greaterThanOrEqualTo(storage.rootUpgradeCost.RM11)) {
+			storage.rootUpgradeFactor.RM11Achieved = true;
+			document.getElementById("RM11").style.backgroundImage = `radial-gradient(#edac13, #55d941)`;
+			document.querySelector('.dna-blueprints-automation-background').style.visibility = `visible`;
 		}
 	}
 }

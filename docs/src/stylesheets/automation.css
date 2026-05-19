@@ -2,8 +2,9 @@
     position: absolute;
     top: 0px;
     left: 550px;
-    height: 675px;
-    width: 675px;
+    height: 1350px;
+    width: 667.5px;
+	z-index: 20;
     padding: 5px 10px;
     background-color: #76b2d2;
     border-style: outset;
@@ -87,3 +88,173 @@
     font-size: 12px;
 	visibility: hidden;
 }
+.bacteria-upgrades-automation-background {
+    position: absolute;
+    top: 705px;
+    left: 10px;
+    height: 200px;
+    width: 280px;
+    padding: 5px 10px;
+    background-color: #267826;
+    border-style: outset;
+    border-color: #195119;
+    color: #ffffff;
+    font-size: 12px;
+	visibility: hidden;
+}
+.rna-upgrades-automation-background {
+    position: absolute;
+    top: 705px;
+    left: 333px;
+    height: 200px;
+    width: 317.5px;
+    padding: 5px 10px;
+    background-color: #e32b2b;
+    border-style: outset;
+    border-color: #bd1a1a;
+    color: #ffffff;
+    font-size: 12px;
+	visibility: hidden;
+}
+.dna-blueprints-automation-background {
+    position: absolute;
+    top: 936.5px;
+    left: 10px;
+    height: 232.5px;
+    width: 280px;
+    padding: 5px 10px;
+    background-color: #2b4ae3;
+    border-style: outset;
+    border-color: #2440c9;
+    color: #ffffff;
+    font-size: 12px;
+	visibility: hidden;
+}
+
+.buttons-welder {
+    position: absolute;
+    line-height: 1.2;
+    top: 300px;
+    left: 10px;
+    font-family: Verdana;
+}
+.welder-background {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    height: 1000px;
+    width: 947.5px;
+	z-index: 20;
+    padding: 5px 10px;
+    background-color: #76b2d2;
+    border-style: outset;
+    border-color: #1985de;
+    color: #ffffffff;
+    font-size: 12px;
+}
+.cell-upgrades-bulk-background {
+    position: absolute;
+    top: 85px;
+    left: 10px;
+    height: 155px;
+    width: 200px;
+    padding: 5px 10px;
+    background-color: #76b2d2;
+    border-style: outset;
+    border-color: #1985de;
+    color: #ffffff;
+    font-size: 12px;
+}
+.repeatable-upgrades-bulk-background {
+    position: absolute;
+    top: 85px;
+    left: 250px;
+    height: 155px;
+    width: 200px;
+    padding: 5px 10px;
+    background-color: #c7b39d;
+    border-style: outset;
+    border-color: #b8a38c;
+    color: #ffffff;
+    font-size: 12px;
+}
+.composter-bulk-background {
+    position: absolute;
+    top: 85px;
+    left: 490px;
+    height: 155px;
+    width: 200px;
+    padding: 5px 10px;
+    background-color: #743411;
+    border-style: outset;
+    border-color: #58280d;
+    color: #ffffff;
+    font-size: 12px;
+}
+.moss-upgrades-bulk-background {
+    position: absolute;
+    top: 85px;
+    left: 730px;
+    height: 155px;
+    width: 200px;
+    padding: 5px 10px;
+    background-image: radial-gradient(circle at center, #535256, #1a8229);
+    border-color: #1a8229;
+    border-style: outset;
+    color: #ffffff;
+    font-size: 12px;
+}
+.bacteria-types-bulk-background {
+    position: absolute;
+    top: 270px;
+    left: 10px;
+    height: 155px;
+    width: 200px;
+    padding: 5px 10px;
+    background-color: #267826;
+    border-style: outset;
+    border-color: #195119;
+    color: #ffffff;
+    font-size: 12px;
+}
+.dna-blueprint-bulk-background {
+    position: absolute;
+    top: 270px;
+    left: 250px;
+    height: 155px;
+    width: 200px;
+    padding: 5px 10px;
+    background-color: #2b4ae3;
+    border-style: outset;
+    border-color: #2440c9;
+    color: #ffffff;
+    font-size: 12px;
+}
+.bacteria-upgrades-bulk-background {
+    position: absolute;
+    top: 270px;
+    left: 490px;
+    height: 155px;
+    width: 200px;
+    padding: 5px 10px;
+    background-color: #267826;
+    border-style: outset;
+    border-color: #195119;
+    color: #ffffff;
+    font-size: 12px;
+}
+.rna-upgrades-bulk-background {
+    position: absolute;
+    top: 270px;
+    left: 730px;
+    height: 155px;
+    width: 200px;
+    padding: 5px 10px;
+    background-color: #e32b2b;
+    border-style: outset;
+    border-color: #bd1a1a;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+

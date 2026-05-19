@@ -214,7 +214,23 @@ export function droughtCalculation() {
             document.getElementById('enterDrought').style.left = `40px`;
             storage.gameData.droughtCompletable = true;
         }
+		else {
+			document.querySelector('.challenge-drought').style.backgroundImage = 'radial-gradient(#c79b40, #c74040)';
+			document.querySelector('.challenge-drought').style.borderColor = '#991d1d';
+			document.getElementById('enterDrought').innerHTML = `EXIT THE DROUGHT`;
+			document.getElementById('enterDrought').style.left = `50px`;
+            storage.gameData.droughtCompletable = false;
+		}
     }
+	if (storage.entropyUpgradeFactor.E47Bought) {
+		storage.gameData.droughtBestScore = (storage.gameData.fruits.pow(new Decimal(0.25))).clamp(storage.gameData.droughtBestScore, new Decimal(Infinity));
+		const loggedBestScore = Decimal.log10(storage.gameData.droughtBestScore.plus(new Decimal(1)));
+		storage.gameData.droughtLevel = loggedBestScore.div(new Decimal(200)).trunc();
+		storage.gameData.droughtBaseRequirement = new Decimal.fromComponents(1, 1, 200).pow(storage.gameData.droughtLevel);
+		
+        document.getElementById('droughtCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.droughtBestScore, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.droughtBaseRequirement, 3)} Fruits`;
+        document.getElementById('droughtLevelCounter').innerHTML = `The Drought^${storage.truncateToDecimalPlaces(storage.gameData.droughtLevel, 3)}`;
+	}
 }
 
 document.getElementById('enterDrought').addEventListener('click', droughtChallenge);
@@ -284,3 +300,70 @@ export function blizzardCalculation() {
 }
 
 document.getElementById('enterBlizzard').addEventListener('click', blizzardChallenge);
+
+function fallChallenge() {
+    if (!storage.gameData.isInChallengeFall) {
+        storage.gameData.isInChallengeFall = true;
+        document.querySelector('.challenge-fall').style.backgroundImage = 'radial-gradient(#ffc107, #c74040)';
+        document.querySelector('.challenge-fall').style.borderColor = '#991d1d';
+        document.getElementById('enterFall').innerHTML = `EXIT THE FALL`;
+        document.getElementById('enterFall').style.left = `67.5px`;
+        document.getElementById('fallIndicator').innerHTML = `Fruits are 'falling' from your tree, so their maximum amount is 0. ^${storage.truncateToDecimalPlaces(storage.gameData.fallBaseDebuffFactor, 3)} Leaves, ^${storage.truncateToDecimalPlaces(storage.gameData.fallBaseDebuffFactor, 3)} Seeds, and /${storage.truncateToDecimalPlaces(storage.gameData.fallBaseGameSpeedFactor, 3)} Game speed<br>(ACTIVE)`;
+
+		const x = Decimal.ln(Decimal.log10(storage.gameData.fallBestScore.plus(new Decimal(1))).plus(new Decimal(1)));
+		const y = (x.times(new Decimal(0.108574))).plus(new Decimal(0.25));
+        const z = y.clamp(new Decimal(1), new Decimal(Infinity));
+        document.getElementById('fallRewardCounter').innerHTML = `Unlock Fallen Leaves and x${storage.truncateToDecimalPlaces(z, 3)} Leaf supercap root`;
+        document.getElementById('fallCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.fallBestScore, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.fallBaseRequirement, 3)} Leaves`;
+        storage.gameData.fallCompletable = false;
+		
+		const exponent = new Decimal(3).plus(storage.gameData.fallLevel);
+        storage.gameData.fallBaseRequirement = new Decimal.fromComponents(1, 2, exponent.toNumber());
+        storage.gameData.canReinforce = true;
+        storage.reinforce();
+    }
+    else {
+		const scoreCap = storage.gameData.fallBaseRequirement.pow(new Decimal(5));
+		storage.gameData.fallBestScore = storage.gameData.leaves.clamp(storage.gameData.fallBestScore, scoreCap);
+        if (storage.gameData.fallCompletable) {
+            storage.gameData.fallLevel = storage.gameData.fallLevel.plus(new Decimal(1));
+            storage.gameData.fallBaseDebuffFactor = new Decimal(0.1).pow(storage.gameData.fallLevel);
+            storage.gameData.fallBaseGameSpeedFactor = new Decimal.fromComponents(1, 1, 200).pow(storage.gameData.fallLevel);
+            storage.gameData.fallBaseRequirement = new Decimal.fromComponents(1, 2, 4).pow(storage.gameData.fallLevel.times(new Decimal(10)));
+            document.getElementById('fallLevelCounter').innerHTML = `The Fall^${storage.truncateToDecimalPlaces(storage.gameData.fallLevel, 3)}`;
+        }
+        document.querySelector('.challenge-fall').style.backgroundImage = 'radial-gradient(#ffc107, #e34439)';
+        document.querySelector('.challenge-fall').style.borderColor = '#f44336';
+        document.getElementById('enterFall').innerHTML = `ENTER THE FALL`;
+        document.getElementById('enterFall').style.left = `62.5px`;
+        
+		const x = Decimal.ln(Decimal.log10(storage.gameData.fallBestScore.plus(new Decimal(1))).plus(new Decimal(1)));
+		const y = (x.times(new Decimal(0.108574))).plus(new Decimal(0.25));
+        const z = y.clamp(new Decimal(1), new Decimal(Infinity));
+		storage.gameData.fallReward = z;
+        document.getElementById('fallRewardCounter').innerHTML = `Unlock Fallen Leaves and x${storage.truncateToDecimalPlaces(z, 3)} Leaf supercap root`;
+        document.getElementById('fallIndicator').innerHTML = `Fruits are 'falling' from your tree, so their maximum amount is 0. ^${storage.truncateToDecimalPlaces(storage.gameData.fallBaseDebuffFactor, 3)} Leaves, ^${storage.truncateToDecimalPlaces(storage.gameData.fallBaseDebuffFactor, 3)} Seeds, and /${storage.truncateToDecimalPlaces(storage.gameData.fallBaseGameSpeedFactor, 3)} Game speed<br>(INACTIVE)`;
+        document.getElementById('fallCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.fallBestScore, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.fallBaseRequirement, 3)} Leaves`;
+
+        storage.gameData.isInChallengeFall = false;
+        storage.gameData.canReinforce = true;
+		storage.gameData.fruitMaximumStart = new Decimal.fromComponents(1, 1, 7466);
+        storage.reinforce();
+    }
+}
+
+export function fallCalculation() {
+    if (storage.gameData.isInChallengeFall) {
+        document.getElementById('fallCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.leaves, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.fallBaseRequirement, 3)} Leaves`;
+
+        if (storage.gameData.leaves.greaterThanOrEqualTo(storage.gameData.fallBaseRequirement)) {
+            document.querySelector('.challenge-fall').style.backgroundImage = 'radial-gradient(#ffc107, #1c9e36)';
+            document.querySelector('.challenge-fall').style.borderColor = '#117926';
+            document.getElementById('enterFall').innerHTML = `COMPLETE THE FALL`;
+            document.getElementById('enterFall').style.left = `50px`;
+            storage.gameData.fallCompletable = true;
+        }
+    }
+}
+
+document.getElementById('enterFall').addEventListener('click', fallChallenge);

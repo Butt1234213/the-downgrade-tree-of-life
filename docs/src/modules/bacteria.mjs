@@ -7,12 +7,29 @@ export function resetCells() {
     cellularLab.resetCells();
 	var x = new Decimal(1.79e308).pow(storage.gameData.bacteriaTypes.plus(storage.gameData.bacteriaTypesBulk));
 	if (storage.gameData.bacteriaTypes.greaterThanOrEqualTo(new Decimal(100))) {
-		const y = storage.gameData.bacteriaTypes.minus(new Decimal(100));
-		const z = y.div(new Decimal(10));
-		const w = z.plus(new Decimal(1));
-		const v = new Decimal(1.79e308).pow(w);
-		x = v.pow(storage.gameData.bacteriaTypes.plus(storage.gameData.bacteriaTypesBulk));
+		let totalBase = new Decimal(1.79e308);
+		let operations = ((storage.gameData.bacteriaTypes.div(new Decimal(100))).trunc()).toNumber();
 		
+		for (let i = 0; i < operations; i++) {
+			const y = storage.gameData.bacteriaTypes.minus(new Decimal(i + 1).times(new Decimal(100)));
+			const z = y.div(new Decimal(10));
+			const w = z.plus(new Decimal(1));
+			const v = new Decimal(1.79e308).pow(w);
+			if (i < 1) {
+				totalBase = v;
+			}
+			else {
+				const power = (new Decimal(i + 1).div(new Decimal(5))).plus(new Decimal(1));
+				totalBase = totalBase.times(v.pow(power));
+				achievements.ach141 = true;
+				massAchievementChecker();
+			}
+			
+		}
+		x = totalBase.pow(storage.gameData.bacteriaTypes.plus(storage.gameData.bacteriaTypesBulk));
+		
+		document.getElementById("bacteriaTypesScaling").style.display = "block";
+		document.getElementById("cellsIsCapped").style.display = "none";
 		achievements.ach112 = true;
 		massAchievementChecker();
 	}
@@ -33,25 +50,16 @@ export function bacteriaCalculation() {
     const y = x.times(storage.gameData.treeAge.pow(new Decimal(0.060206)));
     const z = new Decimal(100).pow(storage.gameData.bacteriaTypes.minus(new Decimal(1)));
     storage.gameData.bacteriaCap = z.times(storage.gameData.bacteriaCapMult)
-    if (storage.gameData.bacteria.greaterThanOrEqualTo(storage.gameData.bacteriaCap)) {
-        storage.gameData.bacteria = storage.gameData.bacteriaCap;
-    }
-    else if (storage.gameData.stormLevel.greaterThan(new Decimal(1))) {
+	if (storage.gameData.stormLevel.greaterThan(new Decimal(1))) {
         const w = x.times(storage.gameData.treeAge.pow(new Decimal(0.0752575)));
         var v = w.times(storage.gameData.bacteriaMult);
-		if (storage.gameData.isInChallengeBlizzard) {
-			v = new Decimal(1);
-		}
-		storage.gameData.bacteria = v.pow(storage.gameData.bacteriaPow);
-		
-    }
-    else {
-		var a = y.times(storage.gameData.bacteriaMult);
-		if (storage.gameData.isInChallengeBlizzard) {
-			a = new Decimal(1);
-		}
-		storage.gameData.bacteria = a.pow(storage.gameData.bacteriaPow);
-    }
+	}
+	if (storage.gameData.isInChallengeBlizzard) {
+		v = new Decimal(1);
+	}
+	var a = y.times(storage.gameData.bacteriaMult);
+	storage.gameData.bacteria = a.pow(storage.gameData.bacteriaPow).clamp(new Decimal(0), storage.gameData.bacteriaCap);
+	
     if (storage.gameData.stormLevel.greaterThan(new Decimal(1))) {
         document.getElementById('bacteriaCounter').innerHTML = `You have ${storage.truncateToDecimalPlaces(storage.gameData.bacteria, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.bacteriaCap, 3)} Bacteria (x2 every 1e4 Tree Age starting at 1e24 Tree Age)`;
     }
@@ -77,6 +85,9 @@ export function bacteriaCalculation() {
     }
 }
 
+export function B1() {
+	buyB1();
+}
 function buyB1() {
     if (storage.gameData.bacteria.greaterThanOrEqualTo(storage.entropyUpgradeFactor.B1Cost)) {
 		if (storage.entropyUpgradeFactor.B1Amount.greaterThanOrEqualTo(new Decimal(200))) {
@@ -89,14 +100,23 @@ function buyB1() {
         document.getElementById('B1').innerHTML = `Free Fertilizers (${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.B1Amount.trunc(), 3)})<br>Requires ${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.B1Cost, 3)} Bacteria<br>Effect: +${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.B1Effect, 3)} Fertilizers to all Composters`;
     }
 }
+export function B2() {
+	buyB2();
+}
 function buyB2() {
     if (storage.gameData.bacteria.greaterThanOrEqualTo(storage.entropyUpgradeFactor.B2Cost)) {
         storage.entropyUpgradeFactor.B2Cost = storage.entropyUpgradeFactor.B2Cost.pow(new Decimal(2.5));
         storage.entropyUpgradeFactor.B2Amount = storage.entropyUpgradeFactor.B2Amount.plus(new Decimal(1));
         storage.entropyUpgradeFactor.B2Effect = storage.entropyUpgradeFactor.B2Amount.times(new Decimal(0.01));
+		if (storage.entropyUpgradeFactor.B2Amount.greaterThanOrEqualTo(new Decimal(10))) {
+			storage.entropyUpgradeFactor.B2Cost = new Decimal(Infinity);
+		}
 
         document.getElementById('B2').innerHTML = `Softcap Dampener (${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.B2Amount.trunc(), 3)} / 10)<br>Requires ${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.B2Cost, 3)} Bacteria<br>Effect: -${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.B2Effect, 3)} to Leaf softcap root`;
     }
+}
+export function B3() {
+	buyB3();
 }
 function buyB3() {
     if (storage.gameData.roots.greaterThanOrEqualTo(storage.entropyUpgradeFactor.B3Cost)) {
@@ -108,6 +128,6 @@ function buyB3() {
     }
 }
 
-document.getElementById("B1").addEventListener("click", buyB1);
-document.getElementById("B2").addEventListener("click", buyB2);
-document.getElementById("B3").addEventListener("click", buyB3);
+document.getElementById("B1").addEventListener("click", B1);
+document.getElementById("B2").addEventListener("click", B2);
+document.getElementById("B3").addEventListener("click", B3);

@@ -24,6 +24,15 @@ export function laggyAssFunction() {
     RO19();
     RO20();
     RO21();
+    RO22();
+    RO23();
+    RO24();
+    RO25();
+    RO26();
+    RO27();
+    RO28();
+    RO29();
+    RO30();
 }
 
 export function RO1() {
@@ -213,10 +222,110 @@ export function RO20() {
 }
 export function RO21() {
     if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU21) || rootUpgradeFactor.RO21Bought) {
-        document.getElementById("RO21").innerHTML = `RO21 (Bought)<br>Synchronizer<br>Keep all challenge progress upon Reinforcement<br>(if you play EUT you'll recognize this)<br>Cost: 50 Roots`
+        document.getElementById("RO21").innerHTML = `RO21 (Bought)<br>Synchronizer<br>Keep all challenge progress upon Reinforcement<br>(if you play EUT you'll recognize this)<br>Cost: 1000 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('root', 21, rootUpgradeCost.ROU21, false, null);
         rootUpgradeFactor.RO21Bought = true;
+    }
+}
+export function RO22() {
+    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU22) || rootUpgradeFactor.RO22Bought) {
+        document.getElementById("RO22").innerHTML = `RO22 (Bought)<br>Mossy Roots III<br>M1's effect applies to<br>Composting Speed Scaling<br>Cost: 5000 Roots`
+        gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('root', 22, rootUpgradeCost.ROU22, false, null);
+        rootUpgradeFactor.RO22Bought = true;
+    }
+}
+export function RO23() {
+    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU23) || rootUpgradeFactor.RO23Bought) {
+        document.getElementById("RO23").innerHTML = `RO23 (Bought)<br>Bulkier III<br>+6 Fertilizer Bulk<br>Cost: 5000 Roots`
+        gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('root', 23, rootUpgradeCost.ROU23, false, null);
+        rootUpgradeFactor.RO23Bought = true;
+    }
+}
+export function RO24() {
+    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU24) || rootUpgradeFactor.RO24Bought) {
+        document.getElementById("RO24").innerHTML = `RO24 (Bought)<br>Quickening<br>Roots boost Cell Replication cap<br>Cost: 100000 Roots`
+        gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('root', 24, rootUpgradeCost.ROU24, false, null);
+        rootUpgradeFactor.RO24Bought = true;
+    }
+}
+export function RO25() {
+    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU25) || rootUpgradeFactor.RO25Bought) {
+        document.getElementById("RO25").innerHTML = `RO25 (Bought)<br>Insta-Reinforcement<br>Unlock EU Automation<br>Cost: 2.5e9 Roots`
+        gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('root', 25, rootUpgradeCost.ROU25, false, null);
+        rootUpgradeFactor.RO25Bought = true;
+		gameData.euAutomationUnlocked = true;
+    }
+}
+function proteinBulkBuy() {
+	document.getElementById("makeRuBisCo").style.display = "none";
+	document.getElementById("bulkBuyRuBisCo").style.display = "block";
+	document.getElementById("makeExtensin").style.display = "none";
+	document.getElementById("bulkBuyExtensin").style.display = "block";
+	document.getElementById("makeArganine").style.display = "none";
+	document.getElementById("bulkBuyArganine").style.display = "block";
+	document.getElementById("makeGlutamine").style.display = "none";
+	document.getElementById("bulkBuyGlutamine").style.display = "block";
+	document.getElementById("makeGlutamate").style.display = "none";
+	document.getElementById("bulkBuyGlutamate").style.display = "block";
+	document.getElementById("makeAsparagine").style.display = "none";
+	document.getElementById("bulkBuyAsparagine").style.display = "block";
+	document.getElementById("makeAGP").style.display = "none";
+	document.getElementById("bulkBuyAGP").style.display = "block";
+	document.getElementById("makeTRB").style.display = "none";
+	document.getElementById("bulkBuyTRB").style.display = "block";
+}
+export function RO26() {
+    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU26) || rootUpgradeFactor.RO26Bought) {
+        document.getElementById("RO26").innerHTML = `RO26 (Bought)<br>I forgot to make this a Root Milestone<br>You can now bulk buy Proteins<br>Cost: 5e11 Roots`;
+        gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('root', 26, rootUpgradeCost.ROU26, true, proteinBulkBuy());
+        rootUpgradeFactor.RO26Bought = true;
+    }
+}
+export function RO27() {
+    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU27) || rootUpgradeFactor.RO27Bought) {
+        document.getElementById("RO27").innerHTML = `RO27 (Bought)<br>Explosive Growth<br>Unlock Entropy generation<br>Cost: 4e13 Roots`
+        gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('root', 27, rootUpgradeCost.ROU27, false, null);
+        rootUpgradeFactor.RO27Bought = true;
+    }
+}
+export function RO28() {
+    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU28) || rootUpgradeFactor.RO28Bought) {
+        document.getElementById("RO28").innerHTML = `RO28 (Bought)<br>Weather Amplifier I<br>Improve the Drought reward's formula<br>Cost: 6e16 Roots`
+        gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('root', 28, rootUpgradeCost.ROU28, false, null);
+        rootUpgradeFactor.RO28Bought = true;
+    }
+}
+export function RO29() {
+    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU29) || rootUpgradeFactor.RO29Bought) {
+        document.getElementById("RO29").innerHTML = `RO29 (Bought)<br>Helping Hand V<br>Fall's Leaves and Seeds nerf<br>is x10 less effective<br>Cost: 2e20 Roots`
+        gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('root', 29, rootUpgradeCost.ROU29, false, null);
+        rootUpgradeFactor.RO29Bought = true;
+    }
+}
+export function RO30() {
+    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU30) || rootUpgradeFactor.RO30Bought) {
+        document.getElementById("RO30").innerHTML = `RO30 (Bought)<br>Welding Efficiency I<br>x1.5 Welder effect<br>Cost: 1e23 Roots`
+        gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('root', 30, rootUpgradeCost.ROU30, false, null);
+        rootUpgradeFactor.RO30Bought = true;
     }
 }

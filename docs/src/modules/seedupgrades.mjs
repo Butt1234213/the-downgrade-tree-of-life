@@ -55,6 +55,17 @@ export function laggyAssFunction() {
     S50();
     S51();
     S52();
+    S53();
+    S54();
+    S55();
+    S56();
+    S57();
+    S58();
+    S59();
+    S60();
+    S61();
+    S62();
+    S63();
 }
 
 export var functions = {};
@@ -491,6 +502,105 @@ export function S52() {
         seedUpgradeFactor.S52Bought = true;
     }
 }
+export function S53() {
+    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU53)) {
+        gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('seed', 53, seedUpgradeCost.SU53, false, null);
+        seedUpgradeFactor.S53Bought = true;
+    }
+}
+export function S54() {
+    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU54)) {
+        gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('seed', 54, seedUpgradeCost.SU54, false, null);
+        seedUpgradeFactor.S54Bought = true;
+		document.getElementById('S54').innerHTML = `S54 (Bought)<br>Statue Power XIII<br>Every 1000 M5 levels, +1 to LR3's cap<br>Cost: 1e100000 Seeds`;
+    }
+}
+export function S55() {
+    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU55)) {
+        gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('seed', 55, seedUpgradeCost.SU55, false, null);
+        seedUpgradeFactor.S55Bought = true;
+		document.getElementById('S55').innerHTML = `S55 (Bought)<br>Mossy Seeds I<br>^1.05 M3's effect<br>Cost: 1e280000 Seeds`;
+    }
+}
+export function S56() {
+    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU56)) {
+        gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('seed', 56, seedUpgradeCost.SU56, false, null);
+        seedUpgradeFactor.S56Bought = true;
+		document.getElementById('S56').innerHTML = `S56 (Bought)<br>Chronal Power<br>TAS adds to all supercap roots<br>Cost: 1e800000 Seeds`;
+    }
+}
+export function S57() {
+    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU57)) {
+        gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('seed', 57, seedUpgradeCost.SU57, false, null);
+        seedUpgradeFactor.S57Bought = true;
+		document.getElementById('S57').innerHTML = `S57 (Bought)<br>Statue Power XIV<br>Every 1250 M5 levels, +1 to SR3's cap<br>Cost: e1.25e6 Seeds`;
+    }
+}
+export function S58() {
+    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU58)) {
+        gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('seed', 58, seedUpgradeCost.SU58, false, null);
+        seedUpgradeFactor.S58Bought = true;
+		document.getElementById('S58').innerHTML = `S58 (Bought)<br>Statue Power XV<br>Every 1500 M5 levels, +1 to FR3's cap<br>Cost: e2.5e6 Seeds`;
+    }
+}
+export function S59() {
+    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU59)) {
+        gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('seed', 59, seedUpgradeCost.SU59, false, null);
+        seedUpgradeFactor.S59Bought = true;
+		document.getElementById('S59').innerHTML = `S59 (Bought)<br>Statue Power XVIII<br>x100 Glutamate's effect<br>Cost: e8e6 Seeds`;
+    }
+}
+export function S60() {
+    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU60)) {
+        gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('seed', 60, seedUpgradeCost.SU60, false, null);
+        seedUpgradeFactor.S60Bought = true;
+		document.getElementById('S60').innerHTML = `S60 (Bought)<br>Statue Power XIX<br>Glutamate's effect^0.5 affects<br>L,S, and F second repeatable caps<br>Cost: e1e7 Seeds`;
+    }
+}
+export function S61() {
+    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU61)) {
+        gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('seed', 61, seedUpgradeCost.SU61, false, null);
+        seedUpgradeFactor.S61Bought = true;
+		document.getElementById('S61').innerHTML = `S61 (Bought)<br>Statue Power XX<br>Glutamate's effect^0.25 affects<br>L,S, and F third repeatable caps<br>Cost: e1.2e7 Seeds`;
+    }
+}
+export function S62() {
+    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU62)) {
+        gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('seed', 62, seedUpgradeCost.SU62, false, null);
+        seedUpgradeFactor.S62Bought = true;
+		document.getElementById('S62').innerHTML = `S62 (Bought)<br>Hyper Staked Fertilizers<br>After 10000 Fertilizers,<br>the Seed Composter makes Entropy Fertilizers<br>Cost: e3e7 Seeds`;
+    }
+}
+export function S63() {
+    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU63)) {
+        gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('seed', 63, seedUpgradeCost.SU63, false, null);
+        seedUpgradeFactor.S63Bought = true;
+		document.getElementById('S63').innerHTML = `S63 (Bought)<br>Mossy Seeds<br>Seeds delay M3's softcap<br>Cost: e5e7 Seeds`;
+    }
+}
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -546,4 +656,15 @@ document.addEventListener('DOMContentLoaded', () => {
     functions.S50 = S50;
     functions.S51 = S51;
     functions.S52 = S52;
+    functions.S53 = S53;
+    functions.S54 = S54;
+    functions.S55 = S55;
+    functions.S56 = S56;
+    functions.S57 = S57;
+    functions.S58 = S58;
+    functions.S59 = S59;
+    functions.S60 = S60;
+    functions.S61 = S61;
+    functions.S62 = S62;
+    functions.S63 = S63;
 });

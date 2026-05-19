@@ -42,8 +42,18 @@ export function cellsCalculation() {
         
         const r = storage.gameData.cells.pow(new Decimal(0.0150515));
         var q = r.clamp(storage.gameData.baseOverpopulationFactor, new Decimal(Infinity));
-		if (storage.entropyUpgradeFactor.agp.greaterThanOrEqualTo(new Decimal(1))) {
+		
+		let totalAGP = storage.entropyUpgradeFactor.agp.plus(storage.entropyUpgradeFactor.agpFree);
+		if (totalAGP.greaterThanOrEqualTo(new Decimal(1))) {
 			q = q.pow(storage.entropyUpgradeFactor.agpEffect);
+		}
+		//controls the second nerf for cell replication
+		if (storage.gameData.cells.greaterThanOrEqualTo(new Decimal.fromComponents(1, 2, 8))) {
+			const base = Decimal.log10(Decimal.log10(storage.gameData.cells.plus(new Decimal(1))).plus(new Decimal(1)));
+			const power = base.minus(new Decimal(8));
+			const equation = new Decimal(50).pow(power).clamp(new Decimal(1), new Decimal(Infinity));
+			q = q.pow(equation);
+            document.getElementById('overpopulation').innerHTML = `Due to overpopulation, x${storage.truncateToDecimalPlaces(storage.gameData.overpopulationFactor, 3)}<sup>${storage.truncateToDecimalPlaces(equation, 3)}</sup> Replication Interval`;
 		}
         storage.gameData.overpopulationFactor = q;
 

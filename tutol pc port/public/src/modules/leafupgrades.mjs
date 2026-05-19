@@ -68,6 +68,17 @@ export function laggyAssFunction() {
     L62();
     L63();
     L64();
+    L65();
+    L66();
+    L67();
+    L68();
+    L69();
+    L70();
+    L71();
+    L72();
+    L73();
+    L74();
+    L75();
 }
 
 export var functions = {};
@@ -623,6 +634,121 @@ export function L64() {
         leafUpgradeFactor.L64Bought = true;
     }
 }
+export function L65() {
+    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU65)) {
+        gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('leaf', 65, leafUpgradeCost.LU65, false, null);
+        leafUpgradeFactor.L65Bought = true;
+    }
+}
+export function L66() {
+    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU66)) {
+        gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('leaf', 66, leafUpgradeCost.LU66, false, null);
+        leafUpgradeFactor.L66Bought = true;
+		document.getElementById('L66').innerHTML = `L66 (Bought)<br>Oopsies &#129325;<br>Make the effects for RNA upgrades not suck<br>Cost: 1e390000 Leaves`;
+    }
+}
+export function L67() {
+    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU67)) {
+        gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('leaf', 67, leafUpgradeCost.LU67, false, null);
+        leafUpgradeFactor.L67Bought = true;
+    }
+}
+export function L68() {
+    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU68)) {
+        gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('leaf', 68, leafUpgradeCost.LU68, false, null);
+        leafUpgradeFactor.L68Bought = true;
+    }
+}
+export function L69() {
+    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU69)) {
+        gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('leaf', 69, leafUpgradeCost.LU69, false, null);
+        leafUpgradeFactor.L69Bought = true;
+    }
+}
+function ach144() {
+	achievements.ach144 = true;
+	massAchievementChecker();
+    document.querySelector('.challenge-fall').style.visibility = 'visible';
+}
+export function L70() {
+    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU70)) {
+        gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('leaf', 70, leafUpgradeCost.LU70, true, ach144());
+        leafUpgradeFactor.L70Bought = true;
+		document.getElementById('L70').innerHTML = `L70 (Bought)<br>The Fall of Empires<br>Unlock the Fall Challenge<br>Cost: e1.5e6 Leaves`;
+    }
+}
+export function L71() {
+    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU71)) {
+        gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('leaf', 71, leafUpgradeCost.LU71, false, null);
+        leafUpgradeFactor.L71Bought = true;
+		document.getElementById('L71').innerHTML = `L71 (Bought)<br>Leaftic Delayer I<br>M1's effect^0.65 delays<br>Super Composting Speed scaling<br>Cost: e7.5e6 Leaves`;
+    }
+}
+export function L72() {
+    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU72)) {
+        gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('leaf', 72, leafUpgradeCost.LU72, false, null);
+        leafUpgradeFactor.L72Bought = true;
+		document.getElementById('L72').innerHTML = `L72 (Bought)<br>Fallen Conversion I<br>x1.5 FL fall speed<br>Cost: e1.2e7 Leaves`;
+    }
+}
+export function L73() {
+    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU73)) {
+        gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('leaf', 73, leafUpgradeCost.LU73, false, null);
+        leafUpgradeFactor.L73Bought = true;
+		document.getElementById('L73').innerHTML = `L73 (Bought)<br>Fallen Conversion II<br>x2 FL fall speed<br>Cost: e3e7 Leaves`;
+    }
+}
+export function L74() {
+    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU74)) {
+        gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('leaf', 74, leafUpgradeCost.LU74, false, null);
+        leafUpgradeFactor.L74Bought = true;
+		document.getElementById('L74').innerHTML = `L74 (Bought)<br>Fallen Conversion III<br>x1.5 FL fall speed<br>Cost: e7.5e7 Leaves`;
+    }
+}
+function MM11thru20() {
+	document.querySelector('.moss-milestone-background').style.height = '660px';
+	document.querySelector('.moss-upgrade-background').style.top = '689.5px';
+	
+	document.getElementById('mm11Background').style.visibility = 'visible';
+	document.getElementById('mm12Background').style.visibility = 'visible';
+	document.getElementById('mm13Background').style.visibility = 'visible';
+	document.getElementById('mm14Background').style.visibility = 'visible';
+	document.getElementById('mm15Background').style.visibility = 'visible';
+	document.getElementById('mm16Background').style.visibility = 'visible';
+	document.getElementById('mm17Background').style.visibility = 'visible';
+	document.getElementById('mm18Background').style.visibility = 'visible';
+	document.getElementById('mm19Background').style.visibility = 'visible';
+	document.getElementById('mm20Background').style.visibility = 'visible';
+}
+export function L75() {
+    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU75) || leafUpgradeFactor.L75Bought) {
+        gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('leaf', 75, leafUpgradeCost.LU75, true, MM11thru20());
+        leafUpgradeFactor.L75Bought = true;
+		document.getElementById('L75').innerHTML = `L75 (Bought)<br>Mossy Grandeur<br>Unlock new Moss milestones<br>Cost: e1e8 Leaves`;
+    }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     functions.L1 = L1;
@@ -689,4 +815,15 @@ document.addEventListener('DOMContentLoaded', () => {
     functions.L62 = L62;
     functions.L63 = L63;
     functions.L64 = L64;
+    functions.L65 = L65;
+    functions.L66 = L66;
+    functions.L67 = L67;
+    functions.L68 = L68;
+    functions.L69 = L69;
+    functions.L70 = L70;
+    functions.L71 = L71;
+    functions.L72 = L72;
+    functions.L73 = L73;
+    functions.L74 = L74;
+    functions.L75 = L75;
 });

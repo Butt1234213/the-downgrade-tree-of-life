@@ -277,9 +277,6 @@ export function createCallableUpgrade(type, number, cost, isUnlock, unlockFuncti
 
     var object = numberChecker(type);
 
-    console.log(`${config.idPrefix}${number}Bought is ${upgradeBoughtFlag}`)
-    console.log(`The upgrade's buyability is ` + object.greaterThanOrEqualTo(cost));
-
     if (upgradeBoughtFlag || (isAutomatable(type, number, cost))) {
         upgradeID.disabled = true;
         upgradeID.style.color = '#000000';
@@ -291,11 +288,34 @@ export function createCallableUpgrade(type, number, cost, isUnlock, unlockFuncti
     }
     else {
         if (object.greaterThanOrEqualTo(cost)) {
-            if (type === 'leaf') {storage.gameData.leaves = storage.gameData.leaves.minus(cost.trunc()); object = storage.gameData.leaves;}
-            if (type === 'seed') {storage.gameData.seeds = storage.gameData.seeds.minus(cost.trunc()); object = storage.gameData.seeds;}
-            if (type === 'fruit') {storage.gameData.fruits = storage.gameData.fruits.minus(cost.trunc()); object = storage.gameData.fruits;}
-            if (type === 'entropy') {storage.gameData.entropy = storage.gameData.entropy.minus(cost.trunc()); object = storage.gameData.entropy;}
-            if (type === 'root') {storage.gameData.roots = storage.gameData.roots.minus(cost); object = storage.gameData.roots;}
+			let nanFix;
+			switch (type) {
+				case "leaf":
+					nanFix = (storage.gameData.leaves.minus(cost.trunc())).greaterThanOrEqualTo(new Decimal(1));
+					storage.gameData.leaves = nanFix ? storage.gameData.leaves.minus(cost.trunc()) : new Decimal(0);
+					object = storage.gameData.leaves;
+					break;
+				case "seed":
+					nanFix = (storage.gameData.seeds.minus(cost.trunc())).greaterThanOrEqualTo(new Decimal(1));
+					storage.gameData.seeds = nanFix ? storage.gameData.seeds.minus(cost.trunc()) : new Decimal(0);
+					object = storage.gameData.seeds;
+					break;
+				case "fruit":
+					nanFix = (storage.gameData.fruits.minus(cost.trunc())).greaterThanOrEqualTo(new Decimal(1));
+					storage.gameData.fruits = nanFix ? storage.gameData.fruits.minus(cost.trunc()) : new Decimal(0);
+					object = storage.gameData.fruits;
+					break;
+				case "entropy":
+					nanFix = (storage.gameData.entropy.minus(cost.trunc())).greaterThanOrEqualTo(new Decimal(1));
+					storage.gameData.entropy = nanFix ? storage.gameData.entropy.minus(cost.trunc()) : new Decimal(0);
+					object = storage.gameData.entropy;
+					break;
+				case "root":
+					nanFix = (storage.gameData.roots.minus(cost.trunc())).greaterThanOrEqualTo(new Decimal(1));
+					storage.gameData.roots = nanFix ? storage.gameData.roots.minus(cost.trunc()) : new Decimal(0);
+					object = storage.gameData.roots;
+					break;
+			}
 
             document.getElementById(config.resourceCounterName).innerHTML = `${storage.truncateToDecimalPlaces(object, 3)} ${config.caseSensitiveName}`;
             upgradeID.disabled = true;
@@ -313,7 +333,6 @@ export function createCallableUpgrade(type, number, cost, isUnlock, unlockFuncti
             }
         }
     }
-    console.log(storage.gameData.leavesPerTick.isNan());
     if (storage.gameData.leavesPerTick.isNan()) {
         console.error(`${config.idPrefix}${number} broke`)
     }
@@ -483,6 +502,17 @@ document.addEventListener('DOMContentLoaded', () => {
     upgradeBuilder('leaf', 62, `Base Power III<br>Potential Energy boosts CRS`, '1.79e3008', new Decimal(1e20), leafUpgrades.L62);
     upgradeBuilder('leaf', 63, `Oh we're &radic;way there<br>^1.1 RuBisCo's effect`, '1e5000', new Decimal(1e50), leafUpgrades.L63);
     upgradeBuilder('leaf', 64, `Statue Power IX<br>+20 levels to LR2's cap`, '1e25000', new Decimal(1e100), leafUpgrades.L64);
+    upgradeBuilder('leaf', 65, `Moss Power<br>M1 adds to all supercap roots`, '1e100000', new Decimal(1e100), leafUpgrades.L65);
+    upgradeBuilder('leaf', 66, `Oopsies &#129325;<br>Make the effects for RNA upgrades not suck`, '1e390000', new Decimal.fromComponents(1, 1, 1000), leafUpgrades.L66);
+    upgradeBuilder('leaf', 67, `Dead Meme<br>x1.67 Roots`, '6.7e676767', new Decimal.fromComponents(1, 1, 1000), leafUpgrades.L67);
+    upgradeBuilder('leaf', 68, `Grow XIV<br>x1.5 Reinforcements`, '1e800000', new Decimal.fromComponents(1, 1, 1000), leafUpgrades.L68);
+    upgradeBuilder('leaf', 69, `Statue Power XIII<br>+10 to LR3 & SR3's caps`, 'e1.2e6', new Decimal.fromComponents(1, 1, 1000), leafUpgrades.L69);
+    upgradeBuilder('leaf', 70, `The Fall of Empires<br>Unlock the Fall Challenge`, 'e1.5e6', new Decimal.fromComponents(1, 1, 1000), leafUpgrades.L70);
+    upgradeBuilder('leaf', 71, `Leaftic Delayer I<br>M1's effect^0.65 delays<br>Super Composting Speed scaling`, 'e7.5e6', new Decimal.fromComponents(1, 1, 10000), leafUpgrades.L71);
+    upgradeBuilder('leaf', 72, `Fallen Conversion I<br>x1.5 FL fall speed`, 'e1.2e7', new Decimal.fromComponents(1, 1, 10000), leafUpgrades.L72);
+    upgradeBuilder('leaf', 73, `Fallen Conversion II<br>x2 FL fall speed`, 'e3e7', new Decimal.fromComponents(1, 1, 10000), leafUpgrades.L73);
+    upgradeBuilder('leaf', 74, `Fallen Conversion III<br>x1.5 FL fall speed`, 'e7.5e7', new Decimal.fromComponents(1, 1, 10000), leafUpgrades.L74);
+    upgradeBuilder('leaf', 75, `Mossy Grandeur<br>Unlock new Moss milestones`, 'e1e8', new Decimal.fromComponents(1, 1, 100000), leafUpgrades.L75);
 
     upgradeBuilder('seed', 1, 'Branch I<br>x6 Leaves', '1', new Decimal(400), seedUpgrades.S1);
     upgradeBuilder('seed', 2, 'Branch II<br>x3 Leaves', '3', new Decimal(400), seedUpgrades.S2);
@@ -536,6 +566,17 @@ document.addEventListener('DOMContentLoaded', () => {
     upgradeBuilder('seed', 50, `Fortification<br>+0.1 to all supercap roots`, '1.79e3008', new Decimal(1e40), seedUpgrades.S50);
     upgradeBuilder('seed', 51, `Statue Power VII<br>Every five M5 levels, +1 to LR2's cap`, '1e5000', new Decimal(1e100), seedUpgrades.S51);
     upgradeBuilder('seed', 52, `Statue Power X<br>Every five M5 levels, +1 to SR2's cap`, '1e10000', new Decimal(1e100), seedUpgrades.S52);
+    upgradeBuilder('seed', 53, `Statue Power XI<br>Every 30 M5 levels, +1 to FR2's cap`, '1e50000', new Decimal(1e100), seedUpgrades.S53);
+    upgradeBuilder('seed', 54, `Statue Power XII<br>Every 1000 M5 levels, +1 to LR3's cap`, '1e100000', new Decimal(1e100), seedUpgrades.S54);
+    upgradeBuilder('seed', 55, `Mossy Seeds I<br>^1.05 M3's effect`, '1e280000', new Decimal.fromComponents(1, 1, 1000), seedUpgrades.S55);
+    upgradeBuilder('seed', 56, `Chronal Power<br>TAS adds to all supercap roots`, '1e800000', new Decimal.fromComponents(1, 1, 1000), seedUpgrades.S55);
+    upgradeBuilder('seed', 57, `Statue Power XIV<br>Every 1250 M5 levels, +1 to SR3's cap`, 'e1.25e6', new Decimal.fromComponents(1, 1, 1000), seedUpgrades.S57);
+    upgradeBuilder('seed', 58, `Statue Power XV<br>Every 1500 M5 levels, +1 to FR3's cap`, 'e2.5e6', new Decimal.fromComponents(1, 1, 1000), seedUpgrades.S58);
+    upgradeBuilder('seed', 59, `Statue Power XVIII<br>x100 Glutamate's effect`, 'e8e6', new Decimal.fromComponents(1, 1, 10000), seedUpgrades.S59);
+    upgradeBuilder('seed', 60, `Statue Power XIX<br>Glutamate's effect^0.5 affects<br>L,S, and F second repeatable caps`, 'e1e7', new Decimal.fromComponents(1, 1, 10000), seedUpgrades.S60);
+    upgradeBuilder('seed', 61, `Statue Power XX<br>Glutamate's effect^0.25 affects<br>L,S, and F third repeatable caps`, 'e1.2e7', new Decimal.fromComponents(1, 1, 10000), seedUpgrades.S61);
+    upgradeBuilder('seed', 62, `Hyper Staked Fertilizers<br>After 10000 Fertilizers,<br>the Seed Composter makes Entropy Fertilizers`, 'e2e7', new Decimal.fromComponents(1, 1, 10000), fruitUpgrades.S62);
+    upgradeBuilder('seed', 63, `Mossy Seeds<br>Seeds delay M3's softcap`, 'e5e7', new Decimal.fromComponents(1, 1, 10000), fruitUpgrades.S62);
 
     upgradeBuilder('fruit', 1, 'The Composter I<br>Unlock the Composter', '1', new Decimal(50000), fruitUpgrades.F1);
     upgradeBuilder('fruit', 2, 'The Composter II<br>Unlock the second Composter', '4', new Decimal(50000), fruitUpgrades.F2);
@@ -565,7 +606,7 @@ document.addEventListener('DOMContentLoaded', () => {
     upgradeBuilder('fruit', 26, 'Bloom VI<br>x3L, F, and x100CS', '2e33', new Decimal(6.66e8), fruitUpgrades.F26);
     upgradeBuilder('fruit', 27, 'Bloom VII<br>x20L, and x7.5TAS', '2e37', new Decimal(6.66e8), fruitUpgrades.F27);
     upgradeBuilder('fruit', 28, 'Bloom VIII<br>x20L, x5S, x3F, and x2TAS', '7.5e45', new Decimal(3e9), fruitUpgrades.F28);
-    upgradeBuilder('fruit', 29, 'Super Staked Fertilizer<br>After 50 Fertilizers,<br> the Fruit Composter makes Leaf Fertilizers', '1e61', new Decimal(3e9), fruitUpgrades.F29);
+    upgradeBuilder('fruit', 29, 'Super Staked Fertilizers<br>After 50 Fertilizers,<br>the Fruit Composter makes Leaf Fertilizers', '1e61', new Decimal(3e9), fruitUpgrades.F29);
     upgradeBuilder('fruit', 30, 'Bloom IX<br>x10L, S, F, and CRS<br>(CRS stands for Cell Replication Speed)', '3.5e89', new Decimal(1.3e12), fruitUpgrades.F30);
     upgradeBuilder('fruit', 31, 'Bloom X<br>Googol Fruits!<br>x100L, TAS, and x2E', '1e100', new Decimal(1.3e12), fruitUpgrades.F31);
     upgradeBuilder('fruit', 32, 'Bloom XI<br>x10CRS', '1e110', new Decimal(4.5e15), fruitUpgrades.F32);
@@ -583,6 +624,15 @@ document.addEventListener('DOMContentLoaded', () => {
     upgradeBuilder('fruit', 44, 'Super Replication<br>The Cell replication cap is better<br>1e1000 -> 1e5000', '1e1600', new Decimal(1e30), fruitUpgrades.F44);
     upgradeBuilder('fruit', 45, 'Bloom XIV<br>x4 Game speed', '1.79e3008', new Decimal(1e30), fruitUpgrades.F45);
     upgradeBuilder('fruit', 46, 'Glutenous Fruits<br>+4 Glutamine and Glutamate Proteins', '6.66e6666', new Decimal(1e100), fruitUpgrades.F46);
+    upgradeBuilder('fruit', 47, `Mossy Fruits I<br>M1's effect softcap starts +150 later`, '1e16000', new Decimal(1e100), fruitUpgrades.F47);
+    upgradeBuilder('fruit', 48, `Mossy Fruits II<br>M1's effect softcap starts +150 later`, '1e32000', new Decimal(1e100), fruitUpgrades.F48);
+    upgradeBuilder('fruit', 49, `Mossy Fruits III<br>M1's effect softcap starts +150 later`, '1e64000', new Decimal(1e100), fruitUpgrades.F49);
+    upgradeBuilder('fruit', 50, `The Composter V<br>Unlock the fifth Composter`, 'e1.75e6', new Decimal.fromComponents(1, 1, 1000), fruitUpgrades.F50);
+    upgradeBuilder('fruit', 51, `Composting Power<br>Total Fertilizers add to all supercap roots`, 'e2.5e6', new Decimal.fromComponents(1, 1, 2000), fruitUpgrades.F51);
+    upgradeBuilder('fruit', 52, `Statue Power XVI<br>x2.5 FR3's effect`, 'e1e7', new Decimal.fromComponents(1, 1, 10000), fruitUpgrades.F52);
+    upgradeBuilder('fruit', 53, `Statue Power XVII<br>x1.5 FR3's effect`, 'e1.5e7', new Decimal.fromComponents(1, 1, 10000), fruitUpgrades.F53);
+    upgradeBuilder('fruit', 54, `Hyper Staked Fertilizers<br>After 10000 Fertilizers,<br>the Fruit Composter makes Entropy Fertilizers`, 'e2e7', new Decimal.fromComponents(1, 1, 10000), fruitUpgrades.F54);
+    upgradeBuilder('fruit', 55, `No More Random Resets!<br>Every 0.1 seconds, each composter<br>recalculates its time requirement`, 'e3e7', new Decimal.fromComponents(1, 1, 10000), fruitUpgrades.F55);
 
     upgradeBuilder('entropy', 1, 'Cellular Lab<br>Unlock the Cellular Lab', '1', new Decimal(1e21), entropyUpgrades.E1);
     upgradeBuilder('entropy', 2, 'Split of Decisions<br>Base Leaf Multiplier is ^ 1.5', '1', new Decimal(1e21), entropyUpgrades.E2);
@@ -627,7 +677,14 @@ document.addEventListener('DOMContentLoaded', () => {
     upgradeBuilder('entropy', 41, `Helping Hand III<br>^1.5 Fruit base mult in the Drought`, '1e95', new Decimal(1e50), entropyUpgrades.E41);
     upgradeBuilder('entropy', 42, `30 Below Zero<br>Unlock the Blizzard Challenge`, '1e100', new Decimal(1e100), entropyUpgrades.E42);
     upgradeBuilder('entropy', 43, `Island of Stability<br>Roots boost Bacteria cap`, '1e180', new Decimal(1e100), entropyUpgrades.E43);
-    upgradeBuilder('entropy', 44, `DNA Polymerase II<br>DNA's formula is even better<br>1e10000<sup>1.25x</sup> -> 1e10000<sup>1.1x</sup>`, '1e250', new Decimal(1e100), entropyUpgrades.E44);
+    upgradeBuilder('entropy', 44, `DNA Polymerase II<br>DNA's formula is even better<br>1e10000<sup>1.25x</sup> -> 1e10000<sup>1.15x</sup>`, '1.79e308', new Decimal(1e100), entropyUpgrades.E44);
+    upgradeBuilder('entropy', 45, 'The Statue IV<br>Unlock the Entropy repeatable upgrade', '1e1000', new Decimal.fromComponents(1, 1, 2500), entropyUpgrades.E45);
+    upgradeBuilder('entropy', 46, `Statue Power XIV<br>+40 to ER1's cap`, '1e20000', new Decimal.fromComponents(1, 1, 2500), entropyUpgrades.E46);
+    upgradeBuilder('entropy', 47, `Helping Hand IV<br>Drought's high score is set to Fruits<sup>0.25</sup>`, '1e100000', new Decimal.fromComponents(1, 1, 2500), entropyUpgrades.E47);
+    upgradeBuilder('entropy', 48, `RNA Replicase I<br>RNA boosts the Cell Replication cap`, '1e200000', new Decimal.fromComponents(1, 1, 2500), entropyUpgrades.E48);
+    upgradeBuilder('entropy', 49, `RNA Replicase II<br>x10 RNA`, '1e400000', new Decimal.fromComponents(1, 1, 2500), entropyUpgrades.E49);
+    upgradeBuilder('entropy', 50, `Statue Power XXI<br>Every 7500 M5 levels, +1 to ER1's cap`, '1e500000', new Decimal.fromComponents(1, 1, 10000), entropyUpgrades.E50);
+    upgradeBuilder('entropy', 51, `Mossy Bacteria<br>MM10's effect now affects Bacteria's cap`, 'e1e6', new Decimal.fromComponents(1, 1, 10000), entropyUpgrades.E51);
 	
 	upgradeBuilder('root', 1, `Price of Power<br>^1.1 RuBisCo's effect`, '0.5', new Decimal.fromComponents(1, 1, 1000), rootUpgrades.RO1);
 	upgradeBuilder('root', 2, `Price of Power<br>Storm reward boosts Seeds base mult<br>with reduced rate`, '0.5', new Decimal.fromComponents(1, 1, 1000), rootUpgrades.RO2);
@@ -650,4 +707,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	upgradeBuilder('root', 19, `Growth Hormones<br>Unlock Fruit generation`, '50', new Decimal.fromComponents(1, 1, 1500), rootUpgrades.RO19);
 	upgradeBuilder('root', 20, `Microscopic Life<br>Manufacture a Petri Dish`, '100', new Decimal.fromComponents(1, 1, 1500), rootUpgrades.RO20);
 	upgradeBuilder('root', 21, `Synchronizer<br>Keep all challenge progress upon Reinforcement<br>(if you play EUT you'll recognize this)`, '1000', new Decimal.fromComponents(1, 1, 2000), rootUpgrades.RO21);
+	upgradeBuilder('root', 22, `Mossy Roots III<br>M1's effect applies to<br>Composting Speed Scaling`, '5000', new Decimal.fromComponents(1, 1, 2000), rootUpgrades.RO22);
+	upgradeBuilder('root', 23, `Bulkier III<br>+6 Fertilizer Bulk`, '5000', new Decimal.fromComponents(1, 1, 2000), rootUpgrades.RO23);
+	upgradeBuilder('root', 24, `Quickening<br>Roots boost Cell Replication cap`, '100000', new Decimal.fromComponents(1, 1, 2500), rootUpgrades.RO24);
+	upgradeBuilder('root', 25, `Insta-Reinforcement<br>Unlock EU Automation`, '2.5e9', new Decimal.fromComponents(1, 1, 2500), rootUpgrades.RO25);
+	upgradeBuilder('root', 26, `I Forgot to make this a Root Milestone<br>You can now bulk buy Proteins`, '5e11', new Decimal.fromComponents(1, 1, 2500), rootUpgrades.RO26);
+	upgradeBuilder('root', 27, `Explosive Growth<br>Unlock Entropy Generation`, '4e13', new Decimal.fromComponents(1, 1, 2500), rootUpgrades.RO27);
+	upgradeBuilder('root', 28, `Weather Amplifier I<br>Improve the Drought reward's formula`, '6e16', new Decimal.fromComponents(1, 1, 10000), rootUpgrades.RO28);
+	upgradeBuilder('root', 29, `Helping Hand V<br>Fall's Leaves and Seeds nerf<br>is x10 less effective`, '2e20', new Decimal.fromComponents(1, 1, 10000), rootUpgrades.RO29);
+	upgradeBuilder('root', 30, `Welding Efficiency I<br>x1.5 Welder effect`, '1e23', new Decimal.fromComponents(1, 1, 10000), rootUpgrades.RO30);
 });

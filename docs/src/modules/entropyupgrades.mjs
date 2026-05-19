@@ -47,7 +47,17 @@ export function laggyAssFunction() {
     E42();
     E43();
     E44();
+    E45();
+    E46();
+    E47();
+    E48();
+    E49();
+    E50();
+    E51();
 }
+
+export var functions = {};
+
 function ach45() {
     achievements.ach45 = true;
     massAchievementChecker();
@@ -485,10 +495,131 @@ export function E43() {
 }
 export function E44() {
     if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU44) || entropyUpgradeFactor.E44Bought) {
-        document.getElementById("E44").innerHTML = `E44 (Bought)<br>DNA Polymerase II<br>DNA's formula is even better<br>1e10000<sup>1.25x</sup> -> 1e10000<sup>1.1x</sup><br>Cost: 1e180 Entropy`;
+        document.getElementById("E44").innerHTML = `E44 (Bought)<br>DNA Polymerase II<br>DNA's formula is even better<br>1e10000<sup>1.25x</sup> -> 1e10000<sup>1.15x</sup><br>Cost: 1.79e308 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('entropy', 44, entropyUpgradeCost.EU44, false, null);
         entropyUpgradeFactor.E44Bought = true;
     }
 }
+function ach142() {
+	achievements.ach142 = true;
+	massAchievementChecker();
+}
+export function E45() {
+    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU45) || entropyUpgradeFactor.E45Bought) {
+        document.getElementById("E45").innerHTML = `E45 (Bought)<br>The Statue IV<br>Unlock the Entropy repeatable upgrade<br>Cost: 1e1000 Entropy`;
+        gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('entropy', 45, entropyUpgradeCost.EU45, true, ach142());
+        entropyUpgradeFactor.E45Bought = true;
+    }
+}
+export function E46() {
+    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU46) || entropyUpgradeFactor.E46Bought) {
+        document.getElementById("E46").innerHTML = `E46 (Bought)<br>Statue Power XIV<br>+40 to ER1's cap<br>Cost: 1e20000 Entropy`;
+        gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('entropy', 46, entropyUpgradeCost.EU46, false, null);
+        entropyUpgradeFactor.E46Bought = true;
+    }
+}
+export function E47() {
+    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU47) || entropyUpgradeFactor.E47Bought) {
+        document.getElementById("E47").innerHTML = `E47 (Bought)<br>Helping Hand IV<br>Drought's high score is set to Fruits<sup>0.25</sup><br>Cost: 1e100000 Entropy`;
+        gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('entropy', 47, entropyUpgradeCost.EU47, false, null);
+        entropyUpgradeFactor.E47Bought = true;
+    }
+}
+export function E48() {
+    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU48) || entropyUpgradeFactor.E48Bought) {
+        document.getElementById("E48").innerHTML = `E48 (Bought)<br>RNA Replicase I<br>RNA boosts the Cell Replication cap<br>Cost: 1e200000 Entropy`;
+        gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('entropy', 48, entropyUpgradeCost.EU48, false, null);
+        entropyUpgradeFactor.E48Bought = true;
+    }
+}
+export function E49() {
+    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU49) || entropyUpgradeFactor.E49Bought) {
+        document.getElementById("E49").innerHTML = `E49 (Bought)<br>RNA Replicase II<br>x10 RNA<br>Cost: 1e400000 Entropy`;
+        gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('entropy', 49, entropyUpgradeCost.EU49, false, null);
+        entropyUpgradeFactor.E49Bought = true;
+    }
+}
+export function E50() {
+    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU50) || entropyUpgradeFactor.E50Bought) {
+        document.getElementById("E50").innerHTML = `E50 (Bought)<br>Statue Power XXI<br>Every 7500 M5 levels, +1 to ER1's cap<br>Cost: 1e500000 Entropy`;
+        gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('entropy', 50, entropyUpgradeCost.EU50, false, null);
+        entropyUpgradeFactor.E50Bought = true;
+    }
+}
+export function E51() {
+    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU51) || entropyUpgradeFactor.E51Bought) {
+        document.getElementById("E51").innerHTML = `E51 (Bought)<br>Mossy Bacteria<br>MM10's effect now affects Bacteria's cap<br>Cost: e1e6 Entropy`;
+        gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
+        gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
+        createCallableUpgrade('entropy', 51, entropyUpgradeCost.EU51, false, null);
+        entropyUpgradeFactor.E51Bought = true;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    functions.E1 = E1;
+    functions.E2 = E2;
+    functions.E3 = E3;
+    functions.E4 = E4;
+    functions.E5 = E5;
+    functions.E6 = E6;
+    functions.E7 = E7;
+    functions.E8 = E8;
+    functions.E9 = E9;
+    functions.E10 = E10;
+    functions.E11 = E11;
+    functions.E12 = E12;
+    functions.E13 = E13;
+    functions.E14 = E14;
+    functions.E15 = E15;
+    functions.E16 = E16;
+    functions.E17 = E17;
+    functions.E18 = E18;
+    functions.E19 = E19;
+    functions.E20 = E20;
+    functions.E21 = E21;
+    functions.E22 = E22;
+    functions.E23 = E23;
+    functions.E24 = E24;
+    functions.E25 = E25;
+    functions.E26 = E26;
+    functions.E27 = E27;
+    functions.E28 = E28;
+    functions.E29 = E29;
+    functions.E30 = E30;
+    functions.E31 = E31;
+    functions.E32 = E32;
+    functions.E33 = E33;
+    functions.E34 = E34;
+    functions.E35 = E35;
+    functions.E36 = E36;
+    functions.E37 = E37;
+    functions.E38 = E38;
+    functions.E39 = E39;
+    functions.E40 = E40;
+    functions.E41 = E41;
+    functions.E42 = E42;
+    functions.E43 = E43;
+    functions.E44 = E44;
+    functions.E45 = E45;
+    functions.E46 = E46;
+    functions.E47 = E47;
+    functions.E48 = E48;
+    functions.E49 = E49;
+    functions.E50 = E50;
+    functions.E51 = E51;
+});

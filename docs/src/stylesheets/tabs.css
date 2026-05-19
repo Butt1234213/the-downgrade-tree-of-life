@@ -248,3 +248,33 @@
     padding: 5px;
     visibility: hidden;
 }
+.buttons-welder-tab-color {
+    position: absolute;
+    left: 237.5px;
+    top: 0px;
+    background-color: #76b2d2;
+    white-space: nowrap;
+    font-family: Verdana;
+    font-size: 16px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #1985de;
+    font-weight: bold;
+    padding: 5px;
+	visibility: hidden;
+}
+.buttons-fallen-leaves-tab-color {
+    position: absolute;
+    left: 327.5px;
+    top: 0px;
+    background-color: #db6c1b;
+    white-space: nowrap;
+    font-family: Verdana;
+    font-size: 16px;
+    color: #ffffffff;
+    border-style: outset;
+    border-color: #cd5115;
+    font-weight: bold;
+    padding: 5px;
+    visibility: hidden;
+}

@@ -1,5 +1,5 @@
 import * as storage from './core/bunchobullshit.mjs';
-import { achievements, secretAchievements, updateAchievements } from './achievements.mjs';
+import { achievements, secretAchievements, updateAchievements, massSecretAchievementChecker } from './achievements.mjs';
 import * as automation from './automation.mjs';
 import * as leafUpgrades from './leafupgrades.mjs';
 import * as temple from './temple.mjs';
@@ -28,6 +28,26 @@ var repeatableUpgradeFactorKeys = [];
 
 var exportString = "";
 var exportStrings = [];
+
+//I just copy pasted this from stack overflow and this apparently fixes infinite recursion in objects or something
+function getCircularReplacer() {
+  const ancestors = [];
+  return function (key, value) {
+    if (typeof value !== "object" || value === null) {
+      return value;
+    }
+    // `this` is the object that value is contained in,
+    // i.e., its direct parent.
+    while (ancestors.length > 0 && ancestors.at(-1) !== this) {
+      ancestors.pop();
+    }
+    if (ancestors.includes(value)) {
+      return "[Circular]";
+    }
+    ancestors.push(value);
+    return value;
+  };
+}
 
 export function saveLoop() {
     if (storage.gameData !== undefined && !gameLoading) {
@@ -88,7 +108,7 @@ export function saveLoop() {
                 rootUpgradeFactorKeys.push(key);
             }
         });
-        localStorage.setItem("rootUpgradeFactor", JSON.stringify(temporaryRootUpgradeFactor));
+        localStorage.setItem("rootUpgradeFactor", JSON.stringify(temporaryRootUpgradeFactor, getCircularReplacer()));
     }
     if (achievements !== undefined && !gameLoading) {
         temporaryAchievements = achievements;
@@ -130,24 +150,16 @@ export function saveLoop() {
     }
 
     exportString = 
-    " " + localStorage.getItem("gameData") + 
-    " " + gameDataKeys.toString() + 
-    " " + localStorage.getItem("leafUpgradeFactor") +
-    " " + leafUpgradeFactorKeys.toString() + 
-    " " + localStorage.getItem("seedUpgradeFactor") +
-    " " + seedUpgradeFactorKeys.toString() + 
-    " " + localStorage.getItem("fruitUpgradeFactor") +
-    " " + fruitUpgradeFactorKeys.toString() + 
-    " " + localStorage.getItem("entropyUpgradeFactor") +
-    " " + entropyUpgradeFactorKeys.toString() + 
-    " " + localStorage.getItem("achievements") + 
-    " " + localStorage.getItem("secretAchievements") +
-    " " + localStorage.getItem("circuits") +
-    " " + circuitsKeys.toString() +
-    " " + localStorage.getItem("repeatableUpgradeFactor") +
-    " " + repeatableUpgradeFactorKeys.toString() +
-    " " + localStorage.getItem("rootUpgradeFactor") +
-    " " + rootUpgradeFactorKeys.toString();
+    "\n" + localStorage.getItem("gameData") + 
+    "\n" + localStorage.getItem("leafUpgradeFactor") +
+    "\n" + localStorage.getItem("seedUpgradeFactor") +
+    "\n" + localStorage.getItem("fruitUpgradeFactor") +
+    "\n" + localStorage.getItem("entropyUpgradeFactor") +
+    "\n" + localStorage.getItem("achievements") + 
+    "\n" + localStorage.getItem("secretAchievements") +
+    "\n" + localStorage.getItem("circuits") +
+    "\n" + localStorage.getItem("repeatableUpgradeFactor") +
+    "\n" + localStorage.getItem("rootUpgradeFactor");
 
     exportStrings = exportString.split(" ");
     exportStrings.splice(0, 1);
@@ -323,9 +335,7 @@ export function loadSave() {
             }
         }
     }
-    console.log(newRepeatableUpgradeFactor);
-    console.log(loadedRepeatableUpgradeFactor);
-
+	
     storage.updateGameData(loadedGameData);
     storage.updateLeafUpgradeFactor(loadedLeafUpgradeFactor);
     storage.updateSeedUpgradeFactor(loadedSeedUpgradeFactor);
@@ -360,12 +370,22 @@ export function loadSave() {
     gameLoading = false;
 }
 
-export async function copySaveFileToClipboard() {
-    let textToCopy = exportString;
+function downloadGeneratedFile(content, fileName, contentType) {
+	const file = new Blob([content], { type: contentType });
+	const url = URL.createObjectURL(file);
+	const link = document.createElement('a');
+	link.href = url;
+	link.download = fileName;
+	link.click();
+	URL.revokeObjectURL(url);
+}
+
+export async function exportSave() {
+	saveLoop();
+    let textToCopy = btoa(exportString);
     try {
-        await navigator.clipboard.writeText(textToCopy);
-        console.log('Text copied to clipboard: ' + textToCopy);
-        document.getElementById('exportSave').innerHTML = 'Copied to clipboard!';
+		downloadGeneratedFile(textToCopy, 'tdtolSaveFile.txt', 'text/plain');
+        document.getElementById('exportSave').innerHTML = 'Exported as a file!';
         setTimeout(() => {document.getElementById('exportSave').innerHTML = 'Export Save';}, 1000);
     } catch (err) {
         console.error('Failed to copy text: ' + err);
@@ -383,9 +403,54 @@ function loadSaveButActually() {
     loadSave();
 }
 
+//copy-pasted directly from stack overflow
+function importSaveFromFile() {
+	var input = document.createElement("input");
+	input.type = "file";
+	input.accept = ".txt";
+
+	input.onchange = e => { 
+		var file = e.target.files[0]; 
+		var reader = new FileReader();
+		reader.readAsText(file, "UTF-8");
+	   
+		reader.onload = readerEvent => {
+			const content = atob(readerEvent.target.result);
+			console.log(content);
+			//!æ­jË is the un-base64'ed version of "I eat ass"
+			if (content === "!æ­jË") {
+				secretAchievements.secret15 = true;
+				massSecretAchievementChecker();
+			}
+			const parsedContent = content.split("\n");
+			if (!(parsedContent.length === 11)) {
+				return;
+			}
+			parsedContent.shift();
+			console.log(parsedContent);
+			
+			localStorage.setItem("gameData", parsedContent[0]);
+			localStorage.setItem("leafUpgradeFactor", parsedContent[1]);
+			localStorage.setItem("seedUpgradeFactor", parsedContent[2]);
+			localStorage.setItem("fruitUpgradeFactor", parsedContent[3]);
+			localStorage.setItem("entropyUpgradeFactor", parsedContent[4]);
+			localStorage.setItem("achievements", parsedContent[5]);
+			localStorage.setItem("secretAchievements", parsedContent[6]);
+			localStorage.setItem("circuits", parsedContent[7]);
+			localStorage.setItem("repeatableUpgradeFactor", parsedContent[8]);
+			localStorage.setItem("rootUpgradeFactor", parsedContent[9]);
+			sleep(500);
+			window.location.reload();
+		}
+	}
+	//janky method of opening the select file dialog box
+	input.click();
+}
+
 document.getElementById("saveManually").addEventListener("click", saveLoop);
 document.getElementById("loadSave").addEventListener("click", loadSaveButActually);
-document.getElementById("exportSave").addEventListener("click", copySaveFileToClipboard);
+document.getElementById("exportSave").addEventListener("click", exportSave);
+document.getElementById("importSave").addEventListener("click", importSaveFromFile);
 
 document.addEventListener('DOMContentLoaded', () => {
 	sleep(100);
@@ -398,10 +463,15 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 	storage.gameData.resettingGame = false;
 	localStorage.setItem("resettingGame", JSON.stringify(storage.gameData.resettingGame));
+
+	const loadState = localStorage.getItem("loadState");
+    if (typeof loadState === "string") {
+       storage[loadState]();
+    }
 });
 
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 const resetButton = document.getElementById('resetSave');

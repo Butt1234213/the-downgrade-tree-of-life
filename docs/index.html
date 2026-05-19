@@ -16,6 +16,7 @@
   <body>
 
     <div class="resource-container">
+		<img id="titleScreen" src="./src/images/title.png" alt="124" width="100%" height="100%" style="position: fixed; top: 0px; left: 0px; z-index: 1000;">
         <div class="leaves">
 			<p>Leaves</p>
 			<p id="pleaseWork">0</p>
@@ -64,7 +65,7 @@
 		<p id="entropyOnTransformCounter" style="display: inline;"></p>
         <div class="italic"><p id="entropyUpdateCounter">5e22 PE Required</p></div>
         <p id="entropySoftcap" class="softcap"></p>
-        <img src="./src/images/entropy.png" alt="Entropy">
+        <img src="./src/images/entropy.png" alt="Entropy" id="entropyImage">
         <button id="entropyResetButton" class="entropy-reset-button">Transform</button><!-- 
         <p class="bold" style="display: inline-block; bottom: 0px; right: 0px;">Entropy</p> -->
       </div>
@@ -112,6 +113,8 @@
     <div class="root-tab-container" id="root-tabs">
       <button id="rootMilestoneTab" class="buttons-root-milestone-tab-color">Milestones</button>
       <button id="petriDishTab" class="buttons-petri-dish-tab-color">Petri Dish</button>
+      <button id="welderTab" class="buttons-welder-tab-color">Welder</button>
+      <button id="fallenLeavesTab" class="buttons-fallen-leaves-tab-color">Fallen Leaves</button>
     </div>
 
     <div class="buttons-lu" id="buttons-lu">
@@ -126,6 +129,9 @@
 	    <div id="leafSupercap" class="supercap" style="display: none;">
 		  <p id="leafSupercapInfo" class="top30">The Leaf supercap starts at 1.08e2466 (^1)</p>
 	    </div>
+	    <div id="leafMaximum" class="maximum" style="display: none;">
+		  <p id="leafMaximumInfo" style="position: relative; left: 1px;">You cannot have over 1.08e7466 Leaves<br>(based on when your Leaf supercap root hits ^0)</p>
+	    </div>
         <p class="softcap-storm" id="leafStormcapInfo"></p>
 	  </div>
     </div>
@@ -137,6 +143,9 @@
 	    <div id="seedSupercap" class="supercap" style="display: none;">
 		  <p id="seedSupercapInfo" class="top30">The Seed supercap starts at 1.08e2466 (^1)</p>
 	    </div>
+	    <div id="seedMaximum" class="maximum" style="display: none;">
+		  <p id="seedMaximumInfo" style="position: relative; left: 1px;">You cannot have over 1.08e7466 Seeds<br>(based on when your Seed supercap root hits ^0)</p>
+	    </div>
         <p class="softcap-storm" id="seedStormcapInfo"></p>
         <p class="italic">Remember to buy L1 after every reset! &#128512</p>
 	  </div>
@@ -147,6 +156,9 @@
         <p class="softcap" id="fruitSoftcapInfo"></p>
 	    <div id="fruitSupercap" class="supercap" style="display: none;">
 		  <p id="fruitSupercapInfo" class="top30">The Fruit supercap starts at 1.08e2466 (^1)</p>
+	    </div>
+	    <div id="fruitMaximum" class="maximum" style="display: none;">
+		  <p id="fruitMaximumInfo" style="position: relative; left: 1px;">You cannot have over 1.08e7466 Fruits<br>(based on when your Fruit supercap root hits ^0)</p>
 	    </div>
         <p class="softcap-storm" id="fruitStormcapInfo"></p>
         <p class="italic">Remember to buy L1 after every reset! &#128512</p>
@@ -167,6 +179,7 @@
           <div class="buttons-lru">
             <button class="buttons-lu-repeatable-color" id="LR1">LR1 (0 / 10)<br>x2L, x2F<br>Cost: 1e500 Leaves<br>Effect: x1</button>
             <button class="buttons-lu-repeatable-color" id="LR2" style="display: none;">LR2 (0 / 10)<br>+0.05 to Leaf supercap root<br>Cost: 1e5800 Leaves<br>Effect: +0</button>
+            <button class="buttons-lu-repeatable-color" id="LR3" style="display: none;">LR3 (0 / 10)<br>x1.1 Roots<br>Cost: 1e100000 Leaves<br>Effect: x1</button>
           </div>
         </div>
       </div>
@@ -177,6 +190,7 @@
           <div class="buttons-sru">
             <button class="buttons-su-repeatable-color" id="SR1">SR1 (0 / 10)<br>x4L, x4TAS<br>Cost: 1e1000 Seeds<br>Effect: x1</button>
             <button class="buttons-su-repeatable-color" id="SR2" style="display: none;">SR2 (0 / 10)<br>x1.5 Game speed<br>Cost: 1e8000 Seeds<br>Effect: x1</button>
+            <button class="buttons-su-repeatable-color" id="SR3" style="display: none;">SR3 (0 / 10)<br>+^0.005 TAS<br>Cost: 1e30000 Seeds<br>Effect: ^1</button>
           </div>
         </div>
       </div>
@@ -184,8 +198,19 @@
         <div class="center-align">
           <p class="bold">Fruit Statue</p>
           <img src="./src/images/fruitStatue.png" alt="fruitStatue" width="200" height="200">
-          <div class="buttons-sru">
+          <div class="buttons-fru">
             <button class="buttons-fu-repeatable-color" id="FR1">FR1 (0 / 10)<br>+1 Super Scaling start<br>Cost: 1e1000 Fruits<br>Effect: +0</button>
+            <button class="buttons-fu-repeatable-color" id="FR2" style="display: none;">FR2 (0 / 10)<br>+0.005x Fertilizer base effect<br>Cost: 1e10000 Fruits<br>Effect: x1</button>
+			<button class="buttons-fu-repeatable-color" id="FR3" style="display: none;">FR3 (0 / 10)<br>+7.5 CS Super Scaling start<br>Cost: 1e500000 Fruits<br>Effect: +0</button>
+          </div>
+        </div>
+      </div>
+      <div class="buttons-eru-holder">
+        <div class="center-align">
+          <p class="bold">Entropy Statue</p>
+          <img src="./src/images/entropyStatue.png" alt="entropyStatue" width="200" height="200">
+          <div class="buttons-eru">
+            <button class="buttons-eu-repeatable-color" id="ER1">ER1 (0 / 10)<br>+^0.005 CRS<br>Cost: 1e1000 Entropy<br>Effect: ^1</button>
           </div>
         </div>
       </div>
@@ -200,7 +225,12 @@
     <div class="buttons-composter-total" id="buttons-composter-total">
       <div class="composter-total-background">
         <p class="bold">Total Composter Stats</p>
-        <p id="composterTotalCounter">You have built 0 composters which have created 0 Fertilizers, boosting Tree Aging speed by x1. You also have x1 Composting speed.<br>Composter Scaling starts at 25 Fertilizers (x1.1 per), and Super Composter Scaling starts at 100 Fertilizers (^1.1 per).<br>Composting Speed Scaling starts at 500 Fertilizers (x1.1 per), and Super Composting Speed Scaling starts at 1000 Fertilizers (^1.1 per)</p>
+        <p id="composterTotalCounter">You have built 0 Composters which have created 0 Fertilizers, boosting Tree Aging speed by x1. You also have x1 Composting speed.<br>Composter Scaling starts at 25 Fertilizers (x1.1 per), and Super Composter Scaling starts at 100 Fertilizers (^1.1 per).<br>Composting Speed Scaling starts at 500 Fertilizers (x1.1 per), and Super Composting Speed Scaling starts at 5000 Fertilizers (^1.1 per).</p>
+		<p class="softcap">Composter Scalings are softcapped to ^0.25 past 20000</p>
+      </div>
+      <div class="complex-composter-total-background">
+        <p class="bold">Total Complex Composter Stats</p>
+        <p id="complexComposterTotalCounter">You have built 0 Composters which have created 0 Complex Fertilizers. All types of Complex Scaling are based upon &radic;(regular Composter Scaling).<br>Composter Scaling starts at 5 Fertilizers (x1.1 per), and Super Composter Scaling starts at 10 Fertilizers (^1.1 per).<br>Composting Speed Scaling starts at 22 Complex Fertilizers (x1.1 per), and Super Composting Speed Scaling starts at 70 Fertilizers (^1.1 per)</p>
       </div>
     </div>
 
@@ -269,6 +299,22 @@
           </div>
         </div>
       </div>
+      <div class="root-composter-background">
+        <div class="center-align">
+          <p class="bold">Root Composter</p>
+          <p id="rootFertilizerCounter">The Root Composter has made 0 Fertilizers,</p>
+          <p id="rootFertilizerEffect">delaying all scalings (after softcap) by x1</p>
+          <p class="italic" id="rootComposterBaseEffect">(x1.05 every Fertilizer)</p>
+          <button id="rootComposterButton" class="buttons-rou-color">Make a Complex Fertilizer<br>Cost: 1 Root</button>
+          <p id="rootCompostingTimer">Composting takes 0.5 seconds</p>
+          <div class="root-progress-container">
+          <div class="root-progress-bar" style="width: 100%;"></div>
+			<div class="fertilizer-time-increase-counter">
+			  <p id="rootComposterTimeIncreaseCounter">x1e50000 every Fertilizer</p>
+			</div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="buttons-moss" id="buttons-moss">
@@ -276,8 +322,8 @@
         <div class="center-align">
           <p class="bold">Moss</p>
           <p id="mossCounter">You have created 0 Moss,</p>
-          <p id="mossEffect">boosting all pre-L54 LU's base multipliers by +0</p>
-          <p class="italic">Moss roughly equals Leaves * Seeds * Fruits,<br>but the effect is a lot more complicated.<br>f(x) = (log<sup>2</sup>x)/1.5, Effect = f(Moss<sub>elements</sub>) + 1</p>
+          <p id="mossEffect">boosting most LU's base multipliers by +0</p>
+          <p class="italic" id="mossFactor">Moss roughly equals Leaves * Seeds * Fruits,<br>but the effect is a lot more complicated.<br>f(x) = (log<sup>2</sup>x)/1.5, Effect = f(Moss<sub>elements</sub>) + 1</p>
         </div>
       </div>
       <div class="moss-background" style="top: 220px; visibility: visible; display: inline-block;">
@@ -299,6 +345,16 @@
           <div id="mm8Background" class="moss-milestone" style="top: 240px; left: 310px;"><p class="bold">MM8</p><p id="mm8">1.337e1337 Moss Required</p></div>
           <div id="mm9Background" class="moss-milestone" style="top: 240px; left: 460px;"><p class="bold">MM9</p><p id="mm9">1e2500 Moss Required</p></div>
           <div id="mm10Background" class="moss-milestone" style="top: 240px; left: 610px;"><p class="bold">MM10</p><p id="mm10">1e6000 Moss Required</p></div>
+          <div id="mm11Background" class="moss-milestone" style="top: 380px; visibility: hidden;"><p class="bold">MM11</p><p id="mm11">e1e10 Moss Required</p></div>
+          <div id="mm12Background" class="moss-milestone" style="top: 380px; left: 160px; visibility: hidden;"><p class="bold">MM12</p><p id="mm12">e1.2e12 Moss Required</p></div>
+          <div id="mm13Background" class="moss-milestone" style="top: 380px; left: 310px; visibility: hidden;"><p class="bold">MM13</p><p id="mm13">e1e16 Moss Required</p></div>
+          <div id="mm14Background" class="moss-milestone" style="top: 380px; left: 460px; visibility: hidden;"><p class="bold">MM14</p><p id="mm14">e2.222e22 Moss Required</p></div>
+          <div id="mm15Background" class="moss-milestone" style="top: 380px; left: 610px; visibility: hidden;"><p class="bold">MM15</p><p id="mm15">e1e30 Moss Required</p></div>
+          <div id="mm16Background" class="moss-milestone" style="top: 520px; visibility: hidden;"><p class="bold">MM16</p><p id="mm16">e1e48 Moss Required</p></div>
+          <div id="mm17Background" class="moss-milestone" style="top: 520px; left: 160px; visibility: hidden;"><p class="bold">MM17</p><p id="mm17">e6.9e69 Moss Required</p></div>
+          <div id="mm18Background" class="moss-milestone" style="top: 520px; left: 310px; visibility: hidden;"><p class="bold">MM18</p><p id="mm18">e1e95 Moss Required</p></div>
+          <div id="mm19Background" class="moss-milestone" style="top: 520px; left: 460px; visibility: hidden;"><p class="bold">MM19</p><p id="mm19">e1e200 Moss Required</p></div>
+          <div id="mm20Background" class="moss-milestone" style="top: 520px; left: 610px; visibility: hidden;"><p class="bold">MM20</p><p id="mm20">e1.79e308 Moss Required</p></div>
         </div>
       </div>
       <div class="moss-upgrade-background">
@@ -332,6 +388,7 @@
         <div class="center-align">
           <p class="bold">Bacteria Types</p>
           <p id="bacteriaTypesCounter">You have created 0 Bacteria Types, capping Cell count at 1.79e308.</p>
+		  <p id="bacteriaTypesScaling" style="display: none;">For every Bacteria Type over 100, instead of multiplying your cell Cap by 1.79e308, your cell cap is multiplied by 1.79e308<sup>(Bacteria Types - 100) / 10</sup>.<br>(This nerf also reapplies itself every 100 Bacteria types)</p>
           <p class="softcap" id="cellsIsCapped">Your Cells cannot replicate any further! You must reset them to create a Bacteria Type.</p>
           <button class="buttons-bacteria-color" id="bacteriaResetButton">Reset your cells for 1 new Bacteria Type<br>and add +^1 to the Cell cap</button>
         </div>
@@ -380,6 +437,27 @@
           <p id="mossUpgradesAutomationFLOPSRequiredCounter">(2000 Circuits required to max the interval)</p>
           <input type="number" id="mossUpgradesAutomationCircuitsAssigner" class="upgrade-automation-form" placeholder="Assign x Circuits">
         </div>
+		<div class="bacteria-upgrades-automation-background">
+          <p class="bold">Bacteria Upgrades Automation</p>
+          <p id="bacteriaUpgradesAutomationCircuitsCounter">You currently have 0 Circuits assigned to Bacteria Upgrades automation,</p>
+          <p id="bacteriaUpgradesAutomationFLOPSCounter">computing 0 FLOPs/s, buying every ∞s.</p>
+          <p id="bacteriaUpgradesAutomationFLOPSRequiredCounter">(10000 Circuits required to max the interval)</p>
+          <input type="number" id="bacteriaUpgradesAutomationCircuitsAssigner" class="upgrade-automation-form" placeholder="Assign x Circuits">
+        </div>
+		<div class="rna-upgrades-automation-background">
+          <p class="bold">RNA Upgrades Automation</p>
+          <p id="rnaUpgradesAutomationCircuitsCounter">You currently have 0 Circuits assigned to RNA Upgrades automation,</p>
+          <p id="rnaUpgradesAutomationFLOPSCounter">computing 0 FLOPs/s, buying every ∞s.</p>
+          <p id="rnaUpgradesAutomationFLOPSRequiredCounter">(250000 Circuits required to max the interval)</p>
+          <input type="number" id="rnaUpgradesAutomationCircuitsAssigner" class="upgrade-automation-form" placeholder="Assign x Circuits">
+        </div>
+		<div class="dna-blueprints-automation-background">
+          <p class="bold">DNA Blueprint &amp; Protein Automation</p>
+          <p id="dnaBlueprintsAutomationCircuitsCounter">You currently have 0 Circuits assigned to DNA Blueprint &amp; Protein automation,</p>
+          <p id="dnaBlueprintsAutomationFLOPSCounter">computing 0 FLOPs/s, making every ∞s.</p>
+          <p id="dnaBlueprintsAutomationFLOPSRequiredCounter">(1e8 Circuits required to max the interval)</p>
+          <input type="number" id="dnaBlueprintsAutomationCircuitsAssigner" class="upgrade-automation-form" placeholder="Assign x Circuits">
+        </div>
       </div>
     </div>
 
@@ -392,7 +470,7 @@
           <p class="italic">(x100 per Bacteria type)</p>
           <p id="bacteriaEffectCounter">Your current Bacteria boosts the base Fertilizer effectiveness by +0, and Cell Replication and Composting speeds by x1.</p>
           <button id="B1" class="buttons-bacteria-color">Free Fertilizers (0)<br>Requires 1 Bacteria<br>Effect: +0 Fertilizers to all Composters</button>
-          <button id="B2" class="buttons-bacteria-color">Softcap Dampener (0 / 10)<br>Requires 2 Bacteria<br>Effect: -0 to Leaf softcap root</button>
+          <button id="B2" class="buttons-bacteria-color">Softcap Dampener I (0 / 10)<br>Requires 2 Bacteria<br>Effect: -0 to Leaf softcap root</button>
           <button id="B3" class="buttons-rou-color" style="display: none;">Cleanroom (0)<br>Requires 0.5 Roots<br>Effect: x1 Bacteria</button>
         </div>
       </div>
@@ -445,46 +523,119 @@
             <p id="blizzardCounter">0 / 5000 Entropy</p>
           </div>
         </div>
+        <div id="fallBackground" class="challenge-fall">
+          <div class="center-align">
+            <p class="bold" id="fallLevelCounter">Fall</p>
+            <p id="fallIndicator">Fruits are 'falling' from your tree, so their maximum amount is 0. ^0.5 Leaves, ^0.5 Seeds, and /1e20 Game speed.<br>(INACTIVE)</p>
+            <img src="./src/images/fall.png" alt="Fall" width="75px" height="75px">
+            <p class="bold">Rewards</p>
+            <p id="fallRewardCounter">Unlock Fallen Leaves, x1 Leaf supercap root</p>
+            <button id="enterFall" class="fall-button">ENTER THE FALL</button>
+            <p id="fallCounter">0 / 1e10000 Leaves</p>
+          </div>
+        </div>
       </div>
     </div>
 	
+	<template id="proteinPresetTemplate">
+		<div id="proteinPresetBackgroundTemplate" class="protein-preset-background">
+			<input type="text" maxlength="24" style="width: 97%;" id="proteinPresetNameTemplate" class="protein-preset-form" placeholder="name (max 24 characters)">
+			<div id="proteinPresetTextTemplate">
+				<p style="display: inline;">{</p>
+				<input type="text" maxlength="2" style="display: inline;" id="proteinPresetSlot0Template" class="protein-preset-form" placeholder="0">
+				<p style="display: inline;">, </p>
+				<input type="text" maxlength="2" style="display: inline;" id="proteinPresetSlot1Template" class="protein-preset-form" placeholder="0">
+				<p style="display: inline;">, </p>
+				<input type="text" maxlength="2" style="display: inline;" id="proteinPresetSlot2Template" class="protein-preset-form" placeholder="0">
+				<p style="display: inline;">, </p>
+				<input type="text" maxlength="2" style="display: inline;" id="proteinPresetSlot3Template" class="protein-preset-form" placeholder="0">
+				<p style="display: inline;">, </p>
+				<input type="text" maxlength="2" style="display: inline;" id="proteinPresetSlot4Template" class="protein-preset-form" placeholder="0">
+				<p style="display: inline;">, </p>
+				<input type="text" maxlength="2" style="display: inline;" id="proteinPresetSlot5Template" class="protein-preset-form" placeholder="0">
+				<p style="display: inline;">, </p>
+				<input type="text" maxlength="2" style="display: inline;" id="proteinPresetSlot6Template" class="protein-preset-form" placeholder="0">
+				<p style="display: inline;">, </p>
+				<input type="text" maxlength="2" style="display: inline;" id="proteinPresetSlot7Template" class="protein-preset-form" placeholder="0">
+				<p style="display: inline;">}</p>
+			</div>
+			<br>
+			<p class="softcap" style="display: inline;" id="proteinPresetValidationTemplate">INVALID</p>
+			<p class="softcap" style="display: inline;" id="proteinPresetRunningTemplate">STOPPED</p>
+			<button style="display: inline;" disabled="true" id="proteinPresetLoadTemplate">Load</button>
+			<button style="display: inline;" id="proteinPresetHaltTemplate">Halt</button>
+			<button style="display: inline;" id="proteinPresetDeleteTemplate">Delete</button>
+		</div>
+	</template>
+	
 	<div class="buttons-protein" id="buttons-protein">
+		<div class="info-box" id="proteinPresetBox" style="display: none; text-align: left;">
+			<p class="bold">Protein presets</p>
+			<button id="closeProteinPresets" class="close-button" aria-label="Close presets">&times;</button>
+			<button class="buttons-protein-color" id="proteinPresetMaker">Make a Protein preset</button>
+			<div id="proteinPresetHolder" style="display: block;"></div>
+			<p>Hi again, time for another 1.79e308 word info box!</p>
+			<p>This is the Protein preset menu, and at this point I'm gonna assume you know the Protein notation from making a few Microorganisms.</p>
+			<p>The Protein preset notation is similar, but instead of just using numbers, it uses ratios.</p>
+			<p>For example, if you have a preset of {2, 0, 8, 0, 0, 0, 0, 0}, it is describing a preset where you have 2 RuBisCo Proteins for every 8 Arganine Proteins.</p>
+			<p>Loading a preset will run the DNA Blueprint autobuyer and will automatically assign DNA Blueprints based upon the DNA Blueprint autobuyer's interval. By default, the autobuyer will try to make all possible DNA Blueprints when a preset is loaded.</p>
+			<p>The halt button exists to stop the autobuyer if it gets stuck for some reason.</p>
+			<p class="bold">Some example presets:</p>
+			<p>Amoeba: {1, 1, 1, 1, 1, 1, 1, 1}</p>
+			<p>Tardigrade: {2, 0, 8, 0, 0, 0, 0, 0}</p>
+			<p>Yeast: {0, 3, 0, 0, 0, 3, 3, 1}</p>
+			<p>Moss Spore: {0, 0, 0, 10, 0, 0, 0, 0}</p>
+			<p>Algae: {0, 0, 0, 0, 10, 0, 0, 0}</p>
+			<p class="italic">This next one works because a ratio of 1:0 assigns every DNA Blueprint to one Protein</p>
+			<p>Game Speed: {0, 0, 0, 0, 0, 0, 0, 1}</p>
+			<p>Michael: {0, 0, 0, 0, 0, 69, 0, 0}</p>
+		</div>
 		<div class="protein-background">
 			<div class="center-align">
 				<p class="bold">Proteins</p>
+				<button class="buttons-protein-color" id="proteinPresetButton" style="position: absolute; height: 40px; top: 10px; right: 10px;">Protein presets</button>
 				<p id="blueprintCounter">0 / 0 DNA Blueprints</p>
 				<button class="buttons-protein-color" id="respecProteins">Respec Proteins<br>(Doesn't perform a transformation &#128536)</button>
 				<div class="protein-individual-background">
 					<p id="rubiscoCounter">0 RuBisCo Proteins<br>Seed and Fruit base mult boost Leaves (x1)</p>
 					<button class="buttons-protein-color" id="makeRuBisCo">Make 1 RuBisCo Protein<br>Cost: 1 DNA Blueprint</button>
+					<input type="number" id="bulkBuyRuBisCo" class="upgrade-automation-form" style="display: none;" placeholder="Make x RuBisCo Proteins">
 				</div>
 				<div class="protein-individual-background">
 					<p id="extensinCounter">0 Extensin Proteins<br>Cells replicate x1 more times every tick</p>
 					<button class="buttons-protein-color" id="makeExtensin">Make 1 Extensin Protein<br>Cost: 1 DNA Blueprint</button>
+					<input type="number" id="bulkBuyExtensin" class="upgrade-automation-form" style="display: none;" placeholder="Make x Extensin Proteins">
 				</div>
 				<div class="protein-individual-background">
 					<p id="arganineCounter">0 Arganine Proteins<br>+0 to all supercap roots</p>
 					<button class="buttons-protein-color" id="makeArganine">Make 1 Arganine Protein<br>Cost: 1 DNA Blueprint</button>
+					<input type="number" id="bulkBuyArganine" class="upgrade-automation-form" style="display: none;" placeholder="Make x Arganine Proteins">
+					
 				</div>
 				<div class="protein-individual-background">
 					<p id="glutamineCounter">0 Glutamine Proteins<br>Adds an extra Entropy factor to the Moss formula (x1)</p>
 					<button class="buttons-protein-color" id="makeGlutamine">Make 1 Glutamine Protein<br>Cost: 1 DNA Blueprint</button>
+					<input type="number" id="bulkBuyGlutamine" class="upgrade-automation-form" style="display: none;" placeholder="Make x Glutamine Proteins">
 				</div>
 				<div class="protein-individual-background">
 					<p id="glutamateCounter">0 Glutamate Proteins<br>+0 to LR1, SR1, and FR1 caps</p>
 					<button class="buttons-protein-color" id="makeGlutamate">Make 1 Glutamate Protein<br>Cost: 1 DNA Blueprint</button>
+					<input type="number" id="bulkBuyGlutamate" class="upgrade-automation-form" style="display: none;" placeholder="Make x Glutamate Proteins">
 				</div>
 				<div class="protein-individual-background">
 					<p id="asparagineCounter">0 Asparagine Proteins<br>Game speed boosts Bacteria base mult (1x)</p>
 					<button class="buttons-protein-color" id="makeAsparagine">Make 1 Asparagine Protein<br>Cost: 1 DNA Blueprint</button>
+					<input type="number" id="bulkBuyAsparagine" class="upgrade-automation-form" style="display: none;" placeholder="Make x Asparagine Proteins">
 				</div>
 				<div class="protein-individual-background">
 					<p id="agpCounter">0 AGP Proteins<br>^1 Cell overpopulation division effect</p>
 					<button class="buttons-protein-color" id="makeAGP">Make 1 AGP Protein<br>Cost: 1 DNA Blueprint</button>
+					<input type="number" id="bulkBuyAGP" class="upgrade-automation-form" style="display: none;" placeholder="Make x AGP Proteins">
 				</div>
 				<div class="protein-individual-background">
 					<p id="trbCounter">0 TRB Proteins<br>x1 RNA and R1's effect</p>
 					<button class="buttons-protein-color" id="makeTRB">Make 1 TRB Protein<br>Cost: 1 DNA Blueprint</button>
+					<input type="number" id="bulkBuyTRB" class="upgrade-automation-form" style="display: none;" placeholder="Make x TRB Proteins">
 				</div>
 			</div>
 		</div>
@@ -514,10 +665,11 @@
 				<div class="rna-upgrades-background">
 					<button id="R1" class="buttons-rna-color">More Game speed (0)<br>Requires 5 RNA strands<br>Effect: x1 Game speed</button>
 					<button id="R2" class="buttons-rna-color">Delay Super Scaling (0)<br>Requires 2 RNA strands<br>Effect: +0 Super Scaling delay</button>
-					<button id="R3" class="buttons-rna-color">Softcap Dampener (0 / 10)<br>Requires 10 RNA strands<br>Effect: -0 from Fruit softcap root</button>
+					<button id="R3" class="buttons-rna-color">Softcap Dampener III (0 / 10)<br>Requires 10 RNA strands<br>Effect: -0 from Fruit softcap root</button>
 					<button id="R4" class="buttons-rna-color">Entropificator (0)<br>Requires 100 RNA strands<br>Effect: x1 Entropy</button>
-					<button id="R5" class="buttons-rna-color">Blueprint Dampener (0 / 5)<br>Requires 20 RNA strands<br>Effect: -0 from DNA Blueprint nerf root</button>
-					<button id="R6" class="buttons-rna-color">Viral Amplifier (0)<br>Requires 100000 RNA strands<br>Effect: -0 from Game speed Virus root</button>
+					<button id="R5" class="buttons-rna-color">Blueprint Dampener (0 / 5)<br>Requires 20 RNA strands<br>Effect: -0 from DNA Blueprint base nerf root</button>
+					<button id="R6" class="buttons-rna-color">Faster Falling (0)<br>Requires 1e13 RNA strands<br>Effect: x1 FL fall speed</button>
+					<button id="R7" class="buttons-rna-color">Flowing Leaves (0)<br>Requires 9e15 RNA strands<br>Effect: -0 from FL Game speed nerf divisor</button>
 				</div>
 			</div>
 		</div>
@@ -570,12 +722,28 @@
 					<p>Unlock RNA upgrade automation</p>
 				</div>
 				<div class="root-milestone-individual-background" style="background-image: radial-gradient(#edac13, #b81111);" id="RM11">
-					<p class="bold">100 Reinforcements (RM11)</p>
-					<p>Unlock DNA blueprint and Protein automation</p>
+					<p class="bold">750 Reinforcements (RM11)</p>
+					<p>Unlock Protein setup presets and<br>DNA Blueprint automation</p>
 				</div>
 				<div class="root-milestone-individual-background" style="background-image: radial-gradient(#edac13, #b81111);" id="RM12">
-					<p class="bold">1000 Reinforcements (RM12)</p>
+					<p class="bold">2500 Reinforcements (RM12)</p>
 					<p id="RM12Effect">Unlock Reinforcement generation<br>Effect: 0/s (real time)</p>
+				</div>
+				<div class="root-milestone-individual-background" style="background-image: radial-gradient(#edac13, #b81111);" id="RM13">
+					<p class="bold">1e6 Reinforcements (RM13)</p>
+					<p id="RM13Effect">Build the Supercomputer</p>
+				</div>
+				<div class="root-milestone-individual-background" style="background-image: radial-gradient(#edac13, #b81111);" id="RM14">
+					<p class="bold">9e15 Reinforcements (RM14)</p>
+					<p id="RM14Effect">The Fruit supercap now can no longer go to ^0<br>and has an improved formula</p>
+				</div>
+				<div class="root-milestone-individual-background" style="background-image: radial-gradient(#edac13, #b81111);" id="RM15">
+					<p class="bold">1e36 Reinforcements (RM15)</p>
+					<p id="RM15Effect">The Seed supercap now can no longer go to ^0<br>and has an improved formula</p>
+				</div>
+				<div class="root-milestone-individual-background" style="background-image: radial-gradient(#edac13, #b81111);" id="RM16">
+					<p class="bold">1e100 Reinforcements (RM16)</p>
+					<p id="RM16Effect">The Leaf supercap now can no longer go to ^0<br>and has an improved formula</p>
 				</div>
 			</div>
 		</div>
@@ -590,129 +758,269 @@
 	<template id="microorganism">
 		<div id="clickableMicroorganism" class="microorganism-individual-clickable">
 			<div class="microorganism-individual-background">
-				<div class="microorganism-level-counter"><p class="bold" style="line-height: 0;">1</p></div>
-				<img src="./src/images/amoeba.png" class="centered-element" alt="Test Microorganism" width="64" height="64" draggable="false">
-				<img id="microorganismImg" src="./src/images/leaf.png" class="bottom-right-element" alt="Test Lively Nature" width="32" height="32" draggable="false">
-				<span class="microorganism-hover" style="color: #ffffff;">Level 1 Lively Amoeba<br>
-					x2 all resources<br>^1.1 all secondary resources<br>x10 Game speed<br>-0.01 from all softcap roots<br>^8 Reinforcement multipliers<br>
-					<span style="color: #50bb50;">^1.25 Leaf base mult<br>-0.01 Leaf softcap root<br>x2 LR1's effect<br>x1.02 LR2's effect<br>^1.1 Storm rewards</span>
+				<div class="microorganism-level-counter"><p id="microorganismLevelCounter" class="bold" style="line-height: 0; z-index: 50;">1</p></div>
+				<img id="typeImg" src="./src/images/amoeba.png" class="centered-element" alt="Test Microorganism" width="64" height="64" draggable="false">
+				<img id="natureImg" src="./src/images/leaf.png" class="bottom-right-element" alt="Test Lively Nature" width="32" height="32" draggable="false">
+				<span id="microorganismTotalEffects" class="microorganism-hover" style="color: #ffffff;"><span id="levelIndicator">Level 1 </span><span id="natureIndicator" style="color: #50bb50;">Lively </span><span id="typeIndicator">Amoeba</span><br><span id="typeEffects">
+					x2 all resources<br>^1.1 all secondary resources<br>x10 Game speed<br>-0.01 from all softcap roots<br>^8 Reinforcement multipliers<br></span>
+					<span span id="natureEffects" style="color: #50bb50;">^1.25 Leaf base mult<br>-0.01 Leaf softcap root<br>x2 LR1's effect<br>x1.02 LR2's effect<br>^1.1 Storm rewards</span>
 				</span>
 			</div>
 		</div>
+	</template>
+	<template id="microorganismEffectBase">
+		<span class="microorganismEffectHolder"></span>
 	</template>
 	
 	<div class="buttons-petri-dish" id="buttons-petri-dish">
 		<div class="petri-dish-background">
 			<p class="bold">Petri Dish</p>
 			<div class="microorganism-background">
-				<div class="petri-dish-singular" style="left: 110px; top: 220px;"></div>
-				<div class="petri-dish-singular" style="left: 187.78px; top: 187.78px;"></div>
-				<div class="petri-dish-singular" style="left: 220px; top: 110px;"></div>
-				<div class="petri-dish-singular" style="left: 187.78px; top: 33.22px;"></div>
-				<div class="petri-dish-singular" style="left: 110px; top: 0px;"></div>
-				<div class="petri-dish-singular" style="left: 33.22px; top: 33.22px;"></div>
-				<div class="petri-dish-singular" style="left: 0px; top: 110px;"></div>
-				<div class="petri-dish-singular" style="left: 33.22px; top: 187.78px;"></div>
+				<div id="petriDish5" class="petri-dish-singular" style="display: none; left: 110px; top: 220px;"></div>
+				<div id="petriDish4" class="petri-dish-singular" style="display: none; left: 187.78px; top: 187.78px;"></div>
+				<div id="petriDish3" class="petri-dish-singular" style="display: none; left: 220px; top: 110px;"></div>
+				<div id="petriDish2" class="petri-dish-singular" style="display: none; left: 187.78px; top: 33.22px;"></div>
+				<div id="petriDish1" class="petri-dish-singular" style="left: 110px; top: 0px;"></div>
+				<div id="petriDish8" class="petri-dish-singular" style="display: none; left: 33.22px; top: 33.22px;"></div>
+				<div id="petriDish7" class="petri-dish-singular" style="display: none; left: 0px; top: 110px;"></div>
+				<div id="petriDish6" class="petri-dish-singular" style="display: none; left: 33.22px; top: 187.78px;"></div>
 			</div>
 			<div class="microorganism-effect-background">
 				<div class="center-align">
 					<p class="bold">Microorganism Effects</p>
-					<p id="microorganismTotalTypeCounter">Pure Nothingness</p>
+					<p class="softcap">Effects in this color are softcapped</p>
 					<p id="microorganismTotalEffectCounter">Equip a Microorganism to a Petri Dish to see some effects!</p>
 				</div>
 			</div>
 			<div id="microorganismsOnReinforcement" class="microorganism-on-reinforcement-background">
-				<p style="display: inline;">Currently, your Protein setup generates these Microorganisms upon Reinforcement.</p>
-				<button class="buttons-protein-setup-info" style="display: inline;">Protein setup info</button>
-				<p>Clicking a Microorganism will give you it upon Reinforcement. Not clicking will randomly give you one.</p>
+				<p>Currently, your Protein setup generates these Microorganisms upon Reinforcement.</p>
+				<p style="display: inline;">Clicking a Microorganism will give you it upon Reinforcement.</p>
+				<button id="proteinSetupInfo" class="buttons-protein-setup-info" style="display: inline;">Protein setup info</button>
 			</div>
+			<div id="microorganismsInfo" class="info-box" style="display: none;">
+				<p class="bold">Microorganism Info</p>
+				<button id="closeMicroorganismsInfo" class="close-button" aria-label="Close info box">&times;</button>
+				<p class="italic">If you've ever played AD or IMR you will know how these work (mostly)</p>
+				<div style="text-align: left; font-size: 14px;">
+					<p>This is a Microorganism.</p>
+					<img src="./src/images/microorganismTest.png" alt="Level 3 Microorganism with a Lively nature" width="100" height="100">
+					<p>You get a Microorganism by clicking one of the chosen Microorganisms and then Reinforcing. (I did originally intend for it to randomly give you one upon reinforcement for not clicking one but I was lazy)</p>
+					<p>It has three components: A level, a type, and a nature. <span class="italic">(Top left number is its level, the image in the middle is its type, and the image in the bottom right is its nature.)</span> In this case, this Microorganism would be a Level 3 Lively Amoeba.</p>
+					<p>Choosing a Microorganism's nature is easy enough, as you are given all 6 natures to pick from upon Reinforcement.</p>
+					<p>The Microorganism's type and level are a bit more complicated, though.</p>
+					<p>Both the type and the level depend on your current Protein setup, and we're gonna need some notation to show Protein setup layouts.</p>
+					
+					<p class="bold" style="text-align: center;">Protein Notation</p>
+					<p>This is what the notation will boil down to. Each Protein name will correspond to the number of said Protein you have. <span class="italic" style="color: red">(Free Proteins do not count for this notation, only the ones you have actually assigned count.)<span></p>
+					<p>[# of RuBisCo Proteins, # of Extensin Proteins, # of Arganine Proteins, # of Glutamine Proteins, # of Glutamate Proteins, # of Asparagine Proteins, # of AGP Proteins, # of TRB Proteins]</p>
+					<p id="currentProteinCounter" class="bold">Your current Protein setup is [0, 0, 0, 0, 0, 0, 0, 0].</p>
+					
+					<p class="bold" style="text-align: center;">Microorganism Types</p>
+					<p class="bold" style="color: white;">Amoeba</p>
+					<img src="./src/images/amoeba.png" alt="Amoeba" width="100" height="100">
+					<p>Amoebas are used to boost generally everything. If there's a resource that exists, an Amoeba can boost it. <span class="italic">(here's a super secret dev tip, use Amoebas for grinding Microorganism levels)<span></p>
+					<p>Possible effects:<br><span style="color: white;">&times;n all resources, ^n all secondary resources, &times;n Game speed, -n from all softcap roots, ^n all Reinforcement multipliers</span></p>
+					<p>Minimum Protein setup: [1, 1, 1, 1, 1, 1, 1, 1]. 8 Proteins required at minimum.</p>
+					
+					<p class="bold" style="color: #ab9c84;">Tardigrade</p>
+					<img src="./src/images/tardigrade.png" alt="Tardigrade" width="100" height="100">
+					<p>Tardigrades are all softcaps' worst enemy. It is the only type of microorganism that stops the dreaded supercap.</p>
+					<p>Possible effects:<br><span style="color: #ab9c84;">&times;n all supercap roots, -n Leaf and Seed root from PE's formula, /n Fertilizer Super Scaling effect, -n from the total DNA Blueprint nerf, M1's effect softcap starts +n later</span></p>
+					<p>Minimum Protein setup: [2, 0, 8, 0, 0, 0, 0, 0]. 10 Proteins required at minimum.</p>
+					
+					<p class="bold" style="color: #e8c080;">Yeast</p>
+					<img src="./src/images/yeast.png" alt="Yeast" width="100" height="100">
+					<p>Yeast fungi help boost replication efficiency. If you want more Cells and Bacteria, use Yeast.</p>
+					<p>Possible effects:<br><span style="color: #e8c080;">^n Cell Replication speed, ^n Bacteria cap, ^n Cell Replication cap, ^n Asparagine's effect, ^n Extensin's effect</span></p>
+					<p>Minimum Protein setup: [0, 3, 0, 0, 0, 3, 3, 1]. 10 Proteins required at minimum.</p>
+					
+					<p class="bold" style="color: #1a8229;">Moss Spores</p>
+					<img src="./src/images/mossSpore.png" alt="Moss Spores" width="100" height="100">
+					<p>Moss Spores boost Moss. It's in the name!</p>
+					<p>Possible effects:<br><span style="color: #1a8229;">^n Moss, ^n Moss effect, &times;n Moss Milestone effect, &times;n Moss Upgrade effect, &times;n Wildfire rewards</span></p>
+					<p>Minimum Protein setup: [0, 0, 0, 10, 0, 0, 0, 0]. 10 Proteins required at minimum.</p>
+					
+					<p class="bold" style="color: #1cb814;">Algae</p>
+					<img src="./src/images/algae.png" alt="Algae" width="100" height="100">
+					<p>Repeatable upgrades not doin' too much? Algae boosts repeatable upgrade efficiency.</p>
+					<p>Possible effects:<br><span style="color: #1cb814;">&times;n L and S first repeatable effects, ^n all repeatable costs, &times;n Glutamate's effect, &times;n M5 and M6 levels, +^n M6's effect &times; all repeatable effects</span></p>
+					<p>Minimum Protein setup: [0, 0, 0, 0, 10, 0, 0, 0]. 10 Proteins required at minimum.</p>
+					
+					<p class="bold" style="text-align: center;">Microorganism Natures</p>
+					<p class="bold" style="color: #50bb50;">Lively</p>
+					<img src="./src/images/leaf.png" alt="Lively" width="100" height="100">
+					<p>A Lively nature boosts Leaves. Simple, but effective.</p>
+					<p>Possible effects:<br><span style="color: #50bb50;">^n Leaf base mult, -n Leaf softcap root, &times;n LR1's effect, &times;n LR2's effect, ^n Storm rewards</span></p>
+					
+					<p class="bold" style="color: #bf612e;">Chronal</p>
+					<img src="./src/images/clock.png" alt="Chronal" width="100" height="100">
+					<p>A Chronal nature boosts Tree Aging and Game speed.</p>
+					<p>Possible effects:<br><span style="color: #bf612e;">^n Tree Aging speed, &times;n Game speed, &times;n M3's effect, ^n Composting speed, &times;n SR2's effect</span></p>
+					
+					<p class="bold" style="color: #dc8616;">Grounded</p>
+					<img src="./src/images/seed.png" alt="Grounded" width="100" height="100">
+					<p>A Grounded nature boosts Seeds and Tree Aging speed.</p>
+					<p>Possible effects:<br><span style="color: #dc8616;">^n Seed base mult, -n Seed softcap root, &times;n SR1's effect, ^n Tree Aging speed, &times;n Seed supercap root</span></p>
+					
+					<p class="bold" style="color: #de0e0e;">Bountiful</p>
+					<img src="./src/images/fruit.png" alt="Bountiful" width="100" height="100">
+					<p>A Bountiful nature boosts Fruits, Composter effect, and Moss.</p>
+					<p>Possible effects:<br><span style="color: #de0e0e;">^n Fruit base mult, &times;n FR1's effect, M1's effect softcap starts +n later, &times;n Fruit supercap root, &times;n Wildfire rewards</span></p>
+					
+					<p class="bold" style="color: #2077ba;">Chaotic</p>
+					<img src="./src/images/entropy.png" alt="Chaotic" width="100" height="100">
+					<p>A Chaotic nature boosts Entropy, and all of the extra mechanics that get unlocked during the Entropy prestige layer.</p>
+					<p>Possible effects:<br><span style="color: #2077ba;">^n Entropy, ^n Cell Replication speed, ^n Bacteria cap, &times;n RNA, +n free Proteins</span></p>
+					
+					<p class="bold" style="color: #edac13;">Reinforced</p>
+					<img src="./src/images/root.png" alt="Reinforced" width="100" height="100">
+					<p>A Reinforced nature boosts Roots, and a bunch of other Root-related mechanics.</p>
+					<p>Possible effects:<br><span style="color: #edac13;">+&times;n Roots, +&times;n Reinforcements, +n to all supercap roots, +&times;n Welder effect, +&times;n Fallen Leaves fall speed</span></p>
+					
+					<p>And last but not least, the Microorganism's level.</p>
+					<p class="bold" style="text-align: center;">Microorganism Level</p>
+					<p>A Microorganism's level is also based upon your current Protein setup.</p>
+					<p>For example, if you have a setup of [2, 2, 2, 2, 2, 2, 2, 2], the game would register it as a Level 2 Amoeba, as it has a minimum of [1, 1, 1, 1, 1, 1, 1, 1] proteins, and each protein is 2&times; the base requirement.</p>
+					<p>For another example, let's make a Level 4 Yeast.</p>
+					<p>The Protein setup to generate this would be [0, 12, 0, 0, 0, 12, 12, 4], because each protein has 4&times; the amount of [0, 3, 0, 0, 0, 3, 3, 1], the base Protein setup requirement for Yeast.</p>
+					<p>In conclusion, for a Microorganism to be level n, your Proteins must have n&times; the amount of the base requirement of the type.</p>
+					<p class="softcap" style="font-size: 24px;">Starting at level 20, your level gain is softcapped due to overpopulation.</p>
+				</div>
+			</div>
+			<p class="softcap" style="position: absolute; top: 10px; right: 10px;">Due to overpopulation,<br>After level 20, ^0.15 level gain</p>
+			<button id="buildPetriDishes" class="buttons-rou-color" style="position: absolute; right: 10px; top: 125px;">Build a Petri Dish (1 / 8)<br>Cost: 10000 Roots</button>
 			<div id="microorganismInventory" class="microorganism-inventory-background">
 				<p class="bold">Inventory</p>
-				<div class="petri-dish-inventory-slot">
-					<div id="clickableMicroorganism" class="microorganism-individual-clickable">
-						<div class="microorganism-individual-background">
-							<div class="microorganism-level-counter"><p class="bold" style="line-height: 0;">1</p></div>
-							<img src="./src/images/amoeba.png" class="centered-element" alt="Test Microorganism" width="64" height="64" draggable="false">
-							<img id="microorganismImg" src="./src/images/leaf.png" class="bottom-right-element" alt="Test Lively Nature" width="32" height="32" draggable="false">
-							<span class="microorganism-hover" style="color: #ffffff;">Level 1 <span style="color: #50bb50;">Lively</span> Amoeba<br>
-								x2 all resources<br>^1.1 all secondary resources<br>x10 Game speed<br>-0.01 from all softcap roots<br>^8 Reinforcement multipliers<br>
-								<span style="color: #50bb50;">^1.25 Leaf base mult<br>-0.01 Leaf softcap root<br>x2 LR1's effect<br>x1.02 LR2's effect<br>^1.1 Storm rewards</span>
-							</span>
-						</div>
-					</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="buttons-welder" id="buttons-welder">
+		<div class="welder-background">
+			<div class="center-align">
+				<p class="bold">The Welder</p>
+				<p id="welderCircuitsIndicator">You currently have (0 / 0) Circuits, 0 of them being spent on Welder upgrades.</p>
+			</div>
+			<button id="respecWelder" class="buttons-cell-upgrades-color" style="position: absolute; top: 10px; right: 10px;">Respec all Welder purchases</button>
+			<div class="cell-upgrades-bulk-background">
+				<div class="center-align">
+					<p class="bold">Cell Upg. Bulk</p>
+					<p id="cellUpgradeBulkIndicator">You can currently buy 1 Cell upgrade at once.</p>
+					<button id="buyCellUpgradeBulk" class="buttons-cell-upgrades-color">+1 bulk buy amount<br>Cost: 100000 Circuits</button>
 				</div>
-				<div class="petri-dish-inventory-slot">
-					<div id="clickableMicroorganism" class="microorganism-individual-clickable">
-						<div class="microorganism-individual-background">
-							<div class="microorganism-level-counter"><p class="bold" style="line-height: 0;">1</p></div>
-							<img src="./src/images/tardigrade.png" class="centered-element" alt="Test Microorganism" width="64" height="64" draggable="false">
-							<img id="microorganismImg" src="./src/images/clock.png" class="bottom-right-element" alt="Test Chronal Nature" width="32" height="32" draggable="false">
-							<span class="microorganism-hover" style="color: #ab9c84;">Level 1 <span style="color: #bf612e;">Chronal</span> Tardigrade<br>
-								x1.5 all supercap roots<br>-1.5 Leaf and Seed root from PE formula<br>/1.5 Fertilizer Super Scaling effect<br>-0.05 from total DNA Blueprint nerf<br>M1's effect softcap starts +50 later<br>
-								<span style="color: #bf612e;">^1.25 Tree Aging speed<br>x10 Game speed<br>x4 M3's effect<br>^1.25 Composting speed<br>x1.1 SR2's effect</span>
-							</span>
-						</div>
-					</div>
+			</div>
+			<div class="repeatable-upgrades-bulk-background">
+				<div class="center-align">
+					<p class="bold">Repeatable Upg. Bulk</p>
+					<p id="repeatableUpgradeBulkIndicator">You can currently buy 1 Repeatable upgrade at once.</p>
+					<button id="buyRepeatableUpgradeBulk" class="buttons-temple-color">+1 bulk buy amount<br>Cost: 100000 Circuits</button>
 				</div>
-				<div class="petri-dish-inventory-slot">
-					<div id="clickableMicroorganism" class="microorganism-individual-clickable">
-						<div class="microorganism-individual-background">
-							<div class="microorganism-level-counter"><p class="bold" style="line-height: 0;">1</p></div>
-							<img src="./src/images/yeast.png" class="centered-element" alt="Test Microorganism" width="64" height="64" draggable="false">
-							<img id="microorganismImg" src="./src/images/seed.png" class="bottom-right-element" alt="Test Grounded Nature" width="32" height="32" draggable="false">
-							<span class="microorganism-hover" style="color: #e8c080;">Level 1 <span style="color: #dc8616;">Grounded</span> Yeast<br>
-								^1.2 Cell Replication speed<br>^1.4 Bacteria cap<br>^1.25 Cells L,S, and F effect<br>AGP's effect softcap starts -0.05 later<br>^1.3 Extensin's effect<br>
-								<span style="color: #dc8616;">^1.25 Seed base mult<br>-0.01 Seed softcap root<br>x2 SR1's effect<br>^1.1 Tree Aging speed<br>x1.6 Seed supercap root</span>
-							</span>
-						</div>
-					</div>
+			</div>
+			<div class="composter-bulk-background">
+				<div class="center-align">
+					<p class="bold">Composting Bulk</p>
+					<p id="fertilizerBulkIndicator">You can currently compost 1 Fertilizer at once.</p>
+					<button id="buyFertilizerBulk" class="buttons-composter-color">+1 bulk compost amount<br>Cost: 100000 Circuits</button>
 				</div>
-				<div class="petri-dish-inventory-slot">
-					<div id="clickableMicroorganism" class="microorganism-individual-clickable">
-						<div class="microorganism-individual-background">
-							<div class="microorganism-level-counter"><p class="bold" style="line-height: 0;">1</p></div>
-							<img src="./src/images/mossSpore.png" class="centered-element" alt="Test Microorganism" width="64" height="64" draggable="false">
-							<img id="microorganismImg" src="./src/images/fruit.png" class="bottom-right-element" alt="Test Bountiful Nature" width="32" height="32" draggable="false">
-							<span class="microorganism-hover" style="color: #1a8229">Level 1 <span style="color: #de0e0e;">Bountiful</span> Moss Spores<br>
-								^1.25 Moss<br>^2 Moss effect<br>x1.1 Moss Milestone effect<br>x1.1 Moss Upgrade effect<br>x1.5 Wildfire rewards<br>
-								<span style="color: #de0e0e;">^1.25 Fruit base mult<br>x1.5 FR1's effect<br>M1's effect softcap starts +50 later<br>x1.6 Fruit supercap root<br>x1.5 Wildfire rewards</span>
-							</span>
-						</div>
-					</div>
+			</div>
+			<div class="moss-upgrades-bulk-background">
+				<div class="center-align">
+					<p class="bold">Moss Upg. Bulk</p>
+					<p id="mossUpgradeBulkIndicator">You can currently buy 1 Moss upgrade at once.</p>
+					<button id="buyMossUpgradeBulk" class="buttons-mu-color">+1 bulk buy amount<br>Cost: 100000 Circuits</button>
 				</div>
-				<div class="petri-dish-inventory-slot">
-					<div id="clickableMicroorganism" class="microorganism-individual-clickable">
-						<div class="microorganism-individual-background">
-							<div class="microorganism-level-counter"><p class="bold" style="line-height: 0;">1</p></div>
-							<img src="./src/images/algae.png" class="centered-element" alt="Test Microorganism" width="64" height="64" draggable="false">
-							<img id="microorganismImg" src="./src/images/entropy.png" class="bottom-right-element" alt="Test Chaotic Nature" width="32" height="32" draggable="false">
-							<span class="microorganism-hover" style="color: #1cb814;">Level 1 <span style="color: #2077ba;">Chaotic</span> Algae<br>
-								x1.3 L, S, F first repeatable effects<br>^1.3 L, S, F first repeatable cost discounts<br>x1.5 Glutamate's effect<br>+30 Free M6 levels<br>+20 L, S, F second repeatable caps<br>
-								<span style="color: #2077ba;">x1e6 Entropy base mult<br>^1.2 Cell Replication speed<br>^1.4 Bacteria cap<br>x1.25 RNA<br>+1.05 Free proteins</span>
-							</span>
-						</div>
-					</div>
+			</div>
+			<div class="bacteria-types-bulk-background">
+				<div class="center-align">
+					<p class="bold">Bacteria Type Bulk</p>
+					<p id="bacteriaTypeBulkIndicator">You can currently make up to 1 Bacteria type at once.</p>
+					<button id="buyBacteriaTypeBulk" class="buttons-bacteria-color">+1 bulk buy amount<br>Cost: 1e6 Circuits</button>
 				</div>
-				<div class="petri-dish-inventory-slot">
-					<div id="clickableMicroorganism" class="microorganism-individual-clickable">
-						<div class="microorganism-individual-background">
-							<div class="microorganism-level-counter"><p class="bold" style="line-height: 0;">1</p></div>
-							<img src="./src/images/amoeba.png" class="centered-element" alt="Test Microorganism" width="64" height="64" draggable="false">
-							<img id="microorganismImg" src="./src/images/root.png" class="bottom-right-element" alt="Test Reinforced Nature" width="32" height="32" draggable="false">
-							<span class="microorganism-hover" style="color: #ffffff;">Level 1 <span style="color: #edac13;">Reinforced</span> Amoeba<br>
-								x2 all resources<br>^1.1 all secondary resources<br>x10 Game speed<br>-0.01 from all softcap roots<br>^8 Reinforcement multipliers<br>
-								<span style="color: #edac13;">x2.5 Root base mult<br>x2 Reinforcements<br>+0.5 to all supercap roots<br>^1.1 Blizzard rewards<br>x1.5 Fallen Cap and Speed</span>
-							</span>
-						</div>
-					</div>
+			</div>
+			<div class="dna-blueprint-bulk-background">
+				<div class="center-align">
+					<p class="bold">DNA Blueprint Bulk</p>
+					<p id="dnaBlueprintBulkIndicator">You can currently make 1 DNA Blueprint at once.</p>
+					<button id="buyDNABlueprintBulk" class="buttons-dna-color">+1 bulk buy amount<br>Cost: 1e6 Circuits</button>
+				</div>
+			</div>
+			<div class="bacteria-upgrades-bulk-background">
+				<div class="center-align">
+					<p class="bold">Bacteria Upg. Bulk</p>
+					<p id="bacteriaUpgradeBulkIndicator">You can currently buy 1 Bacteria Upgrade at once.</p>
+					<button id="buyBacteriaUpgradeBulk" class="buttons-bacteria-color">+1 bulk buy amount<br>Cost: 1e7 Circuits</button>
+				</div>
+			</div>
+			<div class="rna-upgrades-bulk-background">
+				<div class="center-align">
+					<p class="bold">RNA Upg. Bulk</p>
+					<p id="rnaUpgradeBulkIndicator">You can currently buy 1 RNA upgrade at once.</p>
+					<button id="buyRNAUpgradeBulk" class="buttons-rna-color">+1 bulk buy amount<br>Cost: 1e12 Circuits</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	<template id="fallenLeafType">
+		<div id="fallenTemplateLockedContainer" class="fallen-leaves-type-individual-container-locked">
+			<div class="center-align">
+				<p class="bold">LOCKED</p>
+				<img src="./src/images/lock.png" alt="Locked" width="64" height="64">
+				<p id="fallenTemplateLockedText">unlockVerbose</p>
+			</div>
+		</div>
+		<div id="fallenTemplateUnlockedContainer" class="fallen-leaves-type-individual-container" style="display: none;">
+			<p id="fallenTemplateVerboseName">verboseName</p>
+			<p id="fallenTemplateCounter">0</p>
+			<p id="fallenTemplateCapCounter">0 / cap (+0/s)</p>
+			<img id="fallenTemplateImage" src="./src/images/fallenleaf.png" alt="Image" width="32" height="32">
+			<p id="fallenTemplateFactor1Counter">verboseFactor[0] -> +0</p>
+			<p id="fallenTemplateFactor2Counter" style="display: none;">verboseFactor[1] -> +0</p>
+			<p id="fallenTemplateFactor3Counter" style="display: none;">verboseFactor[2] -> +0</p>
+			<p id="fallenTemplateFactor4Counter" style="display: none;">verboseFactor[3] -> +0</p>
+			<p id="fallenTemplateFactor5Counter" style="display: none;">verboseFactor[4] -> +0</p>
+			<p id="fallenTemplateFactorSumCounter">The sum of all factors is 0.</p>
+			<p id="fallenTemplateToNextCapCounter" class="italic">(next cap increase at return)</p>
+			<button id="fallenTemplateUpgradeButton" class="buttons-protein-setup-info">Upgrades</button>
+			<button id="fallenTemplateMilestoneButton" class="buttons-protein-setup-info">Milestones</button>
+		</div>
+	</template>
+	<template id="fallenInfoContainer">
+		<div id="templateFallenInfoBox" class="info-box" style="display: none;">
+			<p id="templateFallenInfoTitle" class="bold">Placeholder</p>
+			<button id="templateFallenInfoClose" class="close-button" aria-label="Close info box">&times;</button>
+		</div>
+	</template>
+	<template id="fallenUpgrade">
+		<div id="templateFallenUpgrade" class="buttons-fallen-upgrade-color">
+			<p id="templateFallenUpgradeText">Placeholder</p>
+		</div>
+	</template>
+	<template id="fallenMilestone">
+		<div id="templateFallenMilestone" class="fallen-milestone-background">
+			<p id="templateFallenMilestoneText">Placeholder</p>
+		</div>
+	</template>
+	
+	<div class="buttons-fallen-leaves" id="buttons-fallen-leaves">
+		<div class="fallen-leaves-background">
+			<div class="fallen-leaves-info">
+				<p class="bold">Technicalities</p>
+				<p style="display: inline;">Game speed is nerfed, <span class="italic">(log(GS + 1) / 1000)</span>,</p>
+				<p id="fallenLeavesGameSpeedNerf" class="game-speed" style="display: inline;">x1 &#x231B;</p>
+				<p>Amoebas' x and ^ secondary resource effects do not apply to Fallen Leaves.</p>
+				<p id="fallenLeavesBaseFallSpeed">Currently, it takes a base of 1 seconds for 1 Leaf to drop.</p>
+				<p>Every next type of Fallen Leaf takes x10 as long to drop as the previous.</p>
+			</div>
+			<button id="collectAllFallenLeaves" class="collect-fallen-leaves-button-color" style="left: 550px; top: 10px;" disabled="true">Collect all Fallen Leaf types</button>
+			<button id="buyAllFallenLeavesUpgrades" class="collect-fallen-leaves-button-color" style="left: 710px; top: 10px; display: none;" disabled="true">Buy all Fallen Leaf upgrades</button>
+			<div class="fallen-leaves-type-container"></div>
+		</div>
+	</div>
 
     <div class="achievement-tab-container" id="achievement-tabs">
-      <button id="regularAchievements" class="buttons-regular-ach-tab-color">Achievements</button>
-      <button id="secretAchievements" class="buttons-secret-ach-tab-color">Secret Achievements</button>
+		<button id="regularAchievements" class="buttons-regular-ach-tab-color">Achievements</button>
+		<button id="secretAchievements" class="buttons-secret-ach-tab-color">Secret Achievements</button>
     </div>
 
     <div class="achievements" id="achievements">
@@ -814,7 +1122,7 @@
       </div>
       <div class="ach55">
         <img src="./src/images/achievements/55.png" alt="55" width="100" height="100">
-        <span class="achievements-hover">Little green guys (55)<br>Reset your Cells for a new Bacteria Type</span>
+        <span class="achievements-hover">Little green guys (55)<br>Reset your Cells for a new Bacteria Type<br>(Get to 1.79e308 Cells)</span>
       </div>
       <div class="ach61">
         <img src="./src/images/achievements/61.png" alt="61" width="100" height="100">
@@ -962,7 +1270,67 @@
       </div>
       <div class="ach132">
         <img src="./src/images/achievements/132.png" alt="132" width="100" height="100">
-        <span class="achievements-hover">Worst image ever (132)<br>Have every single type of Microorganism<br>in your inventory at once</span>
+        <span class="achievements-hover">Worst image ever (132)<br>Have 10 Microorganisms in your inventory</span>
+      </div>
+      <div class="ach133">
+        <img src="./src/images/achievements/133.png" alt="133" width="100" height="100">
+        <span class="achievements-hover">Rock bottom (133)<br>Reach the maximum value for a main resource</span>
+      </div>
+      <div class="ach134">
+        <img src="./src/images/achievements/134.png" alt="134" width="100" height="100">
+        <span class="achievements-hover">3 infinity stones (134)<br>Max out all 3 softcap dampener upgrades</span>
+      </div>
+      <div class="ach135">
+        <img src="./src/images/achievements/135.png" alt="135" width="100" height="100">
+        <span class="achievements-hover">Why are the Simpsons green (135)<br>Reach 1e100000 Leaves<br>(<3 you emplemon &#x1F970&#x1F970&#x1F970&#x1F970&#x1F970&#x1F970)</span>
+      </div>
+      <div class="ach141">
+        <img src="./src/images/achievements/141.png" alt="141" width="100" height="100">
+        <span class="achievements-hover">Linear Algebra (141)<br>Create 200<br>Bacteria Types</span>
+      </div>
+      <div class="ach142">
+        <img src="./src/images/achievements/142.png" alt="142" width="100" height="100">
+        <span class="achievements-hover">996 more to go (142)<br>Build the Entropy statue<br>(Buy E45)</span>
+      </div>
+      <div class="ach143">
+        <img src="./src/images/achievements/143.png" alt="143" width="100" height="100">
+        <span class="achievements-hover">Bulky &#9989; (143)<br>Unlock the Welder<br>(Have 1e6 total Circuits)</span>
+      </div>
+      <div class="ach144">
+        <img src="./src/images/achievements/144.png" alt="144" width="100" height="100">
+        <span class="achievements-hover">NO I THOUGHT WE WERE DONE WITH THESE (144)<br>Unlock the Fall Season (challenge)<br>(Buy L70)</span>
+      </div>
+      <div class="ach145">
+        <img src="./src/images/achievements/145.png" alt="145" width="100" height="100">
+        <span class="achievements-hover">I didn't watch this movie (145)<br>Complete the Fall Season</span>
+      </div>
+      <div class="ach151">
+        <img src="./src/images/achievements/151.png" alt="151" width="100" height="100">
+        <span class="achievements-hover">Trickstab (151)<br>Have e1e6 more<br>Seeds than Leaves</span>
+      </div>
+      <div class="ach152">
+        <img src="./src/images/achievements/152.png" alt="152" width="100" height="100">
+        <span class="achievements-hover">That is macerated STABILITY (152)<br>Unlock the Roots Composter<br>(Buy F50)</span>
+      </div>
+      <div class="ach153">
+        <img src="./src/images/achievements/153.png" alt="153" width="100" height="100">
+        <span class="achievements-hover">The first of many (153)<br>Make 1 Fallen Leaf</span>
+      </div>
+      <div class="ach154">
+        <img src="./src/images/achievements/154.png" alt="154" width="100" height="100">
+        <span class="achievements-hover">This looks familiar (154)<br>Make 1 Mossy Leaf</span>
+      </div>
+      <div class="ach155">
+        <img src="./src/images/achievements/155.png" alt="155" width="100" height="100">
+        <span class="achievements-hover">Seriously, smeh8? I thought you were better than this. Just copy-pasting achievements over and over again like there's no consequences to your actions. You have to learn eventually that you have to take accountability for stealing copyrighted materials. You don't know how many people's lives you have ruined by stealing random images off of Google to make these achievements-- hell, the entire game is a copy of The Upgrade Tree of Life anyway! God! (155)<br>Make 1 Marbled Leaf</span>
+      </div>
+      <div class="ach161">
+        <img src="./src/images/achievements/161.png" alt="161" width="100" height="100">
+        <span class="achievements-hover">Why does this<br>exist (161)<br>Make a<br>Crude Pickaxe</span>
+      </div>
+      <div class="ach162">
+        <img src="./src/images/achievements/162.png" alt="162" width="100" height="100">
+        <span class="achievements-hover">eat uranium (162)<br>Reach e3.6e8 Leaves</span>
       </div>
     </div>
 
@@ -977,7 +1345,19 @@
       </div>
       <div class="secret13">
         <img src="./src/images/secret_achievements/placeholder.png" alt="13" width="100" height="100" id="secret13">
-        <span class="achievements-hover" id="secret13Text">? ????? ????? ?? (13)<br>????? ?? ??? ???????? ???????? ??????<br>Hint: "I hate idle games that just switch to xey at the end of them"</span>
+        <span class="achievements-hover" id="secret13Text">? ????? ????? ?? (13)<br>????? ?? ??? ???????? ???????? ??????<br>Hint: Read the conversation in Achievement 162</span>
+      </div>
+      <div class="secret14">
+        <img src="./src/images/secret_achievements/placeholder.png" alt="14" width="100" height="100" id="secret14">
+        <span class="achievements-hover" id="secret14Text">???? ??? ????????? (14)<br>????? ?? ??? ?????? ????<br>Hint: Bro play with me in Bergundy vs Lapis &#x1F970;<br><a href="https://www.roblox.com/games/121074087709998/Bergundy-VS-Lapis">Play the game please it's really good and I know the developer</a></span>
+      </div>
+      <div class="secret15">
+        <img src="./src/images/secret_achievements/placeholder.png" alt="15" width="100" height="100" id="secret15">
+        <span class="achievements-hover" id="secret15Text">??? ???? ???? ??? ??? (15)<br>???? ? .??? ???? ???? ??? ???? "? ??? ???" ??? ????? ?? ???? ??? ???? ???? ???<br>Hint: Hevipelle eats this stuff a lot &#x1F609;</span>
+      </div>
+      <div class="secret21">
+        <img src="./src/images/secret_achievements/placeholder.png" alt="21" width="100" height="100" id="secret21">
+        <span class="achievements-hover" id="secret21Text">???????<br>???????? (21)<br>??????? ????????<br>Hint: Michael,<br>that's not<br>where that goes</span>
       </div>
     </div>
     
@@ -1044,11 +1424,29 @@
     <div class="ach125-text"><p class="achievement-text-color">Six figures of cells</p></div>
     <div class="ach131-text"><p class="achievement-text-color">OH GOD NO</p></div>
     <div class="ach132-text"><p class="achievement-text-color">Worst image ever</p></div>
+    <div class="ach133-text"><p class="achievement-text-color">Rock bottom</p></div>
+    <div class="ach134-text"><p class="achievement-text-color">3 infinity stones</p></div>
+    <div class="ach135-text"><p class="achievement-text-color">Why are the Simpsons green</p></div>
+    <div class="ach141-text"><p class="achievement-text-color">Linear Algebra</p></div>
+    <div class="ach142-text"><p class="achievement-text-color">996 more to go</p></div>
+    <div class="ach143-text"><p class="achievement-text-color">Bulky &#9989;</p></div>
+    <div class="ach144-text"><p class="achievement-text-color">NO I THOUGHT WE WERE DONE WITH THESE</p></div>
+    <div class="ach145-text"><p class="achievement-text-color">I didn't watch this movie</p></div>
+    <div class="ach151-text"><p class="achievement-text-color">Trickstab</p></div>
+    <div class="ach152-text"><p class="achievement-text-color">That is macerated STABILITY</p></div>
+    <div class="ach153-text"><p class="achievement-text-color">The first of many</p></div>
+    <div class="ach154-text"><p class="achievement-text-color">This looks familiar</p></div>
+    <div class="ach155-text"><p class="achievement-text-color">Seriously, smeh8? I thought you were better than this. Just copy-pasting achievements over and over again like there's no consequences to your actions. You have to learn eventually that you have to take accountability for stealing copyrighted materials. You don't know how many people's lives you have ruined by stealing random images off of Google to make these achievements-- hell, the entire game is a copy of The Upgrade Tree of Life anyway! God!</p></div>
+    <div class="ach161-text"><p class="achievement-text-color">Why does this exist</p></div>
+    <div class="ach162-text"><p class="achievement-text-color">eat uranium</p></div>
 
     <div class="secret11-text"><p class="secret-achievement-text-color">Jumpscare</p></div>
     <div class="secret12-text"><p class="secret-achievement-text-color">Cheater Cheater, Peter Beater</p></div>
     <div class="secret13-text"><p class="secret-achievement-text-color">I don't think so</p></div>
-
+    <div class="secret14-text"><p class="secret-achievement-text-color">Meet the developer</p></div>
+    <div class="secret15-text"><p class="secret-achievement-text-color">You know what you did</p></div>
+    <div class="secret21-text"><p class="secret-achievement-text-color">Michael Organism</p></div>
+	
     <div class="options-boxes" id="settings">
       <div class="refresh-rate">
         <p>Global Refresh Rate</p>
@@ -1063,6 +1461,7 @@
         <button id="saveManually">Save Manually</button>
         <button id="loadSave">Load Save</button>
         <button id="exportSave">Export Save</button>
+        <button id="importSave">Import Save from a File</button>
 		<button id="resetSave" class="scaryButton">Reset your progress<br>0 / 10s of button being held</button>
       </div>
       <div class="notations">
@@ -1082,9 +1481,11 @@
 		  </div>
 		</div>
       <div class="customization">
-        <p>Customization</p>
-		<p class="italic">Use hex codes for these</p>
-        <input type="text" id="backgroundColorCounter" placeholder="Background Color">
+        <p>Links to my stuff</p>
+		<p class="italic">Please friend me I am lonely</p>
+		<a href="https://www.youtube.com/@smeh8641"><img src="./src/images/youtubeIcon.png" height="32" width="32"></a>
+		<a href="https://discord.com/channels/1125646259735236700/1456030627643133962"><img src="./src/images/discordIcon.png" height="32" width="32"></a>
+		<a id="secret14Button"><img src="./src/images/robloxIcon.png" height="32" width="32"></a>
       </div>
 	  <div class="load-game-stages">
 		<p>Load game stages</p>
@@ -1100,6 +1501,8 @@
 		<button id="loadFirstReinforcement">First Reinforcement</button>
 		<button id="loadRM4Achieved">RM4 Achieved</button>
 		<button id="loadRM7Achieved">RM7 Achieved</button>
+        <button id="loadMicroorganismsUnlocked">Microorganisms Unlocked</button>
+        <button id="loadFLUnlocked">Fallen Leaves Unlocked</button>
         <button id="loadEndgame">Endgame</button>
 	  </div>
     </div>
@@ -1111,13 +1514,7 @@
         <img src="./src/images/homerLEDs.png" class="funny" alt="Haha you have no internet connection" id="funny">
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/break_eternity.js@2.1.2"></script>
-    <script type="importmap">{
-      "imports": {
-      "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
-      }
-    }
-    </script>  
+    <script src="https://cdn.jsdelivr.net/npm/break_eternity.js@2.1.3"></script>
 	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 	<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
 	
@@ -1135,12 +1532,13 @@
     <script src="./src/modules/radar.mjs" type="module"></script>
     <script src="./src/modules/rootmilestones.mjs" type="module"></script>
     <script src="./src/modules/petridish.mjs" type="module"></script>
+    <script src="./src/modules/fallenleaves.mjs" type="module"></script>
     <script src="./src/modules/core/gameloopbutmodule.mjs" type="module"></script>
     <script src="./src/modules/core/bunchobullshit.mjs" type="module"></script>
     <script src="./src/modules/automation.mjs" type="module"></script>
+    <script src="./src/modules/welder.mjs" type="module"></script>
     <script src="./src/modules/core/calculations.mjs" type="module"></script>
     <script src="./src/modules/achievements.mjs" type="module"></script>
     <script src="./src/modules/savefile.mjs" type="module"></script>
-	
   </body>
 </html>

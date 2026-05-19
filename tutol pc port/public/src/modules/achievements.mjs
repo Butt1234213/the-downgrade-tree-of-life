@@ -128,6 +128,36 @@ export var achievements = {
     ach131AnimPlayed: false,
     ach132: false,
     ach132AnimPlayed: false,
+    ach133: false,
+    ach133AnimPlayed: false,
+    ach134: false,
+    ach134AnimPlayed: false,
+    ach135: false,
+    ach135AnimPlayed: false,
+    ach141: false,
+    ach141AnimPlayed: false,
+    ach142: false,
+    ach142AnimPlayed: false,
+    ach143: false,
+    ach143AnimPlayed: false,
+    ach144: false,
+    ach144AnimPlayed: false,
+    ach145: false,
+    ach145AnimPlayed: false,
+    ach151: false,
+    ach151AnimPlayed: false,
+    ach152: false,
+    ach152AnimPlayed: false,
+    ach153: false,
+    ach153AnimPlayed: false,
+    ach154: false,
+    ach154AnimPlayed: false,
+    ach155: false,
+    ach155AnimPlayed: false,
+    ach161: false,
+    ach161AnimPlayed: false,
+    ach162: false,
+    ach162AnimPlayed: false,
 }
 
 export function updateAchievements(newAchievements, newSecretAchievements) {
@@ -159,7 +189,6 @@ export function achievementChecker(achievements, achName) {
             achievementAnimation(`.${achName}-text`);
             // Update the property on the original object
             achievements[achAnimName] = true;
-            console.log(achievements[achAnimName]);
         }
     }
 }
@@ -227,6 +256,21 @@ export function massAchievementChecker() {
     achievementChecker(achievements, 'ach125');
     achievementChecker(achievements, 'ach131');
     achievementChecker(achievements, 'ach132');
+    achievementChecker(achievements, 'ach133');
+    achievementChecker(achievements, 'ach134');
+    achievementChecker(achievements, 'ach135');
+    achievementChecker(achievements, 'ach141');
+    achievementChecker(achievements, 'ach142');
+    achievementChecker(achievements, 'ach143');
+    achievementChecker(achievements, 'ach144');
+    achievementChecker(achievements, 'ach145');
+    achievementChecker(achievements, 'ach151');
+    achievementChecker(achievements, 'ach152');
+    achievementChecker(achievements, 'ach153');
+    achievementChecker(achievements, 'ach154');
+    achievementChecker(achievements, 'ach155');
+    achievementChecker(achievements, 'ach161');
+    achievementChecker(achievements, 'ach162');
 }
 
 export var secretAchievements = {
@@ -236,6 +280,12 @@ export var secretAchievements = {
     secret12AnimPlayed: false,
     secret13: false,
     secret13AnimPlayed: false,
+    secret14: false,
+    secret14AnimPlayed: false,
+    secret15: false,
+    secret15AnimPlayed: false,
+    secret21: false,
+    secret21AnimPlayed: false,
 }
 
 export function secretAchievementChecker(achievements, achName, achText) {
@@ -251,7 +301,6 @@ export function secretAchievementChecker(achievements, achName, achText) {
             achievementAnimation(`.${achName}-text`);
             // Update the property on the original object
             achievements[achAnimName] = true;
-            console.log(achievements[achAnimName]);
         }
     }
 }
@@ -260,6 +309,13 @@ export function massSecretAchievementChecker() {
     secretAchievementChecker(secretAchievements, 'secret11', 'Jumpscare (11)<br>Click on the homers');
     secretAchievementChecker(secretAchievements, 'secret12', 'Cheater Cheater, Peter Beater (12)<br>Type in a value for the cheat box');
     secretAchievementChecker(secretAchievements, 'secret13', `I don't think so (13)<br>Click on the standard notation button`);
+    secretAchievementChecker(secretAchievements, 'secret14', `Meet the developer (14)<br>Click on the Roblox link`);
+    secretAchievementChecker(secretAchievements, 'secret15', `You know what you did (15)<br>Make a .txt file with the text "I eat ass" and input it into the load save box`);
+    secretAchievementChecker(secretAchievements, 'secret21', `Michael<br>Organism (21)<br>Michael Organism`);
+}
+
+function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function secret11() {
@@ -289,3 +345,11 @@ function secret13() {
 }
 document.getElementById('jumpscareTrigger').addEventListener("click", secret13);
 document.getElementById('crashTrigger').addEventListener("click", crashTheWebpage);
+
+document.getElementById('secret14Button').addEventListener("click", function() {
+	secretAchievements.secret14 = true;
+	massSecretAchievementChecker();
+	saveLoop();
+	sleep(100);
+	window.location.href = "https://www.roblox.com/users/126481537/profile?friendshipSourceType=PlayerSearch";
+});

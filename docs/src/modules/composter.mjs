@@ -6,42 +6,60 @@ export function composterScaling(type) {
     let baseFertilizerAmount;
 	let baseCostDiv;
 	let baseBulkAmount;
+	let baseComposterScalingStart;
+	let baseComposterSuperScalingStart;
 
     if (type === 'leaf') {
         baseScalingAmount = new Decimal(1e6).times(storage.gameData.leafComposterDiscount);
         baseFertilizerAmount = storage.gameData.leafComposterCount;
 		baseCostDiv = storage.gameData.composterCostDivision;
 		baseBulkAmount = storage.gameData.fertilizerBulk;
+		baseComposterScalingStart = storage.gameData.composterScalingStart;
+		baseComposterSuperScalingStart = storage.gameData.composterSuperScalingStart;
     }
     if (type === 'seed') {
         baseScalingAmount = new Decimal(1e2).times(storage.gameData.seedComposterDiscount);
         baseFertilizerAmount = storage.gameData.seedComposterCount;
 		baseCostDiv = storage.gameData.composterCostDivision;
 		baseBulkAmount = storage.gameData.fertilizerBulk;
+		baseComposterScalingStart = storage.gameData.composterScalingStart;
+		baseComposterSuperScalingStart = storage.gameData.composterSuperScalingStart;
     }
     if (type === 'fruit') {
         baseScalingAmount = new Decimal(2).times(storage.gameData.fruitComposterDiscount);
         baseFertilizerAmount = storage.gameData.fruitComposterCount;
 		baseCostDiv = storage.gameData.composterCostDivision;
 		baseBulkAmount = storage.gameData.fertilizerBulk;
+		baseComposterScalingStart = storage.gameData.composterScalingStart;
+		baseComposterSuperScalingStart = storage.gameData.composterSuperScalingStart;
     }
     if (type === 'entropy') {
         baseScalingAmount = new Decimal(1e6).times(storage.gameData.entropyComposterDiscount);
         baseFertilizerAmount = storage.gameData.entropyComposterCount;
 		baseCostDiv = new Decimal(1);
 		baseBulkAmount = new Decimal(1);
+		baseComposterScalingStart = (storage.gameData.composterScalingStart.pow(new Decimal(0.5))).trunc();
+		baseComposterSuperScalingStart = (storage.gameData.composterSuperScalingStart.pow(new Decimal(0.5))).trunc();
+    }
+    if (type === 'root') {
+        baseScalingAmount = new Decimal(1e6).times(storage.gameData.rootComposterDiscount);
+        baseFertilizerAmount = storage.gameData.rootComposterCount;
+		baseCostDiv = new Decimal(1);
+		baseBulkAmount = new Decimal(1);
+		baseComposterScalingStart = (storage.gameData.composterScalingStart.pow(new Decimal(0.5))).trunc();
+		baseComposterSuperScalingStart = (storage.gameData.composterSuperScalingStart.pow(new Decimal(0.5))).trunc();
     }
     baseFertilizerAmount = baseFertilizerAmount.plus(baseBulkAmount.minus(new Decimal(1)));
     
-    const preScaling = baseScalingAmount.pow(storage.gameData.composterScalingStart.plus(new Decimal(1)));
-    const preSuperScaling = baseScalingAmount.pow(storage.gameData.composterSuperScalingStart.plus(new Decimal(1)));
+    const preScaling = baseScalingAmount.pow(baseComposterScalingStart.plus(new Decimal(1)));
+    const preSuperScaling = baseScalingAmount.pow(baseComposterSuperScalingStart.plus(new Decimal(1)));
     let scalingMult = baseScalingAmount.pow(baseFertilizerAmount.plus(new Decimal(1)));
 
-    const scaling = baseFertilizerAmount.greaterThanOrEqualTo(storage.gameData.composterScalingStart);
-    const superScaling = baseFertilizerAmount.greaterThanOrEqualTo(storage.gameData.composterSuperScalingStart);
+    const scaling = baseFertilizerAmount.greaterThanOrEqualTo(baseComposterScalingStart);
+    const superScaling = baseFertilizerAmount.greaterThanOrEqualTo(baseComposterSuperScalingStart);
 
     if (scaling) {
-        const operations = baseFertilizerAmount.minus(storage.gameData.composterScalingStart);
+        const operations = baseFertilizerAmount.minus(baseComposterScalingStart);
         let scalingMult = preScaling;
 
         const x = new Decimal(1.1).pow(operations);
@@ -49,7 +67,7 @@ export function composterScaling(type) {
         scalingMult = preScaling.times(x.times(y));
 
         if (superScaling) {
-            const superOperations = baseFertilizerAmount.minus(storage.gameData.composterSuperScalingStart);
+            const superOperations = baseFertilizerAmount.minus(baseComposterSuperScalingStart);
 
             for (let i = 0; i < superOperations; i++) {
                 const z = scalingMult.pow(storage.gameData.composterSuperScalingEffect);
@@ -62,7 +80,7 @@ export function composterScaling(type) {
         return scalingMult;
     }
     if ((superScaling) && (!scaling)) {
-        const superOperations = baseFertilizerAmount.minus(storage.gameData.composterSuperScalingStart);
+        const superOperations = baseFertilizerAmount.minus(baseComposterSuperScalingStart);
         let scalingMult = preSuperScaling;
 
         for (let i = 0; i < superOperations; i++) {
@@ -81,40 +99,59 @@ export function composterScaling(type) {
     return scalingMult;
 }
 
+
 export function compostingSpeedScaling(type) {
+	
     let baseScalingAmount;
     let baseFertilizerAmount;
 	let baseBulkAmount;
+	let baseCompostingSpeedScalingStart;
+	let baseCompostingSpeedSuperScalingStart;
 
     if (type === 'leaf') {
         baseScalingAmount = new Decimal(2);
         baseFertilizerAmount = storage.gameData.leafComposterCount;
 		baseBulkAmount = storage.gameData.fertilizerBulk;
+		baseCompostingSpeedScalingStart = storage.gameData.compostingSpeedScalingStart;
+		baseCompostingSpeedSuperScalingStart = storage.gameData.compostingSpeedSuperScalingStart;
     }
     if (type === 'seed') {
         baseScalingAmount = new Decimal(2);
         baseFertilizerAmount = storage.gameData.seedComposterCount;
 		baseBulkAmount = storage.gameData.fertilizerBulk;
+		baseCompostingSpeedScalingStart = storage.gameData.compostingSpeedScalingStart;
+		baseCompostingSpeedSuperScalingStart = storage.gameData.compostingSpeedSuperScalingStart;
     }
     if (type === 'fruit') {
         baseScalingAmount = new Decimal(2);
         baseFertilizerAmount = storage.gameData.fruitComposterCount;
 		baseBulkAmount = storage.gameData.fertilizerBulk;
+		baseCompostingSpeedScalingStart = storage.gameData.compostingSpeedScalingStart;
+		baseCompostingSpeedSuperScalingStart = storage.gameData.compostingSpeedSuperScalingStart;
     }
     if (type === 'entropy') {
         baseScalingAmount = new Decimal(1e6);
         baseFertilizerAmount = storage.gameData.entropyComposterCount;
 		baseBulkAmount = new Decimal(1);
+		baseCompostingSpeedScalingStart = (storage.gameData.compostingSpeedScalingStart.pow(new Decimal(0.5))).trunc();
+		baseCompostingSpeedSuperScalingStart = (storage.gameData.compostingSpeedSuperScalingStart.pow(new Decimal(0.5))).trunc();
+    }
+    if (type === 'root') {
+        baseScalingAmount = new Decimal.fromComponents(1, 1, 50000);
+        baseFertilizerAmount = storage.gameData.rootComposterCount;
+		baseBulkAmount = new Decimal(1);
+		baseCompostingSpeedScalingStart = (storage.gameData.compostingSpeedScalingStart.pow(new Decimal(0.5))).trunc();
+		baseCompostingSpeedSuperScalingStart = (storage.gameData.compostingSpeedSuperScalingStart.pow(new Decimal(0.5))).trunc();
     }
     baseFertilizerAmount = baseFertilizerAmount.plus(baseBulkAmount.minus(new Decimal(1)));
     
     let scalingMult = baseScalingAmount;
 
-    const scaling = baseFertilizerAmount.greaterThanOrEqualTo(storage.gameData.compostingSpeedScalingStart);
-    const superScaling = baseFertilizerAmount.greaterThanOrEqualTo(storage.gameData.compostingSpeedSuperScalingStart);
+    const scaling = baseFertilizerAmount.greaterThanOrEqualTo(baseCompostingSpeedScalingStart);
+    const superScaling = baseFertilizerAmount.greaterThanOrEqualTo(baseCompostingSpeedSuperScalingStart);
 
     if (scaling) {
-        const operations = baseFertilizerAmount.minus(storage.gameData.compostingSpeedScalingStart);
+        const operations = baseFertilizerAmount.minus(baseCompostingSpeedScalingStart);
 		const technicalOperations = operations.toNumber();
 		
 		for (let i = 0; i < technicalOperations; i++) {
@@ -122,9 +159,28 @@ export function compostingSpeedScaling(type) {
 			const scalingEffect = new Decimal(1.1);
 			scalingMult = scalingMult.times(scalingEffect);
 		}
+        if (superScaling) {
+            const superOperations = baseFertilizerAmount.minus(baseCompostingSpeedSuperScalingStart);
+			const technicalSuperOperations = superOperations.toNumber();
+
+            for (let i = 0; i < technicalSuperOperations; i++) {
+                const z = scalingMult.pow(new Decimal(1.1));
+                scalingMult = z;
+            }
+        }
 		
         return scalingMult;
     }
+	if (superScaling && !scaling) {
+		const superOperations = baseFertilizerAmount.minus(baseCompostingSpeedSuperScalingStart);
+		const technicalSuperOperations = superOperations.toNumber();
+
+		for (let i = 0; i < technicalSuperOperations; i++) {
+			const z = scalingMult.pow(new Decimal(1.1));
+			scalingMult = z;
+		}
+		return scalingMult;
+	}
 	if (baseFertilizerAmount.lessThan(new Decimal(1))) {
 		scalingMult = new Decimal(1);
 		return scalingMult;
@@ -140,6 +196,8 @@ export function composterButtonUpdater() {
     let u = v.div(storage.gameData.compostingSpeed);
     document.getElementById('leafCompostingTimer').innerHTML = `Composting takes ${storage.truncateToDecimalPlaces(u, 3)} seconds`;
 	document.getElementById('leafComposterTimeIncreaseCounter').innerHTML = `x${storage.truncateToDecimalPlaces(compostingSpeedScaling('leaf'), 3)} per Fertilizer`;
+    if (storage.gameData.freeLeafFertilizers.greaterThanOrEqualTo(new Decimal(1))) {document.getElementById('leafFertilizerCounter').innerHTML = `The Leaf Composter has made ${storage.truncateToDecimalPlaces(storage.gameData.leafComposterCount, 3)} (+${storage.truncateToDecimalPlaces(storage.gameData.freeLeafFertilizers, 3)}) Fertilizers,`;}
+    else {document.getElementById('leafFertilizerCounter').innerHTML = `The Leaf Composter has made ${storage.truncateToDecimalPlaces(storage.gameData.leafComposterCount, 3)} Fertilizers,`;}
 	let seedCost = composterScaling('seed');
 	storage.gameData.seedComposterCost = seedCost;
 	document.getElementById('seedComposterButton').innerHTML = `Make a Fertilizer<br>Cost: ${storage.truncateToDecimalPlaces(seedCost, 3)} Seeds`;
@@ -147,6 +205,8 @@ export function composterButtonUpdater() {
     u = v.div(storage.gameData.compostingSpeed);
     document.getElementById('seedCompostingTimer').innerHTML = `Composting takes ${storage.truncateToDecimalPlaces(u, 3)} seconds`;
 	document.getElementById('seedComposterTimeIncreaseCounter').innerHTML = `x${storage.truncateToDecimalPlaces(compostingSpeedScaling('seed'), 3)} per Fertilizer`;
+    if (storage.gameData.freeSeedFertilizers.greaterThanOrEqualTo(new Decimal(1))) {document.getElementById('seedFertilizerCounter').innerHTML = `The Seed Composter has made ${storage.truncateToDecimalPlaces(storage.gameData.seedComposterCount, 3)} (+${storage.truncateToDecimalPlaces(storage.gameData.freeSeedFertilizers, 3)}) Fertilizers,`;}
+    else {document.getElementById('seedFertilizerCounter').innerHTML = `The Seed Composter has made ${storage.truncateToDecimalPlaces(storage.gameData.seedComposterCount, 3)} Fertilizers,`;}
 	let fruitCost = composterScaling('fruit');
 	storage.gameData.fruitComposterCost = fruitCost;
 	document.getElementById('fruitComposterButton').innerHTML = `Make a Fertilizer<br>Cost: ${storage.truncateToDecimalPlaces(fruitCost, 3)} Fruits`;
@@ -154,6 +214,8 @@ export function composterButtonUpdater() {
     u = v.div(storage.gameData.compostingSpeed);
     document.getElementById('fruitCompostingTimer').innerHTML = `Composting takes ${storage.truncateToDecimalPlaces(u, 3)} seconds`;
 	document.getElementById('fruitComposterTimeIncreaseCounter').innerHTML = `x${storage.truncateToDecimalPlaces(compostingSpeedScaling('fruit'), 3)} per Fertilizer`;
+    if (storage.gameData.freeFruitFertilizers.greaterThanOrEqualTo(new Decimal(1))) {document.getElementById('fruitFertilizerCounter').innerHTML = `The Fruit Composter has made ${storage.truncateToDecimalPlaces(storage.gameData.fruitComposterCount, 3)} (+${storage.truncateToDecimalPlaces(storage.gameData.freeFruitFertilizers, 3)}) Fertilizers,`;}
+    else {document.getElementById('fruitFertilizerCounter').innerHTML = `The Fruit Composter has made ${storage.truncateToDecimalPlaces(storage.gameData.fruitComposterCount, 3)} Fertilizers,`;}
 	let entropyCost = composterScaling('entropy');
 	storage.gameData.entropyComposterCost = entropyCost;
 	document.getElementById('entropyComposterButton').innerHTML = `Make a Complex Fertilizer<br>Cost: ${storage.truncateToDecimalPlaces(entropyCost, 3)} Entropy`;
@@ -161,6 +223,17 @@ export function composterButtonUpdater() {
     u = v.div(storage.gameData.compostingSpeed);
     document.getElementById('entropyCompostingTimer').innerHTML = `Composting takes ${storage.truncateToDecimalPlaces(u, 3)} seconds`;
 	document.getElementById('entropyComposterTimeIncreaseCounter').innerHTML = `x${storage.truncateToDecimalPlaces(compostingSpeedScaling('entropy'), 3)} per Fertilizer`;
+    if (storage.gameData.freeEntropyFertilizers.greaterThanOrEqualTo(new Decimal(1))) {document.getElementById('entropyFertilizerCounter').innerHTML = `The Entropy Composter has made ${storage.truncateToDecimalPlaces(storage.gameData.entropyComposterCount, 3)} (+${storage.truncateToDecimalPlaces(storage.gameData.freeEntropyFertilizers, 3)}) Fertilizers,`;}
+    else {document.getElementById('entropyFertilizerCounter').innerHTML = `The Entropy Composter has made ${storage.truncateToDecimalPlaces(storage.gameData.entropyComposterCount, 3)} Fertilizers,`;}
+	let rootCost = composterScaling('root');
+	storage.gameData.rootComposterCost = rootCost;
+	document.getElementById('rootComposterButton').innerHTML = `Make a Complex Fertilizer<br>Cost: ${storage.truncateToDecimalPlaces(rootCost, 3)} Roots`;
+	v = storage.gameData.rootComposterTime.div(new Decimal(1000));
+    u = v.div(storage.gameData.compostingSpeed);
+    document.getElementById('rootCompostingTimer').innerHTML = `Composting takes ${storage.truncateToDecimalPlaces(u, 3)} seconds`;
+	document.getElementById('rootComposterTimeIncreaseCounter').innerHTML = `x${storage.truncateToDecimalPlaces(compostingSpeedScaling('root'), 3)} per Fertilizer`;
+    if (storage.gameData.freeRootFertilizers.greaterThanOrEqualTo(new Decimal(1))) {document.getElementById('rootFertilizerCounter').innerHTML = `The Root Composter has made ${storage.truncateToDecimalPlaces(storage.gameData.rootComposterCount, 3)} (+${storage.truncateToDecimalPlaces(storage.gameData.freeRootFertilizers, 3)}) Fertilizers,`;}
+    else {document.getElementById('rootFertilizerCounter').innerHTML = `The Root Composter has made ${storage.truncateToDecimalPlaces(storage.gameData.rootComposterCount, 3)} Fertilizers,`;}
 }
 
 export function checkTotalComposter() {
@@ -168,6 +241,7 @@ export function checkTotalComposter() {
     const y = storage.gameData.seedComposterCount;
     const z = storage.gameData.fruitComposterCount;
     const w = storage.gameData.entropyComposterCount;
+	const r = storage.gameData.rootComposterCount;
     var v = new Decimal(1);
     var u = new Decimal(1);
     var t = new Decimal(1);
@@ -181,8 +255,11 @@ export function checkTotalComposter() {
 		u = new Decimal(15);
 		t = new Decimal(15);
 	}
-    storage.gameData.totalFertilizers = x.plus(y.plus(z.plus(w.plus(v.plus(u.plus(t))))));
-    document.getElementById('composterTotalCounter').innerHTML = `You have built ${storage.truncateToDecimalPlaces(storage.gameData.totalComposters, 3)} Composters which have created ${storage.truncateToDecimalPlaces(storage.gameData.totalFertilizers, 3)} Fertilizers, boosting Tree Aging speed by x${storage.truncateToDecimalPlaces(calculateComposterMult(), 3)}. You also have x${storage.truncateToDecimalPlaces(storage.gameData.compostingSpeed, 3)} Composting speed.<br>Composter Scaling starts at ${storage.truncateToDecimalPlaces(storage.gameData.composterScalingStart, 3)} Fertilizers (x1.1 per), and Super Composter Scaling starts at ${storage.truncateToDecimalPlaces(storage.gameData.composterSuperScalingStart, 3)} Fertilizers (^${storage.truncateToDecimalPlaces(storage.gameData.composterSuperScalingEffect, 3)} per).<br>Composting Speed Scaling starts at 500 Fertilizers (x1.1 per), and Super Composting Speed Scaling starts at 1000 Fertilizers (^1.1 per)`;
+    storage.gameData.totalFertilizers = x.plus(y.plus(z.plus(w.plus(v.plus(u.plus(t.plus(r)))))));
+    document.getElementById('composterTotalCounter').innerHTML = `You have built ${storage.truncateToDecimalPlaces(storage.gameData.totalComposters, 3)} Composters which have created ${storage.truncateToDecimalPlaces(storage.gameData.totalFertilizers, 3)} Fertilizers, boosting Tree Aging speed by x${storage.truncateToDecimalPlaces(calculateComposterMult(), 3)}. You also have x${storage.truncateToDecimalPlaces(storage.gameData.compostingSpeed, 3)} Composting speed.<br>Composter Scaling starts at ${storage.truncateToDecimalPlaces(storage.gameData.composterScalingStart, 3)} Fertilizers (x1.1 per), and Super Composter Scaling starts at ${storage.truncateToDecimalPlaces(storage.gameData.composterSuperScalingStart, 3)} Fertilizers (^${storage.truncateToDecimalPlaces(storage.gameData.composterSuperScalingEffect, 3)} per).<br>Composting Speed Scaling starts at ${storage.truncateToDecimalPlaces(storage.gameData.compostingSpeedScalingStart, 3)} Fertilizers (x1.1 per), and Super Composting Speed Scaling starts at ${storage.truncateToDecimalPlaces(storage.gameData.compostingSpeedSuperScalingStart, 3)} Fertilizers (^1.1 per)`;
+	
+	const complexFertilizers = w.plus(r);
+	document.getElementById('complexComposterTotalCounter').innerHTML = `You have built ${storage.truncateToDecimalPlaces(storage.gameData.totalComposters, 3)} Composters which have created ${storage.truncateToDecimalPlaces(complexFertilizers, 3)} Complex Fertilizers. All types of Complex Scaling are based upon &radic;(regular Composter Scaling).<br>Composter Scaling starts at ${storage.truncateToDecimalPlaces((storage.gameData.composterScalingStart.pow(new Decimal(0.5))).trunc(), 3)} Fertilizers (x1.1 per), and Super Composter Scaling starts at ${storage.truncateToDecimalPlaces((storage.gameData.composterSuperScalingStart.pow(new Decimal(0.5))).trunc(), 3)} Fertilizers (^1.1 per).<br>Composting Speed Scaling starts at ${storage.truncateToDecimalPlaces((storage.gameData.compostingSpeedScalingStart.pow(new Decimal(0.5))).trunc(), 3)} Fertilizers (x1.1 per), and Super Composting Speed Scaling starts at ${storage.truncateToDecimalPlaces((storage.gameData.compostingSpeedSuperScalingStart.pow(new Decimal(0.5))).trunc(), 3)} Fertilizers (^1.1 per)`;
 
     if (storage.gameData.totalFertilizers.greaterThanOrEqualTo(new Decimal(500))) {
         achievements.ach73 = true;
@@ -231,6 +308,14 @@ export function checkLeafComposter() {
 
 export function updateLeafComposter() {
     if (storage.gameData.leafComposterIsActive) {
+		if (storage.fruitUpgradeFactor.F55Bought) {
+			storage.gameData.leafComposterTime = compostingSpeedScaling('leaf');
+		}
+		//makes it so the game doesn't calculate the thing every frame if the time to compost would be greater than 10000 seconds
+		if (storage.gameData.leafComposterTime.div(storage.gameData.compostingSpeed).greaterThan(new Decimal(1e7))) {
+			document.querySelector('.leaf-progress-bar').style.width = '0%';
+			return;
+		}
         if (storage.gameData.leafComposterAmount.lessThan(storage.gameData.leafComposterTime)) {
             const x = storage.gameData.ticksToUpdateComposter.times(storage.gameData.compostingSpeed);
             storage.gameData.leafComposterAmount = storage.gameData.leafComposterAmount.plus(x);
@@ -290,6 +375,14 @@ export function checkSeedComposter() {
 
 export function updateSeedComposter() {
     if (storage.gameData.seedComposterIsActive) {
+		if (storage.fruitUpgradeFactor.F55Bought) {
+			storage.gameData.seedComposterTime = compostingSpeedScaling('seed');
+		}
+		//makes it so the game doesn't calculate the thing every frame if the time to compost would be greater than 10000 seconds
+		if (storage.gameData.seedComposterTime.div(storage.gameData.compostingSpeed).greaterThan(new Decimal(1e7))) {
+			document.querySelector('.seed-progress-bar').style.width = '0%';
+			return;
+		}
         if (storage.gameData.seedComposterAmount.lessThan(storage.gameData.seedComposterTime)) {
             const x = storage.gameData.ticksToUpdateComposter.times(storage.gameData.compostingSpeed);
             storage.gameData.seedComposterAmount = storage.gameData.seedComposterAmount.plus(x);
@@ -349,6 +442,14 @@ export function checkFruitComposter() {
 
 export function updateFruitComposter() {
     if (storage.gameData.fruitComposterIsActive) {
+		if (storage.fruitUpgradeFactor.F55Bought) {
+			storage.gameData.fruitComposterTime = compostingSpeedScaling('fruit');
+		}
+		//makes it so the game doesn't calculate the thing every frame if the time to compost would be greater than 10000 seconds
+		if (storage.gameData.fruitComposterTime.div(storage.gameData.compostingSpeed).greaterThan(new Decimal(1e7))) {
+			document.querySelector('.fruit-progress-bar').style.width = '0%';
+			return;
+		}
         if (storage.gameData.fruitComposterAmount.lessThan(storage.gameData.fruitComposterTime)) {
             const x = storage.gameData.ticksToUpdateComposter.times(storage.gameData.compostingSpeed);
             storage.gameData.fruitComposterAmount = storage.gameData.fruitComposterAmount.plus(x);
@@ -418,6 +519,14 @@ export function checkEntropyComposter() {
 
 export function updateEntropyComposter() {
     if (storage.gameData.entropyComposterIsActive) {
+		if (storage.fruitUpgradeFactor.F55Bought) {
+			storage.gameData.entropyComposterTime = compostingSpeedScaling('entropy');
+		}
+		//makes it so the game doesn't calculate the thing every frame if the time to compost would be greater than 10000 seconds
+		if (storage.gameData.entropyComposterTime.div(storage.gameData.compostingSpeed).greaterThan(new Decimal(1e7))) {
+			document.querySelector('.entropy-progress-bar').style.width = '0%';
+			return;
+		}
         if (storage.gameData.entropyComposterAmount.lessThan(storage.gameData.entropyComposterTime)) {
             const x = storage.gameData.ticksToUpdateComposter.times(storage.gameData.compostingSpeed);
             storage.gameData.entropyComposterAmount = storage.gameData.entropyComposterAmount.plus(x);
@@ -438,9 +547,76 @@ export function updateEntropyComposter() {
     }
 }
 
+function rootComposterOperation(bulk) {
+    //in theory if I call this multiple times this should bulk buy fertilizers
+    storage.gameData.rootComposterCount = storage.gameData.rootComposterCount.plus(bulk);
+    storage.gameData.totalFertilizers = storage.gameData.totalFertilizers.plus(bulk);
+
+    if (storage.gameData.freeRootFertilizers.greaterThanOrEqualTo(new Decimal(1))) {document.getElementById('rootFertilizerCounter').innerHTML = `The Root Composter has made ${storage.truncateToDecimalPlaces(storage.gameData.rootComposterCount, 3)} (+${storage.truncateToDecimalPlaces(storage.gameData.freeRootFertilizers, 3)}) Fertilizers,`;}
+    else {document.getElementById('rootFertilizerCounter').innerHTML = `The Root Composter has made ${storage.truncateToDecimalPlaces(storage.gameData.rootComposterCount, 3)} Fertilizers,`;}
+    document.getElementById('rootFertilizerEffect').innerHTML = `delaying all scalings (after softcap) by x${storage.truncateToDecimalPlaces(storage.gameData.rootComposterEffect, 3)}`;
+
+    storage.gameData.rootComposterTime = storage.gameData.rootComposterTime.times(compostingSpeedScaling('root'));
+    const v = storage.gameData.rootComposterTime.div(new Decimal(1000));
+    const u = v.div(storage.gameData.compostingSpeed);
+    document.getElementById('rootCompostingTimer').innerHTML = `Composting takes ${storage.truncateToDecimalPlaces(u, 3)} seconds`;
+
+    storage.gameData.rootComposterAmount = new Decimal(0);
+    document.querySelector('.root-progress-bar').style.width = '100%';
+}
+
+export function checkRootComposter() {
+    if ((storage.gameData.roots.greaterThanOrEqualTo(storage.gameData.rootComposterCost)) && !storage.gameData.rootComposterIsActive) {
+        storage.gameData.roots = storage.gameData.roots.minus(storage.gameData.rootComposterCost);
+        document.getElementById("rootCounter").innerHTML = storage.truncateToDecimalPlaces(storage.gameData.roots, 3);
+
+        storage.gameData.rootComposterCost = composterScaling('root');
+        document.getElementById('rootComposterButton').innerHTML = `Make a Complex Fertilizer<br>Cost: ${storage.truncateToDecimalPlaces(storage.gameData.rootComposterCost, 3)} Roots`;
+
+        storage.gameData.rootComposterIsActive = true;
+        document.getElementById('rootComposterButton').disabled = true;
+        document.getElementById("rootComposterButton").style.color = '#000000ff'
+        document.getElementById("rootComposterButton").style.borderColor = '#000000ff'
+    }
+	const v = storage.gameData.rootComposterTime.div(new Decimal(1000));
+    const u = v.div(storage.gameData.compostingSpeed);
+    document.getElementById('rootCompostingTimer').innerHTML = `Composting takes ${storage.truncateToDecimalPlaces(u, 3)} seconds`;
+	document.getElementById('rootComposterTimeIncreaseCounter').innerHTML = `x${storage.truncateToDecimalPlaces(compostingSpeedScaling('root'), 3)} per Fertilizer`;
+}
+
+export function updateRootComposter() {
+    if (storage.gameData.rootComposterIsActive) {
+		if (storage.fruitUpgradeFactor.F55Bought) {
+			storage.gameData.rootComposterTime = compostingSpeedScaling('root');
+		}
+		//makes it so the game doesn't calculate the thing every frame if the time to compost would be greater than 10000 seconds
+		if (storage.gameData.rootComposterTime.div(storage.gameData.compostingSpeed).greaterThan(new Decimal(1e7))) {
+			document.querySelector('.root-progress-bar').style.width = '0%';
+			return;
+		}
+        if (storage.gameData.rootComposterAmount.lessThan(storage.gameData.rootComposterTime)) {
+            const x = storage.gameData.ticksToUpdateComposter.times(storage.gameData.compostingSpeed);
+            storage.gameData.rootComposterAmount = storage.gameData.rootComposterAmount.plus(x);
+
+            const y = storage.gameData.rootComposterAmount.div(storage.gameData.rootComposterTime);
+            const z = y.times(new Decimal(100));
+            const w = storage.truncateToDecimalPlaces(z, 0);
+            document.querySelector('.root-progress-bar').style.width = w + '%';
+        }
+        else {
+            storage.gameData.rootComposterIsActive = false;
+            document.getElementById('rootComposterButton').disabled = false;
+            document.getElementById('rootComposterButton').style.color = '#ffffffff'
+
+            rootComposterOperation(new Decimal(1));
+            //pass in a Decimal() to test the bulk capabilities :)
+        }
+    }
+}
+
 export function calculateComposterMult() {
     let totalMultiplier = new Decimal(1);
-    const x = new Decimal(1.5).plus(storage.gameData.bacteriaFertilizerMult);
+    const x = storage.gameData.fertilizerBaseEffect;
     document.getElementById('leafComposterBaseEffect').innerHTML = `(${storage.truncateToDecimalPlaces(x, 3)}x every Fertilizer)`
     document.getElementById('seedComposterBaseEffect').innerHTML = `(${storage.truncateToDecimalPlaces(x, 3)}x every Fertilizer)`
     document.getElementById('fruitComposterBaseEffect').innerHTML = `(${storage.truncateToDecimalPlaces(x, 3)}x every Fertilizer)`
@@ -473,7 +649,10 @@ export function calculateComposterMult() {
 	storage.gameData.entropyComposterEffect = u;
 	totalMultiplier = totalMultiplier.pow(storage.gameData.entropyComposterEffect);
     document.getElementById('entropyFertilizerEffect').innerHTML = `boosting Fertilizer effect by ^${storage.truncateToDecimalPlaces(storage.gameData.entropyComposterEffect, 3)}`;
-
+	var r = new Decimal(1.05).pow(storage.gameData.rootComposterCount.plus(storage.gameData.freeRootFertilizers));
+	storage.gameData.rootComposterEffect = r;
+    document.getElementById('rootFertilizerEffect').innerHTML = `delaying all scalings (after softcap) by x${storage.truncateToDecimalPlaces(storage.gameData.rootComposterEffect, 3)}`;
+	
     return totalMultiplier;
 }
 
@@ -481,3 +660,4 @@ document.getElementById('leafComposterButton').addEventListener("click", checkLe
 document.getElementById('seedComposterButton').addEventListener("click", checkSeedComposter);
 document.getElementById('fruitComposterButton').addEventListener("click", checkFruitComposter);
 document.getElementById('entropyComposterButton').addEventListener("click", checkEntropyComposter);
+document.getElementById('rootComposterButton').addEventListener("click", checkRootComposter);

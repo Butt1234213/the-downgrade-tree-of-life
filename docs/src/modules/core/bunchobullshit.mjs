@@ -11,6 +11,8 @@ import * as upgradeBuilder from './upgradebuilder.mjs';
 import * as moss from '../moss.mjs';
 import * as challenges from '../radar.mjs';
 import * as temple from '../temple.mjs';
+import * as petriDish from '../petridish.mjs';
+import { fallenType } from '../fallenleaves.mjs';
 
 export var gameData = {
     lastUpdate: new Decimal(Date.now()),
@@ -22,10 +24,15 @@ export var gameData = {
     leaves: new Decimal(0),
     baseLeafSoftcapFactor: new Decimal(0.75),
     leavesIsSoftcapped: false,
+    leavesIsSoftcappedThisDecompolization: false,
     leavesIsSoftcapped2: false,
+    leavesIsSoftcapped2ThisDecompolization: false,
     leavesIsSoftcapped3: false,
+    leavesIsSoftcapped3ThisDecompolization: false,
     leavesIsSoftcapped4: false,
+    leavesIsSoftcapped4ThisDecompolization: false,
     leavesIsSoftcapped5: false,
+    leavesIsSoftcapped5ThisDecompolization: false,
 	baseLeafSupercapFactor: new Decimal(1),
 	leavesIsSupercapped: false,
     leavesPerTick: new Decimal(0),
@@ -46,6 +53,7 @@ export var gameData = {
     leafSoftcap4Start: new Decimal.fromComponents(1, 1, 1000),
     leafSoftcap5Start: new Decimal.fromComponents(1, 1, 2000),
 	leafSupercapStart: new Decimal.fromComponents(1, 1, 2466.03342),
+	leafMaximumStart: new Decimal.fromComponents(1, 1, 7466.03342),
 
     baseSeedFactor: new Decimal(1e7),
     seedsSoftcap: new Decimal(1),
@@ -60,13 +68,16 @@ export var gameData = {
     seedSoftcapStart: new Decimal.fromComponents(1, 1, 100),
     seedSoftcap2Start: new Decimal.fromComponents(1, 1, 2000),
 	seedSupercapStart: new Decimal.fromComponents(1, 1, 2466.03342),
+	seedMaximumStart: new Decimal.fromComponents(1, 1, 7466.03342),
     currentSeedsOnDecompolize: new Decimal(0),
     highestSeedsOnDecompolize: new Decimal(0),
     seedsOnDecompolize: new Decimal(0),
     seedsMult: new Decimal(1),
     seedUpgradeCounter: new Decimal(0),
     seedsIsSoftcapped: false,
+	seedsIsSoftcappedThisHarvest: false,
     seedsIsSoftcapped2: false,
+	seedsIsSoftcapped2ThisHarvest: false,
 	baseSeedSupercapFactor: new Decimal(1),
 	seedsIsSupercapped: false,
 
@@ -78,8 +89,11 @@ export var gameData = {
     fruitsOnHarvest: new Decimal(0),
     canHarvest: false,
     fruitsIsSoftcapped: false,
+	fruitsIsSoftcappedThisTransformation: false,
 	baseFruitSupercapFactor: new Decimal(1),
 	fruitsIsSupercapped: false,
+	fruitSoftcapStart: new Decimal(1.79e308),
+	fruitMaximumStart: new Decimal.fromComponents(1, 1, 7466.03342),
 
     fruitUpgradeCounter: new Decimal(0),
 
@@ -89,11 +103,12 @@ export var gameData = {
     fertilizerBulk: new Decimal(1),
     compostingSpeed: new Decimal(1),
 	composterCostDivision: new Decimal(1),
+    fertilizerBaseEffect: new Decimal(1),
     composterScalingStart: new Decimal(25),
     composterSuperScalingStart: new Decimal(100),
     composterSuperScalingEffect: new Decimal(1.1),
     compostingSpeedScalingStart: new Decimal(500),
-    compostingSpeedSuperScalingStart: new Decimal(1000),
+    compostingSpeedSuperScalingStart: new Decimal(5000),
 
     leafComposterUnlocked: false,
     leafComposterCost: new Decimal(1),
@@ -134,13 +149,28 @@ export var gameData = {
     freeEntropyFertilizers: new Decimal(0),
     entropyComposterEffect: new Decimal(1),
     entropyComposterIsActive: false,
+	
+    rootComposterUnlocked: false,
+    rootComposterCost: new Decimal(1),
+    rootComposterAmount: new Decimal(0),
+    rootComposterDiscount: new Decimal(1),
+    rootComposterTime: new Decimal(500),
+    rootComposterCount: new Decimal(0),
+    freeRootFertilizers: new Decimal(0),
+    rootComposterEffect: new Decimal(1),
+    rootComposterIsActive: false,
 
     mossUnlocked: false,
 	moss: new Decimal(0),
+    mossFactorPow: new Decimal(1),
+	mossPow: new Decimal(0),
     mossEffect: new Decimal(0),
     mossEffectMultiplier: new Decimal(0),
+    mossEffectPow: new Decimal(1),
 
     potentialEnergy: new Decimal(0),
+    leafPERoot: new Decimal(12),
+    seedPERoot: new Decimal(6),
     potentialEnergyPow: new Decimal(1),
     entropyOnTransform: new Decimal(0),
     canTransform: false,
@@ -182,6 +212,7 @@ export var gameData = {
     highestCircuitsTrue: new Decimal(0),
     circuits: new Decimal(0),
     circuitsUsed: new Decimal(0),
+    circuitsUsedOnWelder: new Decimal(0),
     nextCircuit: new Decimal(1e15),
 
     luAutomationUnlocked: true,
@@ -189,6 +220,8 @@ export var gameData = {
     fuAutomationUnlocked: false,
     euAutomationUnlocked: false,
     rouAutomationUnlocked: false,
+	
+    weatherCompletionBulk: new Decimal(1),
 
     isInChallengeStorm: false,
     stormcapBaseFactor: new Decimal(0.75),
@@ -221,7 +254,20 @@ export var gameData = {
     blizzardLevel: new Decimal(1),
     blizzardCompletable: false,
 	
+    isInChallengeFall: false,
+    fallBaseDebuffFactor: new Decimal(0.1),
+	fallBaseGameSpeedFactor: new Decimal.fromComponents(1, 1, 200),
+    fallBaseRequirement: new Decimal.fromComponents(1, 2, 4),
+    fallBestScore: new Decimal(0),
+	fallReward: new Decimal(1),
+    fallLevel: new Decimal(1),
+    fallCompletable: false,
+	
 	dna: new Decimal(0),
+	dnaFree: new Decimal(0),
+	dnaMult: new Decimal(1),
+	
+	dnaBlueprintBulk: new Decimal(1),
 	dnaBlueprints: new Decimal(0),
 	dnaBlueprintsTotal: new Decimal(0),
 	dnaBlueprintCap: new Decimal(0),
@@ -229,8 +275,13 @@ export var gameData = {
 	dnaBlueprintAmount: new Decimal(0),
 	dnaBlueprintTime: new Decimal(60000),
 	dnaBlueprintNerf: new Decimal(1),
+	dnaBlueprintNerfBuff: new Decimal(0),
+	
 	rna: new Decimal(0),
+	rnaMult: new Decimal(1),
 	rnaTimeFactor: new Decimal(0),
+	proteinButtonHeld: false,
+	proteinFunction: null,
 	
     rootsOnReinforce: new Decimal(0),
     canReinforce: false,
@@ -238,9 +289,14 @@ export var gameData = {
     rootsMult: new Decimal(1),
     totalRoots: new Decimal(0),
 	reinforcements: new Decimal(0),
+	reinforcementMult: new Decimal(1),
 
     rootUpgradeCounter: new Decimal(0),
+	
+	selectedMicroorganism: null,
 
+	welderEffectMult: new Decimal(1),
+	
     refreshRate: 40
 }
 
@@ -338,6 +394,17 @@ export var leafUpgradeCost = {
     LU62: new Decimal.fromComponents(1, 1, 3008.25285),
     LU63: new Decimal.fromComponents(1, 1, 5000),
     LU64: new Decimal.fromComponents(1, 1, 25000),
+    LU65: new Decimal.fromComponents(1, 1, 100000),
+    LU66: new Decimal.fromComponents(1, 1, 390000),
+    LU67: new Decimal.fromComponents(1, 1, 676767.82607),
+    LU68: new Decimal.fromComponents(1, 1, 800000),
+    LU69: new Decimal.fromComponents(1, 2, 6.07918),
+    LU70: new Decimal.fromComponents(1, 2, 6.17609),
+    LU71: new Decimal.fromComponents(1, 2, 6.87506),
+    LU72: new Decimal.fromComponents(1, 2, 7.07918),
+    LU73: new Decimal.fromComponents(1, 2, 7.47712),
+    LU74: new Decimal.fromComponents(1, 2, 7.87506),
+    LU75: new Decimal.fromComponents(1, 2, 8),
 }
 
 export var leafUpgradeFactor = {
@@ -430,6 +497,17 @@ export var seedUpgradeCost = {
     SU50: new Decimal.fromComponents(1, 1, 3008.25285),
     SU51: new Decimal.fromComponents(1, 1, 5000),
     SU52: new Decimal.fromComponents(1, 1, 10000),
+    SU53: new Decimal.fromComponents(1, 1, 50000),
+    SU54: new Decimal.fromComponents(1, 1, 100000),
+    SU55: new Decimal.fromComponents(1, 1, 280000),
+    SU56: new Decimal.fromComponents(1, 1, 800000),
+    SU57: new Decimal.fromComponents(1, 2, 6.09691),
+    SU58: new Decimal.fromComponents(1, 2, 6.39794),
+    SU59: new Decimal.fromComponents(1, 2, 6.90308),
+    SU60: new Decimal.fromComponents(1, 2, 7),
+    SU61: new Decimal.fromComponents(1, 2, 7.17609),
+    SU62: new Decimal.fromComponents(1, 2, 7.30102),
+    SU63: new Decimal.fromComponents(1, 2, 7.69897),
 }
 
 export var seedUpgradeFactor = {
@@ -495,20 +573,33 @@ export var fruitUpgradeCost = {
     FU44: new Decimal.fromComponents(1, 1, 1600),
     FU45: new Decimal.fromComponents(1, 1, 3008.25285),
     FU46: new Decimal.fromComponents(1, 1, 6666.82386),
+    FU47: new Decimal.fromComponents(1, 1, 16000),
+    FU48: new Decimal.fromComponents(1, 1, 32000),
+    FU49: new Decimal.fromComponents(1, 1, 64000),
+    FU50: new Decimal.fromComponents(1, 2, 6.24303),
+    FU51: new Decimal.fromComponents(1, 2, 6.39794),
+    FU52: new Decimal.fromComponents(1, 2, 7),
+    FU53: new Decimal.fromComponents(1, 2, 7.17609),
+    FU54: new Decimal.fromComponents(1, 2, 7.30102),
+    FU55: new Decimal.fromComponents(1, 2, 7.47712),
 }
 
 export var fruitUpgradeFactor = {
     F3: new Decimal(0),
     F5: new Decimal(1),
     F20: new Decimal(1),
+	
+	mossUpgradesBulk: new Decimal(1),
     M1: new Decimal(0),
 	M1EffectMult: new Decimal(1),
+	M1SoftcapDelay: new Decimal(0),
     M2: new Decimal(0),
     M3: new Decimal(0),
 	M3EffectMult: new Decimal(1),
     M4: new Decimal(0),
     M5: new Decimal(0),
     M6: new Decimal(0),
+	M6EffectTotal: new Decimal(0),
 }
 
 export var fruitAutomationFactor = {}
@@ -558,7 +649,14 @@ export var entropyUpgradeCost = {
     EU41: new Decimal(1e95),
     EU42: new Decimal(1e100),
     EU43: new Decimal(1e180),
-    EU44: new Decimal(1e250),
+    EU44: new Decimal(1.79e308),
+    EU45: new Decimal.fromComponents(1, 1, 1000),
+    EU46: new Decimal.fromComponents(1, 1, 20000),
+    EU47: new Decimal.fromComponents(1, 1, 100000),
+    EU48: new Decimal.fromComponents(1, 1, 200000),
+    EU49: new Decimal.fromComponents(1, 1, 400000),
+    EU50: new Decimal.fromComponents(1, 1, 500000),
+    EU51: new Decimal.fromComponents(1, 2, 6),
 }
 
 export var entropyUpgradeFactor = {
@@ -572,6 +670,7 @@ export var entropyUpgradeFactor = {
     C3Amount: new Decimal(0),
     C3Increase: new Decimal(10),
 	
+	bacteriaUpgradesBulk: new Decimal(1),
     B1Cost: new Decimal(1),
     B1Amount: new Decimal(0),
     B1Effect: new Decimal(0),
@@ -582,6 +681,7 @@ export var entropyUpgradeFactor = {
     B3Amount: new Decimal(0),
     B3Effect: new Decimal(0),
 	
+	rnaUpgradesBulk: new Decimal(1),
     R1Cost: new Decimal(5),
     R1Amount: new Decimal(0),
     R1Effect: new Decimal(1),
@@ -597,9 +697,12 @@ export var entropyUpgradeFactor = {
     R5Cost: new Decimal(20),
     R5Amount: new Decimal(0),
     R5Effect: new Decimal(0),
-    R6Cost: new Decimal(100000),
+    R6Cost: new Decimal(1e13),
     R6Amount: new Decimal(0),
-    R6Effect: new Decimal(0),
+    R6Effect: new Decimal(1),
+    R7Cost: new Decimal(9e15),
+    R7Amount: new Decimal(0),
+    R7Effect: new Decimal(0),
 	
 	rubisco: new Decimal(0),
 	rubiscoFree: new Decimal(0),
@@ -631,6 +734,12 @@ export var entropyUpgradeFactor = {
     E10: new Decimal(0),
     E12: new Decimal(0),
     E26: new Decimal(1),
+	
+	proteinPresetID: 0,
+	proteinPresets: {},
+	currentlyLoadedProteinPresetID: null,
+	currentlyLoadedProteinPreset: [],
+	isLoadingProteinPreset: false,
 }
 
 export var entropyAutomationFactor = {}
@@ -657,6 +766,15 @@ export var rootUpgradeCost = {
 	ROU19: new Decimal(50),
 	ROU20: new Decimal(100),
 	ROU21: new Decimal(1000),
+	ROU22: new Decimal(5000),
+	ROU23: new Decimal(5000),
+	ROU24: new Decimal(100000),
+	ROU25: new Decimal(2.5e9),
+	ROU26: new Decimal(5e11),
+	ROU27: new Decimal(4e13),
+	ROU28: new Decimal(6e16),
+	ROU29: new Decimal(2e20),
+	ROU30: new Decimal(1e23),
 	
 	RM1: new Decimal(1),
 	RM2: new Decimal(2),
@@ -668,11 +786,19 @@ export var rootUpgradeCost = {
 	RM8: new Decimal(15),
 	RM9: new Decimal(25),
 	RM10: new Decimal(50),
-	RM11: new Decimal(100),
-	RM12: new Decimal(1000),
+	RM11: new Decimal(750),
+	RM12: new Decimal(2500),
+	RM13: new Decimal(1e6),
+	RM14: new Decimal(9e15),
+	RM15: new Decimal(1e36),
+	RM16: new Decimal(1e100),
 }
 
 export var rootUpgradeFactor = {
+	leafReinforcementMult: new Decimal(1),
+	seedReinforcementMult: new Decimal(1),
+	fruitReinforcementMult: new Decimal(1),
+	
 	RM1Achieved: false,
 	RM2Achieved: false,
 	RM3Achieved: false,
@@ -685,12 +811,190 @@ export var rootUpgradeFactor = {
 	RM10Achieved: false,
 	RM11Achieved: false,
 	RM12Achieved: false,
+	
+	totalMicroorganisms: new Decimal(0),
+	microorganisms: {},
+	activeMicroorganisms: [],
+	previousActiveMicroorganisms: [],
+	totalPetriDishes: 1,
+	petriDishCost: new Decimal(10000),
+	
+	fallenLeavesBOOM: {
+		//total amount, amount currently being generated
+		fallen: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
+		mossy: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
+		marbled: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
+		coal: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
+		copper: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
+		iron: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
+		malachite: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
+		jade: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
+		gold: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
+		enstatite: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
+		diamond: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
+		emerald: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
+		bronze: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
+		steel: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
+		titanium: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
+		chromium: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
+		vultimanium: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
+	},
+	fallenUpgrades: {
+		fallen: [
+			{amount: new Decimal(0), cost: new Decimal(1)}, 
+			{amount: new Decimal(0), cost: new Decimal(2)}, 
+			{amount: new Decimal(0), cost: new Decimal(4)}, 
+			{amount: new Decimal(0), cost: new Decimal(50)},
+			{amount: new Decimal(0), cost: new Decimal(1000)},
+		],
+		mossy: [
+			{amount: new Decimal(0), cost: new Decimal(1)}, 
+			{amount: new Decimal(0), cost: new Decimal(4)},
+			{amount: new Decimal(0), cost: new Decimal(20)},
+			{amount: new Decimal(0), cost: new Decimal(80)},
+		],
+		marbled: [
+			{amount: new Decimal(0), cost: new Decimal(2)}, 
+			{amount: new Decimal(0), cost: new Decimal(8)}, 
+			{amount: new Decimal(0), cost: new Decimal(24)}, 
+		],
+		coal: [
+			{amount: new Decimal(0), cost: new Decimal(0)}, 
+		],
+		copper: [
+			{amount: new Decimal(0), cost: new Decimal(0)}, 
+		],
+		iron: [
+			{amount: new Decimal(0), cost: new Decimal(0)}, 
+		],
+		malachite: [
+			{amount: new Decimal(0), cost: new Decimal(0)}, 
+		],
+		jade: [
+			{amount: new Decimal(0), cost: new Decimal(0)}, 
+		],
+		gold: [
+			{amount: new Decimal(0), cost: new Decimal(0)}, 
+		],
+		enstatite: [
+			{amount: new Decimal(0), cost: new Decimal(0)}, 
+		],
+		diamond: [
+			{amount: new Decimal(0), cost: new Decimal(0)}, 
+		],
+		emerald: [
+			{amount: new Decimal(0), cost: new Decimal(0)}, 
+		],
+		bronze: [
+			{amount: new Decimal(0), cost: new Decimal(0)}, 
+		],
+		steel: [
+			{amount: new Decimal(0), cost: new Decimal(0)}, 
+		],
+		titanium: [
+			{amount: new Decimal(0), cost: new Decimal(0)}, 
+		],
+		chromium: [
+			{amount: new Decimal(0), cost: new Decimal(0)}, 
+		],
+		vultimanium: [
+			{amount: new Decimal(0), cost: new Decimal(0)}, 
+		],
+	},
+	fallenMilestones: {
+		fallen: [
+			{achieved: false, cost: new Decimal(1)}, 
+			{achieved: false, cost: new Decimal(3)}, 
+			{achieved: false, cost: new Decimal(150)}, 
+			{achieved: false, cost: new Decimal(500)}, 
+		],
+		mossy: [
+			{achieved: false, cost: new Decimal(1)}, 
+			{achieved: false, cost: new Decimal(2)}, 
+			{achieved: false, cost: new Decimal(3)},
+			{achieved: false, cost: new Decimal(15)},
+		],
+		marbled: [
+			{achieved: false, cost: new Decimal(1)}, 
+			{achieved: false, cost: new Decimal(2)},
+			{achieved: false, cost: new Decimal(3)},
+		],
+		coal: [
+			{achieved: false, cost: new Decimal(1)}, 
+		],
+		copper: [
+			{achieved: false, cost: new Decimal(1)}, 
+		],
+		iron: [
+			{achieved: false, cost: new Decimal(1)}, 
+		],
+		malachite: [
+			{achieved: false, cost: new Decimal(1)}, 
+		],
+		jade: [
+			{achieved: false, cost: new Decimal(1)}, 
+		],
+		gold: [
+			{achieved: false, cost: new Decimal(1)}, 
+		],
+		enstatite: [
+			{achieved: false, cost: new Decimal(1)}, 
+		],
+		diamond: [
+			{achieved: false, cost: new Decimal(1)}, 
+		],
+		emerald: [
+			{achieved: false, cost: new Decimal(1)}, 
+		],
+		bronze: [
+			{achieved: false, cost: new Decimal(1)}, 
+		],
+		steel: [
+			{achieved: false, cost: new Decimal(1)}, 
+		],
+		titanium: [
+			{achieved: false, cost: new Decimal(1)}, 
+		],
+		chromium: [
+			{achieved: false, cost: new Decimal(1)}, 
+		],
+		vultimanium: [
+			{achieved: false, cost: new Decimal(1)}, 
+		],
+	},
+	fallenLeafFallSpeedMult: new Decimal(1),
+	fallenLeafCapMult: new Decimal(1),
+	fallenLeafCollectable: new Decimal(0),
+	fallenLeafUpgradable: new Decimal(0),
 }
 
 export var rootAutomationFactor = {}
 
-export function truncateToDecimalPlaces(num, decimalPlaces) {
+export function truncateToDecimalPlaces(num, decimalPlaces, ifOoM) {
+	
 	if ((num.lessThan(new Decimal(0.001))) && (num.greaterThan(new Decimal(0)))) {
+		if ((num.layer === 1 && num.mag <= -1e6) || num.layer === 2) {
+			const magnitude = new Decimal(num.mag);
+			
+			const expoMag = magnitude.toExponential();
+			const magStr = expoMag.toString();
+			const decimalMagIndex = magStr.indexOf('.');
+			const exponentMagIndex = magStr.indexOf('e');
+			if (decimalMagIndex === -1 || decimalPlaces < 0) {
+				return num; 
+			}
+
+			const magPart1 = magStr.slice(0, exponentMagIndex);
+			const rawMagPart2 = magStr.slice(exponentMagIndex);
+			const magPart2 = rawMagPart2.replace("+", "-");
+
+			const endMagIndex = decimalMagIndex + 1 + decimalPlaces;
+			const parsedNumber = parseFloat(magPart1.substring(0, endMagIndex));
+			const finalMag = parsedNumber + magPart2;
+			
+			const finalNumber = "e" + finalMag.slice(1);
+			return finalNumber;
+		}
 		const testNum = new Decimal(1).div(num);
 		var numStr = testNum.toString();
 		if (num.layer < 1) {
@@ -713,6 +1017,50 @@ export function truncateToDecimalPlaces(num, decimalPlaces) {
         const finalNumber = parsedNumber + numPart2 + finalExponent;
         return finalNumber;
 	}
+	if (num.layer === 1 && num.mag >= 1e6) {
+		const magnitude = new Decimal(num.mag);
+		
+        const expoMag = magnitude.toExponential();
+        const magStr = expoMag.toString();
+        const decimalMagIndex = magStr.indexOf('.');
+        const exponentMagIndex = magStr.indexOf('e');
+        if (decimalMagIndex === -1 || decimalPlaces < 0) {
+            return num; 
+        }
+
+        const magPart1 = magStr.slice(0, exponentMagIndex);
+		const rawMagPart2 = magStr.slice(exponentMagIndex);
+        const magPart2 = rawMagPart2.replace("+", "");
+
+        const endMagIndex = decimalMagIndex + 1 + decimalPlaces;
+        const parsedNumber = parseFloat(magPart1.substring(0, endMagIndex));
+        const finalMag = parsedNumber + magPart2;
+		
+		const finalNumber = "e" + finalMag;
+        return finalNumber;
+	}
+	if (num.layer === 2 && num.mag < 1e6) {
+		const magnitude = new Decimal(num.mag);
+		
+        const expoMag = new Decimal(10).pow(magnitude);
+        const magStr = expoMag.toString();
+        const decimalMagIndex = magStr.indexOf('.');
+        const exponentMagIndex = magStr.indexOf('e');
+        if (decimalMagIndex === -1 || decimalPlaces < 0) {
+            return num; 
+        }
+
+        const magPart1 = magStr.slice(0, exponentMagIndex);
+		const rawMagPart2 = magStr.slice(exponentMagIndex);
+        const magPart2 = rawMagPart2.replace("+", "");
+
+        const endMagIndex = decimalMagIndex + 1 + decimalPlaces;
+        const parsedNumber = parseFloat(magPart1.substring(0, endMagIndex));
+        const finalMag = parsedNumber + magPart2;
+		
+		const finalNumber = "e" + finalMag;
+        return finalNumber;
+	}
     if (num.layer === 1 && num.greaterThanOrEqualTo(new Decimal(1e15))) {
         const numStr = num.toString();
         const decimalIndex = numStr.indexOf('.');
@@ -730,8 +1078,8 @@ export function truncateToDecimalPlaces(num, decimalPlaces) {
         return finalNumber;
     }
     else {
-        if (num.greaterThanOrEqualTo(new Decimal(1e6))) {
-            const expoNum = num.toExponential()
+        if (num.layer === 0 && num.mag >= 1e6) {
+            const expoNum = num.toExponential();
             const numStr = expoNum.toString();
             const decimalIndex = numStr.indexOf('.');
             const exponentIndex = numStr.indexOf('e');
@@ -766,6 +1114,12 @@ export function truncateToDecimalPlaces(num, decimalPlaces) {
     }
 } 
 
+export function SC(resource, start, amount) {
+	const base = resource.div(start);
+	const end = base.pow(amount).times(start);
+	return end;
+}
+
 export function seedsFormula(leaves, factor) {
     const x = leaves.div(new Decimal(1e7));
     const y = x.pow(factor);
@@ -773,17 +1127,6 @@ export function seedsFormula(leaves, factor) {
     gameData.seedsOnDecompolize = y;
 }
 
-export function seedsSoftCalculation(elementID, capFactor) {
-    if (seedsVisualCalculation("false") >= (new Decimal(1e15)).toNumber()) {
-        while (gameData.seedsIsSoftcapped == false) {
-            gameData.seedsSoftcap = capFactor;
-            console.log(gameData.seeds + " is softcapped, gameData.seedsOnDecompolize is now " + gameData.seedsOnDecompolize);
-            document.getElementById(elementID).innerHTML = "(Softcapped)"
-            gameData.seedsIsSoftcapped = true;
-        }
-    }
-}
-//calculates if you're soft or hard hehe
 export function seedsVisualCalculation(ifTrunc) {
     var w = new Decimal(1);
     if (ifTrunc == "true") {
@@ -792,12 +1135,15 @@ export function seedsVisualCalculation(ifTrunc) {
         var z = y;
         if (gameData.seedsIsSoftcapped) {
             document.getElementById('seedSoftcap').innerHTML = `(Softcapped)`;
-            z = z.pow(gameData.baseSeedSoftcapFactor); 
+            SC(z, gameData.seedSoftcapStart, gameData.baseSeedSoftcapFactor);
             achievements.ach51 = true; 
 			if (gameData.seedsIsSoftcapped2) {
-				z = z.pow(gameData.baseSeedSoftcapFactor); 
+				z = SC(z, gameData.seedSoftcap2Start, gameData.baseSeedSoftcapFactor);
 			}
         }
+		else {
+            document.getElementById('seedSoftcap').innerHTML = ``;
+		}
 		if (gameData.seedsIsSupercapped) {
 			z = z.pow(gameData.baseSeedSupercapFactor); 
 		}
@@ -807,6 +1153,14 @@ export function seedsVisualCalculation(ifTrunc) {
 			}
 			else {
 				z = z.pow(gameData.stormcapBaseFactor.pow(new Decimal(5)));
+			}
+		}
+		if (gameData.isInChallengeFall) {
+			if (rootUpgradeFactor.RO29Bought) {
+				z = z.pow(gameData.fallBaseDebuffFactor.times(new Decimal(10)));
+			}
+			else {
+				z = z.pow(gameData.fallBaseDebuffFactor);
 			}
 		}
 
@@ -818,13 +1172,15 @@ export function seedsVisualCalculation(ifTrunc) {
         const y = x.times(gameData.seedsMult.abs());
         var z = y;
         if (gameData.seedsIsSoftcapped) {
-            document.getElementById('seedSoftcap').innerHTML = `(Softcapped)`;
-            z = z.pow(gameData.baseSeedSoftcapFactor); 
+            SC(z, gameData.seedSoftcapStart, gameData.baseSeedSoftcapFactor);
             achievements.ach51 = true; 
 			if (gameData.seedsIsSoftcapped2) {
-				z = z.pow(gameData.baseSeedSoftcapFactor); 
+				z = SC(z, gameData.seedSoftcap2Start, gameData.baseSeedSoftcapFactor);
 			}
         }
+		else {
+            document.getElementById('seedSoftcap').innerHTML = ``;
+		}
 		if (gameData.seedsIsSupercapped) {
 			z = z.pow(gameData.baseSeedSupercapFactor); 
 		}
@@ -835,6 +1191,9 @@ export function seedsVisualCalculation(ifTrunc) {
 			else {
 				z = z.pow(gameData.stormcapBaseFactor.pow(new Decimal(5)));
 			}
+		}
+		if (gameData.isInChallengeFall) {
+			z = z.pow(gameData.fallBaseDebuffFactor);
 		}
 
         w = z.plus(new Decimal(1));
@@ -857,9 +1216,10 @@ export function seedsCalculation(leaves) {
         
         document.getElementById("seedCounter").innerHTML = truncateToDecimalPlaces((gameData.seeds.trunc()), 3)
 		if (gameData.fuAutomationUnlocked) {
-			const x = seedsVisualCalculation("false");
+			const x = seedsVisualCalculation("false").clamp(new Decimal(0), gameData.seedMaximumStart);
 			const y = x.times(new Decimal(0.01));
-			document.getElementById("seedUpdateCounter").innerHTML = `${truncateToDecimalPlaces(y, 3)}/s`;	
+			const z = y.times(gameData.gameSpeed);
+			document.getElementById("seedUpdateCounter").innerHTML = `${truncateToDecimalPlaces(z, 3)}/s`;	
 			document.getElementById("seedsOnDecompolizeCounter").innerHTML = ``;
 			seedsClass.style.width = '160px';
 		}
@@ -887,11 +1247,9 @@ export function decompolize() {
         for (let i = 0; i < upgradesResetByDecompolization.length; i++) {
             upgradesResetByDecompolization[i].disabled = false;
             upgradesResetByDecompolization[i].style.color = '#ffffffff';
-            console.log(upgradeBuilder.decompolizationResetText);
             upgradesResetByDecompolization[i].innerHTML = upgradeBuilder.decompolizationResetText[i];
 
             const decompolizationResetFlags = upgradeBuilder.decompolizationResetFlags[i];
-            console.log(decompolizationResetFlags);
             leafUpgradeFactor[`${decompolizationResetFlags}`] = false;
         }
 
@@ -910,10 +1268,15 @@ export function decompolize() {
         gameData.lastUpdate = new Decimal(Date.now());
         gameData.leaves = new Decimal(0);
         gameData.leavesIsSoftcapped = false;
+		gameData.leavesIsSoftcappedThisDecompolization = false;
         gameData.leavesIsSoftcapped2 = false;
+		gameData.leavesIsSoftcapped2ThisDecompolization = false;
         gameData.leavesIsSoftcapped3 = false;
+		gameData.leavesIsSoftcapped3ThisDecompolization = false;
         gameData.leavesIsSoftcapped4 = false;
+		gameData.leavesIsSoftcapped4ThisDecompolization = false;
         gameData.leavesIsSoftcapped5 = false;
+		gameData.leavesIsSoftcapped5ThisDecompolization = false;
         gameData.leavesIsSupercapped = false;
         gameData.leavesPerTick = new Decimal(0);
         gameData.tickSpeedMultiplier = new Decimal(0);
@@ -984,6 +1347,8 @@ export function decompolize() {
         temple.repeatableUpgradeFactor.LR1Cap = new Decimal(10);
         temple.repeatableUpgradeFactor.LR2 = new Decimal(0);
         temple.repeatableUpgradeFactor.LR2Cap = new Decimal(10);
+        temple.repeatableUpgradeFactor.LR3 = new Decimal(0);
+        temple.repeatableUpgradeFactor.LR3Cap = new Decimal(10);
         
         gameData.moss = new Decimal(0);
         moss.mossMilestoneFactor.MM1Achieved = false;
@@ -1051,7 +1416,7 @@ export function fruitsFormula(seeds, factor) {
     const x = seeds.div(new Decimal(1e7));
     const y = x.pow(new Decimal(factor));
     var z = y.times(gameData.fruitsMult);
-    if (gameData.fruitsIsSoftcapped) {z = z.pow(gameData.baseFruitSoftcapFactor)}
+    if (gameData.fruitsIsSoftcapped) {z = SC(z, gameData.fruitSoftcapStart, gameData.baseFruitSoftcapFactor);}
 	if (gameData.fruitsIsSupercapped) {z = z.pow(gameData.baseFruitSupercapFactor)}
 	if (gameData.isInChallengeStorm) {
 		if (entropyUpgradeFactor.E31Bought) {
@@ -1087,9 +1452,10 @@ export function fruitsCalculation(seeds) {
         
         document.getElementById("fruitCounter").innerHTML = truncateToDecimalPlaces((gameData.fruits.trunc()), 3);
 		if (rootUpgradeFactor.RO19Bought) {
-			const x = gameData.fruitsOnHarvest;
+			const x = gameData.fruitsOnHarvest.clamp(new Decimal(0), gameData.fruitMaximumStart);
 			const y = x.times(new Decimal(0.01));
-			document.getElementById("fruitUpdateCounter").innerHTML = `${truncateToDecimalPlaces(y, 3)}/s`;	
+			const z = y.times(gameData.gameSpeed);
+			document.getElementById("fruitUpdateCounter").innerHTML = `${truncateToDecimalPlaces(z, 3)}/s`;	
 			document.getElementById("fruitsOnHarvestCounter").innerHTML = ``;
 			fruitsClass.style.width = '160px';
 		}
@@ -1104,14 +1470,12 @@ export function fruitsCalculation(seeds) {
 export function harvest() {
     if (gameData.canHarvest = true) {
         console.log("Harvesting");
-        console.log(upgradesResetByHarvest);
         for (let i = 0; i < upgradesResetByHarvest.length; i++) {
             upgradesResetByHarvest[i].disabled = false;
             upgradesResetByHarvest[i].style.color = '#ffffffff';
             upgradesResetByHarvest[i].innerHTML = upgradeBuilder.harvestResetText[i];
 
             const harvestResetFlags = upgradeBuilder.harvestResetFlags[i];
-            console.log(harvestResetFlags);
             leafUpgradeFactor[`${harvestResetFlags}`] = false;
             seedUpgradeFactor[`${harvestResetFlags}`] = false;
         }
@@ -1129,11 +1493,15 @@ export function harvest() {
         gameData.lastUpdate = new Decimal(Date.now());
         gameData.leaves = new Decimal(0);
         gameData.leavesIsSoftcapped = false;
+		gameData.leavesIsSoftcappedThisDecompolization = false;
         gameData.leavesIsSoftcapped2 = false;
+		gameData.leavesIsSoftcapped2ThisDecompolization = false;
         gameData.leavesIsSoftcapped3 = false;
+		gameData.leavesIsSoftcapped3ThisDecompolization = false;
         gameData.leavesIsSoftcapped4 = false;
+		gameData.leavesIsSoftcapped4ThisDecompolization = false;
         gameData.leavesIsSoftcapped5 = false;
-        gameData.leavesIsSupercapped = false;
+		gameData.leavesIsSoftcapped5ThisDecompolization = false;
         gameData.leavesPerTick = new Decimal(0);
         gameData.tickSpeedMultiplier = new Decimal(0);
         gameData.treeAge = new Decimal(0);
@@ -1160,7 +1528,9 @@ export function harvest() {
         gameData.seedUpgradeCounter = new Decimal(0),
 
         gameData.seedsIsSoftcapped = false;
+        gameData.seedsIsSoftcappedThisHarvest = false;
         gameData.seedsIsSoftcapped2 = false;
+        gameData.seedsIsSoftcapped2ThisHarvest = false;
         gameData.fruitsIsSoftcapped = false;
 
         gameData.canHarvest = false;
@@ -1233,10 +1603,14 @@ export function harvest() {
         temple.repeatableUpgradeFactor.LR1Cap = new Decimal(10);
         temple.repeatableUpgradeFactor.LR2 = new Decimal(0);
         temple.repeatableUpgradeFactor.LR2Cap = new Decimal(10);
+        temple.repeatableUpgradeFactor.LR3 = new Decimal(0);
+        temple.repeatableUpgradeFactor.LR3Cap = new Decimal(10);
         temple.repeatableUpgradeFactor.SR1 = new Decimal(0);
         temple.repeatableUpgradeFactor.SR1Cap = new Decimal(10);
         temple.repeatableUpgradeFactor.SR2 = new Decimal(0);
         temple.repeatableUpgradeFactor.SR2Cap = new Decimal(10);
+        temple.repeatableUpgradeFactor.SR3 = new Decimal(0);
+        temple.repeatableUpgradeFactor.SR3Cap = new Decimal(10);
         
         gameData.moss = new Decimal(0);
         moss.mossMilestoneFactor.MM1Achieved = false;
@@ -1313,14 +1687,8 @@ export function harvest() {
 }
 
 export function potentialEnergyCalculation() {
-    var x = gameData.leaves.pow(new Decimal(1).div(new Decimal(12)));
-    if (leafUpgradeFactor.L29Bought) {
-        x = gameData.leaves.pow(new Decimal(1).div(new Decimal(9.5)));
-    }
-    var y = gameData.seeds.pow(new Decimal(1).div(new Decimal(6)));
-    if (seedUpgradeFactor.S23Bought) {
-        y = gameData.seeds.pow(new Decimal(1).div(new Decimal(4.5)));
-    }
+    var x = gameData.leaves.pow(new Decimal(1).div(gameData.leafPERoot.clamp(new Decimal(0), new Decimal(Infinity))));
+    var y = gameData.seeds.pow(new Decimal(1).div(gameData.seedPERoot.clamp(new Decimal(0), new Decimal(Infinity))));
     const z = gameData.fruits;
 	const w = x.times(y.times(z));
     gameData.potentialEnergy = w.pow(gameData.potentialEnergyPow);
@@ -1346,7 +1714,19 @@ export function entropyGUI() {
         entropyClass.style.borderRadius = '5px';
         
         document.getElementById("entropyCounter").innerHTML = truncateToDecimalPlaces((gameData.entropy.trunc()), 3);
-		document.getElementById("entropyOnTransformCounter").innerHTML = `+ (${truncateToDecimalPlaces(((gameData.entropyOnTransform).trunc()), 3)})`;
+		
+		if (rootUpgradeFactor.RO27Bought) {
+			document.getElementById("entropyOnTransformCounter").style.display = `block`;
+			document.getElementById("entropyImage").style.position = `absolute`;
+			document.getElementById("entropyImage").style.bottom = `0px`;
+			document.querySelector(".entropy").style.height = `125px`;
+			document.querySelector(".entropy").style.width = `160px`;
+			document.getElementById("entropyResetButton").style.top = `95px`;
+			document.getElementById("entropyOnTransformCounter").innerHTML = `<br>${truncateToDecimalPlaces(((gameData.entropyOnTransform).trunc().div(new Decimal(100))), 3)}/s`;
+		}
+		else {
+			document.getElementById("entropyOnTransformCounter").innerHTML = `+ (${truncateToDecimalPlaces(((gameData.entropyOnTransform).trunc()), 3)})`;
+		}
         document.querySelector(".entropy-reset-button").style.visibility = "visible";
     }
 }
@@ -1354,14 +1734,12 @@ export function entropyGUI() {
 export function transform() {
     if (gameData.canTransform) {
         console.log("Transforming");
-        console.log(upgradesResetByTransform);
         for (let i = 0; i < upgradesResetByTransform.length; i++) {
             upgradesResetByTransform[i].disabled = false;
             upgradesResetByTransform[i].style.color = '#ffffffff';
             upgradesResetByTransform[i].innerHTML = upgradeBuilder.transformResetText[i];
 
             const transformResetFlags = upgradeBuilder.transformResetFlags[i];
-            console.log(transformResetFlags);
             leafUpgradeFactor[`${transformResetFlags}`] = false;
             seedUpgradeFactor[`${transformResetFlags}`] = false;
             fruitUpgradeFactor[`${transformResetFlags}`] = false;
@@ -1381,11 +1759,15 @@ export function transform() {
         gameData.lastUpdate = new Decimal(Date.now());
         gameData.leaves = new Decimal(0);
         gameData.leavesIsSoftcapped = false;
+		gameData.leavesIsSoftcappedThisDecompolization = false;
         gameData.leavesIsSoftcapped2 = false;
+		gameData.leavesIsSoftcapped2ThisDecompolization = false;
         gameData.leavesIsSoftcapped3 = false;
+		gameData.leavesIsSoftcapped3ThisDecompolization = false;
         gameData.leavesIsSoftcapped4 = false;
+		gameData.leavesIsSoftcapped4ThisDecompolization = false;
         gameData.leavesIsSoftcapped5 = false;
-        gameData.leavesIsSupercapped = false;
+		gameData.leavesIsSoftcapped5ThisDecompolization = false;
         gameData.leavesPerTick = new Decimal(0);
         gameData.tickSpeedMultiplier = new Decimal(0);
         gameData.treeAge = new Decimal(0);
@@ -1414,13 +1796,16 @@ export function transform() {
         gameData.seedUpgradeCounter = new Decimal(0);
 
         gameData.seedsIsSoftcapped = false;
+        gameData.seedsIsSoftcappedThisHarvest = false;
         gameData.seedsIsSoftcapped2 = false;
+        gameData.seedsIsSoftcapped2ThisHarvest = false;
         gameData.seedsIsSupercapped = false;
 
         gameData.leavesStartingPerTick = new Decimal(1);
 
         gameData.fruits = new Decimal(0);
         gameData.fruitsIsSoftcapped = false;
+        gameData.fruitsIsSoftcappedThisTransformation = false;
         gameData.fruitsIsSupercapped = false;
         gameData.fruitsMult = new Decimal(1);
         gameData.fruitsOnHarvest = new Decimal(0);
@@ -1506,12 +1891,20 @@ export function transform() {
         temple.repeatableUpgradeFactor.LR1Cap = new Decimal(10);
         temple.repeatableUpgradeFactor.LR2 = new Decimal(0);
         temple.repeatableUpgradeFactor.LR2Cap = new Decimal(10);
+        temple.repeatableUpgradeFactor.LR3 = new Decimal(0);
+        temple.repeatableUpgradeFactor.LR3Cap = new Decimal(10);
         temple.repeatableUpgradeFactor.SR1 = new Decimal(0);
         temple.repeatableUpgradeFactor.SR1Cap = new Decimal(10);
         temple.repeatableUpgradeFactor.SR2 = new Decimal(0);
         temple.repeatableUpgradeFactor.SR2Cap = new Decimal(10);
+        temple.repeatableUpgradeFactor.SR3 = new Decimal(0);
+        temple.repeatableUpgradeFactor.SR3Cap = new Decimal(10);
         temple.repeatableUpgradeFactor.FR1 = new Decimal(0);
         temple.repeatableUpgradeFactor.FR1Cap = new Decimal(10);
+        temple.repeatableUpgradeFactor.FR2 = new Decimal(0);
+        temple.repeatableUpgradeFactor.FR2Cap = new Decimal(10);
+        temple.repeatableUpgradeFactor.FR3 = new Decimal(0);
+        temple.repeatableUpgradeFactor.FR3Cap = new Decimal(10);
 
         circuits.upgradeAutobuyerFLOPS = new Decimal(0);
         
@@ -1679,14 +2072,12 @@ export function rootsGUI() {
 export function reinforce() {
     if (gameData.canReinforce) {
         console.log("Reinforcing");
-        console.log(upgradesResetByReinforce);
         for (let i = 0; i < upgradesResetByReinforce.length; i++) {
             upgradesResetByReinforce[i].disabled = false;
             upgradesResetByReinforce[i].style.color = '#ffffffff';
             upgradesResetByReinforce[i].innerHTML = upgradeBuilder.reinforceResetText[i];
 
             const reinforceResetFlags = upgradeBuilder.reinforceResetFlags[i];
-            console.log(reinforceResetFlags);
             leafUpgradeFactor[`${reinforceResetFlags}`] = false;
             seedUpgradeFactor[`${reinforceResetFlags}`] = false;
             fruitUpgradeFactor[`${reinforceResetFlags}`] = false;
@@ -1695,14 +2086,16 @@ export function reinforce() {
 
         gameData.roots = gameData.roots.plus(gameData.rootsOnReinforce);
         gameData.totalRoots = gameData.totalRoots.plus(gameData.rootsOnReinforce);
-		gameData.reinforcements = gameData.reinforcements.plus(new Decimal(1));
+		gameData.reinforcements = gameData.reinforcements.plus(gameData.reinforcementMult);
+		
+		petriDish.reinforcementMicroorganismChecker();
         
         if (!achievements.ach121) {
             document.querySelector('.buttons-eu-tab-color').style.visibility = 'visible';
             achievements.ach121 = true;
             massAchievementChecker();
         }
-
+		
         updateUpgradeCount();
 
 		gameData.lastUpdate = new Decimal(Date.now());
@@ -1710,11 +2103,16 @@ export function reinforce() {
 
 		gameData.leaves = new Decimal(0);
 		gameData.baseLeafSoftcapFactor = new Decimal(0.75);
-		gameData.leavesIsSoftcapped = false;
-		gameData.leavesIsSoftcapped2 = false;
-		gameData.leavesIsSoftcapped3 = false;
-		gameData.leavesIsSoftcapped4 = false;
-		gameData.leavesIsSoftcapped5 = false;
+        gameData.leavesIsSoftcapped = false;
+		gameData.leavesIsSoftcappedThisDecompolization = false;
+        gameData.leavesIsSoftcapped2 = false;
+		gameData.leavesIsSoftcapped2ThisDecompolization = false;
+        gameData.leavesIsSoftcapped3 = false;
+		gameData.leavesIsSoftcapped3ThisDecompolization = false;
+        gameData.leavesIsSoftcapped4 = false;
+		gameData.leavesIsSoftcapped4ThisDecompolization = false;
+        gameData.leavesIsSoftcapped5 = false;
+		gameData.leavesIsSoftcapped5ThisDecompolization = false;
 		gameData.baseLeafSupercapFactor = new Decimal(1);
 		gameData.leavesIsSupercapped = false;
 		gameData.leavesPerTick = new Decimal(0);
@@ -1754,8 +2152,10 @@ export function reinforce() {
 		gameData.seedsOnDecompolize = new Decimal(0);
 		gameData.seedsMult = new Decimal(1);
 		gameData.seedUpgradeCounter = new Decimal(0);
-		gameData.seedsIsSoftcapped = false;
-		gameData.seedsIsSoftcapped2 = false;
+        gameData.seedsIsSoftcapped = false;
+        gameData.seedsIsSoftcappedThisHarvest = false;
+        gameData.seedsIsSoftcapped2 = false;
+        gameData.seedsIsSoftcapped2ThisHarvest = false;
 		gameData.baseSeedSupercapFactor = new Decimal(1);
 		gameData.seedsIsSupercapped = false;
 
@@ -1766,7 +2166,8 @@ export function reinforce() {
 		gameData.baseFruitSoftcapFactor = new Decimal(0.75);
 		gameData.fruitsOnHarvest = new Decimal(0);
 		gameData.canHarvest = false;
-		gameData.fruitsIsSoftcapped = false;
+        gameData.fruitsIsSoftcapped = false;
+        gameData.fruitsIsSoftcappedThisTransformation = false;
 		gameData.baseFruitSupercapFactor = new Decimal(1);
 		gameData.fruitsIsSupercapped = false;
 
@@ -1870,42 +2271,44 @@ export function reinforce() {
 		gameData.luAutomationUnlocked = true;
 		gameData.suAutomationUnlocked = true;
 		gameData.fuAutomationUnlocked = true;
-		gameData.euAutomationUnlocked = false;
 
 		gameData.isInChallengeStorm = false;
-		gameData.stormcapBaseFactor = new Decimal(0.75);
-		gameData.stormBaseRequirement = new Decimal(1e40);
-		gameData.stormBestScore = new Decimal(0);
-		gameData.stormLevel = new Decimal(1);
-		gameData.stormCompletable = false;
-		document.querySelector('.challenge-storm').style.visibility = 'hidden';
-
 		gameData.isInChallengeWildfire = false;
-		gameData.wildfireBaseFactor = new Decimal(2);
-		gameData.wildfireBaseRequirement = new Decimal(50);
-		gameData.wildfireBestScore = new Decimal(0);
-		gameData.wildfireLevel = new Decimal(1);
-		gameData.wildfireCompletable = false;
-		document.querySelector('.challenge-wildfire').style.visibility = 'hidden';
-		
 		gameData.isInChallengeDrought = false;
-		gameData.droughtBaseFactor = new Decimal(1e-2);
-		gameData.droughtTimeFactor = new Decimal(0);
-		gameData.droughtBaseRequirement = new Decimal(1e200);
-		gameData.droughtBestScore = new Decimal(0);
-		gameData.droughtLevel = new Decimal(1);
-		gameData.droughtCompletable = false;
-		document.querySelector('.challenge-drought').style.visibility = 'hidden';
-		
 		gameData.isInChallengeBlizzard = false;
-		gameData.blizzardBasePEFactor = new Decimal(0.075);
-		gameData.blizzardBaseGameSpeedFactor = new Decimal(1e20);
-		gameData.blizzardBaseRequirement = new Decimal(5000);
-		gameData.blizzardBestScore = new Decimal(0);
-		gameData.blizzardReward = new Decimal(1);
-		gameData.blizzardLevel = new Decimal(1);
-		gameData.blizzardCompletable = false;
-		document.querySelector('.challenge-blizzard').style.visibility = 'hidden';
+		
+		if (!rootUpgradeFactor.RO21Bought) {
+			gameData.stormcapBaseFactor = new Decimal(0.75);
+			gameData.stormBaseRequirement = new Decimal(1e40);
+			gameData.stormBestScore = new Decimal(0);
+			gameData.stormLevel = new Decimal(1);
+			gameData.stormCompletable = false;
+			document.querySelector('.challenge-storm').style.visibility = 'hidden';
+
+			gameData.wildfireBaseFactor = new Decimal(2);
+			gameData.wildfireBaseRequirement = new Decimal(50);
+			gameData.wildfireBestScore = new Decimal(0);
+			gameData.wildfireLevel = new Decimal(1);
+			gameData.wildfireCompletable = false;
+			document.querySelector('.challenge-wildfire').style.visibility = 'hidden';
+			
+			gameData.droughtBaseFactor = new Decimal(1e-2);
+			gameData.droughtTimeFactor = new Decimal(0);
+			gameData.droughtBaseRequirement = new Decimal(1e200);
+			gameData.droughtBestScore = new Decimal(0);
+			gameData.droughtLevel = new Decimal(1);
+			gameData.droughtCompletable = false;
+			document.querySelector('.challenge-drought').style.visibility = 'hidden';
+			
+			gameData.blizzardBasePEFactor = new Decimal(0.075);
+			gameData.blizzardBaseGameSpeedFactor = new Decimal(1e20);
+			gameData.blizzardBaseRequirement = new Decimal(5000);
+			gameData.blizzardBestScore = new Decimal(0);
+			gameData.blizzardReward = new Decimal(1);
+			gameData.blizzardLevel = new Decimal(1);
+			gameData.blizzardCompletable = false;
+			document.querySelector('.challenge-blizzard').style.visibility = 'hidden';
+		}
 		
 		gameData.dna = new Decimal(0);
 		gameData.dnaBlueprints = new Decimal(0);
@@ -2008,9 +2411,12 @@ export function reinforce() {
 		entropyUpgradeFactor.R5Cost = new Decimal(20);
 		entropyUpgradeFactor.R5Amount = new Decimal(0);
 		entropyUpgradeFactor.R5Effect = new Decimal(0);
-		entropyUpgradeFactor.R6Cost = new Decimal(100000);
+		entropyUpgradeFactor.R6Cost = new Decimal(1e13);
 		entropyUpgradeFactor.R6Amount = new Decimal(0);
-		entropyUpgradeFactor.R6Effect = new Decimal(0);
+		entropyUpgradeFactor.R6Effect = new Decimal(1);
+		entropyUpgradeFactor.R7Cost = new Decimal(9e15);
+		entropyUpgradeFactor.R7Amount = new Decimal(0);
+		entropyUpgradeFactor.R7Effect = new Decimal(0);
 		
 		entropyUpgradeFactor.rubisco = new Decimal(0);
 		entropyUpgradeFactor.rubiscoEffect = new Decimal(1);
@@ -2039,12 +2445,22 @@ export function reinforce() {
         temple.repeatableUpgradeFactor.LR1Cap = new Decimal(10);
         temple.repeatableUpgradeFactor.LR2 = new Decimal(0);
         temple.repeatableUpgradeFactor.LR2Cap = new Decimal(10);
+        temple.repeatableUpgradeFactor.LR3 = new Decimal(0);
+        temple.repeatableUpgradeFactor.LR3Cap = new Decimal(10);
         temple.repeatableUpgradeFactor.SR1 = new Decimal(0);
         temple.repeatableUpgradeFactor.SR1Cap = new Decimal(10);
         temple.repeatableUpgradeFactor.SR2 = new Decimal(0);
         temple.repeatableUpgradeFactor.SR2Cap = new Decimal(10);
+        temple.repeatableUpgradeFactor.SR3 = new Decimal(0);
+        temple.repeatableUpgradeFactor.SR3Cap = new Decimal(10);
         temple.repeatableUpgradeFactor.FR1 = new Decimal(0);
         temple.repeatableUpgradeFactor.FR1Cap = new Decimal(10);
+        temple.repeatableUpgradeFactor.FR2 = new Decimal(0);
+        temple.repeatableUpgradeFactor.FR2Cap = new Decimal(10);
+        temple.repeatableUpgradeFactor.FR3 = new Decimal(0);
+        temple.repeatableUpgradeFactor.FR3Cap = new Decimal(10);
+        temple.repeatableUpgradeFactor.ER1 = new Decimal(0);
+        temple.repeatableUpgradeFactor.ER1Cap = new Decimal(10);
 
         circuits.upgradeAutobuyerFLOPS = new Decimal(1);
         
@@ -2186,29 +2602,31 @@ export function reinforce() {
 		document.getElementById('B1').innerHTML = `Free Fertilizers (0)<br>Requires 1 Bacteria<br>Effect: +0 Fertilizers to all Composters`;
 		document.getElementById('B2').innerHTML = `Softcap Dampener (0 / 10)<br>Requires 2 Bacteria<br>Effect: -0 to Leaf softcap root`;
 			
-		document.querySelector('.challenge-storm').style.visibility = `hidden`;
-		document.getElementById('stormLevelCounter').innerHTML = `The Storm`;
-		document.getElementById('stormIndicator').innerHTML = `Harsh winds and lightning blasts make Leaves, Seeds, and Fruits way harder to sustainably produce. (base of ^0.75)<br>(INACTIVE)`;
-		document.getElementById('stormRewardCounter').innerHTML = `Unlock Composter and SU automation, ^1 Leaf base mult, and the Bacteria formula is better.`;
-		document.getElementById('stormCounter').innerHTML = `0 / 1e40 Seeds`;
-		
-		document.querySelector('.challenge-wildfire').style.visibility = `hidden`;
-		document.getElementById('wildfireLevelCounter').innerHTML = `The Wildfire`;
-		document.getElementById('wildfireIndicator').innerHTML = `A raging firestorm makes Fertilizers impossible to produce. (Free fers are disabled, and (super scaling)^2 starts immediately)<br>(INACTIVE)`;
-		document.getElementById('wildfireRewardCounter').innerHTML = `Unlock FU automation, Seed generation, and x1 M1 and M3's effects.`;
-		document.getElementById('wildfireCounter').innerHTML = `0 / 50 Fertilizers`;
-		
-		document.querySelector('.challenge-drought').style.visibility = `hidden`;
-		document.getElementById('droughtLevelCounter').innerHTML = `The Drought`;
-		document.getElementById('droughtIndicator').innerHTML = `Lack of water for months has made leaves die out constantly and time drag on. (^0.01 to L and TAS, Game speed increases over time)<br>(INACTIVE)`;
-		document.getElementById('droughtRewardCounter').innerHTML = `Unlock DNA, RNA, and ^1 CRS`;
-		document.getElementById('droughtCounter').innerHTML = `0 / 1e200 Fruits`;
-		
-		document.querySelector('.challenge-blizzard').style.visibility = `hidden`;
-		document.getElementById('blizzardLevelCounter').innerHTML = `The Blizzard`;
-		document.getElementById('blizzardIndicator').innerHTML = `Sudden drops in temperature make all forms of energy futile. (^0.075 to PE, Entropy mult, Cells, and Bacteria are disabled, and /1e20 Game speed)<br>(INACTIVE)`;
-		document.getElementById('blizzardRewardCounter').innerHTML = `Unlock Roots and ^1 Storm rewards`;
-		document.getElementById('blizzardCounter').innerHTML = `0 / 5000 Entropy`;
+		if (!rootUpgradeFactor.RO21Bought) {
+			document.querySelector('.challenge-storm').style.visibility = `hidden`;
+			document.getElementById('stormLevelCounter').innerHTML = `The Storm`;
+			document.getElementById('stormIndicator').innerHTML = `Harsh winds and lightning blasts make Leaves, Seeds, and Fruits way harder to sustainably produce. (base of ^0.75)<br>(INACTIVE)`;
+			document.getElementById('stormRewardCounter').innerHTML = `Unlock Composter and SU automation, ^1 Leaf base mult, and the Bacteria formula is better.`;
+			document.getElementById('stormCounter').innerHTML = `0 / 1e40 Seeds`;
+			
+			document.querySelector('.challenge-wildfire').style.visibility = `hidden`;
+			document.getElementById('wildfireLevelCounter').innerHTML = `The Wildfire`;
+			document.getElementById('wildfireIndicator').innerHTML = `A raging firestorm makes Fertilizers impossible to produce. (Free fers are disabled, and (super scaling)^2 starts immediately)<br>(INACTIVE)`;
+			document.getElementById('wildfireRewardCounter').innerHTML = `Unlock FU automation, Seed generation, and x1 M1 and M3's effects.`;
+			document.getElementById('wildfireCounter').innerHTML = `0 / 50 Fertilizers`;
+			
+			document.querySelector('.challenge-drought').style.visibility = `hidden`;
+			document.getElementById('droughtLevelCounter').innerHTML = `The Drought`;
+			document.getElementById('droughtIndicator').innerHTML = `Lack of water for months has made leaves die out constantly and time drag on. (^0.01 to L and TAS, Game speed increases over time)<br>(INACTIVE)`;
+			document.getElementById('droughtRewardCounter').innerHTML = `Unlock DNA, RNA, and ^1 CRS`;
+			document.getElementById('droughtCounter').innerHTML = `0 / 1e200 Fruits`;
+			
+			document.querySelector('.challenge-blizzard').style.visibility = `hidden`;
+			document.getElementById('blizzardLevelCounter').innerHTML = `The Blizzard`;
+			document.getElementById('blizzardIndicator').innerHTML = `Sudden drops in temperature make all forms of energy futile. (^0.075 to PE, Entropy mult, Cells, and Bacteria are disabled, and /1e20 Game speed)<br>(INACTIVE)`;
+			document.getElementById('blizzardRewardCounter').innerHTML = `Unlock Roots and ^1 Storm rewards`;
+			document.getElementById('blizzardCounter').innerHTML = `0 / 5000 Entropy`;
+		}
 		
 		document.getElementById('blueprintCounter').innerHTML = `0 / 0 DNA Blueprints`;
 		document.getElementById('rubiscoCounter').innerHTML = `0 RuBisCo Proteins<br>Seed and Fruit base mult boost Leaves (x1)`;
@@ -2230,10 +2648,11 @@ export function reinforce() {
 		document.getElementById('rnaEffectCounter').innerHTML = `+0.1 Game speed mult every second each strand (+0/s)`;
 		document.getElementById('R1').innerHTML = `More Game speed (0)<br>Requires 5 RNA strands<br>Effect: x1 Game speed`;
 		document.getElementById('R2').innerHTML = `Delay Super Scaling (0)<br>Requires 2 RNA strands<br>Effect: +0 Super Scaling delay`;
-		document.getElementById('R3').innerHTML = `Softcap Dampener (0 / 10)<br>Requires 10 RNA strands<br>Effect: -0 from Fruit softcap root`;
+		document.getElementById('R3').innerHTML = `Softcap Dampener III (0 / 10)<br>Requires 10 RNA strands<br>Effect: -0 from Fruit softcap root`;
 		document.getElementById('R4').innerHTML = `Entropificator (0)<br>Requires 100 RNA strands<br>Effect: x1 Entropy`;
-		document.getElementById('R5').innerHTML = `Blueprint Dampener (0 / 5)<br>Requires 20 RNA strands<br>Effect: -0 from DNA Blueprint nerf root`;
-		document.getElementById('R6').innerHTML = `Viral Amplifier (0)<br>Requires 100000 RNA strands<br>Effect: -0 from Game speed Virus root`;
+		document.getElementById('R5').innerHTML = `Blueprint Dampener (0 / 5)<br>Requires 20 RNA strands<br>Effect: -0 from DNA Blueprint base nerf root`;
+		document.getElementById('R6').innerHTML = `Faster Falling (0)<br>Requires 1e13 RNA strands<br>Effect: x1 FL fall speed`;
+		document.getElementById('R7').innerHTML = `Flowing Leaves (0)<br>Requires 9e15 RNA strands<br>Effect: -0 from FL's Game speed root`;
         
         document.getElementById("pleaseWork").innerHTML = "0";
         document.getElementById("leavesPerSecond").innerHTML = "0/s";
@@ -2370,8 +2789,16 @@ export function updateGUIBasedOnAchievements() {
             document.getElementById('B1').innerHTML = `Free Fertilizers (${truncateToDecimalPlaces(entropyUpgradeFactor.B1Amount.trunc(), 3)})<br>Requires ${truncateToDecimalPlaces(entropyUpgradeFactor.B1Cost, 3)} Bacteria<br>Effect: +${truncateToDecimalPlaces(entropyUpgradeFactor.B1Effect, 3)} Fertilizers from all Composters`;
             document.getElementById('B2').innerHTML = `Softcap Dampener (${truncateToDecimalPlaces(entropyUpgradeFactor.B2Amount.trunc(), 3)} / 10)<br>Requires ${truncateToDecimalPlaces(entropyUpgradeFactor.B2Cost, 3)} Bacteria<br>Effect: -${truncateToDecimalPlaces(entropyUpgradeFactor.B2Effect, 3)} to Leaf softcap root`;
             document.getElementById('B3').innerHTML = `Cleanroom (${truncateToDecimalPlaces(entropyUpgradeFactor.B3Amount.trunc(), 3)})<br>Requires ${truncateToDecimalPlaces(entropyUpgradeFactor.B3Cost, 3)} Roots<br>Effect: x${truncateToDecimalPlaces(entropyUpgradeFactor.B3Effect, 3)} Bacteria`;
+			
+			if (entropyUpgradeFactor.B2Amount.greaterThanOrEqualTo(new Decimal(10))) {
+				entropyUpgradeFactor.B2Cost = new Decimal(Infinity);
+				document.getElementById('B2').innerHTML = `Softcap Dampener I (10 / 10)<br>Requires Infinity Bacteria<br>Effect: -${truncateToDecimalPlaces(entropyUpgradeFactor.B2Effect, 3)} to Leaf softcap root`;
+			}
         }
         if (achievements.ach64) {
+			document.querySelector('.buttons-radar-tab-color').style.visibility = `visible`;
+			document.querySelector('.challenge-storm').style.visibility = `visible`;
+			
             gameData.stormBaseRequirement = new Decimal(1e40).pow(gameData.stormLevel);
             if (gameData.isInChallengeStorm) {    
                 document.querySelector('.challenge-storm').style.backgroundImage = 'radial-gradient(#3036b0, #5e1111)';
@@ -2400,6 +2827,8 @@ export function updateGUIBasedOnAchievements() {
 			document.querySelector('.composter-automation-background').style.visibility = `visible`;
         }
         if (achievements.ach81) {
+			document.querySelector('.challenge-wildfire').style.visibility = `visible`;
+			
             gameData.wildfireBaseRequirement = new Decimal(50).times(gameData.wildfireLevel);
             if (gameData.isInChallengeWildfire) {    
                 document.querySelector('.challenge-wildfire').style.backgroundImage = 'radial-gradient(#e3df20, #b71414)';
@@ -2422,6 +2851,8 @@ export function updateGUIBasedOnAchievements() {
             document.getElementById('wildfireCounter').innerHTML = `${truncateToDecimalPlaces(gameData.wildfireBestScore, 3)} / ${truncateToDecimalPlaces((new Decimal(50).times(gameData.wildfireLevel)), 3)} Fertilizers`;
         }
 		if (achievements.ach101) {
+			document.querySelector('.challenge-drought').style.visibility = `visible`;
+			
 			if (gameData.isInChallengeDrought) {
 				gameData.isInChallengeDrought = true;
                 if (gameData.droughtLevel.greaterThan(new Decimal(1))) {document.getElementById('droughtLevelCounter').innerHTML = `The Drought^${truncateToDecimalPlaces(gameData.droughtLevel, 3)}`;}
@@ -2462,6 +2893,15 @@ export function updateGUIBasedOnAchievements() {
 			document.getElementById('asparagineCounter').innerHTML = `${truncateToDecimalPlaces(entropyUpgradeFactor.asparagine, 3)} Asparagine Proteins<br> Game speed boosts Bacteria base mult (x${truncateToDecimalPlaces(entropyUpgradeFactor.asparagineEffect, 3)})`;
 			document.getElementById('agpCounter').innerHTML = `${truncateToDecimalPlaces(entropyUpgradeFactor.agp, 3)} AGP Proteins<br> ^${truncateToDecimalPlaces(entropyUpgradeFactor.agpEffect, 3)} Cell overpopulation division effect`;
 			document.getElementById('trbCounter').innerHTML = `${truncateToDecimalPlaces(entropyUpgradeFactor.trb, 3)} TRB Proteins<br> x${truncateToDecimalPlaces(entropyUpgradeFactor.trbEffect, 3)} RNA and R1's effect`;
+			
+			if (entropyUpgradeFactor.R3Amount.greaterThanOrEqualTo(new Decimal(10))) {
+				entropyUpgradeFactor.R3Cost = new Decimal(Infinity);
+				document.getElementById('R3').innerHTML = `Softcap Dampener III (10 / 10)<br>Requires Infinty RNA strands<br>Effect: -${truncateToDecimalPlaces(entropyUpgradeFactor.R3Effect, 3)} from Fruit softcap root`;
+			}
+			if (entropyUpgradeFactor.R5Amount.greaterThanOrEqualTo(new Decimal(5))) {
+				entropyUpgradeFactor.R5Cost = new Decimal(Infinity);
+				document.getElementById('R5').innerHTML = `Blueprint Dampener (5 / 5)<br>Requires Infinity RNA strands<br>Effect: -${truncateToDecimalPlaces(entropyUpgradeFactor.R5Effect, 3)} from DNA Blueprint base nerf root`;
+			}
 		}
         if (achievements.ach105) {
             document.querySelector('.entropy-composter-background').style.visibility = 'visible';
@@ -2474,6 +2914,8 @@ export function updateGUIBasedOnAchievements() {
             gameData.entropyComposterIsActive = false;
         }
 		if (achievements.ach113) {
+			document.querySelector('.challenge-blizzard').style.visibility = `visible`;
+			
 			if (gameData.isInChallengeBlizzard) {
 				gameData.isInChallengeBlizzard = true;
                 if (gameData.blizzardLevel.greaterThan(new Decimal(1))) {document.getElementById('blizzardLevelCounter').innerHTML = `The Blizzard^${truncateToDecimalPlaces(gameData.blizzardLevel, 3)}`;}
@@ -2499,6 +2941,54 @@ export function updateGUIBasedOnAchievements() {
 			document.querySelector('.roots').style.visibility = `visible`;
 			document.querySelector('.bacteria-types-automation-background').style.visibility = `visible`;
 		}
+		if (achievements.ach131) {
+			document.getElementById('buildPetriDishes').innerHTML = `Build a Petri Dish (${rootUpgradeFactor.totalPetriDishes} / 8)<br>Cost: ${truncateToDecimalPlaces(rootUpgradeFactor.petriDishCost, 3)} Roots`;
+			if (rootUpgradeFactor.totalPetriDishes > 7) {
+				document.getElementById('buildPetriDishes').disabled = true;
+			}
+			
+			for (let i = 1; i < rootUpgradeFactor.totalPetriDishes + 1; i++) {
+				document.getElementById(`petriDish${i}`).style.display = `block`;
+			}
+		}
+		if (achievements.ach143) {
+			document.querySelector('.buttons-welder-tab-color').style.visibility = "visible";
+		}
+		if (achievements.ach144) {
+			document.querySelector('.challenge-fall').style.visibility = `visible`;
+			
+		if (gameData.isInChallengeFall) {
+			gameData.isInChallengeFall = true;
+			if (gameData.fallLevel.greaterThan(new Decimal(1))) {document.getElementById('fallLevelCounter').innerHTML = `The Fall^${truncateToDecimalPlaces(gameData.fallLevel, 3)}`;}
+			else {document.getElementById('fallLevelCounter').innerHTML = `The Fall`;}
+			document.querySelector('.challenge-fall').style.backgroundImage = 'radial-gradient(#ffc107, #c74040)';
+			document.querySelector('.challenge-fall').style.borderColor = '#991d1d';
+			document.getElementById('enterFall').innerHTML = `EXIT THE FALL`;
+			document.getElementById('enterFall').style.left = `67.5px`;
+			document.getElementById('fallIndicator').innerHTML = `Fruits are 'falling' from your tree, so their maximum amount is 0. ^${truncateToDecimalPlaces(gameData.fallBaseDebuffFactor, 3)} Leaves, ^${truncateToDecimalPlaces(gameData.fallBaseDebuffFactor, 3)} Seeds, and /${truncateToDecimalPlaces(gameData.fallBaseGameSpeedFactor, 3)} Game speed<br>(ACTIVE)`;
+		}
+		else {
+			const x = Decimal.ln(Decimal.log10(gameData.fallBestScore.plus(new Decimal(1))).plus(new Decimal(1)));
+			const y = (x.times(new Decimal(0.108574))).plus(new Decimal(0.25));
+			const z = y.clamp(new Decimal(1), new Decimal(Infinity));
+			document.getElementById('fallRewardCounter').innerHTML = `Unlock Fallen Leaves and x${truncateToDecimalPlaces(z, 3)} Leaf supercap root`;
+			document.getElementById('fallCounter').innerHTML = `${truncateToDecimalPlaces(gameData.fallBestScore, 3)} / ${truncateToDecimalPlaces(gameData.fallBaseRequirement, 3)} Leaves`;
+			if (gameData.fallLevel.greaterThan(new Decimal(1))) {document.getElementById('fallLevelCounter').innerHTML = `The Fall^${truncateToDecimalPlaces(gameData.fallLevel, 3)}`;}
+			else {document.getElementById('fallLevelCounter').innerHTML = `The Fall`;}
+			document.getElementById('fallIndicator').innerHTML = `Fruits are 'falling' from your tree, so their maximum amount is 0. ^${truncateToDecimalPlaces(gameData.fallBaseDebuffFactor, 3)} Leaves, ^${truncateToDecimalPlaces(gameData.fallBaseDebuffFactor, 3)} Seeds, and /${truncateToDecimalPlaces(gameData.fallBaseGameSpeedFactor, 3)} Game speed<br>(INACTIVE)`;
+		}
+		document.getElementById('fallCounter').innerHTML = `${truncateToDecimalPlaces(gameData.fallBestScore, 3)} / ${truncateToDecimalPlaces(gameData.fallBaseRequirement, 3)} Leaves`;
+		}
+        if (achievements.ach152) {
+            document.querySelector('.root-composter-background').style.visibility = 'visible';
+            document.getElementById('rootFertilizerCounter').innerHTML = `The Root Composter has made ${truncateToDecimalPlaces(gameData.rootComposterCount, 3)} Fertilizers,`;
+            document.getElementById('rootFertilizerEffect').innerHTML = `delaying all scalings (after softcap) by x${truncateToDecimalPlaces(gameData.rootComposterEffect, 3)}`;
+            document.getElementById('rootComposterButton').innerHTML = `Make a Complex Fertilizer<br>Cost: ${truncateToDecimalPlaces(gameData.rootComposterCost, 3)} Roots`;
+            const x = gameData.rootComposterTime.div(new Decimal(1000));
+            const y = x.div(gameData.compostingSpeed);
+            document.getElementById('rootCompostingTimer').innerHTML = `Composting takes ${truncateToDecimalPlaces(y, 3)} seconds`;
+            gameData.rootComposterIsActive = false;
+        }
     }
 }
 
@@ -2506,19 +2996,34 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function loadFirstDecompolization() {
+export async function loadFirstDecompolization() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadFirstDecompolization") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadFirstDecompolization");
+	    window.location.reload();
+        return;
+    }
 	gameData.seeds = new Decimal(15);
     achievements.ach11 = true;
     achievements.ach12 = true;
     achievements.ach13 = true;
     achievements.ach14 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
+
+    localStorage.setItem("loadState", null);
+    saveLoop();
+    sleep(500);
+    window.location.reload();
 }
 
-async function loadFirstHarvest() {
+export async function loadFirstHarvest() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadFirstHarvest") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadFirstHarvest");
+	    window.location.reload();
+        return;
+    }
 	gameData.fruits = new Decimal(15);
     achievements.ach11 = true;
     achievements.ach12 = true;
@@ -2527,13 +3032,21 @@ async function loadFirstHarvest() {
     achievements.ach15 = true;
     achievements.ach21 = true;
     achievements.ach23 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
+
+    localStorage.setItem("loadState", null);
+    saveLoop();
+    sleep(500);
+    window.location.reload();
 }
 
-async function loadMossUnlocked() {
+export async function loadMossUnlocked() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadMossUnlocked") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadMossUnlocked");
+	    window.location.reload();
+        return;
+    }
 	gameData.fruits = new Decimal(1e9);
     achievements.ach11 = true;
     achievements.ach12 = true;
@@ -2549,13 +3062,21 @@ async function loadMossUnlocked() {
     achievements.ach32 = true;
     achievements.ach42 = true;
     achievements.ach43 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
+
+    localStorage.setItem("loadState", null);
+    saveLoop();
+    sleep(500);
+    window.location.reload();
 }
 
-async function loadFirstTransformation() {
+export async function loadFirstTransformation() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadFirstTransformation") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadFirstTransformation");
+	    window.location.reload();
+        return;
+    }
 	gameData.entropy = new Decimal(10);
     achievements.ach11 = true;
     achievements.ach12 = true;
@@ -2576,15 +3097,24 @@ async function loadFirstTransformation() {
     achievements.ach42 = true;
     achievements.ach43 = true;
     achievements.ach44 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
+
+    localStorage.setItem("loadState", null);
+    saveLoop();
+    sleep(500);
+    window.location.reload();
 }
 
-async function loadStormUnlocked() {
+export async function loadStormUnlocked() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadStormUnlocked") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadStormUnlocked");
+	    window.location.reload();
+        return;
+    }
 	gameData.entropy = new Decimal(1e8);
     gameData.highestCircuitsTrue = new Decimal(100);
+    entropyUpgradeFactor.E1Bought = true;
     achievements.ach11 = true;
     achievements.ach12 = true;
     achievements.ach13 = true;
@@ -2614,16 +3144,25 @@ async function loadStormUnlocked() {
     achievements.ach62 = true;
     achievements.ach63 = true;
     achievements.ach64 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
+
+    localStorage.setItem("loadState", null);
+    saveLoop();
+    sleep(500);
+    window.location.reload();
 }
 
-async function loadWildfireUnlocked() {
+export async function loadWildfireUnlocked() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadWildfireUnlocked") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadWildfireUnlocked");
+	    window.location.reload();
+        return;
+    }
 	gameData.entropy = new Decimal(5e22);
     gameData.highestCircuitsTrue = new Decimal(250);
 	gameData.suAutomationUnlocked = true;
+    entropyUpgradeFactor.E1Bought = true;
     achievements.ach11 = true;
     achievements.ach12 = true;
     achievements.ach13 = true;
@@ -2660,17 +3199,26 @@ async function loadWildfireUnlocked() {
     achievements.ach74 = true;
     achievements.ach75 = true;
     achievements.ach81 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
+
+    localStorage.setItem("loadState", null);
+    saveLoop();
+    sleep(500);
+    window.location.reload();
 }
 
-async function loadDroughtUnlocked() {
+export async function loadDroughtUnlocked() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadDroughtUnlocked") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadDroughtUnlocked");
+	    window.location.reload();
+        return;
+    }
 	gameData.entropy = new Decimal(1e47);
     gameData.highestCircuitsTrue = new Decimal(500);
 	gameData.suAutomationUnlocked = true;
 	gameData.fuAutomationUnlocked = true;
+    entropyUpgradeFactor.E1Bought = true;
     achievements.ach11 = true;
     achievements.ach12 = true;
     achievements.ach13 = true;
@@ -2717,17 +3265,26 @@ async function loadDroughtUnlocked() {
     achievements.ach94 = true;
     achievements.ach95 = true;
     achievements.ach101 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
+
+    localStorage.setItem("loadState", null);
+    saveLoop();
+    sleep(500);
+    window.location.reload();
 }
 
-async function loadBlizzardUnlocked() {
+export async function loadBlizzardUnlocked() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadBlizzardUnlocked") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadBlizzardUnlocked");
+	    window.location.reload();
+        return;
+    }
 	gameData.entropy = new Decimal(1e102);
     gameData.highestCircuitsTrue = new Decimal(1500);
 	gameData.suAutomationUnlocked = true;
 	gameData.fuAutomationUnlocked = true;
+    entropyUpgradeFactor.E1Bought = true;
     achievements.ach11 = true;
     achievements.ach12 = true;
     achievements.ach13 = true;
@@ -2781,18 +3338,28 @@ async function loadBlizzardUnlocked() {
     achievements.ach111 = true;
     achievements.ach112 = true;
     achievements.ach113 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
+
+    localStorage.setItem("loadState", null);
+    saveLoop();
+    sleep(500);
+    window.location.reload();
 }
 
-async function loadFirstReinforcement() {
+export async function loadFirstReinforcement() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadFirstReinforcement") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadFirstReinforcement");
+	    window.location.reload();
+        return;
+    }
 	gameData.roots = new Decimal(1);
+    gameData.entropy = new Decimal(1.25);
 	gameData.reinforcements = new Decimal(1);
     gameData.highestCircuitsTrue = new Decimal(2000);
 	gameData.suAutomationUnlocked = true;
 	gameData.fuAutomationUnlocked = true;
+    entropyUpgradeFactor.E1Bought = true;
     achievements.ach11 = true;
     achievements.ach12 = true;
     achievements.ach13 = true;
@@ -2849,18 +3416,28 @@ async function loadFirstReinforcement() {
     achievements.ach114 = true;
     achievements.ach115 = true;
     achievements.ach121 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
+    
+    localStorage.setItem("loadState", null);
+    saveLoop();
+    sleep(500);
+    window.location.reload();
 }
 
-async function loadRM4() {
+export async function loadRM4() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadRM4") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadRM4");
+	    window.location.reload();
+        return;
+    }
 	gameData.roots = new Decimal(4);
+    gameData.entropy = new Decimal(1.25);
 	gameData.reinforcements = new Decimal(4);
     gameData.highestCircuitsTrue = new Decimal(3200);
 	gameData.suAutomationUnlocked = true;
 	gameData.fuAutomationUnlocked = true;
+    entropyUpgradeFactor.E1Bought = true;
     achievements.ach11 = true;
     achievements.ach12 = true;
     achievements.ach13 = true;
@@ -2918,18 +3495,28 @@ async function loadRM4() {
     achievements.ach115 = true;
     achievements.ach121 = true;
     achievements.ach122 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
+    
+    localStorage.setItem("loadState", null);
+    saveLoop();
+    sleep(500);
+    window.location.reload();
 }
 
-async function loadRM7() {
+export async function loadRM7() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadRM7") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadRM7");
+	    window.location.reload();
+        return;
+    }
 	gameData.roots = new Decimal(15);
+    gameData.entropy = new Decimal(1.25);
 	gameData.reinforcements = new Decimal(10);
     gameData.highestCircuitsTrue = new Decimal(5000);
 	gameData.suAutomationUnlocked = true;
 	gameData.fuAutomationUnlocked = true;
+    entropyUpgradeFactor.E1Bought = true;
     achievements.ach11 = true;
     achievements.ach12 = true;
     achievements.ach13 = true;
@@ -2988,18 +3575,28 @@ async function loadRM7() {
     achievements.ach121 = true;
     achievements.ach122 = true;
     achievements.ach123 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
+
+    localStorage.setItem("loadState", null);
+    saveLoop();
+    sleep(500);
+    window.location.reload();
 }
 
-async function loadEndgame() {
+export async function loadMicroorganismsUnlocked() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadMicroorganismsUnlocked") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadMicroorganismsUnlocked");
+	    window.location.reload();
+        return;
+    }
     gameData.roots = new Decimal(500);
+    gameData.entropy = new Decimal(1.25);
     gameData.reinforcements = new Decimal(15);
     gameData.highestCircuitsTrue = new Decimal(10000);
 	gameData.suAutomationUnlocked = true;
 	gameData.fuAutomationUnlocked = true;
+    entropyUpgradeFactor.E1Bought = true;
     achievements.ach11 = true;
     achievements.ach12 = true;
     achievements.ach13 = true;
@@ -3061,10 +3658,203 @@ async function loadEndgame() {
     achievements.ach124 = true;
     achievements.ach125 = true;
     achievements.ach131 = true;
-    massAchievementChecker();
-	saveLoop();
-	sleep(500);
-	window.location.reload();
+    
+    localStorage.setItem("loadState", null);
+    saveLoop();
+    sleep(500);
+    window.location.reload();
+}
+
+export async function loadFLUnlocked() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadFLUnlocked") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadFLUnlocked");
+	    window.location.reload();
+        return;
+    }
+    gameData.roots = new Decimal(1e15);
+    gameData.entropy = new Decimal(1.25);
+    gameData.reinforcements = new Decimal(250);
+    gameData.highestCircuitsTrue = new Decimal(1e7);
+	gameData.suAutomationUnlocked = true;
+	gameData.fuAutomationUnlocked = true;
+	gameData.fallLevel = new Decimal(2);
+    entropyUpgradeFactor.E1Bought = true;
+    achievements.ach11 = true;
+    achievements.ach12 = true;
+    achievements.ach13 = true;
+    achievements.ach14 = true;
+    achievements.ach15 = true;
+    achievements.ach21 = true;
+    achievements.ach22 = true;
+    achievements.ach23 = true;
+    achievements.ach24 = true;
+    achievements.ach25 = true;
+    achievements.ach31 = true;
+    achievements.ach32 = true;
+    achievements.ach33 = true;
+    achievements.ach34 = true;
+    achievements.ach35 = true;
+    achievements.ach41 = true;
+    achievements.ach42 = true;
+    achievements.ach43 = true;
+    achievements.ach44 = true;
+    achievements.ach45 = true;
+    achievements.ach51 = true;
+    achievements.ach52 = true;
+    achievements.ach53 = true;
+    achievements.ach54 = true;
+    achievements.ach55 = true;
+    achievements.ach61 = true;
+    achievements.ach62 = true;
+    achievements.ach63 = true;
+    achievements.ach64 = true;
+    achievements.ach65 = true;
+    achievements.ach71 = true;
+    achievements.ach72 = true;
+    achievements.ach73 = true;
+    achievements.ach74 = true;
+    achievements.ach75 = true;
+    achievements.ach81 = true;
+    achievements.ach82 = true;
+    achievements.ach83 = true;
+    achievements.ach84 = true;
+    achievements.ach85 = true;
+    achievements.ach91 = true;
+    achievements.ach92 = true;
+    achievements.ach93 = true;
+    achievements.ach94 = true;
+    achievements.ach95 = true;
+    achievements.ach101 = true;
+    achievements.ach102 = true;
+    achievements.ach103 = true;
+    achievements.ach104 = true;
+    achievements.ach105 = true;
+    achievements.ach111 = true;
+    achievements.ach112 = true;
+    achievements.ach113 = true;
+    achievements.ach114 = true;
+    achievements.ach115 = true;
+    achievements.ach121 = true;
+    achievements.ach122 = true;
+    achievements.ach123 = true;
+    achievements.ach124 = true;
+    achievements.ach125 = true;
+    achievements.ach131 = true;
+    achievements.ach132 = true;
+    achievements.ach133 = true;
+    achievements.ach134 = true;
+    achievements.ach135 = true;
+    achievements.ach141 = true;
+    achievements.ach142 = true;
+    achievements.ach143 = true;
+    achievements.ach144 = true;
+    achievements.ach145 = true;
+    achievements.ach151 = true;
+    
+    localStorage.setItem("loadState", null);
+    saveLoop();
+    sleep(500);
+    window.location.reload();
+}
+
+export async function loadEndgame() {
+    const loadState = localStorage.getItem("loadState");
+    if (loadState !== "loadEndgame") {
+        localStorage.setItem("resettingGame", true);
+        localStorage.setItem("loadState", "loadEndgame");
+	    window.location.reload();
+        return;
+    }
+    gameData.roots = new Decimal(1e24);
+    gameData.entropy = new Decimal(1.25);
+    gameData.reinforcements = new Decimal(1000);
+    gameData.highestCircuitsTrue = new Decimal(1e9);
+	gameData.suAutomationUnlocked = true;
+	gameData.fuAutomationUnlocked = true;
+	gameData.fallLevel = new Decimal(2);
+    entropyUpgradeFactor.E1Bought = true;
+    achievements.ach11 = true;
+    achievements.ach12 = true;
+    achievements.ach13 = true;
+    achievements.ach14 = true;
+    achievements.ach15 = true;
+    achievements.ach21 = true;
+    achievements.ach22 = true;
+    achievements.ach23 = true;
+    achievements.ach24 = true;
+    achievements.ach25 = true;
+    achievements.ach31 = true;
+    achievements.ach32 = true;
+    achievements.ach33 = true;
+    achievements.ach34 = true;
+    achievements.ach35 = true;
+    achievements.ach41 = true;
+    achievements.ach42 = true;
+    achievements.ach43 = true;
+    achievements.ach44 = true;
+    achievements.ach45 = true;
+    achievements.ach51 = true;
+    achievements.ach52 = true;
+    achievements.ach53 = true;
+    achievements.ach54 = true;
+    achievements.ach55 = true;
+    achievements.ach61 = true;
+    achievements.ach62 = true;
+    achievements.ach63 = true;
+    achievements.ach64 = true;
+    achievements.ach65 = true;
+    achievements.ach71 = true;
+    achievements.ach72 = true;
+    achievements.ach73 = true;
+    achievements.ach74 = true;
+    achievements.ach75 = true;
+    achievements.ach81 = true;
+    achievements.ach82 = true;
+    achievements.ach83 = true;
+    achievements.ach84 = true;
+    achievements.ach85 = true;
+    achievements.ach91 = true;
+    achievements.ach92 = true;
+    achievements.ach93 = true;
+    achievements.ach94 = true;
+    achievements.ach95 = true;
+    achievements.ach101 = true;
+    achievements.ach102 = true;
+    achievements.ach103 = true;
+    achievements.ach104 = true;
+    achievements.ach105 = true;
+    achievements.ach111 = true;
+    achievements.ach112 = true;
+    achievements.ach113 = true;
+    achievements.ach114 = true;
+    achievements.ach115 = true;
+    achievements.ach121 = true;
+    achievements.ach122 = true;
+    achievements.ach123 = true;
+    achievements.ach124 = true;
+    achievements.ach125 = true;
+    achievements.ach131 = true;
+    achievements.ach132 = true;
+    achievements.ach133 = true;
+    achievements.ach134 = true;
+    achievements.ach135 = true;
+    achievements.ach141 = true;
+    achievements.ach142 = true;
+    achievements.ach143 = true;
+    achievements.ach144 = true;
+    achievements.ach145 = true;
+    achievements.ach151 = true;
+    achievements.ach152 = true;
+    achievements.ach153 = true;
+    achievements.ach154 = true;
+    achievements.ach155 = true;
+    
+    localStorage.setItem("loadState", null);
+    saveLoop();
+    sleep(500);
+    window.location.reload();
 }
 
 document.getElementById("loadFirstDecompolization").addEventListener("click", loadFirstDecompolization);
@@ -3078,6 +3868,8 @@ document.getElementById("loadBlizzardUnlock").addEventListener("click", loadBliz
 document.getElementById("loadFirstReinforcement").addEventListener("click", loadFirstReinforcement);
 document.getElementById("loadRM4Achieved").addEventListener("click", loadRM4);
 document.getElementById("loadRM7Achieved").addEventListener("click", loadRM7);
+document.getElementById("loadMicroorganismsUnlocked").addEventListener("click", loadMicroorganismsUnlocked);
+document.getElementById("loadFLUnlocked").addEventListener("click", loadFLUnlocked);
 document.getElementById("loadEndgame").addEventListener("click", loadEndgame);
 
 export function updateUpgradeCount() {
@@ -3157,3 +3949,14 @@ export function updateResourceGUI() {
 	
     document.querySelector('.roots').style.left = `${rootsOffset + 760}px`;
 }
+
+export function pushActiveMicroorganisms(micro) {
+	if (!Array.isArray(rootUpgradeFactor.activeMicroorganisms)) {
+		rootUpgradeFactor.activeMicroorganisms = [];
+	}
+	rootUpgradeFactor.activeMicroorganisms.push(micro);
+}
+
+setTimeout(function() {
+	document.getElementById("titleScreen").style.display = 'none';
+}, 500);

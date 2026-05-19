@@ -1,9 +1,8 @@
 import { decompolize, harvest, transform, reinforce } from './core/bunchobullshit.mjs'
-import { createApp, ref } from 'vue'
 import * as leafUpgrades from './leafupgrades.mjs';
 import * as seedUpgrades from './seedupgrades.mjs';
 import * as fruitUpgrades from './fruitupgrades.mjs';
-import { saveLoop, loadSave, copySaveFileToClipboard } from './savefile.mjs';
+import { saveLoop, loadSave, exportSave } from './savefile.mjs';
 
 export function tab(tab, tabObject) {
     document.getElementById('buttons-lu').style.display = 'none';
@@ -24,6 +23,8 @@ export function tab(tab, tabObject) {
     document.getElementById('root-tabs').style.display = 'none';
     document.getElementById('buttons-root-milestone').style.display = 'none';
     document.getElementById('buttons-petri-dish').style.display = 'none';
+    document.getElementById('buttons-welder').style.display = 'none';
+    document.getElementById('buttons-fallen-leaves').style.display = 'none';
     document.getElementById('achievements').style.display = 'none';
     document.getElementById('secretAchievementsContainer').style.display = 'none';
     document.getElementById('achievement-tabs').style.display = 'none';
@@ -42,6 +43,8 @@ export function tab(tab, tabObject) {
     document.getElementById('rootTab').style.borderWidth = '2px';
     document.getElementById('rootMilestoneTab').style.borderWidth = '2px';
     document.getElementById('petriDishTab').style.borderWidth = '2px';
+    document.getElementById('welderTab').style.borderWidth = '2px';
+    document.getElementById('fallenLeavesTab').style.borderWidth = '2px';
     document.getElementById('achievementTab').style.borderWidth = '2px';
     document.getElementById('regularAchievements').style.borderWidth = '2px';
     document.getElementById('secretAchievements').style.borderWidth = '2px';
@@ -118,6 +121,16 @@ function loadPetriDishTab() {
     document.getElementById('root-tabs').style.display = 'inline-block';
     console.log("loadPetriDishTab has been called");
 }
+function loadWelderTab() {
+    tab('buttons-welder', 'welderTab');
+    document.getElementById('root-tabs').style.display = 'inline-block';
+    console.log("loadWelderTab has been called");
+}
+function loadFallenLeavesTab() {
+    tab('buttons-fallen-leaves', 'fallenLeavesTab');
+    document.getElementById('root-tabs').style.display = 'inline-block';
+    console.log("loadFallenLeavesTab has been called");
+}
 function loadAchTab () {
     tab('achievements', 'achievementTab');
     document.getElementById('achievement-tabs').style.display = 'inline-block';
@@ -150,6 +163,8 @@ document.getElementById("templeTab").addEventListener("click", loadTempleTab);
 document.getElementById("rootTab").addEventListener("click", loadRootTab);
 document.getElementById("rootMilestoneTab").addEventListener("click", loadRootMilestoneTab);
 document.getElementById("petriDishTab").addEventListener("click", loadPetriDishTab);
+document.getElementById("welderTab").addEventListener("click", loadWelderTab);
+document.getElementById("fallenLeavesTab").addEventListener("click", loadFallenLeavesTab);
 document.getElementById("achievementTab").addEventListener("click", loadAchTab);
 document.getElementById("settingsTab").addEventListener("click", loadSettingsTab);
 document.getElementById("regularAchievements").addEventListener("click", loadAchTab);
