@@ -127,6 +127,7 @@ export function gameLoop() {
 			proteins.proteinEffects();
 			calculations.calculateDNAMult();
 			proteins.DNACalculation();
+			proteins.dnaBlueprintCost();
 			calculations.calculateTotalDNABlueprint();
 			proteins.updateDNABlueprints();
 			calculations.calculateRNAMult();

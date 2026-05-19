@@ -22,7 +22,6 @@ export function resetCells() {
 				const power = (new Decimal(i + 1).div(new Decimal(5))).plus(new Decimal(1));
 				totalBase = totalBase.times(v.pow(power));
 				achievements.ach141 = true;
-				massAchievementChecker();
 			}
 			
 		}
@@ -31,7 +30,6 @@ export function resetCells() {
 		document.getElementById("bacteriaTypesScaling").style.display = "block";
 		document.getElementById("cellsIsCapped").style.display = "none";
 		achievements.ach112 = true;
-		massAchievementChecker();
 	}
     storage.gameData.cellsCap = x;
     document.getElementById('bacteriaTypesCounter').innerHTML = `You have created ${storage.truncateToDecimalPlaces(storage.gameData.bacteriaTypes, 3)} Bacteria Types, capping Cell count at ${storage.truncateToDecimalPlaces(storage.gameData.cellsCap, 3)}`;
@@ -39,7 +37,6 @@ export function resetCells() {
     document.getElementById('cellsIsCapped').style.display = 'none';
     document.getElementById('bacteriaResetButton').style.display = 'none';
     achievements.ach55 = true;
-    massAchievementChecker();
 }
 
 document.getElementById('bacteriaResetButton').addEventListener("click", resetCells);
