@@ -71,7 +71,7 @@ export function laggyAssFunction() {
 export var functions = {};
 
 export function S1() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU1)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU1)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 1, seedUpgradeCost.SU1, false, null);
@@ -80,7 +80,7 @@ export function S1() {
 }
 
 export function S2() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU2)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU2)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 2, seedUpgradeCost.SU2, false, null);
@@ -92,7 +92,7 @@ function ach21() {
     massAchievementChecker();
 }
 export function S3() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU3)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU3)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 3, seedUpgradeCost.SU3, true, ach21());
@@ -100,7 +100,7 @@ export function S3() {
     }
 }
 export function S4() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU4)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU4)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 4, seedUpgradeCost.SU4, false, null);
@@ -108,7 +108,7 @@ export function S4() {
     }
 }
 export function S5() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU5)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU5)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 5, seedUpgradeCost.SU5, false, null);
@@ -116,7 +116,7 @@ export function S5() {
     }
 }
 export function S6() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU6)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU6)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 6, seedUpgradeCost.SU6, false, null);
@@ -124,7 +124,7 @@ export function S6() {
     }
 }
 export function S7() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU7)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU7)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 7, seedUpgradeCost.SU7, false, null);
@@ -132,7 +132,7 @@ export function S7() {
     }
 }
 export function S8() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU8)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU8)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 8, seedUpgradeCost.SU8, false, null);
@@ -140,7 +140,7 @@ export function S8() {
     }
 }
 export function S9() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU9)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU9)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 9, seedUpgradeCost.SU9, false, null);
@@ -148,7 +148,7 @@ export function S9() {
     }
 }
 export function S10() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU10)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU10)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 10, seedUpgradeCost.SU10, false, null);
@@ -156,7 +156,7 @@ export function S10() {
     }
 }
 export function S11() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU11)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU11)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 11, seedUpgradeCost.SU11, false, null);
@@ -164,7 +164,7 @@ export function S11() {
     }
 }
 export function S12() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU12)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU12)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 12, seedUpgradeCost.SU12, false, null);
@@ -172,7 +172,7 @@ export function S12() {
     }
 }
 export function S13() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU13)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU13)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 13, seedUpgradeCost.SU13, false, null);
@@ -180,7 +180,7 @@ export function S13() {
     }
 }
 export function S14() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU14)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU14)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 14, seedUpgradeCost.SU14, false, null);
@@ -188,7 +188,7 @@ export function S14() {
     }
 }
 export function S15() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU15)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU15)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 15, seedUpgradeCost.SU15, false, null);
@@ -196,7 +196,7 @@ export function S15() {
     }
 }
 export function S16() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU16)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU16)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 16, seedUpgradeCost.SU16, false, null);
@@ -204,7 +204,7 @@ export function S16() {
     }
 }
 export function S17() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU17)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU17)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 17, seedUpgradeCost.SU17, false, null);
@@ -212,7 +212,7 @@ export function S17() {
     }
 }
 export function S18() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU18)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU18)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 18, seedUpgradeCost.SU18, false, null);
@@ -220,7 +220,7 @@ export function S18() {
     }
 }
 export function S19() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU19)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU19)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 19, seedUpgradeCost.SU19, false, null);
@@ -232,7 +232,7 @@ function ach34() {
     massAchievementChecker();
 }
 export function S20() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU20)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU20)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 20, seedUpgradeCost.SU20, true, ach34());
@@ -240,7 +240,7 @@ export function S20() {
     }
 }
 export function S21() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU21)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU21)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 21, seedUpgradeCost.SU21, false, null);
@@ -248,7 +248,7 @@ export function S21() {
     }
 }
 export function S22() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU22)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU22)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 22, seedUpgradeCost.SU22, false, null);
@@ -256,7 +256,7 @@ export function S22() {
     }
 }
 export function S23() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU23)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU23)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 23, seedUpgradeCost.SU23, false, null);
@@ -265,7 +265,7 @@ export function S23() {
     }
 }
 export function S24() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU24)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU24)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 24, seedUpgradeCost.SU24, false, null);
@@ -273,7 +273,7 @@ export function S24() {
     }
 }
 export function S25() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU25)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU25)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 25, seedUpgradeCost.SU25, false, null);
@@ -281,7 +281,7 @@ export function S25() {
     }
 }
 export function S26() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU26)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU26)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 26, seedUpgradeCost.SU26, false, null);
@@ -289,7 +289,7 @@ export function S26() {
     }
 }
 export function S27() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU27)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU27)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 27, seedUpgradeCost.SU27, false, null);
@@ -297,7 +297,7 @@ export function S27() {
     }
 }
 export function S28() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU28)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU28)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 28, seedUpgradeCost.SU28, false, null);
@@ -305,7 +305,7 @@ export function S28() {
     }
 }
 export function S29() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU29)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU29)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 29, seedUpgradeCost.SU29, false, null);
@@ -313,7 +313,7 @@ export function S29() {
     }
 }
 export function S30() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU30)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU30)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 30, seedUpgradeCost.SU30, false, null);
@@ -321,7 +321,7 @@ export function S30() {
     }
 }
 export function S31() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU31)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU31)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 31, seedUpgradeCost.SU31, false, null);
@@ -329,7 +329,7 @@ export function S31() {
     }
 }
 export function S32() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU32)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU32)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 32, seedUpgradeCost.SU32, false, null);
@@ -337,7 +337,7 @@ export function S32() {
     }
 }
 export function S33() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU33)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU33)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 33, seedUpgradeCost.SU33, false, null);
@@ -345,7 +345,7 @@ export function S33() {
     }
 }
 export function S34() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU34)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU34)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 34, seedUpgradeCost.SU34, false, null);
@@ -353,7 +353,7 @@ export function S34() {
     }
 }
 export function S35() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU35)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU35)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 35, seedUpgradeCost.SU35, false, null);
@@ -361,7 +361,7 @@ export function S35() {
     }
 }
 export function S36() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU36)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU36)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 36, seedUpgradeCost.SU36, false, null);
@@ -369,7 +369,7 @@ export function S36() {
     }
 }
 export function S37() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU37)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU37)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 37, seedUpgradeCost.SU37, false, null);
@@ -377,7 +377,7 @@ export function S37() {
     }
 }
 export function S38() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU38)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU38)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 38, seedUpgradeCost.SU38, false, null);
@@ -385,7 +385,7 @@ export function S38() {
     }
 }
 export function S39() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU39)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU39)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 39, seedUpgradeCost.SU39, false, null);
@@ -393,7 +393,7 @@ export function S39() {
     }
 }
 export function S40() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU40)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU40)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 40, seedUpgradeCost.SU40, false, null);
@@ -401,7 +401,7 @@ export function S40() {
     }
 }
 export function S41() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU41)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU41)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 41, seedUpgradeCost.SU41, false, null);
@@ -415,7 +415,7 @@ function ach83() {
     document.querySelector('.buttons-sru-holder').style.visibility = 'visible';
 }
 export function S42() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU42)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU42)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 42, seedUpgradeCost.SU42, true, ach83());
@@ -423,7 +423,7 @@ export function S42() {
     }
 }
 export function S43() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU43)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU43)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 43, seedUpgradeCost.SU43, false, null);
@@ -431,7 +431,7 @@ export function S43() {
     }
 }
 export function S44() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU44)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU44)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 44, seedUpgradeCost.SU44, false, null);
@@ -439,7 +439,7 @@ export function S44() {
     }
 }
 export function S45() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU45)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU45)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 45, seedUpgradeCost.SU45, false, null);
@@ -447,7 +447,7 @@ export function S45() {
     }
 }
 export function S46() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU46)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU46)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 46, seedUpgradeCost.SU46, false, null);
@@ -455,7 +455,7 @@ export function S46() {
     }
 }
 export function S47() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU47)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU47)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 47, seedUpgradeCost.SU47, false, null);
@@ -463,7 +463,7 @@ export function S47() {
     }
 }
 export function S48() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU48)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU48)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 48, seedUpgradeCost.SU48, false, null);
@@ -471,7 +471,7 @@ export function S48() {
     }
 }
 export function S49() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU49)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU49)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 49, seedUpgradeCost.SU49, false, null);
@@ -479,7 +479,7 @@ export function S49() {
     }
 }
 export function S50() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU50)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU50)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 50, seedUpgradeCost.SU50, false, null);
@@ -487,7 +487,7 @@ export function S50() {
     }
 }
 export function S51() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU51)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU51)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 51, seedUpgradeCost.SU51, false, null);
@@ -495,7 +495,7 @@ export function S51() {
     }
 }
 export function S52() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU52)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU52)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 52, seedUpgradeCost.SU52, false, null);
@@ -503,7 +503,7 @@ export function S52() {
     }
 }
 export function S53() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU53)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU53)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 53, seedUpgradeCost.SU53, false, null);
@@ -511,7 +511,7 @@ export function S53() {
     }
 }
 export function S54() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU54)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU54)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 54, seedUpgradeCost.SU54, false, null);
@@ -520,7 +520,7 @@ export function S54() {
     }
 }
 export function S55() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU55)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU55)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 55, seedUpgradeCost.SU55, false, null);
@@ -529,7 +529,7 @@ export function S55() {
     }
 }
 export function S56() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU56)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU56)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 56, seedUpgradeCost.SU56, false, null);
@@ -538,7 +538,7 @@ export function S56() {
     }
 }
 export function S57() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU57)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU57)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 57, seedUpgradeCost.SU57, false, null);
@@ -547,7 +547,7 @@ export function S57() {
     }
 }
 export function S58() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU58)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU58)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 58, seedUpgradeCost.SU58, false, null);
@@ -556,7 +556,7 @@ export function S58() {
     }
 }
 export function S59() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU59)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU59)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 59, seedUpgradeCost.SU59, false, null);
@@ -565,7 +565,7 @@ export function S59() {
     }
 }
 export function S60() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU60)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU60)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 60, seedUpgradeCost.SU60, false, null);
@@ -574,7 +574,7 @@ export function S60() {
     }
 }
 export function S61() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU61)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU61)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 61, seedUpgradeCost.SU61, false, null);
@@ -583,7 +583,7 @@ export function S61() {
     }
 }
 export function S62() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU62)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU62)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 62, seedUpgradeCost.SU62, false, null);
@@ -592,7 +592,7 @@ export function S62() {
     }
 }
 export function S63() {
-    if (gameData.seeds.greaterThanOrEqualTo(seedUpgradeCost.SU63)) {
+    if (gameData.seeds.gte(seedUpgradeCost.SU63)) {
         gameData.seedUpgradeCounter = gameData.seedUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('seed', 63, seedUpgradeCost.SU63, false, null);

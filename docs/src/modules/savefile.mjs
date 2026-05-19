@@ -484,7 +484,7 @@ export async function resetButtonUpdater() {
 	storage.gameData.resetDataCounter = storage.gameData.resetDataCounter.plus(x);
 	resetButton.innerHTML = `Reset your progress<br>${storage.truncateToDecimalPlaces(storage.gameData.resetDataCounter, 3)} / 10s of button being held`;
 	
-	if (storage.gameData.resetDataCounter.greaterThanOrEqualTo(new Decimal(10))) {
+	if (storage.gameData.resetDataCounter.gte(new Decimal(10))) {
 		storage.gameData.resettingGame = true;
 		storage.gameData.resetDataCounter = new Decimal(0);
 		storage.gameData.resetButtonHeld = false;

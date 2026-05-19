@@ -72,7 +72,7 @@ export function stormCalculation() {
     if (storage.gameData.isInChallengeStorm) {
         document.getElementById('stormCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.seeds, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.stormBaseRequirement, 3)} Seeds`;
 
-        if (storage.gameData.seeds.greaterThanOrEqualTo(storage.gameData.stormBaseRequirement)) {
+        if (storage.gameData.seeds.gte(storage.gameData.stormBaseRequirement)) {
             document.querySelector('.challenge-storm').style.backgroundImage = 'radial-gradient(#3036b0, #1c9e36)';
             document.querySelector('.challenge-storm').style.borderColor = '#117926';
             document.getElementById('enterStorm').innerHTML = `COMPLETE THE STORM`;
@@ -140,7 +140,7 @@ export function wildfireCalculation() {
 		storage.gameData.freeFruitFertilizers = new Decimal(0);
         document.getElementById('wildfireCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.totalFertilizers, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.wildfireBaseRequirement, 3)} Fertilizers`;
 
-        if (storage.gameData.totalFertilizers.greaterThanOrEqualTo(storage.gameData.wildfireBaseRequirement)) {
+        if (storage.gameData.totalFertilizers.gte(storage.gameData.wildfireBaseRequirement)) {
             document.querySelector('.challenge-wildfire').style.backgroundImage = 'radial-gradient(#e3df20, #1c9e36)';
             document.querySelector('.challenge-wildfire').style.borderColor = '#117926';
             document.getElementById('enterWildfire').innerHTML = `COMPLETE THE WILDFIRE`;
@@ -207,7 +207,7 @@ export function droughtCalculation() {
     if (storage.gameData.isInChallengeDrought) {
         document.getElementById('droughtCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.fruits, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.droughtBaseRequirement, 3)} Fruits`;
 
-        if (storage.gameData.fruits.greaterThanOrEqualTo(storage.gameData.droughtBaseRequirement)) {
+        if (storage.gameData.fruits.gte(storage.gameData.droughtBaseRequirement)) {
             document.querySelector('.challenge-drought').style.backgroundImage = 'radial-gradient(#c79b40, #1c9e36)';
             document.querySelector('.challenge-drought').style.borderColor = '#117926';
             document.getElementById('enterDrought').innerHTML = `COMPLETE THE DROUGHT`;
@@ -289,7 +289,7 @@ export function blizzardCalculation() {
     if (storage.gameData.isInChallengeBlizzard) {
         document.getElementById('blizzardCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.entropyOnTransform, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.blizzardBaseRequirement, 3)} Entropy`;
 
-        if (storage.gameData.entropyOnTransform.greaterThanOrEqualTo(storage.gameData.blizzardBaseRequirement)) {
+        if (storage.gameData.entropyOnTransform.gte(storage.gameData.blizzardBaseRequirement)) {
             document.querySelector('.challenge-blizzard').style.backgroundImage = 'radial-gradient(#afcccc, #1c9e36)';
             document.querySelector('.challenge-blizzard').style.borderColor = '#117926';
             document.getElementById('enterBlizzard').innerHTML = `COMPLETE THE BLIZZARD`;
@@ -356,7 +356,7 @@ export function fallCalculation() {
     if (storage.gameData.isInChallengeFall) {
         document.getElementById('fallCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.leaves, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.fallBaseRequirement, 3)} Leaves`;
 
-        if (storage.gameData.leaves.greaterThanOrEqualTo(storage.gameData.fallBaseRequirement)) {
+        if (storage.gameData.leaves.gte(storage.gameData.fallBaseRequirement)) {
             document.querySelector('.challenge-fall').style.backgroundImage = 'radial-gradient(#ffc107, #1c9e36)';
             document.querySelector('.challenge-fall').style.borderColor = '#117926';
             document.getElementById('enterFall').innerHTML = `COMPLETE THE FALL`;

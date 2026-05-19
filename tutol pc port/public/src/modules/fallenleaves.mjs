@@ -56,7 +56,7 @@ export class fallenType {
 				currentFactors[i] = new Decimal(currentFactors[i]);
 			}
 			tempCap = tempCap.plus(currentFactors[i]);
-			if (currentFactors[i].greaterThan(new Decimal(0))) {
+			if (currentFactors[i].gt(new Decimal(0))) {
 				document.getElementById(`${this.name}Factor${i + 1}Counter`).style.display = `block`;
 			}
 		}
@@ -214,7 +214,7 @@ export class fallenType {
 				const leafAmount = storage.rootUpgradeFactor.fallenLeavesBOOM[self.rufReference].amount;
 				const cost = storage.rootUpgradeFactor.fallenUpgrades[self.rufReference][temporaryI].cost;
 				const upgradeAmount = storage.rootUpgradeFactor.fallenUpgrades[self.rufReference][temporaryI].amount;
-				if (leafAmount.lessThan(cost)) {
+				if (leafAmount.lt(cost)) {
 					return;
 				}
 				storage.rootUpgradeFactor.fallenLeavesBOOM[self.rufReference].amount = leafAmount.minus(cost);
@@ -277,7 +277,7 @@ export class fallenType {
 			}
 		}
 		let nextCap;
-		if (this.baseCap.lessThan(new Decimal(0))) {
+		if (this.baseCap.lt(new Decimal(0))) {
 			nextCap = this.nextCapIncrease(new Decimal(0));
 		}
 		else {
@@ -304,10 +304,10 @@ export class fallenType {
 		}
 		
 		const capToFixLag = this.cap;
-		if (capToFixLag.greaterThanOrEqualTo(new Decimal(1))) {
+		if (capToFixLag.gte(new Decimal(1))) {
 			const baseTimeReq = new Decimal(1000).div(storage.rootUpgradeFactor.fallenLeafFallSpeedMult);
 			const adjTimeReq = baseTimeReq.div(new Decimal(1000));
-			if (adjTimeReq.lessThanOrEqualTo(new Decimal(0.05))) {
+			if (adjTimeReq.lte(new Decimal(0.05))) {
 				document.getElementById(`fallenLeavesBaseFallSpeed`).innerHTML = `Currently, you gain a base of ${storage.truncateToDecimalPlaces(new Decimal(1).div(adjTimeReq), 3)} Fallen Leaves per second.`;
 			}
 			else {
@@ -320,7 +320,7 @@ export class fallenType {
 			const amountPerSecond = amountPerMillisecond.times(new Decimal(1000));
 			const totalAmount = amountPerMillisecond.times(storage.gameData.ticksToUpdateComposter);
 			storage.rootUpgradeFactor.fallenLeavesBOOM[this.rufReference].temp = (storage.rootUpgradeFactor.fallenLeavesBOOM[this.rufReference].temp.plus(totalAmount)).clamp(new Decimal(0), capToFixLag);
-			if (storage.rootUpgradeFactor.fallenLeavesBOOM[this.rufReference].temp.greaterThanOrEqualTo(new Decimal(1))) {
+			if (storage.rootUpgradeFactor.fallenLeavesBOOM[this.rufReference].temp.gte(new Decimal(1))) {
 				storage.rootUpgradeFactor.fallenLeavesBOOM[this.rufReference].canCollect = true;
 			}
 			else {
@@ -334,7 +334,7 @@ export class fallenType {
 				return;
 			}
 			for (let i = 0; i < this.verboseMilestones.length; i++) {
-				if (capToFixLag.greaterThanOrEqualTo(storage.rootUpgradeFactor.fallenMilestones[this.rufReference][i].cost)) {
+				if (capToFixLag.gte(storage.rootUpgradeFactor.fallenMilestones[this.rufReference][i].cost)) {
 					storage.rootUpgradeFactor.fallenMilestones[this.rufReference][i].achieved = true;
 				}
 			}
@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 			`<span class="bold">150 cap</span><br>FL's cap boosts FL4's effect`,
 			`<span class="bold">500 cap</span><br>FL's cap boosts FL base fall speed`,
 		],
-		() => storage.gameData.fallLevel.greaterThan(new Decimal(1)),
+		() => storage.gameData.fallLevel.gt(new Decimal(1)),
 		'This Fallen Leaf type unlocks when you complete the Fall challenge.'
 	);
 	fallenLeaves.mossy = new fallenType(
@@ -405,7 +405,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 			`<span class="bold">3 cap</span><br>Unlock the second factor for ML generation`,
 			`<span class="bold">15 cap</span><br>Improve ML2's effect<br>x1.3 -> x1.6`,
 		],
-		() => storage.gameData.fallLevel.greaterThan(new Decimal(1)),
+		() => storage.gameData.fallLevel.gt(new Decimal(1)),
 		'This Fallen Leaf type unlocks when you complete the Fall challenge.'
 	);
 	fallenLeaves.marbled = new fallenType(
@@ -427,7 +427,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 			`<span class="bold">2 cap</span><br>^1000 LR1's effect`,
 			`<span class="bold">3 cap</span><br><s>Unlock the Forge</s><br>Reach endgame`,
 		],
-		() => storage.gameData.fallLevel.greaterThan(new Decimal(1)),
+		() => storage.gameData.fallLevel.gt(new Decimal(1)),
 		'This Fallen Leaf type unlocks when you complete the Fall challenge.'
 	);
 	fallenLeaves.coal = new fallenType(

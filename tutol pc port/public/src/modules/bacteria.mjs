@@ -6,7 +6,7 @@ export function resetCells() {
     storage.gameData.bacteriaTypes = storage.gameData.bacteriaTypes.plus(storage.gameData.bacteriaTypesBulk);
     cellularLab.resetCells();
 	var x = new Decimal(1.79e308).pow(storage.gameData.bacteriaTypes.plus(storage.gameData.bacteriaTypesBulk));
-	if (storage.gameData.bacteriaTypes.greaterThanOrEqualTo(new Decimal(100))) {
+	if (storage.gameData.bacteriaTypes.gte(new Decimal(100))) {
 		let totalBase = new Decimal(1.79e308);
 		let operations = ((storage.gameData.bacteriaTypes.div(new Decimal(100))).trunc()).toNumber();
 		
@@ -47,7 +47,7 @@ export function bacteriaCalculation() {
     const y = x.times(storage.gameData.treeAge.pow(new Decimal(0.060206)));
     const z = new Decimal(100).pow(storage.gameData.bacteriaTypes.minus(new Decimal(1)));
     storage.gameData.bacteriaCap = z.times(storage.gameData.bacteriaCapMult)
-	if (storage.gameData.stormLevel.greaterThan(new Decimal(1))) {
+	if (storage.gameData.stormLevel.gt(new Decimal(1))) {
         const w = x.times(storage.gameData.treeAge.pow(new Decimal(0.0752575)));
         var v = w.times(storage.gameData.bacteriaMult);
 	}
@@ -57,7 +57,7 @@ export function bacteriaCalculation() {
 	var a = y.times(storage.gameData.bacteriaMult);
 	storage.gameData.bacteria = a.pow(storage.gameData.bacteriaPow).clamp(new Decimal(0), storage.gameData.bacteriaCap);
 	
-    if (storage.gameData.stormLevel.greaterThan(new Decimal(1))) {
+    if (storage.gameData.stormLevel.gt(new Decimal(1))) {
         document.getElementById('bacteriaCounter').innerHTML = `You have ${storage.truncateToDecimalPlaces(storage.gameData.bacteria, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.bacteriaCap, 3)} Bacteria (x2 every 1e4 Tree Age starting at 1e24 Tree Age)`;
     }
     else {
@@ -66,7 +66,7 @@ export function bacteriaCalculation() {
     document.getElementById('bacteriaTypeCounterButActual').innerHTML = `You have a total of ${storage.truncateToDecimalPlaces(storage.gameData.bacteriaTypes, 3)} Bacteria Types, boosting the Bacteria cap by x${storage.truncateToDecimalPlaces(z, 3)}`;
 
     const w = storage.gameData.bacteria;
-    if (w.lessThan(new Decimal(0.0001))) {
+    if (w.lt(new Decimal(0.0001))) {
         storage.gameData.bacteriaCellsCSMult = new Decimal(1);
         storage.gameData.bacteriaFertilizerMult = new Decimal(0);
         document.getElementById('bacteriaEffectCounter').innerHTML = `Your current Bacteria boosts the base Fertilizer effectiveness by +0, and Cell Replication and Composting speeds by x1.`;
@@ -86,8 +86,8 @@ export function B1() {
 	buyB1();
 }
 function buyB1() {
-    if (storage.gameData.bacteria.greaterThanOrEqualTo(storage.entropyUpgradeFactor.B1Cost)) {
-		if (storage.entropyUpgradeFactor.B1Amount.greaterThanOrEqualTo(new Decimal(200))) {
+    if (storage.gameData.bacteria.gte(storage.entropyUpgradeFactor.B1Cost)) {
+		if (storage.entropyUpgradeFactor.B1Amount.gte(new Decimal(200))) {
 			storage.entropyUpgradeFactor.B1Cost = storage.entropyUpgradeFactor.B1Cost.pow(new Decimal(1.01));
 		}
         storage.entropyUpgradeFactor.B1Cost = storage.entropyUpgradeFactor.B1Cost.times(new Decimal(3));
@@ -101,11 +101,11 @@ export function B2() {
 	buyB2();
 }
 function buyB2() {
-    if (storage.gameData.bacteria.greaterThanOrEqualTo(storage.entropyUpgradeFactor.B2Cost)) {
+    if (storage.gameData.bacteria.gte(storage.entropyUpgradeFactor.B2Cost)) {
         storage.entropyUpgradeFactor.B2Cost = storage.entropyUpgradeFactor.B2Cost.pow(new Decimal(2.5));
         storage.entropyUpgradeFactor.B2Amount = storage.entropyUpgradeFactor.B2Amount.plus(new Decimal(1));
         storage.entropyUpgradeFactor.B2Effect = storage.entropyUpgradeFactor.B2Amount.times(new Decimal(0.01));
-		if (storage.entropyUpgradeFactor.B2Amount.greaterThanOrEqualTo(new Decimal(10))) {
+		if (storage.entropyUpgradeFactor.B2Amount.gte(new Decimal(10))) {
 			storage.entropyUpgradeFactor.B2Cost = new Decimal(Infinity);
 		}
 
@@ -116,7 +116,7 @@ export function B3() {
 	buyB3();
 }
 function buyB3() {
-    if (storage.gameData.roots.greaterThanOrEqualTo(storage.entropyUpgradeFactor.B3Cost)) {
+    if (storage.gameData.roots.gte(storage.entropyUpgradeFactor.B3Cost)) {
         storage.entropyUpgradeFactor.B3Cost = storage.entropyUpgradeFactor.B3Cost.times(new Decimal(1.5));
         storage.entropyUpgradeFactor.B3Amount = storage.entropyUpgradeFactor.B3Amount.plus(new Decimal(1));
         storage.entropyUpgradeFactor.B3Effect = new Decimal(1e3).pow(storage.entropyUpgradeFactor.B3Amount);

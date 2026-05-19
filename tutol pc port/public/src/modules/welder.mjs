@@ -3,46 +3,46 @@ import * as temple from './temple.mjs';
 import * as automation from './automation.mjs';
 
 export function welderGUI() {
-	if (storage.gameData.highestCircuits.lessThan(new Decimal(1e6))) {
+	if (storage.gameData.highestCircuits.lt(new Decimal(1e6))) {
 		return;
 	}
 	document.getElementById("welderCircuitsIndicator").innerHTML = `You currently have (${storage.truncateToDecimalPlaces(storage.gameData.circuits, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.highestCircuits, 3)}) Circuits, ${storage.truncateToDecimalPlaces(storage.gameData.circuitsUsedOnWelder, 3)} of them being spent on Welder upgrades.`;
 	
-	if (storage.gameData.cellUpgradesBulk.greaterThan(new Decimal(1))) {document.getElementById("cellUpgradeBulkIndicator").innerHTML = `You can currently buy ${storage.truncateToDecimalPlaces(storage.gameData.cellUpgradesBulk, 3)} Cell upgrades at once.`;}
+	if (storage.gameData.cellUpgradesBulk.gt(new Decimal(1))) {document.getElementById("cellUpgradeBulkIndicator").innerHTML = `You can currently buy ${storage.truncateToDecimalPlaces(storage.gameData.cellUpgradesBulk, 3)} Cell upgrades at once.`;}
 	else {document.getElementById("cellUpgradeBulkIndicator").innerHTML = `You can currently buy 1 Cell upgrade at once.`;}
 	document.getElementById("buyCellUpgradeBulk").innerHTML = `+${storage.truncateToDecimalPlaces(storage.gameData.welderEffectMult, 3)} bulk buy amount<br>Cost: ${storage.truncateToDecimalPlaces(automation.circuits.cellUpgradeBulkCost, 3)} Circuits`;
 	
-	if (temple.repeatableUpgradeFactor.repeatableUpgradesBulk.greaterThan(new Decimal(1))) {document.getElementById("repeatableUpgradeBulkIndicator").innerHTML = `You can currently buy ${storage.truncateToDecimalPlaces(temple.repeatableUpgradeFactor.repeatableUpgradesBulk, 3)} Repeatable upgrades at once.`;}
+	if (temple.repeatableUpgradeFactor.repeatableUpgradesBulk.gt(new Decimal(1))) {document.getElementById("repeatableUpgradeBulkIndicator").innerHTML = `You can currently buy ${storage.truncateToDecimalPlaces(temple.repeatableUpgradeFactor.repeatableUpgradesBulk, 3)} Repeatable upgrades at once.`;}
 	else {document.getElementById("repeatableUpgradeBulkIndicator").innerHTML = `You can currently buy 1 Repeatable upgrade at once.`;}
 	document.getElementById("buyRepeatableUpgradeBulk").innerHTML = `+${storage.truncateToDecimalPlaces(storage.gameData.welderEffectMult, 3)} bulk buy amount<br>Cost: ${storage.truncateToDecimalPlaces(automation.circuits.repeatableUpgradeBulkCost, 3)} Circuits`;
 	
-	if (storage.gameData.fertilizerBulk.greaterThan(new Decimal(1))) {document.getElementById("fertilizerBulkIndicator").innerHTML = `You can currently compost ${storage.truncateToDecimalPlaces(storage.gameData.fertilizerBulk, 3)} Fertilizers at once.`;}
+	if (storage.gameData.fertilizerBulk.gt(new Decimal(1))) {document.getElementById("fertilizerBulkIndicator").innerHTML = `You can currently compost ${storage.truncateToDecimalPlaces(storage.gameData.fertilizerBulk, 3)} Fertilizers at once.`;}
 	else {document.getElementById("fertilizerBulkIndicator").innerHTML = `You can currently compost 1 Fertilizer at once.`;}
 	document.getElementById("buyFertilizerBulk").innerHTML = `+${storage.truncateToDecimalPlaces(storage.gameData.welderEffectMult, 3)} bulk compost amount<br>Cost: ${storage.truncateToDecimalPlaces(automation.circuits.fertilizerBulkCost, 3)} Circuits`;
 	
-	if (storage.fruitUpgradeFactor.mossUpgradesBulk.greaterThan(new Decimal(1))) {document.getElementById("mossUpgradeBulkIndicator").innerHTML = `You can currently buy ${storage.truncateToDecimalPlaces(storage.fruitUpgradeFactor.mossUpgradesBulk, 3)} Moss upgrades at once.`;}
+	if (storage.fruitUpgradeFactor.mossUpgradesBulk.gt(new Decimal(1))) {document.getElementById("mossUpgradeBulkIndicator").innerHTML = `You can currently buy ${storage.truncateToDecimalPlaces(storage.fruitUpgradeFactor.mossUpgradesBulk, 3)} Moss upgrades at once.`;}
 	else {document.getElementById("mossUpgradeBulkIndicator").innerHTML = `You can currently buy 1 Moss upgrade at once.`;}
 	document.getElementById("buyMossUpgradeBulk").innerHTML = `+${storage.truncateToDecimalPlaces(storage.gameData.welderEffectMult, 3)} bulk buy amount<br>Cost: ${storage.truncateToDecimalPlaces(automation.circuits.mossUpgradeBulkCost, 3)} Circuits`;
 	
-	if (storage.gameData.bacteriaTypesBulk.greaterThan(new Decimal(1))) {document.getElementById("bacteriaTypeBulkIndicator").innerHTML = `You can currently make up to ${storage.truncateToDecimalPlaces(storage.gameData.bacteriaTypesBulk, 3)} Bacteria Types at once.`;}
+	if (storage.gameData.bacteriaTypesBulk.gt(new Decimal(1))) {document.getElementById("bacteriaTypeBulkIndicator").innerHTML = `You can currently make up to ${storage.truncateToDecimalPlaces(storage.gameData.bacteriaTypesBulk, 3)} Bacteria Types at once.`;}
 	else {document.getElementById("weatherChallengeBulkIndicator").innerHTML = `You can currently make up to 1 Bacteria Type at once.`;}
 	document.getElementById("buyBacteriaTypeBulk").innerHTML = `+${storage.truncateToDecimalPlaces(storage.gameData.welderEffectMult, 3)} bulk buy amount<br>Cost: ${storage.truncateToDecimalPlaces(automation.circuits.bacteriaTypeBulkCost, 3)} Circuits`;
 	
-	if (storage.gameData.dnaBlueprintBulk.greaterThan(new Decimal(1))) {document.getElementById("dnaBlueprintBulkIndicator").innerHTML = `You can currently make ${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintBulk, 3)} DNA Blueprints at once.`;}
+	if (storage.gameData.dnaBlueprintBulk.gt(new Decimal(1))) {document.getElementById("dnaBlueprintBulkIndicator").innerHTML = `You can currently make ${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintBulk, 3)} DNA Blueprints at once.`;}
 	else {document.getElementById("dnaBlueprintBulkIndicator").innerHTML = `You can currently make 1 DNA Blueprint at once.`;}
 	document.getElementById("buyDNABlueprintBulk").innerHTML = `+${storage.truncateToDecimalPlaces(storage.gameData.welderEffectMult, 3)} bulk buy amount<br>Cost: ${storage.truncateToDecimalPlaces(automation.circuits.dnaBlueprintBulkCost, 3)} Circuits`;
 	
-	if (storage.entropyUpgradeFactor.bacteriaUpgradesBulk.greaterThan(new Decimal(1))) {document.getElementById("bacteriaUpgradeBulkIndicator").innerHTML = `You can currently buy ${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.bacteriaUpgradesBulk, 3)} Bacteria upgrades at once.`;}
+	if (storage.entropyUpgradeFactor.bacteriaUpgradesBulk.gt(new Decimal(1))) {document.getElementById("bacteriaUpgradeBulkIndicator").innerHTML = `You can currently buy ${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.bacteriaUpgradesBulk, 3)} Bacteria upgrades at once.`;}
 	else {document.getElementById("bacteriaUpgradeBulkIndicator").innerHTML = `You can currently buy 1 Bacteria upgrade at once.`;}
 	document.getElementById("buyBacteriaUpgradeBulk").innerHTML = `+${storage.truncateToDecimalPlaces(storage.gameData.welderEffectMult, 3)} bulk buy amount<br>Cost: ${storage.truncateToDecimalPlaces(automation.circuits.bacteriaUpgradeBulkCost, 3)} Circuits`;
 	
-	if (storage.entropyUpgradeFactor.rnaUpgradesBulk.greaterThan(new Decimal(1))) {document.getElementById("rnaUpgradeBulkIndicator").innerHTML = `You can currently buy ${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.rnaUpgradesBulk, 3)} RNA upgrades at once.`;}
+	if (storage.entropyUpgradeFactor.rnaUpgradesBulk.gt(new Decimal(1))) {document.getElementById("rnaUpgradeBulkIndicator").innerHTML = `You can currently buy ${storage.truncateToDecimalPlaces(storage.entropyUpgradeFactor.rnaUpgradesBulk, 3)} RNA upgrades at once.`;}
 	else {document.getElementById("rnaUpgradeBulkIndicator").innerHTML = `You can currently buy 1 RNA upgrade at once.`;}
 	document.getElementById("buyRNAUpgradeBulk").innerHTML = `+${storage.truncateToDecimalPlaces(storage.gameData.welderEffectMult, 3)} bulk buy amount<br>Cost: ${storage.truncateToDecimalPlaces(automation.circuits.rnaUpgradeBulkCost, 3)} Circuits`;
 }
 
 document.getElementById("buyCellUpgradeBulk").addEventListener("click", function() {
-	if (storage.gameData.circuits.minus(automation.circuits.cellUpgradeBulkCost).lessThan(new Decimal(0))) {
+	if (storage.gameData.circuits.minus(automation.circuits.cellUpgradeBulkCost).lt(new Decimal(0))) {
 		return;
 	}
 	storage.gameData.circuitsUsedOnWelder = storage.gameData.circuitsUsedOnWelder.plus(automation.circuits.cellUpgradeBulkCost);
@@ -51,7 +51,7 @@ document.getElementById("buyCellUpgradeBulk").addEventListener("click", function
 });
 
 document.getElementById("buyRepeatableUpgradeBulk").addEventListener("click", function() {
-	if (storage.gameData.circuits.minus(automation.circuits.repeatableUpgradeBulkCost).lessThan(new Decimal(0))) {
+	if (storage.gameData.circuits.minus(automation.circuits.repeatableUpgradeBulkCost).lt(new Decimal(0))) {
 		return;
 	}
 	storage.gameData.circuitsUsedOnWelder = storage.gameData.circuitsUsedOnWelder.plus(automation.circuits.repeatableUpgradeBulkCost);
@@ -60,7 +60,7 @@ document.getElementById("buyRepeatableUpgradeBulk").addEventListener("click", fu
 });
 
 document.getElementById("buyFertilizerBulk").addEventListener("click", function() {
-	if (storage.gameData.circuits.minus(automation.circuits.fertilizerBulkCost).lessThan(new Decimal(0))) {
+	if (storage.gameData.circuits.minus(automation.circuits.fertilizerBulkCost).lt(new Decimal(0))) {
 		return;
 	}
 	storage.gameData.circuitsUsedOnWelder = storage.gameData.circuitsUsedOnWelder.plus(automation.circuits.fertilizerBulkCost);
@@ -69,7 +69,7 @@ document.getElementById("buyFertilizerBulk").addEventListener("click", function(
 });
 
 document.getElementById("buyMossUpgradeBulk").addEventListener("click", function() {
-	if (storage.gameData.circuits.minus(automation.circuits.mossUpgradeBulkCost).lessThan(new Decimal(0))) {
+	if (storage.gameData.circuits.minus(automation.circuits.mossUpgradeBulkCost).lt(new Decimal(0))) {
 		return;
 	}
 	storage.gameData.circuitsUsedOnWelder = storage.gameData.circuitsUsedOnWelder.plus(automation.circuits.mossUpgradeBulkCost);
@@ -78,7 +78,7 @@ document.getElementById("buyMossUpgradeBulk").addEventListener("click", function
 });
 
 document.getElementById("buyBacteriaTypeBulk").addEventListener("click", function() {
-	if (storage.gameData.circuits.minus(automation.circuits.bacteriaTypeBulkCost).lessThan(new Decimal(0))) {
+	if (storage.gameData.circuits.minus(automation.circuits.bacteriaTypeBulkCost).lt(new Decimal(0))) {
 		return;
 	}
 	storage.gameData.circuitsUsedOnWelder = storage.gameData.circuitsUsedOnWelder.plus(automation.circuits.bacteriaTypeBulkCost);
@@ -87,7 +87,7 @@ document.getElementById("buyBacteriaTypeBulk").addEventListener("click", functio
 });
 
 document.getElementById("buyDNABlueprintBulk").addEventListener("click", function() {
-	if (storage.gameData.circuits.minus(automation.circuits.dnaBlueprintBulkCost).lessThan(new Decimal(0))) {
+	if (storage.gameData.circuits.minus(automation.circuits.dnaBlueprintBulkCost).lt(new Decimal(0))) {
 		return;
 	}
 	storage.gameData.circuitsUsedOnWelder = storage.gameData.circuitsUsedOnWelder.plus(automation.circuits.dnaBlueprintBulkCost);
@@ -96,7 +96,7 @@ document.getElementById("buyDNABlueprintBulk").addEventListener("click", functio
 });
 
 document.getElementById("buyBacteriaUpgradeBulk").addEventListener("click", function() {
-	if (storage.gameData.circuits.minus(automation.circuits.bacteriaUpgradeBulkCost).lessThan(new Decimal(0))) {
+	if (storage.gameData.circuits.minus(automation.circuits.bacteriaUpgradeBulkCost).lt(new Decimal(0))) {
 		return;
 	}
 	storage.gameData.circuitsUsedOnWelder = storage.gameData.circuitsUsedOnWelder.plus(automation.circuits.bacteriaUpgradeBulkCost);
@@ -105,7 +105,7 @@ document.getElementById("buyBacteriaUpgradeBulk").addEventListener("click", func
 });
 
 document.getElementById("buyRNAUpgradeBulk").addEventListener("click", function() {
-	if (storage.gameData.circuits.minus(automation.circuits.rnaUpgradeBulkCost).lessThan(new Decimal(0))) {
+	if (storage.gameData.circuits.minus(automation.circuits.rnaUpgradeBulkCost).lt(new Decimal(0))) {
 		return;
 	}
 	storage.gameData.circuitsUsedOnWelder = storage.gameData.circuitsUsedOnWelder.plus(automation.circuits.rnaUpgradeBulkCost);
@@ -114,7 +114,7 @@ document.getElementById("buyRNAUpgradeBulk").addEventListener("click", function(
 });
 
 document.getElementById("respecWelder").addEventListener("click", function() {
-	if (storage.gameData.circuitsUsedOnWelder.lessThan(new Decimal(1))) {
+	if (storage.gameData.circuitsUsedOnWelder.lt(new Decimal(1))) {
 		return;
 	}
 	automation.circuits.cellUpgradeBulkCost = new Decimal(100000);

@@ -296,16 +296,16 @@ class BaseMicroorganism {
 			
 			let baseSucceeded = new Decimal(0);
 			for (let i = 0; i < value.length; i++) {
-				let test1 = value[i].lessThan(new Decimal(1));
-				let test2 = current[i].greaterThan(value[i]);
+				let test1 = value[i].lt(new Decimal(1));
+				let test2 = current[i].gt(value[i]);
 				if (test1 && test2) {
 					break;
 				}
-				if (current[i].greaterThanOrEqualTo(value[i])) {
+				if (current[i].gte(value[i])) {
 					baseSucceeded = baseSucceeded.plus(new Decimal(1));
 				}
 			}
-			if (baseSucceeded.greaterThanOrEqualTo(new Decimal(8))) {
+			if (baseSucceeded.gte(new Decimal(8))) {
 				this.typeType = `${key}`;
 			}
 		});
@@ -331,7 +331,7 @@ const microorganismProperties = (superclass) => class extends superclass {
 			case "amoeba":
 				for (let i = 0; i < typeIndicator.amoeba.length; i++) {
 					temporaryDiv = proteins[i].div(typeIndicator.amoeba[i]);
-					if (temporaryDiv.greaterThan(highestDiv)) {
+					if (temporaryDiv.gt(highestDiv)) {
 						highestDiv = temporaryDiv;
 					}
 				}
@@ -340,7 +340,7 @@ const microorganismProperties = (superclass) => class extends superclass {
 			case "tardigrade":
 				for (let i = 0; i < typeIndicator.tardigrade.length; i++) {
 					temporaryDiv = proteins[i].div(typeIndicator.tardigrade[i]);
-					if (temporaryDiv.greaterThan(highestDiv)) {
+					if (temporaryDiv.gt(highestDiv)) {
 						highestDiv = temporaryDiv;
 					}
 				}
@@ -349,7 +349,7 @@ const microorganismProperties = (superclass) => class extends superclass {
 			case "yeast":
 				for (let i = 0; i < typeIndicator.yeast.length; i++) {
 					temporaryDiv = proteins[i].div(typeIndicator.yeast[i]);
-					if (temporaryDiv.greaterThan(highestDiv)) {
+					if (temporaryDiv.gt(highestDiv)) {
 						highestDiv = temporaryDiv;
 					}
 				}
@@ -358,7 +358,7 @@ const microorganismProperties = (superclass) => class extends superclass {
 			case "mossSpore":
 				for (let i = 0; i < typeIndicator.mossSpore.length; i++) {
 					temporaryDiv = proteins[i].div(typeIndicator.mossSpore[i]);
-					if (temporaryDiv.greaterThan(highestDiv)) {
+					if (temporaryDiv.gt(highestDiv)) {
 						highestDiv = temporaryDiv;
 					}
 				}
@@ -367,14 +367,14 @@ const microorganismProperties = (superclass) => class extends superclass {
 			case "algae":
 				for (let i = 0; i < typeIndicator.algae.length; i++) {
 					temporaryDiv = proteins[i].div(typeIndicator.algae[i]);
-					if (temporaryDiv.greaterThan(highestDiv)) {
+					if (temporaryDiv.gt(highestDiv)) {
 						highestDiv = temporaryDiv;
 					}
 				}
 				this.level = highestDiv.trunc();
 				break;
 		}
-		if (this.level.greaterThanOrEqualTo(new Decimal(20))) {
+		if (this.level.gte(new Decimal(20))) {
 			this.level = storage.SC(this.level, new Decimal(20), new Decimal(0.15));
 		}
 		this.level = this.level.trunc();
@@ -904,7 +904,7 @@ export function checkMicroorganisms() {
 	let proteinsIsDifferent = false;
 	
 	for (let i = 0; i < lastProteins.length; i++) {
-		proteinsIsDifferent = ((temporaryProteins[i].greaterThan(lastProteins[i])) || (temporaryProteins[i].lessThan(lastProteins[i])));
+		proteinsIsDifferent = ((temporaryProteins[i].gt(lastProteins[i])) || (temporaryProteins[i].lt(lastProteins[i])));
 		if (proteinsIsDifferent) {
 			lastProteins = temporaryProteins;
 			document.getElementById("currentProteinCounter").innerHTML = `Your current Protein setup is [${storage.truncateToDecimalPlaces(temporaryProteins[0], 3)}, ${storage.truncateToDecimalPlaces(temporaryProteins[1], 3)}, ${storage.truncateToDecimalPlaces(temporaryProteins[2], 3)}, ${storage.truncateToDecimalPlaces(temporaryProteins[3], 3)}, ${storage.truncateToDecimalPlaces(temporaryProteins[4], 3)}, ${storage.truncateToDecimalPlaces(temporaryProteins[5], 3)}, ${storage.truncateToDecimalPlaces(temporaryProteins[6], 3)}, ${storage.truncateToDecimalPlaces(temporaryProteins[7], 3)}].`;
@@ -1402,7 +1402,7 @@ const observer = new MutationObserver((mutations) => {
 	if (typeof interactor === 'undefined') {
 		return;
 	}
-	if (microorganismTimer.greaterThanOrEqualTo(new Decimal(1000))) {
+	if (microorganismTimer.gte(new Decimal(1000))) {
 		calculateEffects(interactor);
 	}
 });
@@ -1491,12 +1491,6 @@ export function activeMicroorganismChecker() {
 				
 				if (petriDishID.hasChildNodes()) {
 					for (const child of petriDishID.children) {
-						for (let k = 0; k < succeededIDs.length; k++) {	
-							if (microorganismID === succeededIDs[k]) {
-								// duplicate = true;
-								break;
-							}
-						}
 						if ((child.id === microorganismID) && (!duplicate)) {
 							activeMicroorganismCounter = activeMicroorganismCounter.plus(new Decimal(1));
 							succeededIDs.push(microorganismID);
@@ -1528,7 +1522,7 @@ export function activeMicroorganismChecker() {
 	
 	storage.rootUpgradeFactor.previousActiveMicroorganisms = storage.rootUpgradeFactor.activeMicroorganisms;
 	
-	if (microorganismTimer.greaterThanOrEqualTo(new Decimal(1000))) {
+	if (microorganismTimer.gte(new Decimal(1000))) {
 		loadMicroorganisms();
 	}
 	sortMicroorganismEffects();
@@ -1581,7 +1575,7 @@ document.getElementById("proteinSetupInfo").addEventListener("click", openMicroo
 document.getElementById("closeMicroorganismsInfo").addEventListener("click", closeMicroorganismInfo);
 
 function buyPetriDishSlot() {
-	if (storage.gameData.roots.greaterThanOrEqualTo(storage.rootUpgradeFactor.petriDishCost)) {
+	if (storage.gameData.roots.gte(storage.rootUpgradeFactor.petriDishCost)) {
 		storage.gameData.roots = storage.gameData.roots.minus(storage.rootUpgradeFactor.petriDishCost);
 		storage.rootUpgradeFactor.petriDishCost = storage.rootUpgradeFactor.petriDishCost.times(new Decimal(100));
 		storage.rootUpgradeFactor.totalPetriDishes = storage.rootUpgradeFactor.totalPetriDishes + 1;
@@ -1634,7 +1628,7 @@ $(window).on("load", function() {
 	storage.rootUpgradeFactor.activeMicroorganisms.length = 0;
 	storage.rootUpgradeFactor.previousActiveMicroorganisms.length = 0;
 	
-	if (storage.rootUpgradeFactor.totalMicroorganisms.lessThan(new Decimal(1))) {
+	if (storage.rootUpgradeFactor.totalMicroorganisms.lt(new Decimal(1))) {
 		return;
 	}
 	

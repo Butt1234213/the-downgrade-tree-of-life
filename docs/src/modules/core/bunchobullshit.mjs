@@ -981,7 +981,7 @@ export var rootAutomationFactor = {}
 
 export function truncateToDecimalPlaces(num, decimalPlaces, ifOoM) {
 	
-	if ((num.lessThan(new Decimal(0.001))) && (num.greaterThan(new Decimal(0)))) {
+	if ((num.lt(new Decimal(0.001))) && (num.gt(new Decimal(0)))) {
 		if ((num.layer === 1 && num.mag <= -1e6) || num.layer === 2) {
 			const magnitude = new Decimal(num.mag);
 			
@@ -1070,7 +1070,7 @@ export function truncateToDecimalPlaces(num, decimalPlaces, ifOoM) {
 		const finalNumber = "e" + finalMag;
         return finalNumber;
 	}
-    if (num.layer === 1 && num.greaterThanOrEqualTo(new Decimal(1e15))) {
+    if (num.layer === 1 && num.gte(new Decimal(1e15))) {
         const numStr = num.toString();
         const decimalIndex = numStr.indexOf('.');
         const exponentIndex = numStr.indexOf('e');
@@ -1711,7 +1711,7 @@ export function entropyCalculation() {
 }
 
 export function entropyGUI() {
-    if (gameData.potentialEnergy.greaterThanOrEqualTo(new Decimal(5e22)) && leafUpgradeFactor.L28Bought && fruitUpgradeFactor.F17Bought) {
+    if (gameData.potentialEnergy.gte(new Decimal(5e22)) && leafUpgradeFactor.L28Bought && fruitUpgradeFactor.F17Bought) {
         gameData.canTransform = true;
 
         const entropyClass = document.querySelector('.entropy');
@@ -2040,7 +2040,7 @@ export function rootsCalculation() {
 }
 
 export function rootsGUI() {
-    if (gameData.leaves.greaterThanOrEqualTo(new Decimal.fromComponents(1, 1, 10000)) && gameData.blizzardLevel.greaterThan(new Decimal(1))) {
+    if (gameData.leaves.gte(new Decimal.fromComponents(1, 1, 10000)) && gameData.blizzardLevel.gt(new Decimal(1))) {
         gameData.canReinforce = true;
 
         const rootsClass = document.querySelector('.roots');
@@ -2742,7 +2742,7 @@ export function updateGUIBasedOnAchievements() {
         }
         if (achievements.ach24 && gameData.leafComposterUnlocked) {
             document.querySelector('.leaf-composter-background').style.visibility = 'visible';
-            if (entropyUpgradeFactor.B1Amount.greaterThanOrEqualTo(new Decimal(1))) {document.getElementById('leafFertilizerCounter').innerHTML = `The Leaf Composter has made ${truncateToDecimalPlaces(gameData.leafComposterCount, 3)} (+${truncateToDecimalPlaces(gameData.freeLeafFertilizers, 3)}) Fertilizers,`;}
+            if (entropyUpgradeFactor.B1Amount.gte(new Decimal(1))) {document.getElementById('leafFertilizerCounter').innerHTML = `The Leaf Composter has made ${truncateToDecimalPlaces(gameData.leafComposterCount, 3)} (+${truncateToDecimalPlaces(gameData.freeLeafFertilizers, 3)}) Fertilizers,`;}
             else {document.getElementById('leafFertilizerCounter').innerHTML = `The Leaf Composter has made ${truncateToDecimalPlaces(gameData.leafComposterCount, 3)} Fertilizers,`;}
             document.getElementById('leafFertilizerEffect').innerHTML = `boosting Tree Aging Speed by ${truncateToDecimalPlaces(gameData.leafComposterEffect, 3)}x`;
             document.getElementById('leafComposterButton').innerHTML = `Make a Fertilizer<br>Cost: ${truncateToDecimalPlaces(gameData.leafComposterCost, 3)} Leaves`;
@@ -2753,7 +2753,7 @@ export function updateGUIBasedOnAchievements() {
         }
         if (achievements.ach25 && gameData.seedComposterUnlocked) {
             document.querySelector('.seed-composter-background').style.visibility = 'visible';
-            if (entropyUpgradeFactor.B1Amount.greaterThanOrEqualTo(new Decimal(1))) {document.getElementById('seedFertilizerCounter').innerHTML = `The Seed Composter has made ${truncateToDecimalPlaces(gameData.seedComposterCount, 3)} (+${truncateToDecimalPlaces(entropyUpgradeFactor.B1Effect, 3)}) Fertilizers,`;}
+            if (entropyUpgradeFactor.B1Amount.gte(new Decimal(1))) {document.getElementById('seedFertilizerCounter').innerHTML = `The Seed Composter has made ${truncateToDecimalPlaces(gameData.seedComposterCount, 3)} (+${truncateToDecimalPlaces(entropyUpgradeFactor.B1Effect, 3)}) Fertilizers,`;}
             else {document.getElementById('seedFertilizerCounter').innerHTML = `The Seed Composter has made ${truncateToDecimalPlaces(gameData.seedComposterCount, 3)} Fertilizers,`;}
             document.getElementById('seedFertilizerEffect').innerHTML = `boosting Tree Aging Speed by ${truncateToDecimalPlaces(gameData.seedComposterEffect, 3)}x`;
             document.getElementById('seedComposterButton').innerHTML = `Make a Fertilizer<br>Cost: ${truncateToDecimalPlaces(gameData.seedComposterCost, 3)} Seeds`;
@@ -2764,7 +2764,7 @@ export function updateGUIBasedOnAchievements() {
         }
         if (achievements.ach32 && gameData.fruitComposterUnlocked) {
             document.querySelector('.fruit-composter-background').style.visibility = 'visible';
-            if (entropyUpgradeFactor.B1Amount.greaterThanOrEqualTo(new Decimal(1))) {document.getElementById('fruitFertilizerCounter').innerHTML = `The Fruit Composter has made ${truncateToDecimalPlaces(gameData.fruitComposterCount, 3)} (+${truncateToDecimalPlaces(entropyUpgradeFactor.B1Effect, 3)}) Fertilizers,`;}
+            if (entropyUpgradeFactor.B1Amount.gte(new Decimal(1))) {document.getElementById('fruitFertilizerCounter').innerHTML = `The Fruit Composter has made ${truncateToDecimalPlaces(gameData.fruitComposterCount, 3)} (+${truncateToDecimalPlaces(entropyUpgradeFactor.B1Effect, 3)}) Fertilizers,`;}
             else {document.getElementById('fruitFertilizerCounter').innerHTML = `The Fruit Composter has made ${truncateToDecimalPlaces(gameData.fruitComposterCount, 3)} Fertilizers,`;}
             document.getElementById('fruitFertilizerEffect').innerHTML = `boosting Tree Aging Speed by ${truncateToDecimalPlaces(gameData.fruitComposterEffect, 3)}x`;
             document.getElementById('fruitComposterButton').innerHTML = `Make a Fertilizer<br>Cost: ${truncateToDecimalPlaces(gameData.fruitComposterCost, 3)} Fruits`;
@@ -2799,7 +2799,7 @@ export function updateGUIBasedOnAchievements() {
             document.getElementById('B2').innerHTML = `Softcap Dampener (${truncateToDecimalPlaces(entropyUpgradeFactor.B2Amount.trunc(), 3)} / 10)<br>Requires ${truncateToDecimalPlaces(entropyUpgradeFactor.B2Cost, 3)} Bacteria<br>Effect: -${truncateToDecimalPlaces(entropyUpgradeFactor.B2Effect, 3)} to Leaf softcap root`;
             document.getElementById('B3').innerHTML = `Cleanroom (${truncateToDecimalPlaces(entropyUpgradeFactor.B3Amount.trunc(), 3)})<br>Requires ${truncateToDecimalPlaces(entropyUpgradeFactor.B3Cost, 3)} Roots<br>Effect: x${truncateToDecimalPlaces(entropyUpgradeFactor.B3Effect, 3)} Bacteria`;
 			
-			if (entropyUpgradeFactor.B2Amount.greaterThanOrEqualTo(new Decimal(10))) {
+			if (entropyUpgradeFactor.B2Amount.gte(new Decimal(10))) {
 				entropyUpgradeFactor.B2Cost = new Decimal(Infinity);
 				document.getElementById('B2').innerHTML = `Softcap Dampener I (10 / 10)<br>Requires Infinity Bacteria<br>Effect: -${truncateToDecimalPlaces(entropyUpgradeFactor.B2Effect, 3)} to Leaf softcap root`;
 			}
@@ -2814,7 +2814,7 @@ export function updateGUIBasedOnAchievements() {
                 document.querySelector('.challenge-storm').style.borderColor = '#420b0b';
 				const x = new Decimal(0.000542868).times(Decimal.ln(gameData.stormBestScore.plus(new Decimal(1))));
 				const y = x.plus(new Decimal(1));
-                if (gameData.stormLevel.greaterThan(new Decimal(1))) {document.getElementById('stormLevelCounter').innerHTML = `The Storm^${truncateToDecimalPlaces(gameData.stormLevel, 3)}`; document.getElementById('stormRewardCounter').innerHTML = `Unlock Composter and SU automation, ^${truncateToDecimalPlaces(y, 3)} Leaf base mult, and the Bacteria formula is better.`;}
+                if (gameData.stormLevel.gt(new Decimal(1))) {document.getElementById('stormLevelCounter').innerHTML = `The Storm^${truncateToDecimalPlaces(gameData.stormLevel, 3)}`; document.getElementById('stormRewardCounter').innerHTML = `Unlock Composter and SU automation, ^${truncateToDecimalPlaces(y, 3)} Leaf base mult, and the Bacteria formula is better.`;}
                 else {document.getElementById('stormLevelCounter').innerHTML = `The Storm`;}
                 document.getElementById('enterStorm').innerHTML = `EXIT THE STORM`;
                 document.getElementById('enterStorm').style.left = `62.5px`;
@@ -2828,7 +2828,7 @@ export function updateGUIBasedOnAchievements() {
             else {
 				const x = new Decimal(0.000542868).times(Decimal.ln(gameData.stormBestScore.plus(new Decimal(1))));
 				const y = x.plus(new Decimal(1));
-                if (gameData.stormLevel.greaterThan(new Decimal(1))) {document.getElementById('stormLevelCounter').innerHTML = `The Storm^${truncateToDecimalPlaces(gameData.stormLevel, 3)}`; document.getElementById('stormRewardCounter').innerHTML = `Unlock Composter and SU automation, ^${truncateToDecimalPlaces(y, 3)} Leaf base mult, and the Bacteria formula is better.`;}
+                if (gameData.stormLevel.gt(new Decimal(1))) {document.getElementById('stormLevelCounter').innerHTML = `The Storm^${truncateToDecimalPlaces(gameData.stormLevel, 3)}`; document.getElementById('stormRewardCounter').innerHTML = `Unlock Composter and SU automation, ^${truncateToDecimalPlaces(y, 3)} Leaf base mult, and the Bacteria formula is better.`;}
                 else {document.getElementById('stormLevelCounter').innerHTML = `The Storm`;}
                 document.getElementById('stormIndicator').innerHTML = `Harsh winds and lightning blasts make Leaves, Seeds, and Fruits way harder to sustainably produce. (base of ^${truncateToDecimalPlaces((new Decimal(0.75).pow(gameData.stormLevel)), 3)})<br>(INACTIVE)`;
             }
@@ -2842,7 +2842,7 @@ export function updateGUIBasedOnAchievements() {
             if (gameData.isInChallengeWildfire) {    
                 document.querySelector('.challenge-wildfire').style.backgroundImage = 'radial-gradient(#e3df20, #b71414)';
                 document.querySelector('.challenge-wildfire').style.borderColor = '#420b0b';
-                if (gameData.wildfireLevel.greaterThan(new Decimal(1))) {document.getElementById('wildfireLevelCounter').innerHTML = `The Wildfire^${truncateToDecimalPlaces(gameData.wildfireLevel, 3)}`;}
+                if (gameData.wildfireLevel.gt(new Decimal(1))) {document.getElementById('wildfireLevelCounter').innerHTML = `The Wildfire^${truncateToDecimalPlaces(gameData.wildfireLevel, 3)}`;}
                 else {document.getElementById('wildfireLevelCounter').innerHTML = `The Wildfire`;}
 				document.getElementById('enterWildfire').innerHTML = `EXIT THE WILDFIRE`;
 				document.getElementById('enterWildfire').style.left = `50px`;
@@ -2853,7 +2853,7 @@ export function updateGUIBasedOnAchievements() {
             else {
 				const x = new Decimal(1.01396).pow(gameData.wildfireBestScore);
 				const y = x.clamp(new Decimal(1), new Decimal(Infinity));
-                if (gameData.wildfireLevel.greaterThan(new Decimal(1))) {document.getElementById('wildfireLevelCounter').innerHTML = `The Wildfire^${truncateToDecimalPlaces(gameData.wildfireLevel, 3)}`; document.getElementById('wildfireRewardCounter').innerHTML = `Unlock FU automation, Seed generation, and x${truncateToDecimalPlaces(y, 3)} M1 and M3's effects.`;}
+                if (gameData.wildfireLevel.gt(new Decimal(1))) {document.getElementById('wildfireLevelCounter').innerHTML = `The Wildfire^${truncateToDecimalPlaces(gameData.wildfireLevel, 3)}`; document.getElementById('wildfireRewardCounter').innerHTML = `Unlock FU automation, Seed generation, and x${truncateToDecimalPlaces(y, 3)} M1 and M3's effects.`;}
                 else {document.getElementById('wildfireLevelCounter').innerHTML = `The Wildfire`;}
 				document.getElementById('wildfireIndicator').innerHTML = `A raging firestorm makes Fertilizers impossible to produce. (Free fers are disabled, and (super scaling)^${truncateToDecimalPlaces((new Decimal(2).pow(gameData.wildfireLevel)), 3)} starts immediately)<br>(INACTIVE)`;
             }
@@ -2864,7 +2864,7 @@ export function updateGUIBasedOnAchievements() {
 			
 			if (gameData.isInChallengeDrought) {
 				gameData.isInChallengeDrought = true;
-                if (gameData.droughtLevel.greaterThan(new Decimal(1))) {document.getElementById('droughtLevelCounter').innerHTML = `The Drought^${truncateToDecimalPlaces(gameData.droughtLevel, 3)}`;}
+                if (gameData.droughtLevel.gt(new Decimal(1))) {document.getElementById('droughtLevelCounter').innerHTML = `The Drought^${truncateToDecimalPlaces(gameData.droughtLevel, 3)}`;}
                 else {document.getElementById('droughtLevelCounter').innerHTML = `The Drought`;}
 				document.querySelector('.challenge-drought').style.backgroundImage = 'radial-gradient(#c79b40, #c74040)';
 				document.querySelector('.challenge-drought').style.borderColor = '#991d1d';
@@ -2878,7 +2878,7 @@ export function updateGUIBasedOnAchievements() {
 				const z = y.times(new Decimal(0.909091));
 				const w = z.clamp(new Decimal(1), new Decimal(Infinity));
 				document.getElementById('droughtRewardCounter').innerHTML = `Unlock DNA, RNA, and ^${truncateToDecimalPlaces(w, 3)} CRS`;
-                if (gameData.droughtLevel.greaterThan(new Decimal(1))) {document.getElementById('droughtLevelCounter').innerHTML = `The Drought^${truncateToDecimalPlaces(gameData.droughtLevel, 3)}`;}
+                if (gameData.droughtLevel.gt(new Decimal(1))) {document.getElementById('droughtLevelCounter').innerHTML = `The Drought^${truncateToDecimalPlaces(gameData.droughtLevel, 3)}`;}
                 else {document.getElementById('droughtLevelCounter').innerHTML = `The Drought`;}
 				document.getElementById('droughtIndicator').innerHTML = `Lack of water for months has made leaves die out constantly and time drag on. (^${truncateToDecimalPlaces(gameData.droughtBaseFactor, 3)} to L and TAS, Game speed increases over time)<br>(INACTIVE)`;
 			}
@@ -2903,11 +2903,11 @@ export function updateGUIBasedOnAchievements() {
 			document.getElementById('agpCounter').innerHTML = `${truncateToDecimalPlaces(entropyUpgradeFactor.agp, 3)} AGP Proteins<br> ^${truncateToDecimalPlaces(entropyUpgradeFactor.agpEffect, 3)} Cell overpopulation division effect`;
 			document.getElementById('trbCounter').innerHTML = `${truncateToDecimalPlaces(entropyUpgradeFactor.trb, 3)} TRB Proteins<br> x${truncateToDecimalPlaces(entropyUpgradeFactor.trbEffect, 3)} RNA and R1's effect`;
 			
-			if (entropyUpgradeFactor.R3Amount.greaterThanOrEqualTo(new Decimal(10))) {
+			if (entropyUpgradeFactor.R3Amount.gte(new Decimal(10))) {
 				entropyUpgradeFactor.R3Cost = new Decimal(Infinity);
 				document.getElementById('R3').innerHTML = `Softcap Dampener III (10 / 10)<br>Requires Infinty RNA strands<br>Effect: -${truncateToDecimalPlaces(entropyUpgradeFactor.R3Effect, 3)} from Fruit softcap root`;
 			}
-			if (entropyUpgradeFactor.R5Amount.greaterThanOrEqualTo(new Decimal(5))) {
+			if (entropyUpgradeFactor.R5Amount.gte(new Decimal(5))) {
 				entropyUpgradeFactor.R5Cost = new Decimal(Infinity);
 				document.getElementById('R5').innerHTML = `Blueprint Dampener (5 / 5)<br>Requires Infinity RNA strands<br>Effect: -${truncateToDecimalPlaces(entropyUpgradeFactor.R5Effect, 3)} from DNA Blueprint base nerf root`;
 			}
@@ -2927,7 +2927,7 @@ export function updateGUIBasedOnAchievements() {
 			
 			if (gameData.isInChallengeBlizzard) {
 				gameData.isInChallengeBlizzard = true;
-                if (gameData.blizzardLevel.greaterThan(new Decimal(1))) {document.getElementById('blizzardLevelCounter').innerHTML = `The Blizzard^${truncateToDecimalPlaces(gameData.blizzardLevel, 3)}`;}
+                if (gameData.blizzardLevel.gt(new Decimal(1))) {document.getElementById('blizzardLevelCounter').innerHTML = `The Blizzard^${truncateToDecimalPlaces(gameData.blizzardLevel, 3)}`;}
                 else {document.getElementById('blizzardLevelCounter').innerHTML = `The Blizzard`;}
 				document.querySelector('.challenge-blizzard').style.backgroundImage = 'radial-gradient(#afcccc, #c74040)';
 				document.querySelector('.challenge-blizzard').style.borderColor = '#991d1d';
@@ -2940,7 +2940,7 @@ export function updateGUIBasedOnAchievements() {
 				const y = (x.times(new Decimal(0.270346))).plus(new Decimal(1));
 				const z = y.clamp(new Decimal(1), new Decimal(Infinity));
 				document.getElementById('blizzardRewardCounter').innerHTML = `Unlock Roots and ^${truncateToDecimalPlaces(z, 3)} Storm rewards`;
-                if (gameData.blizzardLevel.greaterThan(new Decimal(1))) {document.getElementById('blizzardLevelCounter').innerHTML = `The Blizzard^${truncateToDecimalPlaces(gameData.blizzardLevel, 3)}`;}
+                if (gameData.blizzardLevel.gt(new Decimal(1))) {document.getElementById('blizzardLevelCounter').innerHTML = `The Blizzard^${truncateToDecimalPlaces(gameData.blizzardLevel, 3)}`;}
                 else {document.getElementById('blizzardLevelCounter').innerHTML = `The Blizzard`;}
 				document.getElementById('blizzardIndicator').innerHTML = `Sudden drops in temperature make all forms of energy futile. (^${truncateToDecimalPlaces(gameData.blizzardBasePEFactor, 3)} to PE, Entropy mult, Cells, and Bacteria are disabled, and /${truncateToDecimalPlaces(gameData.blizzardBaseGameSpeedFactor, 3)} Game speed)<br>(INACTIVE)`;
 			}
@@ -2968,7 +2968,7 @@ export function updateGUIBasedOnAchievements() {
 			
 		if (gameData.isInChallengeFall) {
 			gameData.isInChallengeFall = true;
-			if (gameData.fallLevel.greaterThan(new Decimal(1))) {document.getElementById('fallLevelCounter').innerHTML = `The Fall^${truncateToDecimalPlaces(gameData.fallLevel, 3)}`;}
+			if (gameData.fallLevel.gt(new Decimal(1))) {document.getElementById('fallLevelCounter').innerHTML = `The Fall^${truncateToDecimalPlaces(gameData.fallLevel, 3)}`;}
 			else {document.getElementById('fallLevelCounter').innerHTML = `The Fall`;}
 			document.querySelector('.challenge-fall').style.backgroundImage = 'radial-gradient(#ffc107, #c74040)';
 			document.querySelector('.challenge-fall').style.borderColor = '#991d1d';
@@ -2982,7 +2982,7 @@ export function updateGUIBasedOnAchievements() {
 			const z = y.clamp(new Decimal(1), new Decimal(Infinity));
 			document.getElementById('fallRewardCounter').innerHTML = `Unlock Fallen Leaves and x${truncateToDecimalPlaces(z, 3)} Leaf supercap root`;
 			document.getElementById('fallCounter').innerHTML = `${truncateToDecimalPlaces(gameData.fallBestScore, 3)} / ${truncateToDecimalPlaces(gameData.fallBaseRequirement, 3)} Leaves`;
-			if (gameData.fallLevel.greaterThan(new Decimal(1))) {document.getElementById('fallLevelCounter').innerHTML = `The Fall^${truncateToDecimalPlaces(gameData.fallLevel, 3)}`;}
+			if (gameData.fallLevel.gt(new Decimal(1))) {document.getElementById('fallLevelCounter').innerHTML = `The Fall^${truncateToDecimalPlaces(gameData.fallLevel, 3)}`;}
 			else {document.getElementById('fallLevelCounter').innerHTML = `The Fall`;}
 			document.getElementById('fallIndicator').innerHTML = `Fruits are 'falling' from your tree, so their maximum amount is 0. ^${truncateToDecimalPlaces(gameData.fallBaseDebuffFactor, 3)} Leaves, ^${truncateToDecimalPlaces(gameData.fallBaseDebuffFactor, 3)} Seeds, and /${truncateToDecimalPlaces(gameData.fallBaseGameSpeedFactor, 3)} Game speed<br>(INACTIVE)`;
 		}

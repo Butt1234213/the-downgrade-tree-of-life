@@ -3,12 +3,12 @@ import { achievements, massAchievementChecker } from './achievements.mjs'
 
 export function cellsCalculation() {
     if (storage.entropyUpgradeFactor.E1Bought) {
-        if (storage.gameData.cells.lessThan(new Decimal(1))) {
+        if (storage.gameData.cells.lt(new Decimal(1))) {
             storage.gameData.cells = new Decimal(1);
         }
 
         var x = storage.gameData.cellsInterval;
-        if (storage.gameData.overpopulationFactor.greaterThanOrEqualTo(new Decimal(2))) {
+        if (storage.gameData.overpopulationFactor.gte(new Decimal(2))) {
             x = x.times(storage.gameData.overpopulationFactor);
             x = x.times(storage.gameData.intervalDivision);
 			x = x.times(new Decimal(1).div(storage.gameData.cellsMult));
@@ -44,11 +44,11 @@ export function cellsCalculation() {
         var q = r.clamp(storage.gameData.baseOverpopulationFactor, new Decimal(Infinity));
 		
 		let totalAGP = storage.entropyUpgradeFactor.agp.plus(storage.entropyUpgradeFactor.agpFree);
-		if (totalAGP.greaterThanOrEqualTo(new Decimal(1))) {
+		if (totalAGP.gte(new Decimal(1))) {
 			q = q.pow(storage.entropyUpgradeFactor.agpEffect);
 		}
 		//controls the second nerf for cell replication
-		if (storage.gameData.cells.greaterThanOrEqualTo(new Decimal.fromComponents(1, 2, 8))) {
+		if (storage.gameData.cells.gte(new Decimal.fromComponents(1, 2, 8))) {
 			const base = Decimal.log10(Decimal.log10(storage.gameData.cells.plus(new Decimal(1))).plus(new Decimal(1)));
 			const power = base.minus(new Decimal(8));
 			const equation = new Decimal(50).pow(power).clamp(new Decimal(1), new Decimal(Infinity));
@@ -64,7 +64,7 @@ export function cellsCalculation() {
         storage.gameData.cellsFruitEffect = ((new Decimal(0.5).times(Decimal.log2(storage.gameData.cells.plus(new Decimal(1))))).plus(new Decimal(1))).times(storage.gameData.cellsEffectMult.pow(new Decimal(0.25)));
         document.getElementById('cellsEffectCounter').innerHTML = `x${storage.truncateToDecimalPlaces(storage.gameData.cellsLeafEffect, 3)}, x${storage.truncateToDecimalPlaces(storage.gameData.cellsSeedEffect, 3)}, and x${storage.truncateToDecimalPlaces(storage.gameData.cellsFruitEffect, 3)}`
 		
-		if (storage.gameData.cells.greaterThanOrEqualTo(new Decimal.fromComponents(1, 1, 100000))) {
+		if (storage.gameData.cells.gte(new Decimal.fromComponents(1, 1, 100000))) {
 			achievements.ach125 = true;
 		}
     }
@@ -76,7 +76,7 @@ export function C1() {
 	}
 }
 function buyC1() {
-    if (storage.gameData.entropy.greaterThanOrEqualTo(storage.entropyUpgradeFactor.C1Cost.trunc())) {
+    if (storage.gameData.entropy.gte(storage.entropyUpgradeFactor.C1Cost.trunc())) {
         storage.gameData.entropy = storage.gameData.entropy.minus(storage.entropyUpgradeFactor.C1Cost.trunc());
         document.getElementById('entropyCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.entropy, 3)}`;
         storage.entropyUpgradeFactor.C1Cost = storage.entropyUpgradeFactor.C1Cost.times(storage.entropyUpgradeFactor.C1Increase);
@@ -94,7 +94,7 @@ export function C2() {
 	}
 }
 function buyC2() {
-    if (storage.gameData.fruits.greaterThanOrEqualTo(storage.entropyUpgradeFactor.C2Cost.trunc())) {
+    if (storage.gameData.fruits.gte(storage.entropyUpgradeFactor.C2Cost.trunc())) {
         storage.gameData.fruits = storage.gameData.fruits.minus(storage.entropyUpgradeFactor.C2Cost.trunc());
         document.getElementById('fruitCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.fruits, 3)}`;
         storage.entropyUpgradeFactor.C2Cost = storage.entropyUpgradeFactor.C2Cost.times(storage.entropyUpgradeFactor.C2Increase);
@@ -113,7 +113,7 @@ export function C3() {
 	}
 }
 function buyC3() {
-    if (storage.gameData.entropy.greaterThanOrEqualTo(storage.entropyUpgradeFactor.C3Cost.trunc())) {
+    if (storage.gameData.entropy.gte(storage.entropyUpgradeFactor.C3Cost.trunc())) {
         storage.gameData.entropy = storage.gameData.entropy.minus(storage.entropyUpgradeFactor.C3Cost.trunc());
         document.getElementById('entropyCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.entropy, 3)}`;
         storage.entropyUpgradeFactor.C3Cost = storage.entropyUpgradeFactor.C3Cost.times(storage.entropyUpgradeFactor.C3Increase);
@@ -135,7 +135,7 @@ export function resetCells() {
 }
 
 export function bacteriaChecker() {
-    if (storage.gameData.cells.greaterThanOrEqualTo(storage.gameData.cellsCap)) {
+    if (storage.gameData.cells.gte(storage.gameData.cellsCap)) {
         storage.gameData.cells = storage.gameData.cellsCap;
         document.getElementById('cellsIsCapped').style.display = 'inline-block';
         document.getElementById('bacteriaResetButton').style.display = 'inline-block';

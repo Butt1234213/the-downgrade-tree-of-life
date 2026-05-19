@@ -64,7 +64,7 @@ function ach45() {
     document.querySelector('.buttons-cellular-lab-tab-color').style.visibility = 'visible';
 }
 export function E1() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU1)) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU1)) {
         document.getElementById("E1").innerHTML = `E1 (Bought)<br>Cellular Lab<br>Unlock the Cellular Lab<br>Cost: 1 Entropy`
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -73,7 +73,7 @@ export function E1() {
     }
 }
 export function E2() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU2) || entropyUpgradeFactor.E2Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU2) || entropyUpgradeFactor.E2Bought) {
         document.getElementById("E2").innerHTML = `E2 (Bought)<br>Split of Decisions<br>Base Leaf Multiplier is ^ 1.5<br>Cost: 1 Entropy`
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -82,7 +82,7 @@ export function E2() {
     }
 }
 export function E3() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU3) || entropyUpgradeFactor.E3Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU3) || entropyUpgradeFactor.E3Bought) {
         document.getElementById("E3").innerHTML = `E3 (Bought)<br>Split of Decisions<br>x15 Seeds<br>Cost: 1 Entropy`
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -91,7 +91,7 @@ export function E3() {
     }
 }
 export function E4() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU4) || entropyUpgradeFactor.E4Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU4) || entropyUpgradeFactor.E4Bought) {
         document.getElementById("E4").innerHTML = `E4 (Bought)<br>Split of Decisions<br>Fruits boost themselves<br>Cost: 1 Entropy`
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -100,7 +100,7 @@ export function E4() {
     }
 }
 export function E5() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU5) || entropyUpgradeFactor.E5Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU5) || entropyUpgradeFactor.E5Bought) {
         gameData.leafComposterUnlocked = true;
         gameData.seedComposterUnlocked = true;
         gameData.fruitComposterUnlocked = true;
@@ -115,7 +115,7 @@ export function E5() {
     }
 }
 export function E6() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU6) || entropyUpgradeFactor.E6Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU6) || entropyUpgradeFactor.E6Bought) {
         document.getElementById("E6").innerHTML = `E6 (Bought)<br>Composting Power<br>Fertilizers boost Composting speed<br>Cost: 3 Entropy`
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -124,7 +124,7 @@ export function E6() {
     }
 }
 export function E7() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU7) || entropyUpgradeFactor.E7Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU7) || entropyUpgradeFactor.E7Bought) {
         document.getElementById("E7").innerHTML = `E7 (Bought)<br>Size Expansion<br>L17's effect is boosted by Entropy<br>Cost: 5 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -137,7 +137,7 @@ function ach53() {
     massAchievementChecker();
 }
 export function E8() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU8) || entropyUpgradeFactor.E8Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU8) || entropyUpgradeFactor.E8Bought) {
         document.getElementById("E8").innerHTML = `E8 (Bought)<br>FINALLY<br>Keep all Fertilizers on all resets<br>(except Transform)<br>Cost: 8 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -146,7 +146,7 @@ export function E8() {
     }
 }
 export function E9() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU9) || entropyUpgradeFactor.E9Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU9) || entropyUpgradeFactor.E9Bought) {
         document.getElementById("E9").innerHTML = `E9 (Bought)<br>Super Growth<br>L10 is boosted by Fruits<br>Cost: 7 Entropy`
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -155,7 +155,7 @@ export function E9() {
     }
 }
 export function E10() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU10) || entropyUpgradeFactor.E10Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU10) || entropyUpgradeFactor.E10Bought) {
         document.getElementById("E10").innerHTML = `E10 (Bought)<br>Entropic Cheapener<br>Entropy delays Fertilizer scaling<br>Cost: 15 Entropy`
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -164,7 +164,7 @@ export function E10() {
     }
 }
 export function E11() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU11) || entropyUpgradeFactor.E11Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU11) || entropyUpgradeFactor.E11Bought) {
         document.getElementById("E11").innerHTML = `E11 (Bought)<br>Cells Formation<br>Cells effect formula is better<br>Cost: 35 Entropy`
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -173,7 +173,7 @@ export function E11() {
     }
 }
 export function E12() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU12) || entropyUpgradeFactor.E12Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU12) || entropyUpgradeFactor.E12Bought) {
         document.getElementById("E12").innerHTML = `E12 (Bought)<br>Power of Potential<br>Cells interval is divided<br>based on Entropy<br>Cost: 170 Entropy`
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -182,7 +182,7 @@ export function E12() {
     }
 }
 export function E13() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU13) || entropyUpgradeFactor.E13Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU13) || entropyUpgradeFactor.E13Bought) {
         document.getElementById("E13").innerHTML = `E13 (Bought)<br>Split of Power<br>x50000 Leaves<br>Cost: 2500 Entropy`
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -191,7 +191,7 @@ export function E13() {
     }
 }
 export function E14() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU14) || entropyUpgradeFactor.E14Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU14) || entropyUpgradeFactor.E14Bought) {
         document.getElementById("E14").innerHTML = `E14 (Bought)<br>Split of Power<br>x500 Seeds<br>Cost: 2500 Entropy`
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -200,7 +200,7 @@ export function E14() {
     }
 }
 export function E15() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU15) || entropyUpgradeFactor.E15Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU15) || entropyUpgradeFactor.E15Bought) {
         document.getElementById("E15").innerHTML = `E15 (Bought)<br>Split of Power<br>x50 Fruits<br>Cost: 2500 Entropy`
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -209,7 +209,7 @@ export function E15() {
     }
 }
 export function E16() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU16) || entropyUpgradeFactor.E16Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU16) || entropyUpgradeFactor.E16Bought) {
         document.getElementById("E16").innerHTML = `E16 (Bought)<br>Split of Power<br>x1.5 Entropy<br>Cost: 2500 Entropy`
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -218,7 +218,7 @@ export function E16() {
     }
 }
 export function E17() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU17) || entropyUpgradeFactor.E17Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU17) || entropyUpgradeFactor.E17Bought) {
         document.getElementById("E17").innerHTML = `E17 (Bought)<br>Split of Power<br>-0.05 from Leaf softcap root<br>Cost: 2500 Entropy`
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -232,7 +232,7 @@ function ach61() {
     massAchievementChecker();
 }
 export function E18() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU18) || entropyUpgradeFactor.E18Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU18) || entropyUpgradeFactor.E18Bought) {
         document.getElementById("E18").innerHTML = `E18 (Bought)<br>Multiplication<br>Unlock a new Cells upgrade<br>Cost: 10000 Entropy`
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -241,7 +241,7 @@ export function E18() {
     }
 }
 export function E19() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU19) || entropyUpgradeFactor.E19Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU19) || entropyUpgradeFactor.E19Bought) {
         document.getElementById("E19").innerHTML = `E19 (Bought)<br>Conservation of Energy<br>x2 Entropy<br>Cost: 20000 Entropy`
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -250,7 +250,7 @@ export function E19() {
     }
 }
 export function E20() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU20) || entropyUpgradeFactor.E20Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU20) || entropyUpgradeFactor.E20Bought) {
         document.getElementById("E20").innerHTML = `E20 (Bought)<br>Super Cells<br>C3 adds free C2 levels<br>Cost: 200000 Entropy`
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -265,7 +265,7 @@ function ach64() {
     document.querySelector('.challenge-storm').style.visibility = 'visible';
 }
 export function E21() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU21) || entropyUpgradeFactor.E21Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU21) || entropyUpgradeFactor.E21Bought) {
         document.getElementById("E21").innerHTML = `E21 (Bought)<br>Storm's a Brewin'<br>Unlock the Radar<br>Cost: 1.5e7 Entropy`
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -274,7 +274,7 @@ export function E21() {
     }
 }
 export function E22() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU22) || entropyUpgradeFactor.E22Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU22) || entropyUpgradeFactor.E22Bought) {
         document.getElementById("E22").innerHTML = `E22 (Bought)<br>Bacteria Nucleoid<br>^1.05 Bacteria<br>Cost: 1e10 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -283,7 +283,7 @@ export function E22() {
     }
 }
 export function E23() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU23) || entropyUpgradeFactor.E23Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU23) || entropyUpgradeFactor.E23Bought) {
         document.getElementById("E23").innerHTML = `E23 (Bought)<br>Compact Fertilizers<br>Divide Fertilizer<br>Super Scaling exponent by 1.075<br>Cost: 8.5e12 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -292,7 +292,7 @@ export function E23() {
     }
 }
 export function E24() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU24) || entropyUpgradeFactor.E24Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU24) || entropyUpgradeFactor.E24Bought) {
         document.getElementById("E24").innerHTML = `E24 (Bought)<br>Statue Power I<br>+15 levels to LR1's cap<br>Cost: 1.6e16 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -301,7 +301,7 @@ export function E24() {
     }
 }
 export function E25() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU25) || entropyUpgradeFactor.E25Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU25) || entropyUpgradeFactor.E25Bought) {
         document.getElementById("E25").innerHTML = `E25 (Bought)<br>Statue Power II<br>Entropy boosts LR1's effect<br>Cost: 1e18 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -310,7 +310,7 @@ export function E25() {
     }
 }
 export function E26() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU26) || entropyUpgradeFactor.E26Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU26) || entropyUpgradeFactor.E26Bought) {
         document.getElementById("E26").innerHTML = `E26 (Bought)<br>Empower<br>Fruits boost E4's effect<br>Cost: 1e20 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -319,7 +319,7 @@ export function E26() {
     }
 }
 export function E27() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU27) || entropyUpgradeFactor.E27Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU27) || entropyUpgradeFactor.E27Bought) {
         document.getElementById("E27").innerHTML = `E27 (Bought)<br>Statue Power III<br>+10 levels to LR1's cap<br>Cost: 1e22 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -333,7 +333,7 @@ function ach81() {
     document.querySelector('.challenge-wildfire').style.visibility = 'visible';
 }
 export function E28() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU28) || entropyUpgradeFactor.E28Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU28) || entropyUpgradeFactor.E28Bought) {
         document.getElementById("E28").innerHTML = `E28 (Bought)<br>AAGGHHH I'M BURNING<br>Unlock the Wildfire Challenge<br>Cost: 1e22 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -342,7 +342,7 @@ export function E28() {
     }
 }
 export function E29() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU29) || entropyUpgradeFactor.E29Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU29) || entropyUpgradeFactor.E29Bought) {
         document.getElementById("E29").innerHTML = `E29 (Bought)<br>Bacteria Ribosomes<br>Entropy boosts Bacteria cap<br>Cost: 7.5e23 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -351,7 +351,7 @@ export function E29() {
     }
 }
 export function E30() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU30) || entropyUpgradeFactor.E30Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU30) || entropyUpgradeFactor.E30Bought) {
         document.getElementById("E30").innerHTML = `E30 (Bought)<br>Bacteria Flagellum<br>^1.25 Bacteria<br>Cost: 1e25 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -360,7 +360,7 @@ export function E30() {
     }
 }
 export function E31() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU31) || entropyUpgradeFactor.E31Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU31) || entropyUpgradeFactor.E31Bought) {
         document.getElementById("E31").innerHTML = `E31 (Bought)<br>Helping Hand I<br>The Stormcap for Seeds and Fruits<br>is lowered from ^5 to ^3.5<br>Cost: 1e30 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -369,7 +369,7 @@ export function E31() {
     }
 }
 export function E32() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU32) || entropyUpgradeFactor.E32Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU32) || entropyUpgradeFactor.E32Bought) {
         document.getElementById("E32").innerHTML = `E32 (Bought)<br>Free Fruits<br>-0.025 from Fruit softcap root<br>Cost: 3.33e33 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -378,7 +378,7 @@ export function E32() {
     }
 }
 export function E33() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU33) || entropyUpgradeFactor.E33Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU33) || entropyUpgradeFactor.E33Bought) {
         document.getElementById("E33").innerHTML = `E33 (Bought)<br>Mitochondria<br>^1.5 CRS<br>Cost: 3e40 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -392,7 +392,7 @@ function ach101() {
     document.querySelector('.challenge-drought').style.visibility = 'visible';
 }
 export function E34() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU34) || entropyUpgradeFactor.E34Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU34) || entropyUpgradeFactor.E34Bought) {
         document.getElementById("E34").innerHTML = `E34 (Bought)<br>Dry Out<br>Unlock the Drought Challenge<br>Cost: 2.5e45 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -401,7 +401,7 @@ export function E34() {
     }
 }
 export function E35() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU35) || entropyUpgradeFactor.E35Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU35) || entropyUpgradeFactor.E35Bought) {
         document.getElementById("E35").innerHTML = `E35 (Bought)<br>Helping Hand II<br>Each composter gets 15 free Fertilizers,<br>not affected by the Wildfire<br>Cost: 1e50 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -413,7 +413,7 @@ function unlockBacteriaTypesAutomation() {
 	document.querySelector('.bacteria-types-automation-background').style.visibility = `visible`;
 }
 export function E36() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU36) || entropyUpgradeFactor.E36Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU36) || entropyUpgradeFactor.E36Bought) {
         document.getElementById("E36").innerHTML = `E36 (Bought)<br>"robloxretrotycoon"<br>Unlock Bacteria Types automation<br>Cost: 5e55 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -422,7 +422,7 @@ export function E36() {
     }
 }
 export function E37() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU37) || entropyUpgradeFactor.E37Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU37) || entropyUpgradeFactor.E37Bought) {
         document.getElementById("E37").innerHTML = `E37 (Bought)<br>DNA Polymerase I<br>DNA's formula is better<br>1e10000<sup>1.5x</sup> -> 1e10000<sup>1.25x</sup><br>Cost: 1e64 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -435,7 +435,7 @@ function ach111() {
 	massAchievementChecker();
 }
 export function E38() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU38) || entropyUpgradeFactor.E38Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU38) || entropyUpgradeFactor.E38Bought) {
         document.getElementById("E38").innerHTML = `E38 (Bought)<br>Nice<br>x6.9 Game speed<br>Cost: 6.9e69 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -444,7 +444,7 @@ export function E38() {
     }
 }
 export function E39() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU39) || entropyUpgradeFactor.E39Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU39) || entropyUpgradeFactor.E39Bought) {
         document.getElementById("E39").innerHTML = `E39 (Bought)<br>Catalyzing Agent<br>^1.1 RuBisCo's effect<br>Cost: 4e73 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -453,7 +453,7 @@ export function E39() {
     }
 }
 export function E40() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU40) || entropyUpgradeFactor.E40Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU40) || entropyUpgradeFactor.E40Bought) {
         document.getElementById("E40").innerHTML = `E40 (Bought)<br>Bacteria Cytoplasm<br>Bacteria's Fertilizer Base effectiveness<br>very slightly affects the Entropy Composter<br>Cost: 1e89 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -462,7 +462,7 @@ export function E40() {
     }
 }
 export function E41() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU41) || entropyUpgradeFactor.E41Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU41) || entropyUpgradeFactor.E41Bought) {
         document.getElementById("E41").innerHTML = `E41 (Bought)<br>Helping Hand III<br>^1.5 Fruit base mult in the Drought<br>Cost: 1e95 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -476,7 +476,7 @@ function ach113() {
     document.querySelector('.challenge-blizzard').style.visibility = 'visible';
 }
 export function E42() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU42) || entropyUpgradeFactor.E42Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU42) || entropyUpgradeFactor.E42Bought) {
         document.getElementById("E42").innerHTML = `E42 (Bought)<br>30 Below Zero<br>Unlock the Blizzard Challenge<br>Cost: 1e100 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -485,7 +485,7 @@ export function E42() {
     }
 }
 export function E43() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU43) || entropyUpgradeFactor.E43Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU43) || entropyUpgradeFactor.E43Bought) {
         document.getElementById("E43").innerHTML = `E43 (Bought)<br>Island of Stability<br>Roots boost Bacteria cap<br>Cost: 1e180 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -494,7 +494,7 @@ export function E43() {
     }
 }
 export function E44() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU44) || entropyUpgradeFactor.E44Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU44) || entropyUpgradeFactor.E44Bought) {
         document.getElementById("E44").innerHTML = `E44 (Bought)<br>DNA Polymerase II<br>DNA's formula is even better<br>1e10000<sup>1.25x</sup> -> 1e10000<sup>1.15x</sup><br>Cost: 1.79e308 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -508,7 +508,7 @@ function ach142() {
 	massAchievementChecker();
 }
 export function E45() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU45) || entropyUpgradeFactor.E45Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU45) || entropyUpgradeFactor.E45Bought) {
         document.getElementById("E45").innerHTML = `E45 (Bought)<br>The Statue IV<br>Unlock the Entropy repeatable upgrade<br>Cost: 1e1000 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -517,7 +517,7 @@ export function E45() {
     }
 }
 export function E46() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU46) || entropyUpgradeFactor.E46Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU46) || entropyUpgradeFactor.E46Bought) {
         document.getElementById("E46").innerHTML = `E46 (Bought)<br>Statue Power XIV<br>+40 to ER1's cap<br>Cost: 1e20000 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -526,7 +526,7 @@ export function E46() {
     }
 }
 export function E47() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU47) || entropyUpgradeFactor.E47Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU47) || entropyUpgradeFactor.E47Bought) {
         document.getElementById("E47").innerHTML = `E47 (Bought)<br>Helping Hand IV<br>Drought's high score is set to Fruits<sup>0.25</sup><br>Cost: 1e100000 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -535,7 +535,7 @@ export function E47() {
     }
 }
 export function E48() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU48) || entropyUpgradeFactor.E48Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU48) || entropyUpgradeFactor.E48Bought) {
         document.getElementById("E48").innerHTML = `E48 (Bought)<br>RNA Replicase I<br>RNA boosts the Cell Replication cap<br>Cost: 1e200000 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -544,7 +544,7 @@ export function E48() {
     }
 }
 export function E49() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU49) || entropyUpgradeFactor.E49Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU49) || entropyUpgradeFactor.E49Bought) {
         document.getElementById("E49").innerHTML = `E49 (Bought)<br>RNA Replicase II<br>x10 RNA<br>Cost: 1e400000 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -553,7 +553,7 @@ export function E49() {
     }
 }
 export function E50() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU50) || entropyUpgradeFactor.E50Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU50) || entropyUpgradeFactor.E50Bought) {
         document.getElementById("E50").innerHTML = `E50 (Bought)<br>Statue Power XXI<br>Every 7500 M5 levels, +1 to ER1's cap<br>Cost: 1e500000 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -562,7 +562,7 @@ export function E50() {
     }
 }
 export function E51() {
-    if (gameData.entropy.greaterThanOrEqualTo(entropyUpgradeCost.EU51) || entropyUpgradeFactor.E51Bought) {
+    if (gameData.entropy.gte(entropyUpgradeCost.EU51) || entropyUpgradeFactor.E51Bought) {
         document.getElementById("E51").innerHTML = `E51 (Bought)<br>Mossy Bacteria<br>MM10's effect now affects Bacteria's cap<br>Cost: e1e6 Entropy`;
         gameData.entropyUpgradeCounter = gameData.entropyUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));

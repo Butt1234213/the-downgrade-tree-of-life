@@ -36,7 +36,7 @@ export function laggyAssFunction() {
 }
 
 export function RO1() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU1) || rootUpgradeFactor.RO1Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU1) || rootUpgradeFactor.RO1Bought) {
         document.getElementById("RO1").innerHTML = `RO1 (Bought)<br>Price of Power<br>^1.1 RuBisCo's effect<br>Cost: 0.5 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -45,7 +45,7 @@ export function RO1() {
     }
 }
 export function RO2() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU2) || rootUpgradeFactor.RO2Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU2) || rootUpgradeFactor.RO2Bought) {
         document.getElementById("RO2").innerHTML = `RO2 (Bought)<br>Price of Power<br>Storm reward boosts Seeds base mult<br>with reduced rate<br>Cost: 0.5 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -54,7 +54,7 @@ export function RO2() {
     }
 }
 export function RO3() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU3) || rootUpgradeFactor.RO3Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU3) || rootUpgradeFactor.RO3Bought) {
         document.getElementById("RO3").innerHTML = `RO3 (Bought)<br>Price of Power<br>x2.5 FR1's effect<br>Cost: 0.5 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -63,7 +63,7 @@ export function RO3() {
     }
 }
 export function RO4() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU4) || rootUpgradeFactor.RO4Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU4) || rootUpgradeFactor.RO4Bought) {
         document.getElementById("RO4").innerHTML = `RO4 (Bought)<br>Price of Power<br>Moss divides L, S, and F Composter costs<br>with reduced rate<br>Cost: 0.5 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -72,7 +72,7 @@ export function RO4() {
     }
 }
 export function RO5() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU5) || rootUpgradeFactor.RO5Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU5) || rootUpgradeFactor.RO5Bought) {
         document.getElementById("RO5").innerHTML = `RO5 (Bought)<br>Price of Power<br>Extensin's formula is better<br>+10<sup>1.05x</sup> per Protein -> +10<sup>1.5x</sup> per Protein<br>Cost: 0.5 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -81,7 +81,7 @@ export function RO5() {
     }
 }
 export function RO6() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU6) || rootUpgradeFactor.RO6Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU6) || rootUpgradeFactor.RO6Bought) {
         document.getElementById("RO6").innerHTML = `RO6 (Bought)<br>Price of Power<br>Every Protein gains 1 free level<br>Cost: 0.5 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -90,7 +90,7 @@ export function RO6() {
     }
 }
 export function RO7() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU7) || rootUpgradeFactor.RO7Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU7) || rootUpgradeFactor.RO7Bought) {
         document.getElementById("RO7").innerHTML = `RO7 (Bought)<br>Price of Power<br>x100 Game speed<br>Cost: 0.5 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -99,7 +99,7 @@ export function RO7() {
     }
 }
 export function RO8() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU8) || rootUpgradeFactor.RO8Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU8) || rootUpgradeFactor.RO8Bought) {
         document.getElementById("RO8").innerHTML = `RO8 (Bought)<br>Price of Power<br>LR2 increases all supercap roots<br>with reduced rate<br>Cost: 0.5 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -108,7 +108,7 @@ export function RO8() {
     }
 }
 export function RO9() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU9) || rootUpgradeFactor.RO9Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU9) || rootUpgradeFactor.RO9Bought) {
         document.getElementById("RO9").innerHTML = `RO9 (Bought)<br>Price of Power<br>^5 Cell replication cap<br>Cost: 0.5 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -117,7 +117,7 @@ export function RO9() {
     }
 }
 export function RO10() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU10) || rootUpgradeFactor.RO10Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU10) || rootUpgradeFactor.RO10Bought) {
         document.getElementById("RO10").innerHTML = `RO10 (Bought)<br>Price of Power<br>x1.15 Roots<br>Cost: 0.5 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -126,7 +126,7 @@ export function RO10() {
     }
 }
 export function RO11() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU11) || rootUpgradeFactor.RO11Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU11) || rootUpgradeFactor.RO11Bought) {
         document.getElementById("RO11").innerHTML = `RO11 (Bought)<br>Statue Power VII<br>+15 to LR2's cap<br>Cost: 2 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -135,7 +135,7 @@ export function RO11() {
     }
 }
 export function RO12() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU12) || rootUpgradeFactor.RO12Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU12) || rootUpgradeFactor.RO12Bought) {
         document.getElementById("RO12").innerHTML = `RO12 (Bought)<br>Statue Power VIII<br>+15 to SR2's cap<br>Cost: 2 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -144,7 +144,7 @@ export function RO12() {
     }
 }
 export function RO13() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU13) || rootUpgradeFactor.RO13Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU13) || rootUpgradeFactor.RO13Bought) {
         document.getElementById("RO13").innerHTML = `RO13 (Bought)<br>Composting Journies<br>Keep the Entropy Composter<br>on Reinforcement and x1.5 its effect<br>Cost: 5 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -153,7 +153,7 @@ export function RO13() {
     }
 }
 export function RO14() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU14) || rootUpgradeFactor.RO14Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU14) || rootUpgradeFactor.RO14Bought) {
         document.getElementById("RO14").innerHTML = `RO14 (Bought)<br>Mossy Roots I<br>MM1 - MM5 becomes<br>permanentally active<br>Cost: 5 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -162,7 +162,7 @@ export function RO14() {
     }
 }
 export function RO15() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU15) || rootUpgradeFactor.RO15Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU15) || rootUpgradeFactor.RO15Bought) {
         document.getElementById("RO15").innerHTML = `RO15 (Bought)<br>Mossy Roots II<br>M1's effect softcap is pushed back<br>+100 -> +300<br>Cost: 5 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -171,7 +171,7 @@ export function RO15() {
     }
 }
 export function RO16() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU16) || rootUpgradeFactor.RO16Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU16) || rootUpgradeFactor.RO16Bought) {
         document.getElementById("RO16").innerHTML = `RO16 (Bought)<br>Protein Shake<br>Every Protein gains another free level<br>Cost: 10 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -180,7 +180,7 @@ export function RO16() {
     }
 }
 export function RO17() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU17) || rootUpgradeFactor.RO17Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU17) || rootUpgradeFactor.RO17Bought) {
         document.getElementById("RO17").innerHTML = `RO17 (Bought)<br>Tap-root<br>Entropy boosts Roots<br>Cost: 15 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -189,7 +189,7 @@ export function RO17() {
     }
 }
 export function RO18() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU18) || rootUpgradeFactor.RO18Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU18) || rootUpgradeFactor.RO18Bought) {
         document.getElementById("RO18").innerHTML = `RO18 (Bought)<br>Bacterial Rooting<br>+1 Bacteria Types bulk<br>Cost: 20 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -198,7 +198,7 @@ export function RO18() {
     }
 }
 export function RO19() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU19) || rootUpgradeFactor.RO19Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU19) || rootUpgradeFactor.RO19Bought) {
         document.getElementById("RO19").innerHTML = `RO19 (Bought)<br>Growth Hormones<br>Unlock Fruit generation<br>Cost: 50 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -212,7 +212,7 @@ function ach131() {
     document.querySelector('.buttons-petri-dish-tab-color').style.visibility = 'visible';
 }
 export function RO20() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU20) || rootUpgradeFactor.RO20Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU20) || rootUpgradeFactor.RO20Bought) {
         document.getElementById("RO20").innerHTML = `RO20 (Bought)<br>Microscopic Life<br>Manufacture a Petri Dish<br>Cost: 100 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -221,7 +221,7 @@ export function RO20() {
     }
 }
 export function RO21() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU21) || rootUpgradeFactor.RO21Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU21) || rootUpgradeFactor.RO21Bought) {
         document.getElementById("RO21").innerHTML = `RO21 (Bought)<br>Synchronizer<br>Keep all challenge progress upon Reinforcement<br>(if you play EUT you'll recognize this)<br>Cost: 1000 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -230,7 +230,7 @@ export function RO21() {
     }
 }
 export function RO22() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU22) || rootUpgradeFactor.RO22Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU22) || rootUpgradeFactor.RO22Bought) {
         document.getElementById("RO22").innerHTML = `RO22 (Bought)<br>Mossy Roots III<br>M1's effect applies to<br>Composting Speed Scaling<br>Cost: 5000 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -239,7 +239,7 @@ export function RO22() {
     }
 }
 export function RO23() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU23) || rootUpgradeFactor.RO23Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU23) || rootUpgradeFactor.RO23Bought) {
         document.getElementById("RO23").innerHTML = `RO23 (Bought)<br>Bulkier III<br>+6 Fertilizer Bulk<br>Cost: 5000 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -248,7 +248,7 @@ export function RO23() {
     }
 }
 export function RO24() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU24) || rootUpgradeFactor.RO24Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU24) || rootUpgradeFactor.RO24Bought) {
         document.getElementById("RO24").innerHTML = `RO24 (Bought)<br>Quickening<br>Roots boost Cell Replication cap<br>Cost: 100000 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -257,7 +257,7 @@ export function RO24() {
     }
 }
 export function RO25() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU25) || rootUpgradeFactor.RO25Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU25) || rootUpgradeFactor.RO25Bought) {
         document.getElementById("RO25").innerHTML = `RO25 (Bought)<br>Insta-Reinforcement<br>Unlock EU Automation<br>Cost: 2.5e9 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -285,7 +285,7 @@ function proteinBulkBuy() {
 	document.getElementById("bulkBuyTRB").style.display = "block";
 }
 export function RO26() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU26) || rootUpgradeFactor.RO26Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU26) || rootUpgradeFactor.RO26Bought) {
         document.getElementById("RO26").innerHTML = `RO26 (Bought)<br>I forgot to make this a Root Milestone<br>You can now bulk buy Proteins<br>Cost: 5e11 Roots`;
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -294,7 +294,7 @@ export function RO26() {
     }
 }
 export function RO27() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU27) || rootUpgradeFactor.RO27Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU27) || rootUpgradeFactor.RO27Bought) {
         document.getElementById("RO27").innerHTML = `RO27 (Bought)<br>Explosive Growth<br>Unlock Entropy generation<br>Cost: 4e13 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -303,7 +303,7 @@ export function RO27() {
     }
 }
 export function RO28() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU28) || rootUpgradeFactor.RO28Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU28) || rootUpgradeFactor.RO28Bought) {
         document.getElementById("RO28").innerHTML = `RO28 (Bought)<br>Weather Amplifier I<br>Improve the Drought reward's formula<br>Cost: 6e16 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -312,7 +312,7 @@ export function RO28() {
     }
 }
 export function RO29() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU29) || rootUpgradeFactor.RO29Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU29) || rootUpgradeFactor.RO29Bought) {
         document.getElementById("RO29").innerHTML = `RO29 (Bought)<br>Helping Hand V<br>Fall's Leaves and Seeds nerf<br>is x10 less effective<br>Cost: 2e20 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -321,7 +321,7 @@ export function RO29() {
     }
 }
 export function RO30() {
-    if (gameData.roots.greaterThanOrEqualTo(rootUpgradeCost.ROU30) || rootUpgradeFactor.RO30Bought) {
+    if (gameData.roots.gte(rootUpgradeCost.ROU30) || rootUpgradeFactor.RO30Bought) {
         document.getElementById("RO30").innerHTML = `RO30 (Bought)<br>Welding Efficiency I<br>x1.5 Welder effect<br>Cost: 1e23 Roots`
         gameData.rootUpgradeCounter = gameData.rootUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));

@@ -73,7 +73,7 @@ export var circuits = {
 }
 
 function flopsFormula(circuits) {
-    if (circuits.greaterThan(new Decimal(0))) {
+    if (circuits.gt(new Decimal(0))) {
         const x = new Decimal(1.5).pow(circuits);
         const y = x.div(new Decimal(10));
         return y;
@@ -85,7 +85,7 @@ function flopsFormula(circuits) {
 
 function updateAutobuyerCircuits() {
     let newValue = new Decimal(document.getElementById("upgradeAutomationCircuitsAssigner").value);
-    if (newValue.greaterThanOrEqualTo(storage.gameData.circuits)) {
+    if (newValue.gte(storage.gameData.circuits)) {
         newValue = storage.gameData.circuits;
     }
     circuits.upgradeAutobuyer = circuits.upgradeAutobuyer.plus(newValue);
@@ -124,12 +124,12 @@ function sleep(ms) {
 }
 
 export async function automateLeafUpgrades() {
-    if ((storage.entropyUpgradeFactor.E1Bought) || (storage.gameData.reinforcements.greaterThanOrEqualTo(new Decimal(1)))) {
+    if ((storage.entropyUpgradeFactor.E1Bought) || (storage.gameData.reinforcements.gte(new Decimal(1)))) {
         circuits.upgradeAutobuyerFLOPS = circuits.upgradeAutobuyerFLOPS.plus((flopsFormula(circuits.upgradeAutobuyer)).times(storage.gameData.ticksToProcess));
         document.getElementById("upgradeAutomationFLOPSCounter").innerHTML = `computing ${storage.truncateToDecimalPlaces(flopsFormula(circuits.upgradeAutobuyer), 3)} FLOPs/s. (${storage.truncateToDecimalPlaces(circuits.upgradeAutobuyerFLOPS, 3)} FLOPs)`;
 
         for (let i = 1; i < 76; i++) {
-            if (circuits.upgradeAutobuyerFLOPS.greaterThanOrEqualTo(storage.leafAutomationFactor[`L${i}`]))  {
+            if (circuits.upgradeAutobuyerFLOPS.gte(storage.leafAutomationFactor[`L${i}`]))  {
                 if (!storage.leafUpgradeFactor[`L${i}Bought`]) {
                     leafUpgrades.functions[`L${i}`]();
                     await sleep(100);
@@ -139,7 +139,7 @@ export async function automateLeafUpgrades() {
         if (storage.leafUpgradeFactor.L53Bought) {
             for (let i = 1; i < 4; i++) {
 				if (temple.repeatableUpgradeFactor[`LR${i}Unlocked`]) {
-					if (circuits.upgradeAutobuyerFLOPS.greaterThanOrEqualTo(temple.repeatableAutomationFactor[`LR${i}`]))  {
+					if (circuits.upgradeAutobuyerFLOPS.gte(temple.repeatableAutomationFactor[`LR${i}`]))  {
 						temple.functions[`LR${i}`]();
 						await sleep(100);
 					}	
@@ -152,7 +152,7 @@ export async function automateLeafUpgrades() {
 export async function automateSeedUpgrades() {
 	if (storage.gameData.suAutomationUnlocked) {
 		for (let i = 1; i < 64; i++) {
-			if (circuits.upgradeAutobuyerFLOPS.greaterThanOrEqualTo(storage.seedAutomationFactor[`S${i}`]))  {
+			if (circuits.upgradeAutobuyerFLOPS.gte(storage.seedAutomationFactor[`S${i}`]))  {
 				if (!storage.seedUpgradeFactor[`S${i}Bought`]) {
 					seedUpgrades.functions[`S${i}`]();
 					await sleep(100);
@@ -162,7 +162,7 @@ export async function automateSeedUpgrades() {
 		if (storage.seedUpgradeFactor.S42Bought) {
 			for (let i = 1; i < 4; i++) {
 				if (temple.repeatableUpgradeFactor[`SR${i}Unlocked`]) {
-					if (circuits.upgradeAutobuyerFLOPS.greaterThanOrEqualTo(temple.repeatableAutomationFactor[`SR${i}`]))  {
+					if (circuits.upgradeAutobuyerFLOPS.gte(temple.repeatableAutomationFactor[`SR${i}`]))  {
 						temple.functions[`SR${i}`]();
 						await sleep(100);
 					}	
@@ -175,7 +175,7 @@ export async function automateSeedUpgrades() {
 export async function automateFruitUpgrades() {
 	if (storage.gameData.fuAutomationUnlocked) {
 		for (let i = 1; i < 56; i++) {
-			if (circuits.upgradeAutobuyerFLOPS.greaterThanOrEqualTo(storage.fruitAutomationFactor[`F${i}`]))  {
+			if (circuits.upgradeAutobuyerFLOPS.gte(storage.fruitAutomationFactor[`F${i}`]))  {
 				if (!storage.fruitUpgradeFactor[`F${i}Bought`]) {
 					fruitUpgrades.functions[`F${i}`]();
 					await sleep(100);
@@ -185,7 +185,7 @@ export async function automateFruitUpgrades() {
 		if (storage.fruitUpgradeFactor.F41Bought) {
 			for (let i = 1; i < 4; i++) {
 				if (temple.repeatableUpgradeFactor[`FR${i}Unlocked`]) {
-					if (circuits.upgradeAutobuyerFLOPS.greaterThanOrEqualTo(temple.repeatableAutomationFactor[`FR${i}`]))  {
+					if (circuits.upgradeAutobuyerFLOPS.gte(temple.repeatableAutomationFactor[`FR${i}`]))  {
 						temple.functions[`FR${i}`]();
 						await sleep(100);
 					}
@@ -198,7 +198,7 @@ export async function automateFruitUpgrades() {
 export async function automateEntropyUpgrades() {
 	if (storage.gameData.euAutomationUnlocked) {
 		for (let i = 1; i < 52; i++) {
-			if (circuits.upgradeAutobuyerFLOPS.greaterThanOrEqualTo(storage.entropyAutomationFactor[`E${i}`]))  {
+			if (circuits.upgradeAutobuyerFLOPS.gte(storage.entropyAutomationFactor[`E${i}`]))  {
 				if (!storage.entropyUpgradeFactor[`E${i}Bought`]) {
 					entropyUpgrades.functions[`E${i}`]();
 					await sleep(100);
@@ -208,7 +208,7 @@ export async function automateEntropyUpgrades() {
 		if (storage.entropyUpgradeFactor.E45Bought) {
 			for (let i = 1; i < 2; i++) {
 				if (temple.repeatableUpgradeFactor[`ER${i}Unlocked`]) {
-					if (circuits.upgradeAutobuyerFLOPS.greaterThanOrEqualTo(temple.repeatableAutomationFactor[`ER${i}`]))  {
+					if (circuits.upgradeAutobuyerFLOPS.gte(temple.repeatableAutomationFactor[`ER${i}`]))  {
 						temple.functions[`ER${i}`]();
 						await sleep(100);
 					}
@@ -220,10 +220,10 @@ export async function automateEntropyUpgrades() {
 
 function updateComposterAutobuyerCircuits() {
     let newValue = new Decimal(document.getElementById("composterAutomationCircuitsAssigner").value);
-    if (newValue.greaterThanOrEqualTo(storage.gameData.circuits)) {
+    if (newValue.gte(storage.gameData.circuits)) {
         newValue = storage.gameData.circuits;
     }
-    else if (newValue.greaterThanOrEqualTo(new Decimal(74))) {
+    else if (newValue.gte(new Decimal(74))) {
         newValue = new Decimal(74);
     }
 
@@ -253,12 +253,12 @@ function composterAutobuyerFomula(type) {
 }
 
 export async function composterAutobuyerChecker() {
-    if ((storage.gameData.stormLevel.greaterThan(new Decimal(1))) || (achievements.ach65)) {
-        if (circuits.composterAutobuyer.lessThan(new Decimal(1))) {
+    if ((storage.gameData.stormLevel.gt(new Decimal(1))) || (achievements.ach65)) {
+        if (circuits.composterAutobuyer.lt(new Decimal(1))) {
             document.getElementById('composterAutomationFLOPSCounter').innerHTML = `computing 0 FLOPs/s, composting every ∞s.`;
             return;
         }
-        if (circuits.composterAutobuyer.lessThan(new Decimal(74))) {
+        if (circuits.composterAutobuyer.lt(new Decimal(74))) {
             document.getElementById('composterAutomationFLOPSCounter').innerHTML = `computing ${storage.truncateToDecimalPlaces(flopsFormula(circuits.composterAutobuyer), 3)} FLOPs/s, composting every ${storage.truncateToDecimalPlaces(composterAutobuyerFomula('w'), 3)}s.`;
             //this should calculate the delay for each automation
 			const v = composterAutobuyerFormula('v');
@@ -267,22 +267,22 @@ export async function composterAutobuyerChecker() {
         else {
             await sleep(100);
         }
-        if (storage.gameData.leaves.greaterThanOrEqualTo(storage.gameData.leafComposterCost)) {
+        if (storage.gameData.leaves.gte(storage.gameData.leafComposterCost)) {
             composter.checkLeafComposter();
         }
-        if (storage.gameData.seeds.greaterThanOrEqualTo(storage.gameData.seedComposterCost)) {
+        if (storage.gameData.seeds.gte(storage.gameData.seedComposterCost)) {
             composter.checkSeedComposter();
         }
-        if (storage.gameData.fruits.greaterThanOrEqualTo(storage.gameData.fruitComposterCost)) {
+        if (storage.gameData.fruits.gte(storage.gameData.fruitComposterCost)) {
             composter.checkFruitComposter();
         }
 		if (storage.gameData.entropyComposterUnlocked) {
-			if (storage.gameData.entropy.greaterThanOrEqualTo(storage.gameData.entropyComposterCost)) {
+			if (storage.gameData.entropy.gte(storage.gameData.entropyComposterCost)) {
 				composter.checkEntropyComposter();
 			}
 		}
 		if (storage.gameData.rootComposterUnlocked) {
-			if (storage.gameData.roots.greaterThanOrEqualTo(storage.gameData.rootComposterCost)) {
+			if (storage.gameData.roots.gte(storage.gameData.rootComposterCost)) {
 				composter.checkRootComposter();
 			}
 		}
@@ -306,10 +306,10 @@ function bacteriaTypesAutobuyerFormula(type) {
 
 function updateBacteriaTypesAutobuyerCircuits() {
     let newValue = new Decimal(document.getElementById("bacteriaTypesAutomationCircuitsAssigner").value);
-    if (newValue.greaterThanOrEqualTo(storage.gameData.circuits)) {
+    if (newValue.gte(storage.gameData.circuits)) {
         newValue = storage.gameData.circuits;
     }
-    else if (newValue.greaterThanOrEqualTo(new Decimal(600))) {
+    else if (newValue.gte(new Decimal(600))) {
         newValue = new Decimal(600);
     }
 
@@ -325,11 +325,11 @@ function updateBacteriaTypesAutobuyerCircuits() {
 
 export async function bacteriaTypesAutobuyerChecker() {
     if ((storage.entropyUpgradeFactor.E36Bought) || (achievements.ach121)) {
-        if (circuits.bacteriaTypesAutobuyer.lessThan(new Decimal(1))) {
+        if (circuits.bacteriaTypesAutobuyer.lt(new Decimal(1))) {
             document.getElementById('bacteriaTypesAutomationFLOPSCounter').innerHTML = `computing 0 FLOPs/s, resetting every ∞s.`;
             return;
         }
-        if (circuits.bacteriaTypesAutobuyer.lessThan(new Decimal(600))) {
+        if (circuits.bacteriaTypesAutobuyer.lt(new Decimal(600))) {
             document.getElementById("bacteriaTypesAutomationFLOPSCounter").innerHTML = `computing ${storage.truncateToDecimalPlaces(flopsFormula(circuits.bacteriaTypesAutobuyer), 3)} FLOPs/s, resetting every ${storage.truncateToDecimalPlaces(bacteriaTypesAutobuyerFormula('w'), 3)}s`;
             //this should calculate the delay for each automation
 			const v = bacteriaTypesAutobuyerFormula('v');
@@ -338,7 +338,7 @@ export async function bacteriaTypesAutobuyerChecker() {
         else {
             await sleep(100);
         }
-		if (storage.gameData.cells.greaterThanOrEqualTo(storage.gameData.cellsCap)) {
+		if (storage.gameData.cells.gte(storage.gameData.cellsCap)) {
 			bacteria.resetCells();
 		}
     }
@@ -361,10 +361,10 @@ function cellUpgradesAutobuyerFormula(type) {
 
 function updateCellUpgradesAutobuyerCircuits() {
     let newValue = new Decimal(document.getElementById("cellUpgradesAutomationCircuitsAssigner").value);
-    if (newValue.greaterThanOrEqualTo(storage.gameData.circuits)) {
+    if (newValue.gte(storage.gameData.circuits)) {
         newValue = storage.gameData.circuits;
     }
-    else if (newValue.greaterThanOrEqualTo(new Decimal(1000))) {
+    else if (newValue.gte(new Decimal(1000))) {
         newValue = new Decimal(1000);
     }
 
@@ -380,11 +380,11 @@ function updateCellUpgradesAutobuyerCircuits() {
 
 export async function cellUpgradesAutobuyerChecker() {
     if (storage.rootUpgradeFactor.RM4Achieved) {
-        if (circuits.cellUpgradesAutobuyer.lessThan(new Decimal(1))) {
+        if (circuits.cellUpgradesAutobuyer.lt(new Decimal(1))) {
             document.getElementById('cellUpgradesAutomationFLOPSCounter').innerHTML = `computing 0 FLOPs/s, buying every ∞s.`;
             return;
         }
-        if (circuits.cellUpgradesAutobuyer.lessThan(new Decimal(1000))) {
+        if (circuits.cellUpgradesAutobuyer.lt(new Decimal(1000))) {
             document.getElementById("cellUpgradesAutomationFLOPSCounter").innerHTML = `computing ${storage.truncateToDecimalPlaces(flopsFormula(circuits.cellUpgradesAutobuyer), 3)} FLOPs/s, buying every ${storage.truncateToDecimalPlaces(cellUpgradesAutobuyerFormula('w'), 3)}s`;
             //this should calculate the delay for each automation
 			const v = cellUpgradesAutobuyerFormula('v');
@@ -394,14 +394,14 @@ export async function cellUpgradesAutobuyerChecker() {
             await sleep(100);
         }
 		
-		if (storage.gameData.entropy.greaterThanOrEqualTo(storage.entropyUpgradeFactor.C1Cost)) {
+		if (storage.gameData.entropy.gte(storage.entropyUpgradeFactor.C1Cost)) {
 			cellularLab.C1();
 		}
-		if (storage.gameData.fruits.greaterThanOrEqualTo(storage.entropyUpgradeFactor.C2Cost)) {
+		if (storage.gameData.fruits.gte(storage.entropyUpgradeFactor.C2Cost)) {
 			cellularLab.C2();
 		}
 		if (storage.entropyUpgradeFactor.E18Bought) {
-			if (storage.gameData.entropy.greaterThanOrEqualTo(storage.entropyUpgradeFactor.C3Cost)) {
+			if (storage.gameData.entropy.gte(storage.entropyUpgradeFactor.C3Cost)) {
 				cellularLab.C3();
 			}
 		}
@@ -425,10 +425,10 @@ function mossUpgradesAutobuyerFormula(type) {
 
 function updateMossUpgradesAutobuyerCircuits() {
     let newValue = new Decimal(document.getElementById("mossUpgradesAutomationCircuitsAssigner").value);
-    if (newValue.greaterThanOrEqualTo(storage.gameData.circuits)) {
+    if (newValue.gte(storage.gameData.circuits)) {
         newValue = storage.gameData.circuits;
     }
-    else if (newValue.greaterThanOrEqualTo(new Decimal(2000))) {
+    else if (newValue.gte(new Decimal(2000))) {
         newValue = new Decimal(2000);
     }
 
@@ -444,11 +444,11 @@ function updateMossUpgradesAutobuyerCircuits() {
 
 export async function mossUpgradesAutobuyerChecker() {
     if (storage.rootUpgradeFactor.RM8Achieved) {
-        if (circuits.mossUpgradesAutobuyer.lessThan(new Decimal(1))) {
+        if (circuits.mossUpgradesAutobuyer.lt(new Decimal(1))) {
             document.getElementById('mossUpgradesAutomationFLOPSCounter').innerHTML = `computing 0 FLOPs/s, buying every ∞s.`;
             return;
         }
-        if (circuits.mossUpgradesAutobuyer.lessThan(new Decimal(2000))) {
+        if (circuits.mossUpgradesAutobuyer.lt(new Decimal(2000))) {
             document.getElementById("mossUpgradesAutomationFLOPSCounter").innerHTML = `computing ${storage.truncateToDecimalPlaces(flopsFormula(circuits.mossUpgradesAutobuyer), 3)} FLOPs/s, buying every ${storage.truncateToDecimalPlaces(mossUpgradesAutobuyerFormula('w'), 3)}s`;
             //this should calculate the delay for each automation
 			const v = mossUpgradesAutobuyerFormula('v');
@@ -458,22 +458,22 @@ export async function mossUpgradesAutobuyerChecker() {
             await sleep(100);
         }
 		
-		if (storage.gameData.moss.greaterThanOrEqualTo(moss.mossUpgradeCost.M1)) {
+		if (storage.gameData.moss.gte(moss.mossUpgradeCost.M1)) {
 			moss.M1();
 		}
-		if (storage.gameData.moss.greaterThanOrEqualTo(moss.mossUpgradeCost.M2)) {
+		if (storage.gameData.moss.gte(moss.mossUpgradeCost.M2)) {
 			moss.M2();
 		}
-		if (storage.gameData.moss.greaterThanOrEqualTo(moss.mossUpgradeCost.M3)) {
+		if (storage.gameData.moss.gte(moss.mossUpgradeCost.M3)) {
 			moss.M3();
 		}
-		if (storage.gameData.moss.greaterThanOrEqualTo(moss.mossUpgradeCost.M4)) {
+		if (storage.gameData.moss.gte(moss.mossUpgradeCost.M4)) {
 			moss.M4();
 		}
-		if (storage.gameData.moss.greaterThanOrEqualTo(moss.mossUpgradeCost.M5)) {
+		if (storage.gameData.moss.gte(moss.mossUpgradeCost.M5)) {
 			moss.M5();
 		}
-		if (storage.gameData.moss.greaterThanOrEqualTo(moss.mossUpgradeCost.M6)) {
+		if (storage.gameData.moss.gte(moss.mossUpgradeCost.M6)) {
 			moss.M6();
 		}
     }
@@ -496,10 +496,10 @@ function bacteriaUpgradesAutobuyerFormula(type) {
 
 function updateBacteriaUpgradesAutobuyerCircuits() {
     let newValue = new Decimal(document.getElementById("bacteriaUpgradesAutomationCircuitsAssigner").value);
-    if (newValue.greaterThanOrEqualTo(storage.gameData.circuits)) {
+    if (newValue.gte(storage.gameData.circuits)) {
         newValue = storage.gameData.circuits;
     }
-    else if (newValue.greaterThanOrEqualTo(new Decimal(10000))) {
+    else if (newValue.gte(new Decimal(10000))) {
         newValue = new Decimal(10000);
     }
 
@@ -515,11 +515,11 @@ function updateBacteriaUpgradesAutobuyerCircuits() {
 
 export async function bacteriaUpgradesAutobuyerChecker() {
     if (storage.rootUpgradeFactor.RM9Achieved) {
-        if (circuits.bacteriaUpgradesAutobuyer.lessThan(new Decimal(1))) {
+        if (circuits.bacteriaUpgradesAutobuyer.lt(new Decimal(1))) {
             document.getElementById('bacteriaUpgradesAutomationFLOPSCounter').innerHTML = `computing 0 FLOPs/s, buying every ∞s.`;
             return;
         }
-        if (circuits.bacteriaUpgradesAutobuyer.lessThan(new Decimal(10000))) {
+        if (circuits.bacteriaUpgradesAutobuyer.lt(new Decimal(10000))) {
             document.getElementById("bacteriaUpgradesAutomationFLOPSCounter").innerHTML = `computing ${storage.truncateToDecimalPlaces(flopsFormula(circuits.bacteriaUpgradesAutobuyer), 3)} FLOPs/s, buying every ${storage.truncateToDecimalPlaces(bacteriaUpgradesAutobuyerFormula('w'), 3)}s`;
             //this should calculate the delay for each automation
 			const v = bacteriaUpgradesAutobuyerFormula('v');
@@ -529,13 +529,13 @@ export async function bacteriaUpgradesAutobuyerChecker() {
             await sleep(100);
         }
 		
-		if (storage.gameData.bacteria.greaterThanOrEqualTo(storage.entropyUpgradeFactor.B1Cost)) {
+		if (storage.gameData.bacteria.gte(storage.entropyUpgradeFactor.B1Cost)) {
 			bacteria.B1();
 		}
-		if (storage.gameData.bacteria.greaterThanOrEqualTo(storage.entropyUpgradeFactor.B2Cost)) {
+		if (storage.gameData.bacteria.gte(storage.entropyUpgradeFactor.B2Cost)) {
 			bacteria.B2();
 		}
-		if (storage.gameData.roots.greaterThanOrEqualTo(storage.entropyUpgradeFactor.B3Cost)) {
+		if (storage.gameData.roots.gte(storage.entropyUpgradeFactor.B3Cost)) {
 			bacteria.B3();
 		}
     }
@@ -558,10 +558,10 @@ function rnaUpgradesAutobuyerFormula(type) {
 
 function updateRNAUpgradesAutobuyerCircuits() {
     let newValue = new Decimal(document.getElementById("rnaUpgradesAutomationCircuitsAssigner").value);
-    if (newValue.greaterThanOrEqualTo(storage.gameData.circuits)) {
+    if (newValue.gte(storage.gameData.circuits)) {
         newValue = storage.gameData.circuits;
     }
-    else if (newValue.greaterThanOrEqualTo(new Decimal(250000))) {
+    else if (newValue.gte(new Decimal(250000))) {
         newValue = new Decimal(250000);
     }
 
@@ -577,11 +577,11 @@ function updateRNAUpgradesAutobuyerCircuits() {
 
 export async function rnaUpgradesAutobuyerChecker() {
     if (storage.rootUpgradeFactor.RM10Achieved) {
-        if (circuits.rnaUpgradesAutobuyer.lessThan(new Decimal(1))) {
+        if (circuits.rnaUpgradesAutobuyer.lt(new Decimal(1))) {
             document.getElementById('rnaUpgradesAutomationFLOPSCounter').innerHTML = `computing 0 FLOPs/s, buying every ∞s.`;
             return;
         }
-        if (circuits.rnaUpgradesAutobuyer.lessThan(new Decimal(250000))) {
+        if (circuits.rnaUpgradesAutobuyer.lt(new Decimal(250000))) {
             document.getElementById("rnaUpgradesAutomationFLOPSCounter").innerHTML = `computing ${storage.truncateToDecimalPlaces(flopsFormula(circuits.rnaUpgradesAutobuyer), 3)} FLOPs/s, buying every ${storage.truncateToDecimalPlaces(rnaUpgradesAutobuyerFormula('w'), 3)}s`;
             //this should calculate the delay for each automation
 			const v = rnaUpgradesAutobuyerFormula('v');
@@ -591,22 +591,22 @@ export async function rnaUpgradesAutobuyerChecker() {
             await sleep(100);
         }
 		
-		if (storage.gameData.rna.greaterThanOrEqualTo(storage.entropyUpgradeFactor.R1Cost)) {
+		if (storage.gameData.rna.gte(storage.entropyUpgradeFactor.R1Cost)) {
 			proteins.buyR1();
 		}
-		if (storage.gameData.rna.greaterThanOrEqualTo(storage.entropyUpgradeFactor.R2Cost)) {
+		if (storage.gameData.rna.gte(storage.entropyUpgradeFactor.R2Cost)) {
 			proteins.buyR2();
 		}
-		if (storage.gameData.rna.greaterThanOrEqualTo(storage.entropyUpgradeFactor.R3Cost)) {
+		if (storage.gameData.rna.gte(storage.entropyUpgradeFactor.R3Cost)) {
 			proteins.buyR3();
 		}
-		if (storage.gameData.rna.greaterThanOrEqualTo(storage.entropyUpgradeFactor.R4Cost)) {
+		if (storage.gameData.rna.gte(storage.entropyUpgradeFactor.R4Cost)) {
 			proteins.buyR4();
 		}
-		if (storage.gameData.rna.greaterThanOrEqualTo(storage.entropyUpgradeFactor.R5Cost)) {
+		if (storage.gameData.rna.gte(storage.entropyUpgradeFactor.R5Cost)) {
 			proteins.buyR5();
 		}
-		if (storage.gameData.rna.greaterThanOrEqualTo(storage.entropyUpgradeFactor.R6Cost)) {
+		if (storage.gameData.rna.gte(storage.entropyUpgradeFactor.R6Cost)) {
 			proteins.buyR6();
 		}
     }
@@ -617,7 +617,7 @@ function dnaBlueprintsAutobuyerFormula(type) {
 	const divisor = new Decimal(1.502e7);
 	const base = new Decimal(-2);
 	let y = (base.pow(x.div(divisor))).plus(new Decimal(101));
-	if (x.greaterThanOrEqualTo(new Decimal(1e8))) {
+	if (x.gte(new Decimal(1e8))) {
 		y = new Decimal(0.1);
 	}
 	const w = y.clamp(new Decimal(0.1), new Decimal(100));
@@ -632,10 +632,10 @@ function dnaBlueprintsAutobuyerFormula(type) {
 
 function updateDNABlueprintsAutobuyerCircuits() {
     let newValue = new Decimal(document.getElementById("dnaBlueprintsAutomationCircuitsAssigner").value);
-    if (newValue.greaterThanOrEqualTo(storage.gameData.circuits)) {
+    if (newValue.gte(storage.gameData.circuits)) {
         newValue = storage.gameData.circuits;
     }
-    else if (newValue.greaterThanOrEqualTo(new Decimal(1e8))) {
+    else if (newValue.gte(new Decimal(1e8))) {
         newValue = new Decimal(1e8);
     }
 
@@ -655,11 +655,11 @@ export async function dnaBlueprintsAutobuyerChecker() {
 			return;
 		}
 
-        if (circuits.dnaBlueprintsAutobuyer.lessThan(new Decimal(1))) {
+        if (circuits.dnaBlueprintsAutobuyer.lt(new Decimal(1))) {
             document.getElementById('dnaBlueprintsAutomationFLOPSCounter').innerHTML = `computing 0 FLOPs/s, buying every ∞s.`;
             return;
         }
-        if (circuits.dnaBlueprintsAutobuyer.lessThan(new Decimal(1e8))) {
+        if (circuits.dnaBlueprintsAutobuyer.lt(new Decimal(1e8))) {
             document.getElementById("dnaBlueprintsAutomationFLOPSCounter").innerHTML = `computing ${storage.truncateToDecimalPlaces(flopsFormula(circuits.dnaBlueprintsAutobuyer), 3)} FLOPs/s, making every ${storage.truncateToDecimalPlaces(dnaBlueprintsAutobuyerFormula('w'), 3)}s`;
             //this should calculate the delay for each automation
 			const v = dnaBlueprintsAutobuyerFormula('v');
@@ -672,7 +672,7 @@ export async function dnaBlueprintsAutobuyerChecker() {
 		const blueprints = storage.gameData.dnaBlueprintsTotal;
 		storage.entropyUpgradeFactor.currentlyLoadedDNABlueprintAmount = (dna.minus(blueprints).trunc()).clamp(new Decimal(0), new Decimal(Infinity));
 		proteins.checkDNABlueprints();
-		if (storage.gameData.dnaBlueprints.greaterThanOrEqualTo(storage.gameData.dnaBlueprintBulk)) {
+		if (storage.gameData.dnaBlueprints.gte(storage.gameData.dnaBlueprintBulk)) {
 			proteins.autoRuBisCo(storage.entropyUpgradeFactor.currentlyLoadedProteinPreset[0]);
 			proteins.autoExtensin(storage.entropyUpgradeFactor.currentlyLoadedProteinPreset[1]);
 			proteins.autoArganine(storage.entropyUpgradeFactor.currentlyLoadedProteinPreset[2]);
@@ -684,7 +684,7 @@ export async function dnaBlueprintsAutobuyerChecker() {
 		}
 		const everythingIsLoaded = (storage.entropyUpgradeFactor.rubiscoDoneLoading && storage.entropyUpgradeFactor.extensinDoneLoading && storage.entropyUpgradeFactor.arganineDoneLoading && storage.entropyUpgradeFactor.glutamineDoneLoading && storage.entropyUpgradeFactor.glutamateDoneLoading && storage.entropyUpgradeFactor.asparagineDoneLoading && storage.entropyUpgradeFactor.trbDoneLoading && storage.entropyUpgradeFactor.agpDoneLoading);
 		//stops the autobuyer automatically
-		if ((storage.gameData.dnaBlueprintsTotal.greaterThan(storage.gameData.dnaBlueprints)) && (storage.entropyUpgradeFactor.currentlyLoadedDNABlueprintAmount.lessThan(storage.gameData.dnaBlueprintBulk)) && everythingIsLoaded) {
+		if ((storage.gameData.dnaBlueprintsTotal.gt(storage.gameData.dnaBlueprints)) && (storage.entropyUpgradeFactor.currentlyLoadedDNABlueprintAmount.lt(storage.gameData.dnaBlueprintBulk)) && everythingIsLoaded) {
 			storage.entropyUpgradeFactor.currentlyLoadedProteinPreset = [];
 			storage.entropyUpgradeFactor.isLoadingProteinPreset = false;
 			storage.entropyUpgradeFactor.currentlyLoadedDNABlueprintAmount = new Decimal(0);

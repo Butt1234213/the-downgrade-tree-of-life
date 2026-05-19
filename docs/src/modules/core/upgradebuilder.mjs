@@ -262,7 +262,7 @@ function automationTypeChecker(type) {
 function isAutomatable(type, number, cost) {
     const object = numberChecker(type);
     
-    if ((automationTypeChecker(type)) && (circuits.upgradeAutobuyerFLOPS.greaterThanOrEqualTo(automationChecker(type, number))) && (object.greaterThanOrEqualTo(cost))) {
+    if ((automationTypeChecker(type)) && (circuits.upgradeAutobuyerFLOPS.gte(automationChecker(type, number))) && (object.gte(cost))) {
         return true;
     }
     else {
@@ -287,31 +287,31 @@ export function createCallableUpgrade(type, number, cost, isUnlock, unlockFuncti
         }
     }
     else {
-        if (object.greaterThanOrEqualTo(cost)) {
+        if (object.gte(cost)) {
 			let nanFix;
 			switch (type) {
 				case "leaf":
-					nanFix = (storage.gameData.leaves.minus(cost.trunc())).greaterThanOrEqualTo(new Decimal(1));
+					nanFix = (storage.gameData.leaves.minus(cost.trunc())).gte(new Decimal(1));
 					storage.gameData.leaves = nanFix ? storage.gameData.leaves.minus(cost.trunc()) : new Decimal(0);
 					object = storage.gameData.leaves;
 					break;
 				case "seed":
-					nanFix = (storage.gameData.seeds.minus(cost.trunc())).greaterThanOrEqualTo(new Decimal(1));
+					nanFix = (storage.gameData.seeds.minus(cost.trunc())).gte(new Decimal(1));
 					storage.gameData.seeds = nanFix ? storage.gameData.seeds.minus(cost.trunc()) : new Decimal(0);
 					object = storage.gameData.seeds;
 					break;
 				case "fruit":
-					nanFix = (storage.gameData.fruits.minus(cost.trunc())).greaterThanOrEqualTo(new Decimal(1));
+					nanFix = (storage.gameData.fruits.minus(cost.trunc())).gte(new Decimal(1));
 					storage.gameData.fruits = nanFix ? storage.gameData.fruits.minus(cost.trunc()) : new Decimal(0);
 					object = storage.gameData.fruits;
 					break;
 				case "entropy":
-					nanFix = (storage.gameData.entropy.minus(cost.trunc())).greaterThanOrEqualTo(new Decimal(1));
+					nanFix = (storage.gameData.entropy.minus(cost.trunc())).gte(new Decimal(1));
 					storage.gameData.entropy = nanFix ? storage.gameData.entropy.minus(cost.trunc()) : new Decimal(0);
 					object = storage.gameData.entropy;
 					break;
 				case "root":
-					nanFix = (storage.gameData.roots.minus(cost.trunc())).greaterThanOrEqualTo(new Decimal(1));
+					nanFix = (storage.gameData.roots.minus(cost.trunc())).gte(new Decimal(1));
 					storage.gameData.roots = nanFix ? storage.gameData.roots.minus(cost.trunc()) : new Decimal(0);
 					object = storage.gameData.roots;
 					break;

@@ -92,14 +92,14 @@ export function productOfAllCaps() {
 }
 
 export function repeatableUnlocks() {
-	if (repeatableUpgradeFactor.LR1.greaterThanOrEqualTo(new Decimal(100))) {
+	if (repeatableUpgradeFactor.LR1.gte(new Decimal(100))) {
 		repeatableUpgradeFactor.LR2Unlocked = true;
 		document.getElementById("LR2").style.display = `inline-block`;
 	}
 	else {
 		repeatableUpgradeFactor.LR2Unlocked = false;
 	}
-	if (repeatableUpgradeFactor.LR2.greaterThanOrEqualTo(new Decimal(100))) {
+	if (repeatableUpgradeFactor.LR2.gte(new Decimal(100))) {
 		repeatableUpgradeFactor.LR3Unlocked = true;
 		document.getElementById("LR3").style.display = `inline-block`;
 	}
@@ -107,14 +107,14 @@ export function repeatableUnlocks() {
 		repeatableUpgradeFactor.LR3Unlocked = false;
 	}
 	
-	if (repeatableUpgradeFactor.SR1.greaterThanOrEqualTo(new Decimal(100))) {
+	if (repeatableUpgradeFactor.SR1.gte(new Decimal(100))) {
 		repeatableUpgradeFactor.SR2Unlocked = true;
 		document.getElementById("SR2").style.display = `inline-block`;
 	}
 	else {
 		repeatableUpgradeFactor.SR2Unlocked = false;
 	}
-	if (repeatableUpgradeFactor.SR2.greaterThanOrEqualTo(new Decimal(100))) {
+	if (repeatableUpgradeFactor.SR2.gte(new Decimal(100))) {
 		repeatableUpgradeFactor.SR3Unlocked = true;
 		document.getElementById("SR3").style.display = `inline-block`;
 	}
@@ -122,14 +122,14 @@ export function repeatableUnlocks() {
 		repeatableUpgradeFactor.SR3Unlocked = false;
 	}
 	
-	if (repeatableUpgradeFactor.FR1.greaterThanOrEqualTo(new Decimal(100))) {
+	if (repeatableUpgradeFactor.FR1.gte(new Decimal(100))) {
 		repeatableUpgradeFactor.FR2Unlocked = true;
 		document.getElementById("FR2").style.display = `inline-block`;
 	}
 	else {
 		repeatableUpgradeFactor.FR2Unlocked = false;
 	}
-	if (repeatableUpgradeFactor.FR2.greaterThanOrEqualTo(new Decimal(100))) {
+	if (repeatableUpgradeFactor.FR2.gte(new Decimal(100))) {
 		repeatableUpgradeFactor.FR3Unlocked = true;
 		document.getElementById("FR3").style.display = `inline-block`;
 	}
@@ -140,7 +140,7 @@ export function repeatableUnlocks() {
 
 export function LR1CostCalculation() {
     const x = repeatableUpgradeFactor.LR1.plus(repeatableUpgradeFactor.repeatableUpgradesBulk.minus(new Decimal(1)));
-    if (x.greaterThanOrEqualTo(repeatableUpgradeFactor.LR1Cap)) {
+    if (x.gte(repeatableUpgradeFactor.LR1Cap)) {
         return new Decimal(Infinity);
     }
     const y = new Decimal(0.5).times(x.pow(new Decimal(2)));
@@ -151,7 +151,7 @@ export function LR1CostCalculation() {
     return u.pow(repeatableUpgradeFactor.repeatableUpgradeDiscount);
 }
 function LR1() {
-    if (storage.gameData.leaves.greaterThanOrEqualTo(LR1CostCalculation())) {
+    if (storage.gameData.leaves.gte(LR1CostCalculation())) {
         storage.gameData.leaves = storage.gameData.leaves.minus(LR1CostCalculation());
         repeatableUpgradeFactor.LR1 = repeatableUpgradeFactor.LR1.plus(repeatableUpgradeFactor.repeatableUpgradesBulk);
         document.getElementById('pleaseWork').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.leaves, 3)}`;
@@ -162,7 +162,7 @@ document.getElementById("LR1").addEventListener("click", LR1);
 
 export function LR2CostCalculation() {
     const x = repeatableUpgradeFactor.LR2.plus(repeatableUpgradeFactor.repeatableUpgradesBulk.minus(new Decimal(1)));
-    if (x.greaterThanOrEqualTo(repeatableUpgradeFactor.LR2Cap)) {
+    if (x.gte(repeatableUpgradeFactor.LR2Cap)) {
         return new Decimal(Infinity);
     }
     const y = new Decimal(0.85).times(x.pow(new Decimal(2.5)));
@@ -174,7 +174,7 @@ export function LR2CostCalculation() {
 }
 function LR2() {
 	if (repeatableUpgradeFactor.LR2Unlocked) {
-		if (storage.gameData.leaves.greaterThanOrEqualTo(LR2CostCalculation())) {
+		if (storage.gameData.leaves.gte(LR2CostCalculation())) {
 			storage.gameData.leaves = storage.gameData.leaves.minus(LR2CostCalculation());
 			repeatableUpgradeFactor.LR2 = repeatableUpgradeFactor.LR2.plus(repeatableUpgradeFactor.repeatableUpgradesBulk);
 			document.getElementById('pleaseWork').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.leaves, 3)}`;
@@ -186,7 +186,7 @@ document.getElementById("LR2").addEventListener("click", LR2);
 
 export function LR3CostCalculation() {
     const x = repeatableUpgradeFactor.LR3.plus(repeatableUpgradeFactor.repeatableUpgradesBulk.minus(new Decimal(1)));
-    if (x.greaterThanOrEqualTo(repeatableUpgradeFactor.LR3Cap)) {
+    if (x.gte(repeatableUpgradeFactor.LR3Cap)) {
         return new Decimal(Infinity);
     }
     const y = new Decimal(0.85).times(x.pow(new Decimal(4.5)));
@@ -198,7 +198,7 @@ export function LR3CostCalculation() {
 }
 function LR3() {
 	if (repeatableUpgradeFactor.LR3Unlocked) {
-		if (storage.gameData.leaves.greaterThanOrEqualTo(LR3CostCalculation())) {
+		if (storage.gameData.leaves.gte(LR3CostCalculation())) {
 			storage.gameData.leaves = storage.gameData.leaves.minus(LR3CostCalculation());
 			repeatableUpgradeFactor.LR3 = repeatableUpgradeFactor.LR3.plus(repeatableUpgradeFactor.repeatableUpgradesBulk);
 			document.getElementById('pleaseWork').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.leaves, 3)}`;
@@ -210,7 +210,7 @@ document.getElementById("LR3").addEventListener("click", LR3);
 
 export function SR1CostCalculation() {
     const x = repeatableUpgradeFactor.SR1.plus(repeatableUpgradeFactor.repeatableUpgradesBulk.minus(new Decimal(1)));
-    if (x.greaterThanOrEqualTo(repeatableUpgradeFactor.SR1Cap)) {
+    if (x.gte(repeatableUpgradeFactor.SR1Cap)) {
         return new Decimal(Infinity);
     }
     const y = new Decimal(0.5).times(x.pow(new Decimal(2)));
@@ -221,7 +221,7 @@ export function SR1CostCalculation() {
     return u.pow(repeatableUpgradeFactor.repeatableUpgradeDiscount);
 }
 function SR1() {
-    if (storage.gameData.seeds.greaterThanOrEqualTo(SR1CostCalculation())) {
+    if (storage.gameData.seeds.gte(SR1CostCalculation())) {
         storage.gameData.seeds = storage.gameData.seeds.minus(SR1CostCalculation());
         repeatableUpgradeFactor.SR1 = repeatableUpgradeFactor.SR1.plus(repeatableUpgradeFactor.repeatableUpgradesBulk);
         document.getElementById('seedCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.seeds, 3)}`;
@@ -232,7 +232,7 @@ document.getElementById("SR1").addEventListener("click", SR1);
 
 export function SR2CostCalculation() {
     const x = repeatableUpgradeFactor.SR2.plus(repeatableUpgradeFactor.repeatableUpgradesBulk.minus(new Decimal(1)));
-    if (x.greaterThanOrEqualTo(repeatableUpgradeFactor.SR2Cap)) {
+    if (x.gte(repeatableUpgradeFactor.SR2Cap)) {
         return new Decimal(Infinity);
     }
     const y = new Decimal(0.6).times(x.pow(new Decimal(2.5)));
@@ -243,7 +243,7 @@ export function SR2CostCalculation() {
     return u.pow(repeatableUpgradeFactor.repeatableUpgradeDiscount);
 }
 function SR2() {
-    if (storage.gameData.seeds.greaterThanOrEqualTo(SR2CostCalculation())) {
+    if (storage.gameData.seeds.gte(SR2CostCalculation())) {
         storage.gameData.seeds = storage.gameData.seeds.minus(SR2CostCalculation());
         repeatableUpgradeFactor.SR2 = repeatableUpgradeFactor.SR2.plus(repeatableUpgradeFactor.repeatableUpgradesBulk);
         document.getElementById('seedCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.seeds, 3)}`;
@@ -254,7 +254,7 @@ document.getElementById("SR2").addEventListener("click", SR2);
 
 export function SR3CostCalculation() {
     const x = repeatableUpgradeFactor.SR3.plus(repeatableUpgradeFactor.repeatableUpgradesBulk.minus(new Decimal(1)));
-    if (x.greaterThanOrEqualTo(repeatableUpgradeFactor.SR3Cap)) {
+    if (x.gte(repeatableUpgradeFactor.SR3Cap)) {
         return new Decimal(Infinity);
     }
     const y = new Decimal(0.6).times(x.pow(new Decimal(4.5)));
@@ -265,7 +265,7 @@ export function SR3CostCalculation() {
     return u.pow(repeatableUpgradeFactor.repeatableUpgradeDiscount);
 }
 function SR3() {
-    if (storage.gameData.seeds.greaterThanOrEqualTo(SR3CostCalculation())) {
+    if (storage.gameData.seeds.gte(SR3CostCalculation())) {
         storage.gameData.seeds = storage.gameData.seeds.minus(SR3CostCalculation());
         repeatableUpgradeFactor.SR3 = repeatableUpgradeFactor.SR3.plus(repeatableUpgradeFactor.repeatableUpgradesBulk);
         document.getElementById('seedCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.seeds, 3)}`;
@@ -276,7 +276,7 @@ document.getElementById("SR3").addEventListener("click", SR3);
 
 export function FR1CostCalculation() {
     const x = repeatableUpgradeFactor.FR1.plus(repeatableUpgradeFactor.repeatableUpgradesBulk.minus(new Decimal(1)));
-    if (x.greaterThanOrEqualTo(repeatableUpgradeFactor.FR1Cap)) {
+    if (x.gte(repeatableUpgradeFactor.FR1Cap)) {
         return new Decimal(Infinity);
     }
     const y = new Decimal(0.5).times(x.pow(new Decimal(2)));
@@ -287,7 +287,7 @@ export function FR1CostCalculation() {
     return u.pow(repeatableUpgradeFactor.repeatableUpgradeDiscount);
 }
 function FR1() {
-    if (storage.gameData.fruits.greaterThanOrEqualTo(FR1CostCalculation())) {
+    if (storage.gameData.fruits.gte(FR1CostCalculation())) {
         storage.gameData.fruits = storage.gameData.fruits.minus(FR1CostCalculation());
         repeatableUpgradeFactor.FR1 = repeatableUpgradeFactor.FR1.plus(repeatableUpgradeFactor.repeatableUpgradesBulk);
         document.getElementById('fruitCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.fruits, 3)}`;
@@ -298,7 +298,7 @@ document.getElementById("FR1").addEventListener("click", FR1);
 
 export function FR2CostCalculation() {
     const x = repeatableUpgradeFactor.FR2.plus(repeatableUpgradeFactor.repeatableUpgradesBulk.minus(new Decimal(1)));
-    if (x.greaterThanOrEqualTo(repeatableUpgradeFactor.FR2Cap)) {
+    if (x.gte(repeatableUpgradeFactor.FR2Cap)) {
         return new Decimal(Infinity);
     }
     const y = new Decimal(0.5).times(x.pow(new Decimal(3)));
@@ -309,7 +309,7 @@ export function FR2CostCalculation() {
     return u.pow(repeatableUpgradeFactor.repeatableUpgradeDiscount);
 }
 function FR2() {
-    if (storage.gameData.fruits.greaterThanOrEqualTo(FR2CostCalculation())) {
+    if (storage.gameData.fruits.gte(FR2CostCalculation())) {
         storage.gameData.fruits = storage.gameData.fruits.minus(FR2CostCalculation());
         repeatableUpgradeFactor.FR2 = repeatableUpgradeFactor.FR2.plus(repeatableUpgradeFactor.repeatableUpgradesBulk);
         document.getElementById('fruitCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.fruits, 3)}`;
@@ -320,7 +320,7 @@ document.getElementById("FR2").addEventListener("click", FR2);
 
 export function FR3CostCalculation() {
     const x = repeatableUpgradeFactor.FR3.plus(repeatableUpgradeFactor.repeatableUpgradesBulk.minus(new Decimal(1)));
-    if (x.greaterThanOrEqualTo(repeatableUpgradeFactor.FR3Cap)) {
+    if (x.gte(repeatableUpgradeFactor.FR3Cap)) {
         return new Decimal(Infinity);
     }
     const y = new Decimal(0.5).times(x.pow(new Decimal(4.5)));
@@ -331,7 +331,7 @@ export function FR3CostCalculation() {
     return u.pow(repeatableUpgradeFactor.repeatableUpgradeDiscount);
 }
 function FR3() {
-    if (storage.gameData.fruits.greaterThanOrEqualTo(FR3CostCalculation())) {
+    if (storage.gameData.fruits.gte(FR3CostCalculation())) {
         storage.gameData.fruits = storage.gameData.fruits.minus(FR3CostCalculation());
         repeatableUpgradeFactor.FR3 = repeatableUpgradeFactor.FR3.plus(repeatableUpgradeFactor.repeatableUpgradesBulk);
         document.getElementById('fruitCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.fruits, 3)}`;
@@ -343,7 +343,7 @@ document.getElementById("FR3").addEventListener("click", FR3);
 
 export function ER1CostCalculation() {
     const x = repeatableUpgradeFactor.ER1.plus(repeatableUpgradeFactor.repeatableUpgradesBulk.minus(new Decimal(1)));
-    if (x.greaterThanOrEqualTo(repeatableUpgradeFactor.ER1Cap)) {
+    if (x.gte(repeatableUpgradeFactor.ER1Cap)) {
         return new Decimal(Infinity);
     }
     const y = new Decimal(0.5).times(x.pow(new Decimal(3.5)));
@@ -354,7 +354,7 @@ export function ER1CostCalculation() {
     return u.pow(repeatableUpgradeFactor.repeatableUpgradeDiscount);
 }
 function ER1() {
-    if (storage.gameData.entropy.greaterThanOrEqualTo(ER1CostCalculation())) {
+    if (storage.gameData.entropy.gte(ER1CostCalculation())) {
         storage.gameData.entropy = storage.gameData.entropy.minus(ER1CostCalculation());
         repeatableUpgradeFactor.ER1 = repeatableUpgradeFactor.ER1.plus(repeatableUpgradeFactor.repeatableUpgradesBulk);
         document.getElementById('entropyCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.entropy, 3)}`;

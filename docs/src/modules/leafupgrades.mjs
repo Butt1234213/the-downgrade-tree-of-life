@@ -84,7 +84,7 @@ export function laggyAssFunction() {
 export var functions = {};
 
 export function L1() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU1)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU1)) {
         leafUpgradeFactor.L1Bought = true;
         document.getElementById("L1").innerHTML = `L1 (Bought)<br>Start Generating Leaves<br>Cost: 0 Leaves`;
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
@@ -103,7 +103,7 @@ function startGeneration() {
     gameLoop();
 }
 export function L2() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU2)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU2)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 2, leafUpgradeCost.LU2, false, null);
@@ -111,7 +111,7 @@ export function L2() {
     }
 }
 export function L3() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU3)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU3)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 3, leafUpgradeCost.LU3, false, null);
@@ -123,7 +123,7 @@ function ach12() {
     massAchievementChecker();
 }
 export function L4() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU4)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU4)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 4, leafUpgradeCost.LU4, true, ach12());
@@ -131,7 +131,7 @@ export function L4() {
     }
 }
 export function L5() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU5)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU5)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 5, leafUpgradeCost.LU5, false, null);
@@ -139,7 +139,7 @@ export function L5() {
     }
 }
 export function L6() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU6)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU6)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 6, leafUpgradeCost.LU6, false, null);
@@ -147,7 +147,7 @@ export function L6() {
     }
 }
 export function L7() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU7)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU7)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 7, leafUpgradeCost.LU7, false, null);
@@ -155,7 +155,7 @@ export function L7() {
     }
 }
 export function L8() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU8)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU8)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 8, leafUpgradeCost.LU8, false, null);
@@ -163,7 +163,7 @@ export function L8() {
     }
 }
 export function L9() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU9)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU9)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 9, leafUpgradeCost.LU9, false, null);
@@ -171,7 +171,7 @@ export function L9() {
     }
 }
 export function L10() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU10)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU10)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 10, leafUpgradeCost.LU10, false, null);
@@ -183,7 +183,7 @@ function ach13() {
     massAchievementChecker();
 }
 export function L11() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU11)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU11)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 11, leafUpgradeCost.LU11, true, ach13());
@@ -191,7 +191,7 @@ export function L11() {
     }
 }
 export function L12() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU12)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU12)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 12, leafUpgradeCost.LU12, false, null);
@@ -199,7 +199,7 @@ export function L12() {
     }
 }
 export function L13() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU13)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU13)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 13, leafUpgradeCost.LU13, false, null);
@@ -207,7 +207,7 @@ export function L13() {
     }
 }
 export function L14() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU14)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU14)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 14, leafUpgradeCost.LU14, false, null);
@@ -219,7 +219,7 @@ function ach15() {
     massAchievementChecker();
 }
 export function L15() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU15)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU15)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 15, leafUpgradeCost.LU15, true, ach15());
@@ -227,7 +227,7 @@ export function L15() {
     }
 }
 export function L16() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU16)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU16)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 16, leafUpgradeCost.LU16, false, null);
@@ -235,7 +235,7 @@ export function L16() {
     }
 }
 export function L17() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU17)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU17)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 17, leafUpgradeCost.LU17, false, null);
@@ -243,7 +243,7 @@ export function L17() {
     }
 }
 export function L18() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU18)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU18)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 18, leafUpgradeCost.LU18, false, null);
@@ -251,7 +251,7 @@ export function L18() {
     }
 }
 export function L19() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU19)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU19)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 19, leafUpgradeCost.LU19, false, null);
@@ -259,7 +259,7 @@ export function L19() {
     }
 }
 export function L20() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU20)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU20)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 20, leafUpgradeCost.LU20, false, null);
@@ -267,7 +267,7 @@ export function L20() {
     }
 }
 export function L21() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU21)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU21)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 21, leafUpgradeCost.LU21, false, null);
@@ -279,7 +279,7 @@ function ach33() {
     massAchievementChecker();
 }
 export function L22() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU22)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU22)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 22, leafUpgradeCost.LU22, true, ach33());
@@ -287,7 +287,7 @@ export function L22() {
     }
 }
 export function L23() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU23)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU23)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 23, leafUpgradeCost.LU23, false, null);
@@ -295,7 +295,7 @@ export function L23() {
     }
 }
 export function L24() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU24)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU24)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 24, leafUpgradeCost.LU24, false, null);
@@ -303,7 +303,7 @@ export function L24() {
     }
 }
 export function L25() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU25)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU25)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 25, leafUpgradeCost.LU25, false, null);
@@ -311,7 +311,7 @@ export function L25() {
     }
 }
 export function L26() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU26)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU26)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 26, leafUpgradeCost.LU26, false, null);
@@ -319,7 +319,7 @@ export function L26() {
     }
 }
 export function L27() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU27)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU27)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 27, leafUpgradeCost.LU27, false, null);
@@ -331,7 +331,7 @@ function ach35() {
     massAchievementChecker();
 }
 export function L28() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU28)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU28)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 28, leafUpgradeCost.LU28, true, ach35());
@@ -339,7 +339,7 @@ export function L28() {
     }
 }
 export function L29() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU29)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU29)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 29, leafUpgradeCost.LU29, false, null);
@@ -348,7 +348,7 @@ export function L29() {
     }
 }
 export function L30() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU30)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU30)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 30, leafUpgradeCost.LU30, false, null);
@@ -356,7 +356,7 @@ export function L30() {
     }
 }
 export function L31() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU31)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU31)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 31, leafUpgradeCost.LU31, false, null);
@@ -364,7 +364,7 @@ export function L31() {
     }
 }
 export function L32() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU32)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU32)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 32, leafUpgradeCost.LU32, false, null);
@@ -372,7 +372,7 @@ export function L32() {
     }
 }
 export function L33() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU33)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU33)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 33, leafUpgradeCost.LU33, false, null);
@@ -380,7 +380,7 @@ export function L33() {
     }
 }
 export function L34() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU34)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU34)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 34, leafUpgradeCost.LU34, false, null);
@@ -388,7 +388,7 @@ export function L34() {
     }
 }
 export function L35() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU35)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU35)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 35, leafUpgradeCost.LU35, false, null);
@@ -396,7 +396,7 @@ export function L35() {
     }
 }
 export function L36() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU36)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU36)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 36, leafUpgradeCost.LU36, false, null);
@@ -404,7 +404,7 @@ export function L36() {
     }
 }
 export function L37() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU37)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU37)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 37, leafUpgradeCost.LU37, false, null);
@@ -412,7 +412,7 @@ export function L37() {
     }
 }
 export function L38() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU38)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU38)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 38, leafUpgradeCost.LU38, false, null);
@@ -420,7 +420,7 @@ export function L38() {
     }
 }
 export function L39() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU39)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU39)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 39, leafUpgradeCost.LU39, false, null);
@@ -428,7 +428,7 @@ export function L39() {
     }
 }
 export function L40() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU40)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU40)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 40, leafUpgradeCost.LU40, false, null);
@@ -436,7 +436,7 @@ export function L40() {
     }
 }
 export function L41() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU41)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU41)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 41, leafUpgradeCost.LU41, false, null);
@@ -444,7 +444,7 @@ export function L41() {
     }
 }
 export function L42() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU42)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU42)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 42, leafUpgradeCost.LU42, false, null);
@@ -452,7 +452,7 @@ export function L42() {
     }
 }
 export function L43() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU43)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU43)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 43, leafUpgradeCost.LU43, false, null);
@@ -460,7 +460,7 @@ export function L43() {
     }
 }
 export function L44() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU44)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU44)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 44, leafUpgradeCost.LU44, false, null);
@@ -468,7 +468,7 @@ export function L44() {
     }
 }
 export function L45() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU45)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU45)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 45, leafUpgradeCost.LU45, false, null);
@@ -476,7 +476,7 @@ export function L45() {
     }
 }
 export function L46() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU46)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU46)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 46, leafUpgradeCost.LU46, false, null);
@@ -484,7 +484,7 @@ export function L46() {
     }
 }
 export function L47() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU47)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU47)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 47, leafUpgradeCost.LU47, false, null);
@@ -492,7 +492,7 @@ export function L47() {
     }
 }
 export function L48() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU48)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU48)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 48, leafUpgradeCost.LU48, false, null);
@@ -500,7 +500,7 @@ export function L48() {
     }
 }
 export function L49() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU49)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU49)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 49, leafUpgradeCost.LU49, false, null);
@@ -508,7 +508,7 @@ export function L49() {
     }
 }
 export function L50() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU50)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU50)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 50, leafUpgradeCost.LU50, false, null);
@@ -516,7 +516,7 @@ export function L50() {
     }
 }
 export function L51() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU51)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU51)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 51, leafUpgradeCost.LU51, false, null);
@@ -524,7 +524,7 @@ export function L51() {
     }
 }
 export function L52() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU52)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU52)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 52, leafUpgradeCost.LU52, false, null);
@@ -538,7 +538,7 @@ function ach71() {
     massAchievementChecker();
 }
 export function L53() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU53)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU53)) {
         document.getElementById('L53').innerHTML = `L53 (Bought)<br>The Statue<br>Unlock the Leaves repeatable upgrade<br>Cost: 1e500 Leaves`
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -547,7 +547,7 @@ export function L53() {
     }
 }
 export function L54() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU54)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU54)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 54, leafUpgradeCost.LU54, false, null);
@@ -555,7 +555,7 @@ export function L54() {
     }
 }
 export function L55() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU55)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU55)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 55, leafUpgradeCost.LU55, false, null);
@@ -563,7 +563,7 @@ export function L55() {
     }
 }
 export function L56() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU56)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU56)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 56, leafUpgradeCost.LU56, false, null);
@@ -571,7 +571,7 @@ export function L56() {
     }
 }
 export function L57() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU57)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU57)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 57, leafUpgradeCost.LU57, false, null);
@@ -579,7 +579,7 @@ export function L57() {
     }
 }
 export function L58() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU58)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU58)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 58, leafUpgradeCost.LU58, false, null);
@@ -587,7 +587,7 @@ export function L58() {
     }
 }
 export function L59() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU59)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU59)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 59, leafUpgradeCost.LU59, false, null);
@@ -595,7 +595,7 @@ export function L59() {
     }
 }
 export function L60() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU60)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU60)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 60, leafUpgradeCost.LU60, false, null);
@@ -603,7 +603,7 @@ export function L60() {
     }
 }
 export function L61() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU61)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU61)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 61, leafUpgradeCost.LU61, false, null);
@@ -611,7 +611,7 @@ export function L61() {
     }
 }
 export function L62() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU62)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU62)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 62, leafUpgradeCost.LU62, false, null);
@@ -619,7 +619,7 @@ export function L62() {
     }
 }
 export function L63() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU63)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU63)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 63, leafUpgradeCost.LU63, false, null);
@@ -627,7 +627,7 @@ export function L63() {
     }
 }
 export function L64() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU64)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU64)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 64, leafUpgradeCost.LU64, false, null);
@@ -635,7 +635,7 @@ export function L64() {
     }
 }
 export function L65() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU65)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU65)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 65, leafUpgradeCost.LU65, false, null);
@@ -643,7 +643,7 @@ export function L65() {
     }
 }
 export function L66() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU66)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU66)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 66, leafUpgradeCost.LU66, false, null);
@@ -652,7 +652,7 @@ export function L66() {
     }
 }
 export function L67() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU67)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU67)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 67, leafUpgradeCost.LU67, false, null);
@@ -660,7 +660,7 @@ export function L67() {
     }
 }
 export function L68() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU68)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU68)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 68, leafUpgradeCost.LU68, false, null);
@@ -668,7 +668,7 @@ export function L68() {
     }
 }
 export function L69() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU69)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU69)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 69, leafUpgradeCost.LU69, false, null);
@@ -681,7 +681,7 @@ function ach144() {
     document.querySelector('.challenge-fall').style.visibility = 'visible';
 }
 export function L70() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU70)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU70)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 70, leafUpgradeCost.LU70, true, ach144());
@@ -690,7 +690,7 @@ export function L70() {
     }
 }
 export function L71() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU71)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU71)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 71, leafUpgradeCost.LU71, false, null);
@@ -699,7 +699,7 @@ export function L71() {
     }
 }
 export function L72() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU72)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU72)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 72, leafUpgradeCost.LU72, false, null);
@@ -708,7 +708,7 @@ export function L72() {
     }
 }
 export function L73() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU73)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU73)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 73, leafUpgradeCost.LU73, false, null);
@@ -717,7 +717,7 @@ export function L73() {
     }
 }
 export function L74() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU74)) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU74)) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 74, leafUpgradeCost.LU74, false, null);
@@ -741,7 +741,7 @@ function MM11thru20() {
 	document.getElementById('mm20Background').style.visibility = 'visible';
 }
 export function L75() {
-    if (gameData.leaves.greaterThanOrEqualTo(leafUpgradeCost.LU75) || leafUpgradeFactor.L75Bought) {
+    if (gameData.leaves.gte(leafUpgradeCost.LU75) || leafUpgradeFactor.L75Bought) {
         gameData.leafUpgradeCounter = gameData.leafUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('leaf', 75, leafUpgradeCost.LU75, true, MM11thru20());

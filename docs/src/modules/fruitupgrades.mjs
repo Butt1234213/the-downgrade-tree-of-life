@@ -71,7 +71,7 @@ function ach24() {
     massAchievementChecker();
 }
 export function F1() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU1)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU1)) {
         document.getElementById("F1").innerHTML = `F1 (Bought)<br>The Composter I<br>Unlock the Composter<br>Cost: 1 Fruits`
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -87,7 +87,7 @@ function ach25() {
     massAchievementChecker();
 }
 export function F2() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU2)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU2)) {
         document.getElementById("F2").innerHTML = `F2 (Bought)<br>The Composter II<br>Unlock the second Composter<br>Cost: 4 Fruits`
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -100,7 +100,7 @@ function ach31() {
     massAchievementChecker();
 }
 export function F3() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU3)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU3)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 3, fruitUpgradeCost.FU3, true, ach31());
@@ -108,7 +108,7 @@ export function F3() {
     }
 }
 export function F4() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU4)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU4)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 4, fruitUpgradeCost.FU4, false, null);
@@ -116,7 +116,7 @@ export function F4() {
     }
 }
 export function F5() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU5)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU5)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 5, fruitUpgradeCost.FU5, false, null);
@@ -124,7 +124,7 @@ export function F5() {
     }
 }
 export function F6() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU6)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU6)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 6, fruitUpgradeCost.FU6, false, null);
@@ -139,7 +139,7 @@ function ach32() {
     massAchievementChecker();
 }
 export function F7() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU7)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU7)) {
         document.getElementById("F7").innerHTML = `F7 (Bought)<br>The Composter III<br>Unlock the third Composter<br>Cost: 150 Fruits`
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
@@ -148,7 +148,7 @@ export function F7() {
     }
 }
 export function F8() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU8)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU8)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 8, fruitUpgradeCost.FU8, false, null);
@@ -156,7 +156,7 @@ export function F8() {
     }
 }
 export function F9() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU9)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU9)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 9, fruitUpgradeCost.FU9, false, null);
@@ -164,7 +164,7 @@ export function F9() {
     }
 }
 export function F10() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU10)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU10)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 10, fruitUpgradeCost.FU10, false, null);
@@ -172,7 +172,7 @@ export function F10() {
     }
 }
 export function F11() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU11)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU11)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 11, fruitUpgradeCost.FU11, false, null);
@@ -180,7 +180,7 @@ export function F11() {
     }
 }
 export function F12() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU12)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU12)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 12, fruitUpgradeCost.FU12, false, null);
@@ -188,7 +188,7 @@ export function F12() {
     }
 }
 export function F13() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU13)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU13)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 13, fruitUpgradeCost.FU13, false, null);
@@ -196,7 +196,7 @@ export function F13() {
     }
 }
 export function F14() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU14)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU14)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 14, fruitUpgradeCost.FU14, false, null);
@@ -204,7 +204,7 @@ export function F14() {
     }
 }
 export function F15() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU15)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU15)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 15, fruitUpgradeCost.FU15, false, null);
@@ -212,7 +212,7 @@ export function F15() {
     }
 }
 export function F16() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU16)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU16)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 16, fruitUpgradeCost.FU16, false, null);
@@ -225,7 +225,7 @@ function ach42() {
     massAchievementChecker();
 }
 export function F17() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU17)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU17)) {
         createCallableUpgrade('fruit', 17, fruitUpgradeCost.FU17, true, ach42());
         document.getElementById("F17").innerHTML = `F17 (Bought)<br>Chaotic Energy<br>Unlock Entropy<br>Cost: 700000 Fruits`
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
@@ -234,7 +234,7 @@ export function F17() {
     }
 }
 export function F18() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU18)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU18)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 18, fruitUpgradeCost.FU18, false, null);
@@ -250,7 +250,7 @@ function ach43() {
     massAchievementChecker();
 }
 export function F19() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU19)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU19)) {
         createCallableUpgrade('fruit', 19, fruitUpgradeCost.FU19, true, ach43());
         document.getElementById("F19").innerHTML = `F19 (Bought)<br>Life in Upgrades<br>Unlock Moss<br>Cost: 2.5e8 Fruits`
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
@@ -259,7 +259,7 @@ export function F19() {
     }
 }
 export function F20() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU20)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU20)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 20, fruitUpgradeCost.FU20, false, null);
@@ -267,7 +267,7 @@ export function F20() {
     }
 }
 export function F21() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU21)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU21)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 21, fruitUpgradeCost.FU21, false, null);
@@ -275,7 +275,7 @@ export function F21() {
     }
 }
 export function F22() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU22)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU22)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 22, fruitUpgradeCost.FU22, false, null);
@@ -283,7 +283,7 @@ export function F22() {
     }
 }
 export function F23() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU23)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU23)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 23, fruitUpgradeCost.FU23, false, null);
@@ -291,7 +291,7 @@ export function F23() {
     }
 }
 export function F24() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU24)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU24)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 24, fruitUpgradeCost.FU24, false, null);
@@ -299,7 +299,7 @@ export function F24() {
     }
 }
 export function F25() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU25)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU25)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 25, fruitUpgradeCost.FU25, false, null);
@@ -307,7 +307,7 @@ export function F25() {
     }
 }
 export function F26() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU26)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU26)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 26, fruitUpgradeCost.FU26, false, null);
@@ -315,7 +315,7 @@ export function F26() {
     }
 }
 export function F27() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU27)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU27)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 27, fruitUpgradeCost.FU27, false, null);
@@ -323,7 +323,7 @@ export function F27() {
     }
 }
 export function F28() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU28)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU28)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 28, fruitUpgradeCost.FU28, false, null);
@@ -331,7 +331,7 @@ export function F28() {
     }
 }
 export function F29() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU29)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU29)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 29, fruitUpgradeCost.FU29, false, null);
@@ -339,7 +339,7 @@ export function F29() {
     }
 }
 export function F30() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU30)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU30)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 30, fruitUpgradeCost.FU30, false, null);
@@ -347,7 +347,7 @@ export function F30() {
     }
 }
 export function F31() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU31)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU31)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 31, fruitUpgradeCost.FU31, false, null);
@@ -355,7 +355,7 @@ export function F31() {
     }
 }
 export function F32() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU32)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU32)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 32, fruitUpgradeCost.FU32, false, null);
@@ -363,7 +363,7 @@ export function F32() {
     }
 }
 export function F33() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU33)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU33)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 33, fruitUpgradeCost.FU33, false, null);
@@ -375,7 +375,7 @@ function ach72() {
     massAchievementChecker();
 }
 export function F34() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU34)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU34)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 34, fruitUpgradeCost.FU34, true, ach72());
@@ -383,7 +383,7 @@ export function F34() {
     }
 }
 export function F35() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU35)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU35)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 35, fruitUpgradeCost.FU35, false, null);
@@ -391,7 +391,7 @@ export function F35() {
     }
 }
 export function F36() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU36)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU36)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 36, fruitUpgradeCost.FU36, false, null);
@@ -399,7 +399,7 @@ export function F36() {
     }
 }
 export function F37() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU37)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU37)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 37, fruitUpgradeCost.FU37, false, null);
@@ -407,7 +407,7 @@ export function F37() {
     }
 }
 export function F38() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU38)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU38)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 38, fruitUpgradeCost.FU38, false, null);
@@ -415,7 +415,7 @@ export function F38() {
     }
 }
 export function F39() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU39)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU39)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 39, fruitUpgradeCost.FU39, false, null);
@@ -423,7 +423,7 @@ export function F39() {
     }
 }
 export function F40() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU40)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU40)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 40, fruitUpgradeCost.FU40, false, null);
@@ -437,7 +437,7 @@ function ach91() {
 	massAchievementChecker();
 }
 export function F41() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU41)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU41)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 41, fruitUpgradeCost.FU41, true, ach91());
@@ -445,7 +445,7 @@ export function F41() {
     }
 }
 export function F42() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU42)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU42)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 42, fruitUpgradeCost.FU42, false, null);
@@ -460,7 +460,7 @@ function ach105() {
 	massAchievementChecker();
 }
 export function F43() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU43)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU43)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 43, fruitUpgradeCost.FU43, true, ach105());
@@ -468,7 +468,7 @@ export function F43() {
     }
 }
 export function F44() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU44)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU44)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 44, fruitUpgradeCost.FU44, false, null);
@@ -476,7 +476,7 @@ export function F44() {
     }
 }
 export function F45() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU45)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU45)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 45, fruitUpgradeCost.FU45, false, null);
@@ -484,7 +484,7 @@ export function F45() {
     }
 }
 export function F46() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU46)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU46)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 46, fruitUpgradeCost.FU46, false, null);
@@ -493,7 +493,7 @@ export function F46() {
     }
 }
 export function F47() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU47)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU47)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 47, fruitUpgradeCost.FU47, false, null);
@@ -502,7 +502,7 @@ export function F47() {
     }
 }
 export function F48() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU48)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU48)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 48, fruitUpgradeCost.FU48, false, null);
@@ -511,7 +511,7 @@ export function F48() {
     }
 }
 export function F49() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU49)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU49)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 49, fruitUpgradeCost.FU49, false, null);
@@ -527,7 +527,7 @@ function ach152() {
 	document.querySelector('.root-composter-background').style.visibility = 'visible';
 }
 export function F50() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU50)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU50)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 50, fruitUpgradeCost.FU50, true, ach152());
@@ -536,7 +536,7 @@ export function F50() {
     }
 }
 export function F51() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU51)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU51)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 51, fruitUpgradeCost.FU51, false, null);
@@ -545,7 +545,7 @@ export function F51() {
     }
 }
 export function F52() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU52)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU52)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 52, fruitUpgradeCost.FU52, false, null);
@@ -554,7 +554,7 @@ export function F52() {
     }
 }
 export function F53() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU53)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU53)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 53, fruitUpgradeCost.FU53, false, null);
@@ -563,7 +563,7 @@ export function F53() {
     }
 }
 export function F54() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU54)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU54)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 54, fruitUpgradeCost.FU54, false, null);
@@ -572,7 +572,7 @@ export function F54() {
     }
 }
 export function F55() {
-    if (gameData.fruits.greaterThanOrEqualTo(fruitUpgradeCost.FU55)) {
+    if (gameData.fruits.gte(fruitUpgradeCost.FU55)) {
         gameData.fruitUpgradeCounter = gameData.fruitUpgradeCounter.plus(new Decimal(1));
         gameData.totalUpgradeCounter = gameData.totalUpgradeCounter.plus(new Decimal(1));
         createCallableUpgrade('fruit', 55, fruitUpgradeCost.FU55, false, null);

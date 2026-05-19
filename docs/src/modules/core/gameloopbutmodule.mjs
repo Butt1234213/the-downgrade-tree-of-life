@@ -190,7 +190,7 @@ export function gameLoop() {
 			welder.welderGUI();
 
             if (storage.leafUpgradeFactor.L28Bought) {
-				if (storage.gameData.potentialEnergy.greaterThanOrEqualTo(new Decimal.fromComponents(1, 1, 100000))) {
+				if (storage.gameData.potentialEnergy.gte(new Decimal.fromComponents(1, 1, 100000))) {
 					document.getElementById('entropyUpdateCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.potentialEnergy, 3)} PE`;
 				}
 				else {
@@ -206,31 +206,31 @@ export function gameLoop() {
             storage.gameData.leaves = storage.gameData.leaves.plus(storage.gameData.leavesPerTick.times(ticksToProcess));
             storage.gameData.treeAge = storage.gameData.treeAge.plus(deltaTime.times(storage.gameData.tickSpeedMultiplier.times(storage.gameData.treeAgePerTick)));
 
-            if (storage.gameData.leaves.greaterThanOrEqualTo(new Decimal(1e20).times(storage.gameData.leafSoftcapStart))) {
+            if (storage.gameData.leaves.gte(new Decimal(1e20).times(storage.gameData.leafSoftcapStart))) {
 				storage.gameData.leavesIsSoftcapped = true;
 				storage.gameData.leavesIsSoftcappedThisDecompolization = true;
-				if (storage.gameData.leaves.greaterThanOrEqualTo(new Decimal(1.79e308))) {
+				if (storage.gameData.leaves.gte(new Decimal(1.79e308))) {
 					storage.gameData.leavesIsSoftcapped2 = true;
 					storage.gameData.leavesIsSoftcapped2ThisDecompolization = true;
 				}
 				else {
 					storage.gameData.leavesIsSoftcapped2 = false;
 				}
-				if (storage.gameData.leaves.greaterThanOrEqualTo(new Decimal.fromComponents(1, 1, 500))) {
+				if (storage.gameData.leaves.gte(new Decimal.fromComponents(1, 1, 500))) {
 					storage.gameData.leavesIsSoftcapped3 = true;
 					storage.gameData.leavesIsSoftcapped3ThisDecompolization = true;
 				}
 				else {
 					storage.gameData.leavesIsSoftcapped3 = false;
 				}
-				if (storage.gameData.leaves.greaterThanOrEqualTo(new Decimal.fromComponents(1, 1, 1000))) {
+				if (storage.gameData.leaves.gte(new Decimal.fromComponents(1, 1, 1000))) {
 					storage.gameData.leavesIsSoftcapped4 = true;
 					storage.gameData.leavesIsSoftcapped4ThisDecompolization = true;
 				}
 				else {
 					storage.gameData.leavesIsSoftcapped4 = false;
 				}
-				if (storage.gameData.leaves.greaterThanOrEqualTo(new Decimal.fromComponents(1, 1, 2000))) {
+				if (storage.gameData.leaves.gte(new Decimal.fromComponents(1, 1, 2000))) {
 					storage.gameData.leavesIsSoftcapped5 = true;
 					storage.gameData.leavesIsSoftcapped5ThisDecompolization = true;
 				}
@@ -245,37 +245,37 @@ export function gameLoop() {
 				storage.gameData.leavesIsSoftcapped4 = false;
 				storage.gameData.leavesIsSoftcapped5 = false;
             }
-			if (storage.gameData.leaves.greaterThanOrEqualTo(storage.gameData.leafSupercapStart)) {
+			if (storage.gameData.leaves.gte(storage.gameData.leafSupercapStart)) {
 				storage.gameData.leavesIsSupercapped = true;
 				achievements.ach95 = true;
 				document.getElementById('leafSupercap').style.display = 'block';
 				document.getElementById('leafMaximum').style.display = 'block';
 			}
-			if (storage.gameData.leaves.greaterThanOrEqualTo(storage.gameData.leafMaximumStart)) {
+			if (storage.gameData.leaves.gte(storage.gameData.leafMaximumStart)) {
 				storage.gameData.leaves = storage.gameData.leafMaximumStart;
 				achievements.ach133 = true;
 			}
-			if (storage.gameData.leavesPerTick.greaterThanOrEqualTo(storage.gameData.leafMaximumStart)) {
+			if (storage.gameData.leavesPerTick.gte(storage.gameData.leafMaximumStart)) {
 				storage.gameData.leavesPerTick = storage.gameData.leafMaximumStart;
 			}
 			
-			if (storage.gameData.leaves.greaterThanOrEqualTo(new Decimal.fromComponents(1, 1, 1500))) {
+			if (storage.gameData.leaves.gte(new Decimal.fromComponents(1, 1, 1500))) {
 			  achievements.ach84 = true;
 			}
-			if (storage.gameData.leaves.greaterThanOrEqualTo(new Decimal.fromComponents(1, 1, 10000))) {
+			if (storage.gameData.leaves.gte(new Decimal.fromComponents(1, 1, 10000))) {
 			  achievements.ach115 = true;
 			}
-			if (storage.gameData.leaves.greaterThanOrEqualTo(new Decimal.fromComponents(1, 1, 100000))) {
+			if (storage.gameData.leaves.gte(new Decimal.fromComponents(1, 1, 100000))) {
 			  achievements.ach135 = true;
 			}
-			if (storage.gameData.seeds.greaterThanOrEqualTo(new Decimal.fromComponents(1, 1, 100000).times(storage.gameData.leaves))) {
+			if (storage.gameData.seeds.gte(new Decimal.fromComponents(1, 1, 100000).times(storage.gameData.leaves))) {
 			  achievements.ach151 = true;
 			}
 			
-            if (storage.seedsVisualCalculation("true").greaterThanOrEqualTo(storage.gameData.seedSoftcapStart)) {
+            if (storage.seedsVisualCalculation("true").gte(storage.gameData.seedSoftcapStart)) {
 				storage.gameData.seedsIsSoftcapped = true;
 				storage.gameData.seedsIsSoftcappedThisHarvest = true;
-				if (storage.seedsVisualCalculation("true").greaterThanOrEqualTo(storage.gameData.seedSoftcap2Start)) {
+				if (storage.seedsVisualCalculation("true").gte(storage.gameData.seedSoftcap2Start)) {
 					storage.gameData.seedsIsSoftcapped2 = true;
 					storage.gameData.seedsIsSoftcapped2ThisHarvest = true;
 				}
@@ -288,63 +288,63 @@ export function gameLoop() {
 				storage.gameData.seedsIsSoftcapped2 = false;
 			}
 			
-			if (storage.seedsVisualCalculation("true").greaterThanOrEqualTo(storage.gameData.seedSupercapStart)) {
+			if (storage.seedsVisualCalculation("true").gte(storage.gameData.seedSupercapStart)) {
 				storage.gameData.seedsIsSupercapped = true;
 				document.getElementById('seedSupercap').style.display = 'block';
 				document.getElementById('seedMaximum').style.display = 'block';
 			}
-			if (storage.gameData.seeds.greaterThanOrEqualTo(storage.gameData.seedMaximumStart)) {
+			if (storage.gameData.seeds.gte(storage.gameData.seedMaximumStart)) {
 				storage.gameData.seeds = storage.gameData.seedMaximumStart;
 				achievements.ach133 = true;
 			}
 			
-            if (storage.gameData.fruitsOnHarvest.greaterThanOrEqualTo(new Decimal(1.79e308))) {
+            if (storage.gameData.fruitsOnHarvest.gte(new Decimal(1.79e308))) {
 				storage.gameData.fruitsIsSoftcapped = true;
 				storage.gameData.fruitsIsSoftcappedThisTransformation = true;
             }
 			else {
 				storage.gameData.fruitsIsSoftcapped = false;
 			}
-            if (storage.gameData.fruitsOnHarvest.greaterThanOrEqualTo(storage.gameData.fruitSupercapStart)) {
+            if (storage.gameData.fruitsOnHarvest.gte(storage.gameData.fruitSupercapStart)) {
 				storage.gameData.fruitsIsSupercapped = true;
 				document.getElementById('fruitSupercap').style.display = 'block';
 				document.getElementById('fruitMaximum').style.display = 'block';
             }
-			if (storage.gameData.fruits.greaterThanOrEqualTo(storage.gameData.fruitMaximumStart)) {
+			if (storage.gameData.fruits.gte(storage.gameData.fruitMaximumStart)) {
 				storage.gameData.fruits = storage.gameData.fruitMaximumStart;
 				achievements.ach133 = true;
 			}
 			
 			
-            if (storage.entropyUpgradeFactor.B1Amount.greaterThanOrEqualTo(new Decimal(100))) {
+            if (storage.entropyUpgradeFactor.B1Amount.gte(new Decimal(100))) {
 				achievements.ach92 = true;
             }
-            if (storage.gameData.leafSoftcapStart.greaterThanOrEqualTo(new Decimal.fromComponents(1, 1, 2000))) {
+            if (storage.gameData.leafSoftcapStart.gte(new Decimal.fromComponents(1, 1, 2000))) {
 				achievements.ach93 = true;
             }
-            if (storage.gameData.droughtLevel.greaterThan(new Decimal(1))) {
+            if (storage.gameData.droughtLevel.gt(new Decimal(1))) {
 				achievements.ach102 = true;
             }
-            if (storage.gameData.blizzardLevel.greaterThan(new Decimal(1))) {
+            if (storage.gameData.blizzardLevel.gt(new Decimal(1))) {
 				achievements.ach114 = true;
             }
-            if (storage.gameData.fallLevel.greaterThan(new Decimal(1))) {
+            if (storage.gameData.fallLevel.gt(new Decimal(1))) {
 				achievements.ach145 = true;
 				document.querySelector('.buttons-fallen-leaves-tab-color').style.visibility = 'visible';
             }
-			if (storage.gameData.highestCircuits.greaterThanOrEqualTo(new Decimal(1000))) {
+			if (storage.gameData.highestCircuits.gte(new Decimal(1000))) {
 				achievements.ach103 = true;
 			}
-			if (storage.gameData.highestCircuits.greaterThanOrEqualTo(new Decimal(1e6))) {
+			if (storage.gameData.highestCircuits.gte(new Decimal(1e6))) {
 				achievements.ach143 = true;
 			}
-			if (storage.gameData.gameSpeed.greaterThanOrEqualTo(new Decimal(3.155e7))) {
+			if (storage.gameData.gameSpeed.gte(new Decimal(3.155e7))) {
 				achievements.ach104 = true;
 			}
-            if (storage.gameData.bacteria.greaterThanOrEqualTo(new Decimal(1.79e308))) {
+            if (storage.gameData.bacteria.gte(new Decimal(1.79e308))) {
 				achievements.ach122 = true;
             }
-			if ((storage.entropyUpgradeFactor.B2Amount.greaterThanOrEqualTo(new Decimal(10))) && (storage.fruitUpgradeFactor.M2.greaterThanOrEqualTo(new Decimal(10))) && (storage.entropyUpgradeFactor.R3Amount.greaterThanOrEqualTo(new Decimal(10)))) {
+			if ((storage.entropyUpgradeFactor.B2Amount.gte(new Decimal(10))) && (storage.fruitUpgradeFactor.M2.gte(new Decimal(10))) && (storage.entropyUpgradeFactor.R3Amount.gte(new Decimal(10)))) {
 				achievements.ach134 = true;
 			}
 			if (!achievements.ach132 && achievements.ach131) {
@@ -356,7 +356,7 @@ export function gameLoop() {
 				if (!(storage.rootUpgradeFactor.fallenLeavesBOOM.fallen.amount instanceof Decimal)) {
 					//do nothing
 				}
-				else if (storage.rootUpgradeFactor.fallenLeavesBOOM.fallen.amount.greaterThanOrEqualTo(new Decimal(1))) {
+				else if (storage.rootUpgradeFactor.fallenLeavesBOOM.fallen.amount.gte(new Decimal(1))) {
 					achievements.ach153 = true;
 				}
 			}
@@ -364,7 +364,7 @@ export function gameLoop() {
 				if (!(storage.rootUpgradeFactor.fallenLeavesBOOM.mossy.amount instanceof Decimal)) {
 					//do nothing
 				}
-				else if (storage.rootUpgradeFactor.fallenLeavesBOOM.mossy.amount.greaterThanOrEqualTo(new Decimal(1))) {
+				else if (storage.rootUpgradeFactor.fallenLeavesBOOM.mossy.amount.gte(new Decimal(1))) {
 					achievements.ach154 = true;
 				}
 			}
@@ -372,7 +372,7 @@ export function gameLoop() {
 				if (!(storage.rootUpgradeFactor.fallenLeavesBOOM.marbled.amount instanceof Decimal)) {
 					//do nothing
 				}
-				else if (storage.rootUpgradeFactor.fallenLeavesBOOM.marbled.amount.greaterThanOrEqualTo(new Decimal(1))) {
+				else if (storage.rootUpgradeFactor.fallenLeavesBOOM.marbled.amount.gte(new Decimal(1))) {
 					achievements.ach155 = true;
 				}
 			}
