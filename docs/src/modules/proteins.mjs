@@ -342,6 +342,7 @@ function RuBisCo() {
 document.getElementById('makeRuBisCo').addEventListener("click", RuBisCo);
 export function autoRuBisCo(value) {
 	if (value.lessThan(new Decimal(1))) {
+		storage.entropyUpgradeFactor.rubiscoDoneLoading = true;
 		return;
 	}
 	const bulk = storage.gameData.dnaBlueprintBulk;
@@ -351,6 +352,10 @@ export function autoRuBisCo(value) {
 		storage.entropyUpgradeFactor.rubisco = storage.entropyUpgradeFactor.rubisco.plus(bulk);
 		document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your Cell Replication speed and Bacteria`;
 		document.getElementById('blueprintCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} DNA Blueprints`;
+	}
+	else {
+		storage.entropyUpgradeFactor.rubiscoDoneLoading = true;
+		return;
 	}
 }
 document.getElementById('bulkBuyRuBisCo').addEventListener("change", function() {
@@ -379,6 +384,7 @@ function Extensin() {
 document.getElementById('makeExtensin').addEventListener("click", Extensin);
 export function autoExtensin(value) {
 	if (value.lessThan(new Decimal(1))) {
+		storage.entropyUpgradeFactor.extensinDoneLoading = true;
 		return;
 	}
 	const bulk = storage.gameData.dnaBlueprintBulk;
@@ -388,6 +394,10 @@ export function autoExtensin(value) {
 		storage.entropyUpgradeFactor.extensin = storage.entropyUpgradeFactor.extensin.plus(bulk);
 		document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your Cell Replication speed and Bacteria`;
 		document.getElementById('blueprintCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} DNA Blueprints`;
+	}
+	else {
+		storage.entropyUpgradeFactor.extensinDoneLoading = true;
+		return;
 	}
 }
 document.getElementById('bulkBuyExtensin').addEventListener("change", function() {
@@ -416,6 +426,7 @@ function Arganine() {
 document.getElementById('makeArganine').addEventListener("click", Arganine);
 export function autoArganine(value) {
 	if (value.lessThan(new Decimal(1))) {
+		storage.entropyUpgradeFactor.arganineDoneLoading = true;
 		return;
 	}
 	const bulk = storage.gameData.dnaBlueprintBulk;
@@ -425,6 +436,10 @@ export function autoArganine(value) {
 		storage.entropyUpgradeFactor.arganine = storage.entropyUpgradeFactor.arganine.plus(bulk);
 		document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your Cell Replication speed and Bacteria`;
 		document.getElementById('blueprintCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} DNA Blueprints`;
+	}
+	else {
+		storage.entropyUpgradeFactor.arganineDoneLoading = true;
+		return;
 	}
 }
 document.getElementById('bulkBuyArganine').addEventListener("change", function() {
@@ -453,6 +468,7 @@ function Glutamine() {
 document.getElementById('makeGlutamine').addEventListener("click", Glutamine);
 export function autoGlutamine(value) {
 	if (value.lessThan(new Decimal(1))) {
+		storage.entropyUpgradeFactor.glutamineDoneLoading = true;
 		return;
 	}
 	const bulk = storage.gameData.dnaBlueprintBulk;
@@ -462,6 +478,10 @@ export function autoGlutamine(value) {
 		storage.entropyUpgradeFactor.glutamine = storage.entropyUpgradeFactor.glutamine.plus(bulk);
 		document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your Cell Replication speed and Bacteria`;
 		document.getElementById('blueprintCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} DNA Blueprints`;
+	}
+	else {
+		storage.entropyUpgradeFactor.glutamineDoneLoading = true;
+		return;
 	}
 }
 document.getElementById('bulkBuyGlutamine').addEventListener("change", function() {
@@ -490,6 +510,7 @@ function Glutamate() {
 document.getElementById('makeGlutamate').addEventListener("click", Glutamate);
 export function autoGlutamate(value) {
 	if (value.lessThan(new Decimal(1))) {
+		storage.entropyUpgradeFactor.glutamateDoneLoading = true;
 		return;
 	}
 	const bulk = storage.gameData.dnaBlueprintBulk;
@@ -499,6 +520,10 @@ export function autoGlutamate(value) {
 		storage.entropyUpgradeFactor.glutamate = storage.entropyUpgradeFactor.glutamate.plus(bulk);
 		document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your Cell Replication speed and Bacteria`;
 		document.getElementById('blueprintCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} DNA Blueprints`;
+	}
+	else {
+		storage.entropyUpgradeFactor.glutamateDoneLoading = true;
+		return;
 	}
 }
 document.getElementById('bulkBuyGlutamate').addEventListener("change", function() {
@@ -527,6 +552,7 @@ function Asparagine() {
 document.getElementById('makeAsparagine').addEventListener("click", Asparagine);
 export function autoAsparagine(value) {
 	if (value.lessThan(new Decimal(1))) {
+		storage.entropyUpgradeFactor.asparagineDoneLoading = true;
 		return;
 	}
 	const bulk = storage.gameData.dnaBlueprintBulk;
@@ -536,6 +562,10 @@ export function autoAsparagine(value) {
 		storage.entropyUpgradeFactor.asparagine = storage.entropyUpgradeFactor.asparagine.plus(bulk);
 		document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your Cell Replication speed and Bacteria`;
 		document.getElementById('blueprintCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} DNA Blueprints`;
+	}
+	else {
+		storage.entropyUpgradeFactor.asparagineDoneLoading = true;
+		return;
 	}
 }
 document.getElementById('bulkBuyAsparagine').addEventListener("change", function() {
@@ -565,6 +595,7 @@ function AGP() {
 document.getElementById('makeAGP').addEventListener("click", AGP);
 export function autoAGP(value) {
 	if (value.lessThan(new Decimal(1))) {
+		storage.entropyUpgradeFactor.agpDoneLoading = true;
 		return;
 	}
 	const bulk = storage.gameData.dnaBlueprintBulk;
@@ -574,6 +605,10 @@ export function autoAGP(value) {
 		storage.entropyUpgradeFactor.agp = storage.entropyUpgradeFactor.agp.plus(bulk);
 		document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your Cell Replication speed and Bacteria`;
 		document.getElementById('blueprintCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} DNA Blueprints`;
+	}
+	else {
+		storage.entropyUpgradeFactor.agpDoneLoading = true;
+		return;
 	}
 }
 document.getElementById('bulkBuyAGP').addEventListener("change", function() {
@@ -602,6 +637,7 @@ function TRB() {
 document.getElementById('makeTRB').addEventListener("click", TRB);
 export function autoTRB(value) {
 	if (value.lessThan(new Decimal(1))) {
+		storage.entropyUpgradeFactor.trbDoneLoading = true;
 		return;
 	}
 	const bulk = storage.gameData.dnaBlueprintBulk;
@@ -611,6 +647,10 @@ export function autoTRB(value) {
 		storage.entropyUpgradeFactor.trb = storage.entropyUpgradeFactor.trb.plus(bulk);
 		document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} currently) (${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your Cell Replication speed and Bacteria`;
 		document.getElementById('blueprintCounter').innerHTML = `${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprints, 3)} / ${storage.truncateToDecimalPlaces(storage.gameData.dnaBlueprintsTotal, 3)} DNA Blueprints`;
+	}
+	else {
+		storage.entropyUpgradeFactor.trbDoneLoading = true;
+		return;
 	}
 }
 document.getElementById('bulkBuyTRB').addEventListener("change", function() {
@@ -1177,13 +1217,22 @@ class proteinPreset {
 		storage.entropyUpgradeFactor.currentlyLoadedProteinPreset = [];
 		storage.entropyUpgradeFactor.currentlyLoadedProteinPresetID = null;
 		storage.entropyUpgradeFactor.isLoadingProteinPreset = false;
+		storage.entropyUpgradeFactor.currentlyLoadedDNABlueprintAmount = new Decimal(0);
+		storage.entropyUpgradeFactor.rubiscoDoneLoading = true;
+		storage.entropyUpgradeFactor.extensinDoneLoading = true;
+		storage.entropyUpgradeFactor.arganineDoneLoading = true;
+		storage.entropyUpgradeFactor.glutamineDoneLoading = true;
+		storage.entropyUpgradeFactor.glutamateDoneLoading = true;
+		storage.entropyUpgradeFactor.asparagineDoneLoading = true;
+		storage.entropyUpgradeFactor.trbDoneLoading = true;
+		storage.entropyUpgradeFactor.agpDoneLoading = true;
 		document.getElementById(`proteinPreset${this.id}Running`).innerHTML = "STOPPED";
 		document.getElementById(`proteinPreset${this.id}Running`).classList.remove("softcap5");
 		document.getElementById(`proteinPreset${this.id}Running`).classList.add("softcap");
 		
 		const dna = storage.gameData.dna.plus(storage.gameData.dnaFree);
 		const blueprints = storage.gameData.dnaBlueprintsTotal;
-		const blueprintsToMake = (blueprints.minus(dna).trunc()).clamp(new Decimal(0), new Decimal(Infinity));
+		const blueprintsToMake = (dna.minus(blueprints).trunc()).clamp(new Decimal(0), new Decimal(Infinity));
 		
 		let divisor = new Decimal(0);
 		for (let i = 0; i < this.value.length; i++) {
@@ -1206,6 +1255,15 @@ class proteinPreset {
 			storage.entropyUpgradeFactor.currentlyLoadedProteinPreset = result;
 			storage.entropyUpgradeFactor.currentlyLoadedProteinPresetID = this.id;
 			storage.entropyUpgradeFactor.isLoadingProteinPreset = true;
+			storage.entropyUpgradeFactor.currentlyLoadedDNABlueprintAmount = blueprintsToMake;
+			storage.entropyUpgradeFactor.rubiscoDoneLoading = false;
+			storage.entropyUpgradeFactor.extensinDoneLoading = false;
+			storage.entropyUpgradeFactor.arganineDoneLoading = false;
+			storage.entropyUpgradeFactor.glutamineDoneLoading = false;
+			storage.entropyUpgradeFactor.glutamateDoneLoading = false;
+			storage.entropyUpgradeFactor.asparagineDoneLoading = false;
+			storage.entropyUpgradeFactor.trbDoneLoading = false;
+			storage.entropyUpgradeFactor.agpDoneLoading = false;
 			document.getElementById(`proteinPreset${this.id}Running`).innerHTML = "RUNNING";
 			document.getElementById(`proteinPreset${this.id}Running`).classList.remove("softcap");
 			document.getElementById(`proteinPreset${this.id}Running`).classList.add("softcap5");
@@ -1219,6 +1277,15 @@ class proteinPreset {
 			storage.entropyUpgradeFactor.currentlyLoadedProteinPreset = [];
 			storage.entropyUpgradeFactor.currentlyLoadedProteinPresetID = null;
 			storage.entropyUpgradeFactor.isLoadingProteinPreset = false;
+			storage.entropyUpgradeFactor.currentlyLoadedDNABlueprintAmount = new Decimal(0);
+			storage.entropyUpgradeFactor.rubiscoDoneLoading = true;
+			storage.entropyUpgradeFactor.extensinDoneLoading = true;
+			storage.entropyUpgradeFactor.arganineDoneLoading = true;
+			storage.entropyUpgradeFactor.glutamineDoneLoading = true;
+			storage.entropyUpgradeFactor.glutamateDoneLoading = true;
+			storage.entropyUpgradeFactor.asparagineDoneLoading = true;
+			storage.entropyUpgradeFactor.trbDoneLoading = true;
+			storage.entropyUpgradeFactor.agpDoneLoading = true;
 			document.getElementById(`proteinPreset${this.id}Running`).innerHTML = "STOPPED";
 			document.getElementById(`proteinPreset${this.id}Running`).classList.remove("softcap5");
 			document.getElementById(`proteinPreset${this.id}Running`).classList.add("softcap");

@@ -151,6 +151,7 @@
     border-color: #b8a38c;
     border-style: outset;
     font-family: Verdana;
+    visibility: hidden;
 }
 .buttons-eru {
     position: absolute;

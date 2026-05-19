@@ -668,20 +668,26 @@ export async function dnaBlueprintsAutobuyerChecker() {
         else {
             await sleep(100);
         }
+		const dna = storage.gameData.dna.plus(storage.gameData.dnaFree);
+		const blueprints = storage.gameData.dnaBlueprintsTotal;
+		storage.entropyUpgradeFactor.currentlyLoadedDNABlueprintAmount = (dna.minus(blueprints).trunc()).clamp(new Decimal(0), new Decimal(Infinity));
 		proteins.checkDNABlueprints();
-		proteins.autoRuBisCo(storage.entropyUpgradeFactor.currentlyLoadedProteinPreset[0]);
-		proteins.autoExtensin(storage.entropyUpgradeFactor.currentlyLoadedProteinPreset[1]);
-		proteins.autoArganine(storage.entropyUpgradeFactor.currentlyLoadedProteinPreset[2]);
-		proteins.autoGlutamine(storage.entropyUpgradeFactor.currentlyLoadedProteinPreset[3]);
-		proteins.autoGlutamate(storage.entropyUpgradeFactor.currentlyLoadedProteinPreset[4]);
-		proteins.autoAsparagine(storage.entropyUpgradeFactor.currentlyLoadedProteinPreset[5]);
-		proteins.autoAGP(storage.entropyUpgradeFactor.currentlyLoadedProteinPreset[6]);
-		proteins.autoTRB(storage.entropyUpgradeFactor.currentlyLoadedProteinPreset[7]);
-		
+		if (storage.gameData.dnaBlueprints.greaterThanOrEqualTo(storage.gameData.dnaBlueprintBulk)) {
+			proteins.autoRuBisCo(storage.entropyUpgradeFactor.currentlyLoadedProteinPreset[0]);
+			proteins.autoExtensin(storage.entropyUpgradeFactor.currentlyLoadedProteinPreset[1]);
+			proteins.autoArganine(storage.entropyUpgradeFactor.currentlyLoadedProteinPreset[2]);
+			proteins.autoGlutamine(storage.entropyUpgradeFactor.currentlyLoadedProteinPreset[3]);
+			proteins.autoGlutamate(storage.entropyUpgradeFactor.currentlyLoadedProteinPreset[4]);
+			proteins.autoAsparagine(storage.entropyUpgradeFactor.currentlyLoadedProteinPreset[5]);
+			proteins.autoAGP(storage.entropyUpgradeFactor.currentlyLoadedProteinPreset[6]);
+			proteins.autoTRB(storage.entropyUpgradeFactor.currentlyLoadedProteinPreset[7]);
+		}
+		const everythingIsLoaded = (storage.entropyUpgradeFactor.rubiscoDoneLoading && storage.entropyUpgradeFactor.extensinDoneLoading && storage.entropyUpgradeFactor.arganineDoneLoading && storage.entropyUpgradeFactor.glutamineDoneLoading && storage.entropyUpgradeFactor.glutamateDoneLoading && storage.entropyUpgradeFactor.asparagineDoneLoading && storage.entropyUpgradeFactor.trbDoneLoading && storage.entropyUpgradeFactor.agpDoneLoading);
 		//stops the autobuyer automatically
-		if ((storage.gameData.dnaBlueprintsTotal.greaterThan(storage.gameData.dnaBlueprints.plus(new Decimal(50)))) && (storage.gameData.dnaBlueprintBulk.greaterThan(storage.gameData.dnaBlueprints))) {
+		if ((storage.gameData.dnaBlueprintsTotal.greaterThan(storage.gameData.dnaBlueprints)) && (storage.entropyUpgradeFactor.currentlyLoadedDNABlueprintAmount.lessThan(storage.gameData.dnaBlueprintBulk)) && everythingIsLoaded) {
 			storage.entropyUpgradeFactor.currentlyLoadedProteinPreset = [];
 			storage.entropyUpgradeFactor.isLoadingProteinPreset = false;
+			storage.entropyUpgradeFactor.currentlyLoadedDNABlueprintAmount = new Decimal(0);
 			document.getElementById(`proteinPreset${storage.entropyUpgradeFactor.currentlyLoadedProteinPresetID}Running`).innerHTML = "STOPPED";
 			document.getElementById(`proteinPreset${storage.entropyUpgradeFactor.currentlyLoadedProteinPresetID}Running`).classList.remove("softcap5");
 			document.getElementById(`proteinPreset${storage.entropyUpgradeFactor.currentlyLoadedProteinPresetID}Running`).classList.add("softcap");

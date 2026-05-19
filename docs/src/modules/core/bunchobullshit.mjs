@@ -739,7 +739,16 @@ export var entropyUpgradeFactor = {
 	proteinPresets: {},
 	currentlyLoadedProteinPresetID: null,
 	currentlyLoadedProteinPreset: [],
+	currentlyLoadedDNABlueprintAmount: new Decimal(0),
 	isLoadingProteinPreset: false,
+	rubiscoDoneLoading: true,
+	extensinDoneLoading: true,
+	arganineDoneLoading: true,
+	glutamineDoneLoading: true,
+	glutamateDoneLoading: true,
+	asparagineDoneLoading: true,
+	trbDoneLoading: true,
+	agpDoneLoading: true,
 }
 
 export var entropyAutomationFactor = {}

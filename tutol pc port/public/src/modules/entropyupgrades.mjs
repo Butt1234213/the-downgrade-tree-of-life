@@ -503,6 +503,7 @@ export function E44() {
     }
 }
 function ach142() {
+	document.querySelector(".buttons-eru-holder").style.visibility = "visible";
 	achievements.ach142 = true;
 	massAchievementChecker();
 }
