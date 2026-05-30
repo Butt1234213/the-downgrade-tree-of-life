@@ -76,7 +76,7 @@ export function bacteriaCalculation() {
         storage.gameData.bacteriaCellsCSMult = z;
         const v = Decimal.ln(w).plus(new Decimal(10));
         const u = Decimal.log10(v);
-        const t = Decimal.log10(u).clamp(new Decimal(0), new Decimal(Infinity));
+        const t = Decimal.log10(u.plus(new Decimal(1))).clamp(new Decimal(0), new Decimal(Infinity));
         storage.gameData.bacteriaFertilizerMult = t;
         document.getElementById('bacteriaEffectCounter').innerHTML = `Your current Bacteria boosts the base Fertilizer effectiveness by +${storage.truncateToDecimalPlaces(storage.gameData.bacteriaFertilizerMult, 3)}, and Cell Replication and Composting speeds by x${storage.truncateToDecimalPlaces(storage.gameData.bacteriaCellsCSMult, 3)}.`;
     }

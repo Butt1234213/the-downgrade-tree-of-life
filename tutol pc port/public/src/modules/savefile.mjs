@@ -173,13 +173,21 @@ export function loadSave() {
 
     //gameData on initilization
     let loadedGameData = { ...storage.gameData };
+	const initialGameData = { ...storage.gameData };
     let loadedLeafUpgradeFactor = { ...storage.leafUpgradeFactor };
+	const initialLeafUpgradeFactor = { ...storage.leafUpgradeFactor };
     let loadedSeedUpgradeFactor = { ...storage.seedUpgradeFactor };
+	const initialSeedUpgradeFactor = { ...storage.seedUpgradeFactor };
     let loadedFruitUpgradeFactor = { ...storage.fruitUpgradeFactor };
+	const initialFruitUpgradeFactor = { ...storage.fruitUpgradeFactor };
     let loadedEntropyUpgradeFactor = { ...storage.entropyUpgradeFactor };
+	const initialEntropyUpgradeFactor = { ...storage.entropyUpgradeFactor };
     let loadedCircuits = { ...automation.circuits };
+	const initialCircuits = { ...automation.circuits };
     let loadedRepeatableUpgradeFactor = { ...temple.repeatableUpgradeFactor };
+	const initialRepeatableUpgradeFactor = { ...temple.repeatableUpgradeFactor };
     let loadedRootUpgradeFactor = { ...storage.rootUpgradeFactor };
+	const initialRootUpgradeFactor = { ...storage.rootUpgradeFactor };
 
     const gameDataString = localStorage.getItem("gameData");
     const leafUpgradeFactorString = localStorage.getItem("leafUpgradeFactor");
@@ -324,8 +332,8 @@ export function loadSave() {
                 }
             }
         }
-        for (const key in newRootUpgradeFactor) {
-            if (loadedRootUpgradeFactor.hasOwnProperty(key)) {
+        for (const key in loadedRootUpgradeFactor) {
+            if (newRootUpgradeFactor.hasOwnProperty(key)) {
                 const value = newRootUpgradeFactor[key];
                 if (storage.rootUpgradeFactor[key] instanceof Decimal) {
                     loadedRootUpgradeFactor[key] = new Decimal(value);
@@ -333,6 +341,75 @@ export function loadSave() {
                     loadedRootUpgradeFactor[key] = value;
                 }
             }
+        }
+        for (const key in newRootUpgradeFactor.fallenLeavesBOOM) {
+			for (const subkey in newRootUpgradeFactor.fallenLeavesBOOM[key]) {
+				if (loadedRootUpgradeFactor.fallenLeavesBOOM[key].hasOwnProperty(subkey)) {
+					const value = newRootUpgradeFactor.fallenLeavesBOOM[key][subkey];
+					if (storage.rootUpgradeFactor.fallenLeavesBOOM[key][subkey] instanceof Decimal) {
+						loadedRootUpgradeFactor.fallenLeavesBOOM[key][subkey] = new Decimal(value);
+					} else {
+						loadedRootUpgradeFactor.fallenLeavesBOOM[key][subkey] = value;
+					}
+				}
+			}
+        }
+        for (const key in initialRootUpgradeFactor.fallenUpgrades) {
+			if (typeof newRootUpgradeFactor.fallenUpgrades[key] === "undefined") {
+				loadedRootUpgradeFactor.fallenUpgrades[key] = initialRootUpgradeFactor.fallenUpgrades[key];
+			}
+            for (let i = 0; i < key.length; i++) {
+				if (typeof newRootUpgradeFactor.fallenUpgrades[key[i]] === "undefined") {
+					loadedRootUpgradeFactor.fallenUpgrades[key[i]] = initialRootUpgradeFactor.fallenUpgrades[key[i]];
+				}
+				for (const subkey in newRootUpgradeFactor.fallenUpgrades[key[i]]) {
+					if (loadedRootUpgradeFactor.fallenUpgrades[key[i]].hasOwnProperty(subkey)) {
+						const value = newRootUpgradeFactor.fallenUpgrades[key[i]][subkey];
+						if (storage.rootUpgradeFactor.fallenUpgrades[key[i]][subkey] instanceof Decimal) {
+							loadedRootUpgradeFactor.fallenUpgrades[key[i]][subkey] = new Decimal(value);
+						} 
+						else {
+							loadedRootUpgradeFactor.fallenUpgrades[key[i]][subkey] = value;
+						}
+					}
+				}
+			}
+        }
+        for (const key in initialRootUpgradeFactor.fallenMilestones) {
+			if (typeof newRootUpgradeFactor.fallenMilestones[key] === "undefined") {
+				loadedRootUpgradeFactor.fallenMilestones[key] = initialRootUpgradeFactor.fallenMilestones[key];
+			}
+            for (let i = 0; i < key.length; i++) {
+				if (typeof newRootUpgradeFactor.fallenMilestones[key[i]] === "undefined") {
+					loadedRootUpgradeFactor.fallenMilestones[key[i]] = initialRootUpgradeFactor.fallenMilestones[key[i]];
+				}
+				for (const subkey in newRootUpgradeFactor.fallenMilestones[key[i]]) {
+					if (loadedRootUpgradeFactor.fallenMilestones[key[i]].hasOwnProperty(subkey)) {
+						const value = newRootUpgradeFactor.fallenMilestones[key[i]][subkey];
+						if (storage.rootUpgradeFactor.fallenMilestones[key[i]][subkey] instanceof Decimal) {
+							loadedRootUpgradeFactor.fallenMilestones[key[i]][subkey] = new Decimal(value);
+						} 
+						else {
+							loadedRootUpgradeFactor.fallenMilestones[key[i]][subkey] = value;
+						}
+					}
+				}
+			}
+        }
+        for (const key in initialRootUpgradeFactor.items) {
+			if (typeof newRootUpgradeFactor.items[key] === "undefined") {
+				loadedRootUpgradeFactor.items[key] = initialRootUpgradeFactor.items[key];
+			}
+			for (const subkey in loadedRootUpgradeFactor.items[key]) {
+				if (loadedRootUpgradeFactor.items[key].hasOwnProperty(subkey)) {
+					const value = newRootUpgradeFactor.items[key][subkey];
+					if (storage.rootUpgradeFactor.items[key][subkey] instanceof Decimal) {
+						loadedRootUpgradeFactor.items[key][subkey] = new Decimal(value);
+					} else {
+						loadedRootUpgradeFactor.items[key][subkey] = value;
+					}
+				}
+			}
         }
     }
 	

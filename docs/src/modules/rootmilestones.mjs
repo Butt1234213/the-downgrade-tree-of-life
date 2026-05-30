@@ -56,6 +56,7 @@ export function rootMilestoneChecker() {
 			storage.rootUpgradeFactor.RM11Achieved = true;
 			document.getElementById("RM11").style.backgroundImage = `radial-gradient(#edac13, #55d941)`;
 			document.querySelector('.dna-blueprints-automation-background').style.visibility = `visible`;
+			document.getElementById('proteinPresetButton').style.display = `none`;
 		}
 	}
 }

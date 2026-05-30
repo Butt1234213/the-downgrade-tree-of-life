@@ -25,6 +25,8 @@ export function tab(tab, tabObject) {
     document.getElementById('buttons-petri-dish').style.display = 'none';
     document.getElementById('buttons-welder').style.display = 'none';
     document.getElementById('buttons-fallen-leaves').style.display = 'none';
+    document.getElementById('buttons-forge').style.display = 'none';
+    document.getElementById('buttons-mining').style.display = 'none';
     document.getElementById('achievements').style.display = 'none';
     document.getElementById('secretAchievementsContainer').style.display = 'none';
     document.getElementById('achievement-tabs').style.display = 'none';
@@ -45,6 +47,8 @@ export function tab(tab, tabObject) {
     document.getElementById('petriDishTab').style.borderWidth = '2px';
     document.getElementById('welderTab').style.borderWidth = '2px';
     document.getElementById('fallenLeavesTab').style.borderWidth = '2px';
+    document.getElementById('forgeTab').style.borderWidth = '2px';
+    document.getElementById('miningTab').style.borderWidth = '2px';
     document.getElementById('achievementTab').style.borderWidth = '2px';
     document.getElementById('regularAchievements').style.borderWidth = '2px';
     document.getElementById('secretAchievements').style.borderWidth = '2px';
@@ -131,6 +135,16 @@ function loadFallenLeavesTab() {
     document.getElementById('root-tabs').style.display = 'inline-block';
     console.log("loadFallenLeavesTab has been called");
 }
+function loadForgeTab() {
+    tab('buttons-forge', 'forgeTab');
+    document.getElementById('root-tabs').style.display = 'inline-block';
+    console.log("loadForgeTab has been called");
+}
+function loadMiningTab() {
+    tab('buttons-mining', 'miningTab');
+    document.getElementById('root-tabs').style.display = 'inline-block';
+    console.log("loadMiningTab has been called");
+}
 function loadAchTab () {
     tab('achievements', 'achievementTab');
     document.getElementById('achievement-tabs').style.display = 'inline-block';
@@ -165,6 +179,8 @@ document.getElementById("rootMilestoneTab").addEventListener("click", loadRootMi
 document.getElementById("petriDishTab").addEventListener("click", loadPetriDishTab);
 document.getElementById("welderTab").addEventListener("click", loadWelderTab);
 document.getElementById("fallenLeavesTab").addEventListener("click", loadFallenLeavesTab);
+document.getElementById("forgeTab").addEventListener("click", loadForgeTab);
+document.getElementById("miningTab").addEventListener("click", loadMiningTab);
 document.getElementById("achievementTab").addEventListener("click", loadAchTab);
 document.getElementById("settingsTab").addEventListener("click", loadSettingsTab);
 document.getElementById("regularAchievements").addEventListener("click", loadAchTab);

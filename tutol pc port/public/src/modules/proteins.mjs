@@ -218,7 +218,7 @@ export function RNACalculation() {
 		const z = y.minus(new Decimal(10));
 		const w = z.times(storage.gameData.rnaMult);
 		const r = w.trunc();
-		storage.gameData.rna = r;
+		storage.gameData.rna = r.clamp(new Decimal(0), new Decimal(Infinity));
 		
 		const v = storage.gameData.rna.plus(new Decimal(1));
 		const u = (new Decimal(5).times(v)).plus(new Decimal(55));

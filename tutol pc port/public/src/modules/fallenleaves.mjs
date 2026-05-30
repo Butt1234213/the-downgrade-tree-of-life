@@ -117,7 +117,7 @@ export class fallenType {
 		fallenCapCounter.id = `${this.name}CapCounter`;
 		
 		let fallenImage = clone.querySelector(`#fallenTemplateImage`);
-		fallenImage.src = `./src/images/${this.name}.png`;
+		fallenImage.src = `./src/images/fallenleaves/${this.name}.png`;
 		fallenImage.id = `${this.name}Image`;
 		
 		let fallenFactor1Counter = clone.querySelector(`#fallenTemplateFactor1Counter`);
@@ -568,7 +568,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 		['upgrade'],
 		['milestone'],
 		() => false,
-		'This Fallen Leaf type unlocks when your Furnace can reach a temperature of 850&deg; C.'
+		'This Fallen Leaf type unlocks when your Forge can reach a temperature of 850&deg; C.'
 	);
 	fallenLeaves.steel = new fallenType(
 		'steelleaf',
@@ -582,7 +582,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 		['upgrade'],
 		['milestone'],
 		() => false,
-		'This Fallen Leaf type unlocks when your Furnace can reach a temperature of 1000&deg; C.'
+		'This Fallen Leaf type unlocks when your Forge can reach a temperature of 1000&deg; C.'
 	);
 	fallenLeaves.titanium = new fallenType(
 		'titaniumleaf',
@@ -596,7 +596,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 		['upgrade'],
 		['milestone'],
 		() => false,
-		'This Fallen Leaf type unlocks when your Furnace can reach a temperature of 1300&deg; C.'
+		'This Fallen Leaf type unlocks when your Forge can reach a temperature of 1300&deg; C.'
 	);
 	fallenLeaves.chromium = new fallenType(
 		'chromiumleaf',
@@ -610,7 +610,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 		['upgrade'],
 		['milestone'],
 		() => false,
-		'This Fallen Leaf type unlocks when your Furnace can reach a temperature of 1800&deg; C and a mining fortune greater than 9000&#x1F340;.'
+		'This Fallen Leaf type unlocks when your Forge can reach a temperature of 1800&deg; C and a mining fortune greater than 9000&#x1F340;.'
 	);
 	fallenLeaves.vultimanium = new fallenType(
 		'vultimaniumleaf',
@@ -660,10 +660,10 @@ document.getElementById("collectAllFallenLeaves").addEventListener("click", func
 		const value = storage.rootUpgradeFactor.fallenLeavesBOOM[key];
 		if (value.canCollect) {
 			if (!(storage.rootUpgradeFactor.fallenLeavesBOOM[key].amount instanceof Decimal)) {
-				storage.rootUpgradeFactor.fallenLeavesBOOM[key].amount = new Decimal(storage.rootUpgradeFactor.fallenLeavesBOOM[key].amount);
+				storage.rootUpgradeFactor.fallenLeavesBOOM[key].amount = new Decimal(value.amount);
 			}
 			if (!(storage.rootUpgradeFactor.fallenLeavesBOOM[key].temp instanceof Decimal)) {
-				storage.rootUpgradeFactor.fallenLeavesBOOM[key].temp = new Decimal(storage.rootUpgradeFactor.fallenLeavesBOOM[key].temp);
+				storage.rootUpgradeFactor.fallenLeavesBOOM[key].temp = new Decimal(value.temp);
 			}
 			storage.rootUpgradeFactor.fallenLeavesBOOM[key].amount = value.amount.plus(value.temp);
 			storage.rootUpgradeFactor.fallenLeavesBOOM[key].temp = new Decimal(0);

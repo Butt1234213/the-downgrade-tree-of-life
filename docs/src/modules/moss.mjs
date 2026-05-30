@@ -91,7 +91,7 @@ export function mossChecker() {
 
         for (let i = 0; i < components.length; i++) {
             const x = Decimal.log10(components[i].plus(new Decimal(1)));
-            const y = Decimal.log10(x);
+            const y = Decimal.log10(x.plus(new Decimal(1)));
             const z = y.div(new Decimal(1.5));
             const w = Decimal.clamp(z, new Decimal(0.01), new Decimal(Infinity));
 

@@ -265,26 +265,26 @@ export function calculateLeavesPerTick() {
         document.getElementById("E9").innerHTML = `E9 (Bought)<br>Super Growth<br>L10 is boosted by Fruits<br>Cost: 7 Entropy<br>Effect: +${truncateToDecimalPlaces(entropyUpgradeFactor.E9, 3)}`;
     }
     if (leafUpgradeFactor.L30Bought) {
-        const x = new Decimal(new Decimal(5));
+        const x = new Decimal(5);
         const y = x.plus(gameData.mossEffect);
         leafUpgradeFactor.L30Leaves = y;
         totalMultiplier = totalMultiplier.times(y);
         document.getElementById("L30").innerHTML = `L30 (Bought)<br>Super Grow II<br>Googol Leaves!<br>x${truncateToDecimalPlaces(leafUpgradeFactor.L30Leaves, 3)}L, x${truncateToDecimalPlaces(leafUpgradeFactor.L30Seeds, 3)}S, x${truncateToDecimalPlaces(leafUpgradeFactor.L30Fruits, 3)}F<br>Cost: 1e100 Leaves`;
     }
     if (leafUpgradeFactor.L31Bought) {
-        const x = new Decimal(new Decimal(10));
+        const x = new Decimal(10);
         const y = x.plus(gameData.mossEffect);
         totalMultiplier = totalMultiplier.times(y);
         document.getElementById("L31").innerHTML = `L31 (Bought)<br>Grow XI<br>x${truncateToDecimalPlaces(y, 3)} Leaves<br>Cost: 1e105 Leaves`;
     }
     if (leafUpgradeFactor.L33Bought) {
-        const x = new Decimal(new Decimal(2));
+        const x = new Decimal(2);
         const y = x.plus(gameData.mossEffect);
         totalMultiplier = totalMultiplier.times(y);
         document.getElementById("L33").innerHTML = `L33 (Bought)<br>Extra Branches<br>x${truncateToDecimalPlaces(y, 3)} Leaves and Seeds<br>Cost: 2.5e118 Leaves`
     }
     if (leafUpgradeFactor.L34Bought) {
-        const x = new Decimal(new Decimal(3));
+        const x = new Decimal(3);
         const y = x.plus(gameData.mossEffect);
         leafUpgradeFactor.L34Leaves = y;
         totalMultiplier = totalMultiplier.times(y);
@@ -953,7 +953,7 @@ export function calculateFruitsMult() {
         const x = gameData.leaves.div(1e45);
         const y = x.pow(new Decimal(0.5));
         const z = y.plus(new Decimal(1));
-        const w = Decimal.log(z, 5);
+        const w = Decimal.log(z, new Decimal(5));
         const v = w.plus(new Decimal(1));
 
         totalMultiplier = totalMultiplier.times(v);
@@ -1000,7 +1000,7 @@ export function calculateFruitsMult() {
         document.getElementById("L30").innerHTML = `L30 (Bought)<br>Super Grow II<br>Googol Leaves!<br>x${truncateToDecimalPlaces(leafUpgradeFactor.L30Leaves, 3)}L, x${truncateToDecimalPlaces(leafUpgradeFactor.L30Seeds, 3)}S, x${truncateToDecimalPlaces(leafUpgradeFactor.L30Fruits, 3)}F<br>Cost: 1e100 Leaves`
     }
     if (leafUpgradeFactor.L34Bought) {
-        const x = new Decimal(new Decimal(2));
+        const x = new Decimal(2);
         const y = x.plus(gameData.mossEffect);
         leafUpgradeFactor.L34Fruits = y;
         totalMultiplier = totalMultiplier.times(y);
@@ -1186,7 +1186,7 @@ export function calculateTreeAge() {
     if (fruitUpgradeFactor.F5Bought) {
         const x = gameData.leaves.div(new Decimal(1e18));
         const y = x.plus(new Decimal(1));
-        const z = Decimal.log(y, 100);
+        const z = Decimal.log(y, new Decimal(100));
         const w = z.plus(new Decimal(1));
         fruitUpgradeFactor.F5 = w;
         document.getElementById('F5').innerHTML = `F5 (Bought)<br>Photosynthesis<br>Leaves give a boost<br>to Tree Aging speed<br>Cost: 10 Fruits<br>Effect: ${truncateToDecimalPlaces(w, 3)}x`
@@ -1218,7 +1218,7 @@ export function calculateTreeAge() {
         document.getElementById("F15").innerHTML = `F15 (Bought)<br>Filtered Water I<br>x3 Tree Aging speed<br>Cost: 75000 Fruits`
     }
     if (leafUpgradeFactor.L34Bought) {
-        const x = new Decimal(new Decimal(5));
+        const x = new Decimal(5);
         const y = x.plus(gameData.mossEffect);
         leafUpgradeFactor.L34TAS = y;
         totalMultiplier = totalMultiplier.times(y);
@@ -2598,7 +2598,7 @@ export function calculateSeedsSoftcap() {
     if (moss.mossMilestoneFactor.MM6Achieved) {
         const x = Decimal.log10(gameData.moss.plus(new Decimal(1)));
         const y = Decimal.log10(x.plus(new Decimal(1)));
-        const z = (Decimal.log(y, new Decimal(1e6))).plus(new Decimal(1));
+        const z = (Decimal.log(y.plus(new Decimal(1)), new Decimal(1e6))).plus(new Decimal(1));
         const w = new Decimal(10000).pow((z.times(new Decimal(2))).times(y.pow(new Decimal(2))));
         var v = w.clamp(new Decimal(1), new Decimal(Infinity))
 		if (seedUpgradeFactor.S43Bought) {
@@ -2713,7 +2713,7 @@ export function calculateBacteriaPower() {
         const x = gameData.bacteriaTypes;
         const y = x.minus(new Decimal(29));
 		const z = y.times(new Decimal(0.01));
-        let w = z.plus(new Decimal(1));
+        let w = (z.plus(new Decimal(1))).clamp(new Decimal(1), new Decimal(Infinity));
 		if (Object.hasOwn(activeMicroorganismEffects, 'mossSporemossMilestoneEffect')) {
 			const v = new Decimal(activeMicroorganismEffects.mossSporemossMilestoneEffect.mag);
 			w = w.times(v);

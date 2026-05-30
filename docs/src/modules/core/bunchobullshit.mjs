@@ -13,8 +13,13 @@ import * as challenges from '../radar.mjs';
 import * as temple from '../temple.mjs';
 import * as petriDish from '../petridish.mjs';
 import { fallenType } from '../fallenleaves.mjs';
+import { forgableItem } from '../forge.mjs';
 
 export var gameData = {
+	updateValue(index, data) {
+		this[index] = data;
+	},
+	
     lastUpdate: new Decimal(Date.now()),
     resetDataCounter: new Decimal(0),
     resetButtonHeld: false,
@@ -297,7 +302,10 @@ export var gameData = {
 
 	welderEffectMult: new Decimal(1),
 	
-    refreshRate: 40
+	forgeTemperature: new Decimal(22),
+	
+	font: 'Verdana',
+    refreshRate: 40,
 }
 
 export var upgradesResetByDecompolization = []
@@ -408,6 +416,19 @@ export var leafUpgradeCost = {
 }
 
 export var leafUpgradeFactor = {
+	updateValue(index, data) {
+		const keys = index.split('.');
+		let current = this;
+		for (let i = 0; i < keys.length - 1; i++) {
+			const key = keys[i];
+			if (!current[key] || typeof current[key] !== 'object') {
+				current[key] = {};
+			}
+			current = current[key];
+		}
+		current[keys[keys.length - 1]] = data;
+	},
+	
     L4: new Decimal(1),
     L4AtUpgradeBought: new Decimal(1),
     L4Amt: new Decimal(10),
@@ -511,6 +532,19 @@ export var seedUpgradeCost = {
 }
 
 export var seedUpgradeFactor = {
+	updateValue(index, data) {
+		const keys = index.split('.');
+		let current = this;
+		for (let i = 0; i < keys.length - 1; i++) {
+			const key = keys[i];
+			if (!current[key] || typeof current[key] !== 'object') {
+				current[key] = {};
+			}
+			current = current[key];
+		}
+		current[keys[keys.length - 1]] = data;
+	},
+	
     S3: new Decimal(0),
     S3OnUpgradeBought: new Decimal(0),
     S3Total: new Decimal(1e7),
@@ -585,6 +619,19 @@ export var fruitUpgradeCost = {
 }
 
 export var fruitUpgradeFactor = {
+	updateValue(index, data) {
+		const keys = index.split('.');
+		let current = this;
+		for (let i = 0; i < keys.length - 1; i++) {
+			const key = keys[i];
+			if (!current[key] || typeof current[key] !== 'object') {
+				current[key] = {};
+			}
+			current = current[key];
+		}
+		current[keys[keys.length - 1]] = data;
+	},
+	
     F3: new Decimal(0),
     F5: new Decimal(1),
     F20: new Decimal(1),
@@ -660,6 +707,19 @@ export var entropyUpgradeCost = {
 }
 
 export var entropyUpgradeFactor = {
+	updateValue(index, data) {
+		const keys = index.split('.');
+		let current = this;
+		for (let i = 0; i < keys.length - 1; i++) {
+			const key = keys[i];
+			if (!current[key] || typeof current[key] !== 'object') {
+				current[key] = {};
+			}
+			current = current[key];
+		}
+		current[keys[keys.length - 1]] = data;
+	},
+	
     C1Cost: new Decimal(1),
     C1Amount: new Decimal(0),
     C1Increase: new Decimal(1.1),
@@ -804,6 +864,19 @@ export var rootUpgradeCost = {
 }
 
 export var rootUpgradeFactor = {
+	updateValue(index, data) {
+		const keys = index.split('.');
+		let current = this;
+		for (let i = 0; i < keys.length - 1; i++) {
+			const key = keys[i];
+			if (!current[key] || typeof current[key] !== 'object') {
+				current[key] = {};
+			}
+			current = current[key];
+		}
+		current[keys[keys.length - 1]] = data;
+	},
+	
 	leafReinforcementMult: new Decimal(1),
 	seedReinforcementMult: new Decimal(1),
 	fruitReinforcementMult: new Decimal(1),
@@ -975,6 +1048,21 @@ export var rootUpgradeFactor = {
 	fallenLeafCapMult: new Decimal(1),
 	fallenLeafCollectable: new Decimal(0),
 	fallenLeafUpgradable: new Decimal(0),
+	
+	items: {
+		crudePickaxe: {amount: new Decimal(0), stackSize: new Decimal(2), obtained: false},
+		cobblestone: {amount: new Decimal(0), stackSize: new Decimal(16), obtained: false},
+		basicFurnace: {amount: new Decimal(0), stackSize: new Decimal(1), obtained: false},
+		stone: {amount: new Decimal(0), stackSize: new Decimal(16), obtained: false},
+		coal: {amount: new Decimal(0), stackSize: new Decimal(16), obtained: false},
+		copperChunk: {amount: new Decimal(0), stackSize: new Decimal(16), obtained: false},
+		copperIngot: {amount: new Decimal(0), stackSize: new Decimal(16), obtained: false},
+		tinChunk: {amount: new Decimal(0), stackSize: new Decimal(16), obtained: false},
+		tinIngot: {amount: new Decimal(0), stackSize: new Decimal(16), obtained: false},
+		bronzeIngot: {amount: new Decimal(0), stackSize: new Decimal(16), obtained: false},
+		ironChunk: {amount: new Decimal(0), stackSize: new Decimal(16), obtained: false},
+		ironIngot: {amount: new Decimal(0), stackSize: new Decimal(16), obtained: false},
+	},
 }
 
 export var rootAutomationFactor = {}
@@ -2873,7 +2961,7 @@ export function updateGUIBasedOnAchievements() {
 				document.getElementById('droughtIndicator').innerHTML = `Lack of water for months has made leaves die out constantly and time drag on. (^${truncateToDecimalPlaces(gameData.droughtBaseFactor, 3)} to L and TAS, Game speed increases over time)<br>(ACTIVE)`;
 			}
 			else {
-				const x = Decimal.log10(gameData.droughtBestScore)
+				const x = Decimal.log10(gameData.droughtBestScore.plus(new Decimal(1)));
 				const y = x.pow(new Decimal(0.0413927));
 				const z = y.times(new Decimal(0.909091));
 				const w = z.clamp(new Decimal(1), new Decimal(Infinity));
@@ -2998,6 +3086,7 @@ export function updateGUIBasedOnAchievements() {
             document.getElementById('rootCompostingTimer').innerHTML = `Composting takes ${truncateToDecimalPlaces(y, 3)} seconds`;
             gameData.rootComposterIsActive = false;
         }
+		document.body.style.fontFamily = `'${gameData.font}'`;
     }
 }
 
@@ -3965,6 +4054,51 @@ export function pushActiveMicroorganisms(micro) {
 	}
 	rootUpgradeFactor.activeMicroorganisms.push(micro);
 }
+
+document.getElementById('fontVerdana').addEventListener('click', function() {
+	document.body.style.fontFamily = 'Verdana';
+	gameData.font = 'Verdana';
+});
+document.getElementById('fontArial').addEventListener('click', function() {
+	document.body.style.fontFamily = 'Arial';
+	gameData.font = 'Arial';
+});
+document.getElementById('fontCourierNew').addEventListener('click', function() {
+	document.body.style.fontFamily = 'Courier New';
+	gameData.font = 'Courier New';
+});
+document.getElementById('fontTimesNewRoman').addEventListener('click', function() {
+	document.body.style.fontFamily = 'Times New Roman';
+	gameData.font = 'Times New Roman';
+});
+document.getElementById('fontBebasNeue').addEventListener('click', function() {
+	document.body.style.fontFamily = 'Bebas Neue';
+	gameData.font = 'Bebas Neue';
+});
+document.getElementById('fontRetron2000').addEventListener('click', function() {
+	document.body.style.fontFamily = "'Retron 2000'";
+	gameData.font = 'Retron 2000';
+});
+document.getElementById('fontKolkerBrush').addEventListener('click', function() {
+	document.body.style.fontFamily = 'Kolker Brush';
+	gameData.font = 'Kolker Brush';
+});
+document.getElementById('fontNoctraDrip').addEventListener('click', function() {
+	document.body.style.fontFamily = "'Noctra Drip'";
+	gameData.font = 'Noctra Drip';
+});
+document.getElementById('fontLineArt').addEventListener('click', function() {
+	document.body.style.fontFamily = 'Line Art';
+	gameData.font = 'Line Art';
+});
+document.getElementById('fontRedacted').addEventListener('click', function() {
+	document.body.style.fontFamily = 'Redacted';
+	gameData.font = 'Redacted';
+});
+document.getElementById('fontBarcode').addEventListener('click', function() {
+	document.body.style.fontFamily = 'Barcode';
+	gameData.font = 'Barcode';
+});
 
 setTimeout(function() {
 	document.getElementById("titleScreen").style.display = 'none';

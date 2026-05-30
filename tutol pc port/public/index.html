@@ -4,6 +4,11 @@
     <meta charset="utf-8">
     <title>The Downgrade Tree of Life</title>
     <link rel="icon" type="image/x-icon" href="./src/images/favicon.ico"> 
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kolker+Brush&family=Libre+Barcode+39+Extended&family=Linefont:wght@4..1000&family=Noto+Sans+Symbols:wght@100..900&family=Redacted&display=swap" rel="stylesheet">
+	
     <link rel="stylesheet" href="./src/stylesheets/achievements.css">
     <link rel="stylesheet" href="./src/stylesheets/others.css">
     <link rel="stylesheet" href="./src/stylesheets/resources.css">
@@ -115,6 +120,8 @@
       <button id="petriDishTab" class="buttons-petri-dish-tab-color">Petri Dish</button>
       <button id="welderTab" class="buttons-welder-tab-color">Welder</button>
       <button id="fallenLeavesTab" class="buttons-fallen-leaves-tab-color">Fallen Leaves</button>
+      <button id="forgeTab" class="buttons-forge-tab-color">Forge</button>
+      <button id="miningTab" class="buttons-mining-tab-color">Mining</button>
     </div>
 
     <div class="buttons-lu" id="buttons-lu">
@@ -593,7 +600,7 @@
 		<div class="protein-background">
 			<div class="center-align">
 				<p class="bold">Proteins</p>
-				<button class="buttons-protein-color" id="proteinPresetButton" style="position: absolute; height: 40px; top: 10px; right: 10px;">Protein presets</button>
+				<button class="buttons-protein-color" id="proteinPresetButton" style="display: none; position: absolute; height: 40px; top: 10px; right: 10px;">Protein presets</button>
 				<p id="blueprintCounter">0 / 0 DNA Blueprints</p>
 				<button class="buttons-protein-color" id="respecProteins">Respec Proteins<br>(Doesn't perform a transformation &#128536)</button>
 				<div class="protein-individual-background">
@@ -973,7 +980,7 @@
 			<p id="fallenTemplateVerboseName">verboseName</p>
 			<p id="fallenTemplateCounter">0</p>
 			<p id="fallenTemplateCapCounter">0 / cap (+0/s)</p>
-			<img id="fallenTemplateImage" src="./src/images/fallenleaf.png" alt="Image" width="32" height="32">
+			<img id="fallenTemplateImage" src="./src/images/fallenleaves/fallenleaf.png" alt="Image" width="32" height="32">
 			<p id="fallenTemplateFactor1Counter">verboseFactor[0] -> +0</p>
 			<p id="fallenTemplateFactor2Counter" style="display: none;">verboseFactor[1] -> +0</p>
 			<p id="fallenTemplateFactor3Counter" style="display: none;">verboseFactor[2] -> +0</p>
@@ -1016,6 +1023,31 @@
 			<button id="buyAllFallenLeavesUpgrades" class="collect-fallen-leaves-button-color" style="left: 710px; top: 10px; display: none;" disabled="true">Buy all Fallen Leaf upgrades</button>
 			<div class="fallen-leaves-type-container"></div>
 		</div>
+	</div>
+	
+	<template id="forgableItemTemplate">
+		<div id="forgableItem" class="forgable-item-background" style="display: none;">
+			<img id="forgableItemImage" class="centered-element" src="./src/images/items/crudepickaxe.png" alt="Image" width="64" height="64">
+			<p id="forgableItemAmount" class="bold" style="position: absolute; bottom: -10px; right: 10px; z-index: 10;">0<sub>/16</sub></p>
+			<p id="forgableItemPercent" class="centered-element" style="background-color: #000000; z-index: 15;"></p>
+			<span id="forgableItemInfo" class="forgable-item-hover">Crude Pickaxe<br>Your first pickaxe! Durability 100&#x1F4AA;, Fortune 1&#x1F340;, Temperature range: <span style="color: #6c9ccb;">-18&deg; C</span> - <span style="color: #ea644e;">80&deg; C</span><br>Cost: 50000 Fallen Leaves, 5000 Mossy Leaves, 150 Marbled Leaves<br><span class="italic">This item takes 60 (<span id="forgableItemTime">60</span> real time) seconds to make.<br>This item can be made in a temperature range of <span style="color: #6c9ccb;">-18&deg; C</span> to <span style="color: #ea644e;">80&deg; C</span></span></span>
+		</div>
+	</template>
+	
+	<div class="buttons-forge" id="buttons-forge">
+		<div class="forge-background">
+			<div class="center-align">
+				<p class="bold">The Forge</p>
+				<p id="forgeTemperatureCounter">Your Forge is currently at a temperature of <span id="forgeTemperatureColor" style="color: #e3c091;">22&deg; C.</span></p>
+				<p>The forge's game speed is the same as the local Fallen Leaf game speed. The items you can craft via your Forge are down below.</p>
+			</div>
+			<div class="goofy-ass-temperature-gradient"></div>
+			<input id="temperatureDebug" type="text" placeholder="put a temperature in here to give a hex color for the temperature"/>
+		</div>
+		<div id="forgableItemHolder" style="display: flex; gap: 10px; justify-content: center; position: absolute; left: 100px; top: 150px; width: 855px; height: 1000px;"></div>
+	</div>
+	
+	<div class="buttons-mining" id="buttons-mining">
 	</div>
 
     <div class="achievement-tab-container" id="achievement-tabs">
@@ -1480,7 +1512,7 @@
 		    <button id="resetCells">Reset Cells</button>
 		  </div>
 		</div>
-      <div class="customization">
+      <div class="links">
         <p>Links to my stuff</p>
 		<p class="italic">Please friend me I am lonely</p>
 		<a href="https://www.youtube.com/@smeh8641"><img src="./src/images/youtubeIcon.png" height="32" width="32"></a>
@@ -1504,6 +1536,23 @@
         <button id="loadMicroorganismsUnlocked">Microorganisms Unlocked</button>
         <button id="loadFLUnlocked">Fallen Leaves Unlocked</button>
         <button id="loadEndgame">Endgame</button>
+	  </div>
+	  <div class="customization">
+		<p>Customization</p>
+		<div style="width: 50%;">
+			<p>Fonts</p>
+			<button id="fontVerdana" style="font-family: 'Verdana', sans-serif;">Verdana</button>
+			<button id="fontArial" style="font-family: 'Arial', sans-serif;">Arial</button>
+			<button id="fontCourierNew" style="font-family: 'Courier New', monospace;">Courier New</button>
+			<button id="fontTimesNewRoman" style="font-family: 'Times New Roman', serif;">Times New Roman</button>
+			<button id="fontRetron2000" style="font-family: 'Retron 2000', sans-serif">Retron 2000</button>
+			<button id="fontBebasNeue" style="font-family: 'Bebas Neue', sans-serif">Bebas Neue</button>
+			<button id="fontNoctraDrip" style="font-family: 'Noctra Drip', sans-serif">Noctra Drip</button>
+			<button id="fontKolkerBrush" style="font-family: 'Kolker Brush', sans-serif">Kolker Brush</button>
+			<button id="fontLineArt" style="font-family: 'Line Art', sans-serif">Line Art</button>
+			<button id="fontRedacted" style="font-family: 'Redacted', sans-serif">Redacted</button>
+			<button id="fontBarcode" style="font-family: 'Barcode', sans-serif">Barcode</button>
+		</div>
 	  </div>
     </div>
 
@@ -1533,6 +1582,8 @@
     <script src="./src/modules/rootmilestones.mjs" type="module"></script>
     <script src="./src/modules/petridish.mjs" type="module"></script>
     <script src="./src/modules/fallenleaves.mjs" type="module"></script>
+    <script src="./src/modules/forge.mjs" type="module"></script>
+    <script src="./src/modules/mining.mjs" type="module"></script>
     <script src="./src/modules/core/gameloopbutmodule.mjs" type="module"></script>
     <script src="./src/modules/core/bunchobullshit.mjs" type="module"></script>
     <script src="./src/modules/automation.mjs" type="module"></script>

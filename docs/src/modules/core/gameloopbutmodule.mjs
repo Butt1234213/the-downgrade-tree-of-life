@@ -12,6 +12,7 @@ import * as bacteria from '../bacteria.mjs';
 import * as rootMilestones from '../rootmilestones.mjs';
 import * as petriDish from '../petridish.mjs';
 import * as welder from '../welder.mjs';
+import * as forge from '../forge.mjs';
 import { runFallenLeaves } from '../fallenleaves.mjs';
 import { achievements, massAchievementChecker } from '../achievements.mjs';
 
@@ -188,6 +189,8 @@ export function gameLoop() {
 			
 			calculations.calculateWelderEffect();
 			welder.welderGUI();
+			
+			forge.calculateForge();
 
             if (storage.leafUpgradeFactor.L28Bought) {
 				if (storage.gameData.potentialEnergy.gte(new Decimal.fromComponents(1, 1, 100000))) {
@@ -268,8 +271,18 @@ export function gameLoop() {
 			if (storage.gameData.leaves.gte(new Decimal.fromComponents(1, 1, 100000))) {
 			  achievements.ach135 = true;
 			}
+			if (storage.gameData.leaves.gte(new Decimal.fromComponents(1, 2, 8.55630))) {
+			  achievements.ach162 = true;
+			}
 			if (storage.gameData.seeds.gte(new Decimal.fromComponents(1, 1, 100000).times(storage.gameData.leaves))) {
 			  achievements.ach151 = true;
+			}
+			
+			if (document.getElementById('marbledleafMilestone3')) {
+				if (storage.rootUpgradeFactor.fallenMilestones.marbled[2].achieved) {
+					document.querySelector('.buttons-forge-tab-color').style.visibility = 'visible';
+					document.querySelector('.buttons-mining-tab-color').style.visibility = 'visible';
+				}
 			}
 			
             if (storage.seedsVisualCalculation("true").gte(storage.gameData.seedSoftcapStart)) {
@@ -376,7 +389,11 @@ export function gameLoop() {
 					achievements.ach155 = true;
 				}
 			}
-			
+			if (!achievements.ach161) {
+				if (storage.rootUpgradeFactor.items.crudePickaxe.amount.gte(new Decimal(1))) {
+					achievements.ach161 = true;
+				}
+			}
 			
             if (storage.gameData.leaves >= new Decimal(1e7).toNumber()) {
               storage.seedsFormula(storage.gameData.leaves, (new Decimal(2).div(new Decimal(3))));

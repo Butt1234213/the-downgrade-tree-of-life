@@ -6,8 +6,7 @@
 }
 .buttons-lu-color {
     background-color: #50bb50;
-    color: #ffffffff;
-    font-family: Verdana;
+    color: #ffffffff;
     font-size: 12px;
 }
 .buttons-su {
@@ -17,8 +16,7 @@
     left: 10px;
 }
 .buttons-su-color {
-    background-color: #dc8616ff;
-    font-family: Verdana;
+    background-color: #dc8616ff;
     font-size: 12px;
     color: #ffffffff;
     border-style: outset;
@@ -31,8 +29,7 @@
     left: 10px;
 }
 .buttons-fu-color {
-    background-color: #de0e0e;
-    font-family: Verdana;
+    background-color: #de0e0e;
     font-size: 12px;
     color: #ffffffff;
     border-style: outset;
@@ -45,8 +42,7 @@
     left: 10px;
 }
 .buttons-eu-color {
-    background-color: #2077ba;
-    font-family: Verdana;
+    background-color: #2077ba;
     font-size: 12px;
     color: #ffffffff;
     border-style: outset;
@@ -68,8 +64,7 @@
     color: #dcd3c9;
     background-color: #c7b39d;
     border-color: #b8a38c;
-    border-style: outset;
-    font-family: Verdana;
+    border-style: outset;
     visibility: hidden;
 }
 .buttons-lru {
@@ -82,8 +77,7 @@
     color: #dcd3c9;
     background-color: #c7b39d;
     border-color: #b8a38c;
-    border-style: outset;
-    font-family: Verdana;
+    border-style: outset;
 }
 .buttons-sru-holder {
     position: absolute;
@@ -95,8 +89,7 @@
     color: #dcd3c9;
     background-color: #c7b39d;
     border-color: #b8a38c;
-    border-style: outset;
-    font-family: Verdana;
+    border-style: outset;
     visibility: hidden;
 }
 .buttons-sru {
@@ -109,8 +102,7 @@
     color: #dcd3c9;
     background-color: #c7b39d;
     border-color: #b8a38c;
-    border-style: outset;
-    font-family: Verdana;
+    border-style: outset;
 }
 .buttons-fru-holder {
     position: absolute;
@@ -122,8 +114,7 @@
     color: #dcd3c9;
     background-color: #c7b39d;
     border-color: #b8a38c;
-    border-style: outset;
-    font-family: Verdana;
+    border-style: outset;
     visibility: hidden;
 }
 .buttons-fru {
@@ -136,8 +127,7 @@
     color: #dcd3c9;
     background-color: #c7b39d;
     border-color: #b8a38c;
-    border-style: outset;
-    font-family: Verdana;
+    border-style: outset;
 }
 .buttons-eru-holder {
     position: absolute;
@@ -149,8 +139,7 @@
     color: #dcd3c9;
     background-color: #c7b39d;
     border-color: #b8a38c;
-    border-style: outset;
-    font-family: Verdana;
+    border-style: outset;
     visibility: hidden;
 }
 .buttons-eru {
@@ -163,43 +152,37 @@
     color: #dcd3c9;
     background-color: #c7b39d;
     border-color: #b8a38c;
-    border-style: outset;
-    font-family: Verdana;
+    border-style: outset;
 }
 
 .buttons-temple-color {
     background-color: #c7b39d;
     color: #ffffff;
-    border-color: #c4b2a1;
-    font-family: Verdana;
+    border-color: #c4b2a1;
     font-size: 12px;
 }
 .buttons-lu-repeatable-color {
     background-color: #50bb50;
     color: #dcd3c9;
-    border-color: #c4b2a1;
-    font-family: Verdana;
+    border-color: #c4b2a1;
     font-size: 12px;
 }
 .buttons-su-repeatable-color {
     background-color: #dc8616;
     color: #dcd3c9;
-    border-color: #c4b2a1;
-    font-family: Verdana;
+    border-color: #c4b2a1;
     font-size: 12px;
 }
 .buttons-fu-repeatable-color {
     background-color: #de0e0e;
     color: #dcd3c9;
-    border-color: #c4b2a1;
-    font-family: Verdana;
+    border-color: #c4b2a1;
     font-size: 12px;
 }
 .buttons-eu-repeatable-color {
     background-color: #2077ba;
     color: #dcd3c9;
-    border-color: #c4b2a1;
-    font-family: Verdana;
+    border-color: #c4b2a1;
     font-size: 12px;
 }
 
@@ -210,8 +193,7 @@
     left: 10px;
 }
 .buttons-rou-color {
-    background-color: #edac13;
-    font-family: Verdana;
+    background-color: #edac13;
     font-size: 12px;
     color: #ffffffff;
     border-style: outset;
