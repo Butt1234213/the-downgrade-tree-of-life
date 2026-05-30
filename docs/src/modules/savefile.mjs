@@ -343,6 +343,7 @@ export function loadSave() {
             }
 			else {
 				loadedRootUpgradeFactor[key] = initialRootUpgradeFactor[key];
+				newRootUpgradeFactor[key] = initialRootUpgradeFactor[key];
 			}
         }
         for (const key in newRootUpgradeFactor.fallenLeavesBOOM) {
