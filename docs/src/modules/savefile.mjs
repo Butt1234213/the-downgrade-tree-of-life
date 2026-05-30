@@ -332,15 +332,18 @@ export function loadSave() {
                 }
             }
         }
-        for (const key in loadedRootUpgradeFactor) {
+        for (const key in initialRootUpgradeFactor) {
             if (newRootUpgradeFactor.hasOwnProperty(key)) {
                 const value = newRootUpgradeFactor[key];
-                if (storage.rootUpgradeFactor[key] instanceof Decimal) {
+                if (newUpgradeFactor[key] instanceof Decimal) {
                     loadedRootUpgradeFactor[key] = new Decimal(value);
                 } else {
                     loadedRootUpgradeFactor[key] = value;
                 }
             }
+			else {
+				loadedRootUpgradeFactor[key] = initialRootUpgradeFactor[key];
+			}
         }
         for (const key in newRootUpgradeFactor.fallenLeavesBOOM) {
 			for (const subkey in newRootUpgradeFactor.fallenLeavesBOOM[key]) {
