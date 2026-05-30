@@ -335,7 +335,7 @@ export function loadSave() {
         for (const key in initialRootUpgradeFactor) {
             if (newRootUpgradeFactor.hasOwnProperty(key)) {
                 const value = newRootUpgradeFactor[key];
-                if (newUpgradeFactor[key] instanceof Decimal) {
+                if (storage.rootUpgradeFactor[key] instanceof Decimal) {
                     loadedRootUpgradeFactor[key] = new Decimal(value);
                 } else {
                     loadedRootUpgradeFactor[key] = value;
