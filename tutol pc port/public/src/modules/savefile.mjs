@@ -348,13 +348,18 @@ export function loadSave() {
         }
         for (const key in newRootUpgradeFactor.fallenLeavesBOOM) {
 			for (const subkey in newRootUpgradeFactor.fallenLeavesBOOM[key]) {
-				if (loadedRootUpgradeFactor.fallenLeavesBOOM[key].hasOwnProperty(subkey)) {
-					const value = newRootUpgradeFactor.fallenLeavesBOOM[key][subkey];
-					if (storage.rootUpgradeFactor.fallenLeavesBOOM[key][subkey] instanceof Decimal) {
-						loadedRootUpgradeFactor.fallenLeavesBOOM[key][subkey] = new Decimal(value);
-					} else {
-						loadedRootUpgradeFactor.fallenLeavesBOOM[key][subkey] = value;
+				try {
+					if (loadedRootUpgradeFactor.fallenLeavesBOOM[key].hasOwnProperty(subkey)) {
+						const value = newRootUpgradeFactor.fallenLeavesBOOM[key][subkey];
+						if (storage.rootUpgradeFactor.fallenLeavesBOOM[key][subkey] instanceof Decimal) {
+							loadedRootUpgradeFactor.fallenLeavesBOOM[key][subkey] = new Decimal(value);
+						} else {
+							loadedRootUpgradeFactor.fallenLeavesBOOM[key][subkey] = value;
+						}
 					}
+				}
+				catch (error) {
+					delete loadedRootUpgradeFactor.fallenLeavesBOOM[key];
 				}
 			}
         }

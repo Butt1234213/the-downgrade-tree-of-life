@@ -1,4 +1,4 @@
-import { achievements, secretAchievements, massAchievementChecker, massSecretAchievementChecker } from '../achievements.mjs';
+import { achievements, secretAchievements, massSecretAchievementChecker } from '../achievements.mjs';
 import * as leafUpgrades from '../leafupgrades.mjs';
 import * as seedUpgrades from '../seedupgrades.mjs';
 import * as fruitUpgrades from '../fruitupgrades.mjs';
@@ -17,7 +17,16 @@ import { forgableItem } from '../forge.mjs';
 
 export var gameData = {
 	updateValue(index, data) {
-		this[index] = data;
+		const keys = index.split('.');
+		let current = this;
+		for (let i = 0; i < keys.length - 1; i++) {
+			const key = keys[i];
+			if (!current[key] || typeof current[key] !== 'object') {
+				current[key] = {};
+			}
+			current = current[key];
+		}
+		current[keys[keys.length - 1]] = data;
 	},
 	
     lastUpdate: new Decimal(Date.now()),
@@ -303,6 +312,10 @@ export var gameData = {
 	welderEffectMult: new Decimal(1),
 	
 	forgeTemperature: new Decimal(22),
+	
+	miningDepth: new Decimal(0),
+	miningFortune: new Decimal(0),
+	miningDurability: new Decimal(0),
 	
 	font: 'Verdana',
     refreshRate: 40,
@@ -907,7 +920,7 @@ export var rootUpgradeFactor = {
 		mossy: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
 		marbled: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
 		coal: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
-		copper: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
+		bronze: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
 		iron: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
 		malachite: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
 		jade: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
@@ -915,7 +928,6 @@ export var rootUpgradeFactor = {
 		enstatite: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
 		diamond: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
 		emerald: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
-		bronze: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
 		steel: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
 		titanium: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
 		chromium: {amount: new Decimal(0), temp: new Decimal(0), canCollect: false, canBuy: false},
@@ -1062,6 +1074,7 @@ export var rootUpgradeFactor = {
 		bronzeIngot: {amount: new Decimal(0), stackSize: new Decimal(16), obtained: false},
 		ironChunk: {amount: new Decimal(0), stackSize: new Decimal(16), obtained: false},
 		ironIngot: {amount: new Decimal(0), stackSize: new Decimal(16), obtained: false},
+		malachiteIngot: {amount: new Decimal(0), stackSize: new Decimal(16), obtained: false},
 	},
 }
 
@@ -1355,7 +1368,6 @@ export function decompolize() {
         if (achievements.ach14 === false) {
             document.querySelector('.buttons-su-tab-color').style.visibility = 'visible';
             achievements.ach14 = true;
-            massAchievementChecker();
         }
 
         updateUpgradeCount();
@@ -1582,7 +1594,7 @@ export function harvest() {
         if (achievements.ach23 === false) {
             document.querySelector('.buttons-fu-tab-color').style.visibility = 'visible';
             achievements.ach23 = true;
-            massAchievementChecker();
+            
         }
         
         updateUpgradeCount();
@@ -1848,7 +1860,6 @@ export function transform() {
         if (!achievements.ach41) {
             document.querySelector('.buttons-eu-tab-color').style.visibility = 'visible';
             achievements.ach41 = true;
-            massAchievementChecker();
         }
 
         updateUpgradeCount();
@@ -2190,7 +2201,7 @@ export function reinforce() {
         if (!achievements.ach121) {
             document.querySelector('.buttons-eu-tab-color').style.visibility = 'visible';
             achievements.ach121 = true;
-            massAchievementChecker();
+            
         }
 		
         updateUpgradeCount();
@@ -2816,11 +2827,13 @@ export function laggyAnusFunction() {
 export function updateGUIBasedOnAchievements() {
     if (hasInitialized) {
         if (achievements.ach14) {
+			achievements.ach14 = true;
             document.querySelector('.seeds').style.visibility = 'visible';
             document.querySelector('.buttons-su-tab-color').style.visibility = 'visible';
             document.getElementById("seedCounter").innerHTML = truncateToDecimalPlaces((gameData.seeds.trunc()), 3)
         }
         if (achievements.ach23) {
+			achievements.ach23 = true;
             document.querySelector('.fruits').style.visibility = 'visible';
             document.querySelector('.buttons-fu-tab-color').style.visibility = 'visible';
             document.getElementById("fruitCounter").innerHTML = truncateToDecimalPlaces((gameData.fruits.trunc()), 3)
@@ -2869,6 +2882,7 @@ export function updateGUIBasedOnAchievements() {
             document.querySelector('.moss-milestone-background').style.visibility = 'visible';
         }
         if (achievements.ach41) {
+			achievements.ach41 = true;
             document.querySelector('.entropy').style.visibility = 'visible';
             document.querySelector('.buttons-eu-tab-color').style.visibility = 'visible';
             document.getElementById("entropyCounter").innerHTML = truncateToDecimalPlaces((gameData.entropy.trunc()), 3)
@@ -2923,6 +2937,9 @@ export function updateGUIBasedOnAchievements() {
             document.getElementById('stormCounter').innerHTML = `${truncateToDecimalPlaces(gameData.stormBestScore, 3)} / ${truncateToDecimalPlaces((new Decimal(1e40).pow(gameData.stormLevel)), 3)} Seeds`;
 			document.querySelector('.composter-automation-background').style.visibility = `visible`;
         }
+		if (achievements.ach65) {
+			achievements.ach65 = true;
+		}
         if (achievements.ach81) {
 			document.querySelector('.challenge-wildfire').style.visibility = `visible`;
 			
@@ -2947,6 +2964,9 @@ export function updateGUIBasedOnAchievements() {
             }
             document.getElementById('wildfireCounter').innerHTML = `${truncateToDecimalPlaces(gameData.wildfireBestScore, 3)} / ${truncateToDecimalPlaces((new Decimal(50).times(gameData.wildfireLevel)), 3)} Fertilizers`;
         }
+		if (achievements.ach82) {
+			achievements.ach82 = true;
+		}
 		if (achievements.ach101) {
 			document.querySelector('.challenge-drought').style.visibility = `visible`;
 			
@@ -2973,6 +2993,7 @@ export function updateGUIBasedOnAchievements() {
 			document.getElementById('droughtCounter').innerHTML = `${truncateToDecimalPlaces(gameData.droughtBestScore, 3)} / ${truncateToDecimalPlaces(gameData.droughtBaseRequirement, 3)} Fruits`;
 		}
 		if (achievements.ach102) {
+			achievements.ach102 = true;
 			document.querySelector('.buttons-protein-tab-color').style.visibility = `visible`;
 			
 			document.getElementById('makeBlueprints').innerHTML = `Fabricate a DNA Blueprint (${truncateToDecimalPlaces(gameData.dnaBlueprints, 3)} currently) (${truncateToDecimalPlaces(gameData.dnaBlueprintsTotal, 3)} total)<br>Fabricating a DNA Blueprint will ^0.95 your Cell Replication speed and Bacteria`;
@@ -3035,8 +3056,12 @@ export function updateGUIBasedOnAchievements() {
 			document.getElementById('blizzardCounter').innerHTML = `${truncateToDecimalPlaces(gameData.blizzardBestScore, 3)} / ${truncateToDecimalPlaces(gameData.blizzardBaseRequirement, 3)} Entropy`;
 		}
 		if (achievements.ach114) {
+			achievements.ach114 = true;
 			document.querySelector('.roots').style.visibility = `visible`;
 			document.querySelector('.bacteria-types-automation-background').style.visibility = `visible`;
+		}
+		if (achievements.ach121) {
+			achievements.ach121 = true;
 		}
 		if (achievements.ach131) {
 			document.getElementById('buildPetriDishes').innerHTML = `Build a Petri Dish (${rootUpgradeFactor.totalPetriDishes} / 8)<br>Cost: ${truncateToDecimalPlaces(rootUpgradeFactor.petriDishCost, 3)} Roots`;
@@ -3047,6 +3072,9 @@ export function updateGUIBasedOnAchievements() {
 			for (let i = 1; i < rootUpgradeFactor.totalPetriDishes + 1; i++) {
 				document.getElementById(`petriDish${i}`).style.display = `block`;
 			}
+		}
+		if (achievements.ach134) {
+			achievements.ach134 = true;
 		}
 		if (achievements.ach143) {
 			document.querySelector('.buttons-welder-tab-color').style.visibility = "visible";

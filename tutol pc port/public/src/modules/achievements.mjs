@@ -1,9 +1,10 @@
 import * as storage from './core/bunchobullshit.mjs'
 import * as leafUpgrades from './leafupgrades.mjs'
 import * as seedUpgrades from './seedupgrades.mjs'
+import { circuits } from './automation.mjs'
 import { saveLoop } from './savefile.mjs'
 
-export var achievements = {
+const achievementBase = {
     ach11: false,
     ach11AnimPlayed: false,
     ach12: false,
@@ -158,10 +159,26 @@ export var achievements = {
     ach161AnimPlayed: false,
     ach162: false,
     ach162AnimPlayed: false,
+    ach163: false,
+    ach163AnimPlayed: false,
 }
 
+const proxyHandler = {
+	set(obj, prop, value) {
+		const filter = /AnimPlayed/;
+		if (!filter.test(prop)) {
+			achievementChecker(achievements, prop);
+		}
+		return Reflect.set(obj, prop, value);
+	}
+}
+
+export var achievements = new Proxy(achievementBase, proxyHandler);
+
 export function updateAchievements(newAchievements, newSecretAchievements) {
-    achievements = newAchievements;
+	for (let key in newAchievements) {
+		achievements[key] = newAchievements[key];
+	}
     secretAchievements = newSecretAchievements;
     massSecretAchievementChecker();
 }
@@ -193,84 +210,120 @@ export function achievementChecker(achievements, achName) {
     }
 }
 
-export function massAchievementChecker() {
-    achievementChecker(achievements, 'ach11');
-    achievementChecker(achievements, 'ach12');
-    achievementChecker(achievements, 'ach13');
-    achievementChecker(achievements, 'ach14');
-    achievementChecker(achievements, 'ach15');
-    achievementChecker(achievements, 'ach21');
-    achievementChecker(achievements, 'ach22');
-    achievementChecker(achievements, 'ach23');
-    achievementChecker(achievements, 'ach24');
-    achievementChecker(achievements, 'ach25');
-    achievementChecker(achievements, 'ach31');
-    achievementChecker(achievements, 'ach32');
-    achievementChecker(achievements, 'ach33');
-    achievementChecker(achievements, 'ach34');
-    achievementChecker(achievements, 'ach35');
-    achievementChecker(achievements, 'ach41');
-    achievementChecker(achievements, 'ach42');
-    achievementChecker(achievements, 'ach43');
-    achievementChecker(achievements, 'ach44');
-    achievementChecker(achievements, 'ach45');
-    achievementChecker(achievements, 'ach51');
-    achievementChecker(achievements, 'ach52');
-    achievementChecker(achievements, 'ach53');
-    achievementChecker(achievements, 'ach54');
-    achievementChecker(achievements, 'ach55');
-    achievementChecker(achievements, 'ach61');
-    achievementChecker(achievements, 'ach62');
-    achievementChecker(achievements, 'ach63');
-    achievementChecker(achievements, 'ach64');
-    achievementChecker(achievements, 'ach65');
-    achievementChecker(achievements, 'ach71');
-    achievementChecker(achievements, 'ach72');
-    achievementChecker(achievements, 'ach73');
-    achievementChecker(achievements, 'ach74');
-    achievementChecker(achievements, 'ach75');
-    achievementChecker(achievements, 'ach81');
-    achievementChecker(achievements, 'ach82');
-    achievementChecker(achievements, 'ach83');
-    achievementChecker(achievements, 'ach84');
-    achievementChecker(achievements, 'ach85');
-    achievementChecker(achievements, 'ach91');
-    achievementChecker(achievements, 'ach92');
-    achievementChecker(achievements, 'ach93');
-    achievementChecker(achievements, 'ach94');
-    achievementChecker(achievements, 'ach95');
-    achievementChecker(achievements, 'ach101');
-    achievementChecker(achievements, 'ach102');
-    achievementChecker(achievements, 'ach103');
-    achievementChecker(achievements, 'ach104');
-    achievementChecker(achievements, 'ach105');
-    achievementChecker(achievements, 'ach111');
-    achievementChecker(achievements, 'ach112');
-    achievementChecker(achievements, 'ach113');
-    achievementChecker(achievements, 'ach114');
-    achievementChecker(achievements, 'ach115');
-    achievementChecker(achievements, 'ach121');
-    achievementChecker(achievements, 'ach122');
-    achievementChecker(achievements, 'ach123');
-    achievementChecker(achievements, 'ach124');
-    achievementChecker(achievements, 'ach125');
-    achievementChecker(achievements, 'ach131');
-    achievementChecker(achievements, 'ach132');
-    achievementChecker(achievements, 'ach133');
-    achievementChecker(achievements, 'ach134');
-    achievementChecker(achievements, 'ach135');
-    achievementChecker(achievements, 'ach141');
-    achievementChecker(achievements, 'ach142');
-    achievementChecker(achievements, 'ach143');
-    achievementChecker(achievements, 'ach144');
-    achievementChecker(achievements, 'ach145');
-    achievementChecker(achievements, 'ach151');
-    achievementChecker(achievements, 'ach152');
-    achievementChecker(achievements, 'ach153');
-    achievementChecker(achievements, 'ach154');
-    achievementChecker(achievements, 'ach155');
-    achievementChecker(achievements, 'ach161');
-    achievementChecker(achievements, 'ach162');
+export function runAchievementChecks() {
+	if (circuits.upgradeAutobuyer.gte(new Decimal(1))) {
+		achievements.ach54 = true;
+	}
+	if (storage.gameData.leaves.gte(storage.gameData.leafSupercapStart)) {
+		achievements.ach95 = true;
+	}
+	if (storage.gameData.leaves.gte(storage.gameData.leafMaximumStart)) {
+		achievements.ach133 = true;
+	}
+	if (storage.gameData.leaves.gte(new Decimal.fromComponents(1, 1, 1500))) {
+		achievements.ach84 = true;
+	}
+	if (storage.gameData.leaves.gte(new Decimal.fromComponents(1, 1, 10000))) {
+		achievements.ach115 = true;
+	}
+	if (storage.gameData.leaves.gte(new Decimal.fromComponents(1, 1, 100000))) {
+		achievements.ach135 = true;
+	}
+	if (storage.gameData.leaves.gte(new Decimal.fromComponents(1, 2, 8.55630))) {
+		achievements.ach162 = true;
+	}
+	if (storage.gameData.seeds.gte(new Decimal.fromComponents(1, 1, 100000).times(storage.gameData.leaves))) {
+		achievements.ach151 = true;
+	}
+	if (storage.entropyUpgradeFactor.B1Amount.gte(new Decimal(100))) {
+		achievements.ach92 = true;
+	}
+	if (storage.gameData.leafSoftcapStart.gte(new Decimal.fromComponents(1, 1, 2000))) {
+		achievements.ach93 = true;
+	}
+	if (storage.gameData.droughtLevel.gt(new Decimal(1))) {
+		achievements.ach102 = true;
+	}
+	if (storage.gameData.blizzardLevel.gt(new Decimal(1))) {
+		achievements.ach114 = true;
+	}
+	if (storage.gameData.fallLevel.gt(new Decimal(1))) {
+		achievements.ach145 = true;
+		document.querySelector('.buttons-fallen-leaves-tab-color').style.visibility = 'visible';
+	}
+	if (storage.gameData.highestCircuits.gte(new Decimal(1000))) {
+		achievements.ach103 = true;
+	}
+	if (storage.gameData.highestCircuits.gte(new Decimal(1e6))) {
+		achievements.ach143 = true;
+	}
+	if (storage.gameData.gameSpeed.gte(new Decimal(3.155e7))) {
+		achievements.ach104 = true;
+	}
+	if (storage.gameData.bacteria.gte(new Decimal(1.79e308))) {
+		achievements.ach122 = true;
+	}
+	if ((storage.entropyUpgradeFactor.B2Amount.gte(new Decimal(10))) && (storage.fruitUpgradeFactor.M2.gte(new Decimal(10))) && (storage.entropyUpgradeFactor.R3Amount.gte(new Decimal(10)))) {
+		achievements.ach134 = true;
+	}
+	if (!achievements.ach132) {
+		if (achievements.ach131) {
+			if (Object.keys(storage.rootUpgradeFactor.microorganisms).length > 9) {
+				achievements.ach132 = true;
+			}
+		}
+	}
+	else {
+		achievements.ach132 = true;
+	}
+	if (!achievements.ach153) {
+		if (achievements.ach145) {
+			if (!(storage.rootUpgradeFactor.fallenLeavesBOOM.fallen.amount instanceof Decimal)) {
+				//do nothing
+			}
+			else if (storage.rootUpgradeFactor.fallenLeavesBOOM.fallen.amount.gte(new Decimal(1))) {
+				achievements.ach153 = true;
+			}
+		}
+	}
+	else {
+		achievements.ach153 = true;
+	}
+	if (!achievements.ach154) {
+		if (achievements.ach145) {
+			if (!(storage.rootUpgradeFactor.fallenLeavesBOOM.mossy.amount instanceof Decimal)) {
+				//do nothing
+			}
+			else if (storage.rootUpgradeFactor.fallenLeavesBOOM.mossy.amount.gte(new Decimal(1))) {
+				achievements.ach154 = true;
+			}
+		}
+	}
+	else {
+		achievements.ach154 = true;
+	}
+	if (!achievements.ach155) {
+		if (achievements.ach145) {
+			if (!(storage.rootUpgradeFactor.fallenLeavesBOOM.marbled.amount instanceof Decimal)) {
+				//do nothing
+			}
+			else if (storage.rootUpgradeFactor.fallenLeavesBOOM.marbled.amount.gte(new Decimal(1))) {
+				achievements.ach155 = true;
+			}
+
+		}
+	}
+	else {
+		achievements.ach155 = true;
+	}
+	if (!achievements.ach161) {
+		if (storage.rootUpgradeFactor.items.crudePickaxe.amount.gte(new Decimal(1))) {
+			achievements.ach161 = true;
+		}
+	}
+	else {
+		achievements.ach161 = true;
+	}
 }
 
 export var secretAchievements = {

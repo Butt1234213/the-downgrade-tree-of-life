@@ -1,6 +1,6 @@
 import { gameData, rootUpgradeCost, rootUpgradeFactor } from './core/bunchobullshit.mjs'
 import { createCallableUpgrade } from './core/upgradebuilder.mjs';
-import { achievements, massAchievementChecker } from './achievements.mjs';
+import { achievements } from './achievements.mjs';
 
 export function laggyAssFunction() {
     RO1();
@@ -208,7 +208,7 @@ export function RO19() {
 }
 function ach131() {
 	achievements.ach131 = true;
-	massAchievementChecker();
+	
     document.querySelector('.buttons-petri-dish-tab-color').style.visibility = 'visible';
 }
 export function RO20() {

@@ -1,7 +1,7 @@
 import { truncateToDecimalPlaces, SC, gameData, leafUpgradeFactor, seedUpgradeFactor, fruitUpgradeFactor, entropyUpgradeFactor, rootUpgradeFactor } from "./bunchobullshit.mjs";
 import { circuits } from "../automation.mjs";
 import * as temple from "../temple.mjs";
-import { achievements, massAchievementChecker } from "../achievements.mjs";
+import { achievements } from "../achievements.mjs";
 import * as composter from '../composter.mjs';
 import * as moss from '../moss.mjs';
 import * as fallenLeaves from '../fallenleaves.mjs';
@@ -1438,19 +1438,18 @@ export function calculateGameSpeed() {
 		totalMultiplier = totalMultiplier.pow(x);
 		document.getElementById('amoebagameSpeedPow').innerHTML = `^${truncateToDecimalPlaces(x, 3)} Game speed<br>`;
 	}
-	if (gameData.isInChallengeBlizzard) {
-		totalMultiplier = totalMultiplier.div(gameData.blizzardBaseGameSpeedFactor);
-	}
-	if (gameData.isInChallengeFall) {
-        totalMultiplier = totalMultiplier.div(gameData.fallBaseGameSpeedFactor);
-	}
-	
 	if (Object.hasOwn(activeMicroorganismEffects, 'amoebasecondaryResourcePow')) {
 		let x = new Decimal(activeMicroorganismEffects.amoebasecondaryResourcePow.mag);
 		if (x.gte(new Decimal(2))) {
 			x = SC(x, new Decimal(2), new Decimal(0.25));
 		}
 		totalMultiplier = totalMultiplier.pow(x);
+	}
+	if (gameData.isInChallengeBlizzard) {
+		totalMultiplier = totalMultiplier.div(gameData.blizzardBaseGameSpeedFactor);
+	}
+	if (gameData.isInChallengeFall) {
+        totalMultiplier = totalMultiplier.div(gameData.fallBaseGameSpeedFactor);
 	}
 	
 	gameData.gameSpeed = totalMultiplier;

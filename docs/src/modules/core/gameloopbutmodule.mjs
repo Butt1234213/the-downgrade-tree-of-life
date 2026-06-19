@@ -14,7 +14,7 @@ import * as petriDish from '../petridish.mjs';
 import * as welder from '../welder.mjs';
 import * as forge from '../forge.mjs';
 import { runFallenLeaves } from '../fallenleaves.mjs';
-import { achievements, massAchievementChecker } from '../achievements.mjs';
+import { achievements, runAchievementChecks } from '../achievements.mjs';
 
 export var microorganismTimer = new Decimal(0);
 
@@ -256,27 +256,11 @@ export function gameLoop() {
 			}
 			if (storage.gameData.leaves.gte(storage.gameData.leafMaximumStart)) {
 				storage.gameData.leaves = storage.gameData.leafMaximumStart;
-				achievements.ach133 = true;
 			}
 			if (storage.gameData.leavesPerTick.gte(storage.gameData.leafMaximumStart)) {
 				storage.gameData.leavesPerTick = storage.gameData.leafMaximumStart;
 			}
 			
-			if (storage.gameData.leaves.gte(new Decimal.fromComponents(1, 1, 1500))) {
-			  achievements.ach84 = true;
-			}
-			if (storage.gameData.leaves.gte(new Decimal.fromComponents(1, 1, 10000))) {
-			  achievements.ach115 = true;
-			}
-			if (storage.gameData.leaves.gte(new Decimal.fromComponents(1, 1, 100000))) {
-			  achievements.ach135 = true;
-			}
-			if (storage.gameData.leaves.gte(new Decimal.fromComponents(1, 2, 8.55630))) {
-			  achievements.ach162 = true;
-			}
-			if (storage.gameData.seeds.gte(new Decimal.fromComponents(1, 1, 100000).times(storage.gameData.leaves))) {
-			  achievements.ach151 = true;
-			}
 			
 			if (document.getElementById('marbledleafMilestone3')) {
 				if (storage.rootUpgradeFactor.fallenMilestones.marbled[2].achieved) {
@@ -328,73 +312,6 @@ export function gameLoop() {
 				achievements.ach133 = true;
 			}
 			
-			
-            if (storage.entropyUpgradeFactor.B1Amount.gte(new Decimal(100))) {
-				achievements.ach92 = true;
-            }
-            if (storage.gameData.leafSoftcapStart.gte(new Decimal.fromComponents(1, 1, 2000))) {
-				achievements.ach93 = true;
-            }
-            if (storage.gameData.droughtLevel.gt(new Decimal(1))) {
-				achievements.ach102 = true;
-            }
-            if (storage.gameData.blizzardLevel.gt(new Decimal(1))) {
-				achievements.ach114 = true;
-            }
-            if (storage.gameData.fallLevel.gt(new Decimal(1))) {
-				achievements.ach145 = true;
-				document.querySelector('.buttons-fallen-leaves-tab-color').style.visibility = 'visible';
-            }
-			if (storage.gameData.highestCircuits.gte(new Decimal(1000))) {
-				achievements.ach103 = true;
-			}
-			if (storage.gameData.highestCircuits.gte(new Decimal(1e6))) {
-				achievements.ach143 = true;
-			}
-			if (storage.gameData.gameSpeed.gte(new Decimal(3.155e7))) {
-				achievements.ach104 = true;
-			}
-            if (storage.gameData.bacteria.gte(new Decimal(1.79e308))) {
-				achievements.ach122 = true;
-            }
-			if ((storage.entropyUpgradeFactor.B2Amount.gte(new Decimal(10))) && (storage.fruitUpgradeFactor.M2.gte(new Decimal(10))) && (storage.entropyUpgradeFactor.R3Amount.gte(new Decimal(10)))) {
-				achievements.ach134 = true;
-			}
-			if (!achievements.ach132 && achievements.ach131) {
-				if (Object.keys(storage.rootUpgradeFactor.microorganisms).length > 9) {
-					achievements.ach132 = true;
-				}
-			}
-			if (!achievements.ach153 && achievements.ach145) {
-				if (!(storage.rootUpgradeFactor.fallenLeavesBOOM.fallen.amount instanceof Decimal)) {
-					//do nothing
-				}
-				else if (storage.rootUpgradeFactor.fallenLeavesBOOM.fallen.amount.gte(new Decimal(1))) {
-					achievements.ach153 = true;
-				}
-			}
-			if (!achievements.ach154 && achievements.ach145) {
-				if (!(storage.rootUpgradeFactor.fallenLeavesBOOM.mossy.amount instanceof Decimal)) {
-					//do nothing
-				}
-				else if (storage.rootUpgradeFactor.fallenLeavesBOOM.mossy.amount.gte(new Decimal(1))) {
-					achievements.ach154 = true;
-				}
-			}
-			if (!achievements.ach155 && achievements.ach145) {
-				if (!(storage.rootUpgradeFactor.fallenLeavesBOOM.marbled.amount instanceof Decimal)) {
-					//do nothing
-				}
-				else if (storage.rootUpgradeFactor.fallenLeavesBOOM.marbled.amount.gte(new Decimal(1))) {
-					achievements.ach155 = true;
-				}
-			}
-			if (!achievements.ach161) {
-				if (storage.rootUpgradeFactor.items.crudePickaxe.amount.gte(new Decimal(1))) {
-					achievements.ach161 = true;
-				}
-			}
-			
             if (storage.gameData.leaves >= new Decimal(1e7).toNumber()) {
               storage.seedsFormula(storage.gameData.leaves, (new Decimal(2).div(new Decimal(3))));
             }
@@ -423,8 +340,9 @@ export function gameLoop() {
             storage.fruitsCalculation(storage.gameData.seeds);
 
             storage.updateResourceGUI();
-
-			massAchievementChecker();
+			
+			runAchievementChecks();
+			
 			resetButtonUpdater();
 
             document.getElementById("pleaseWork").innerHTML = storage.truncateToDecimalPlaces(storage.gameData.leaves, 3);

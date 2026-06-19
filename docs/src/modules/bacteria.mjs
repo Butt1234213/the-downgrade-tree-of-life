@@ -1,6 +1,6 @@
 import * as storage from './core/bunchobullshit.mjs'
 import * as cellularLab from './cellularlab.mjs'
-import { achievements, massAchievementChecker } from './achievements.mjs';
+import { achievements } from './achievements.mjs';
 
 export function resetCells() {
     storage.gameData.bacteriaTypes = storage.gameData.bacteriaTypes.plus(storage.gameData.bacteriaTypesBulk);

@@ -1,5 +1,5 @@
 import * as storage from './core/bunchobullshit.mjs';
-import { achievements, massAchievementChecker } from './achievements.mjs';
+import { achievements } from './achievements.mjs';
 import { loadMicroorganisms, activeMicroorganisms } from './core/calculations.mjs';
 import { microorganismTimer } from './core/gameloopbutmodule.mjs';
 

@@ -1,5 +1,5 @@
 import * as storage from './core/bunchobullshit.mjs'
-import { achievements, massAchievementChecker } from './achievements.mjs'
+import { achievements } from './achievements.mjs'
 
 export function cellsCalculation() {
     if (storage.entropyUpgradeFactor.E1Bought) {

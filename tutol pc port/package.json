@@ -1,6 +1,6 @@
 {
    "name": "the-downgrade-tree-of-life",
-   "version": "2.0.0",
+   "version": "2.2.4",
    "description": "tutol pc port",
    "keywords": [],
    "repository": {
@@ -10,7 +10,7 @@
    "license": "MIT",
    "author": "smeh8",
    "type": "commonjs",
-   "main": "gameloop.mjs",
+   "main": "server.js",
    "scripts": {
       "start": "node server.js"
    },

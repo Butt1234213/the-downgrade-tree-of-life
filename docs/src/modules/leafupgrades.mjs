@@ -1,6 +1,6 @@
 import { gameData, leafUpgradeCost, leafUpgradeFactor, truncateToDecimalPlaces } from './core/bunchobullshit.mjs'
 import { gameLoop } from './core/gameloopbutmodule.mjs'
-import { massAchievementChecker, achievements } from './achievements.mjs';
+import { achievements } from './achievements.mjs';
 import { createCallableUpgrade } from './core/upgradebuilder.mjs';
 
 export function laggyAssFunction() {
@@ -98,7 +98,7 @@ function startGeneration() {
     gameData.treeAgePerTick = new Decimal(1);
     gameData.leavesPerTick = new Decimal(1);
     achievements.ach11 = true;
-    massAchievementChecker();
+    
     gameData.gameStarted = true;
     gameLoop();
 }
@@ -120,7 +120,7 @@ export function L3() {
 }
 function ach12() {
     achievements.ach12 = true;
-    massAchievementChecker();
+    
 }
 export function L4() {
     if (gameData.leaves.gte(leafUpgradeCost.LU4)) {
@@ -180,7 +180,7 @@ export function L10() {
 }
 function ach13() {
     achievements.ach13 = true;
-    massAchievementChecker();
+    
 }
 export function L11() {
     if (gameData.leaves.gte(leafUpgradeCost.LU11)) {
@@ -216,7 +216,7 @@ export function L14() {
 }
 function ach15() {
     achievements.ach15 = true;
-    massAchievementChecker();
+    
 }
 export function L15() {
     if (gameData.leaves.gte(leafUpgradeCost.LU15)) {
@@ -276,7 +276,7 @@ export function L21() {
 }
 function ach33() {
     achievements.ach33 = true;
-    massAchievementChecker();
+    
 }
 export function L22() {
     if (gameData.leaves.gte(leafUpgradeCost.LU22)) {
@@ -328,7 +328,7 @@ export function L27() {
 }
 function ach35() {
     achievements.ach35 = true;
-    massAchievementChecker();
+    
 }
 export function L28() {
     if (gameData.leaves.gte(leafUpgradeCost.LU28)) {
@@ -535,7 +535,7 @@ function ach71() {
     document.querySelector('.buttons-temple-tab-color').style.visibility = 'visible';
     document.querySelector('.buttons-lru-holder').style.visibility = 'visible';
     achievements.ach71 = true;
-    massAchievementChecker();
+    
 }
 export function L53() {
     if (gameData.leaves.gte(leafUpgradeCost.LU53)) {
@@ -677,7 +677,7 @@ export function L69() {
 }
 function ach144() {
 	achievements.ach144 = true;
-	massAchievementChecker();
+	
     document.querySelector('.challenge-fall').style.visibility = 'visible';
 }
 export function L70() {

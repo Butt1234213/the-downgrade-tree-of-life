@@ -1,5 +1,5 @@
 import { gameData, seedUpgradeCost, seedUpgradeFactor, truncateToDecimalPlaces } from './core/bunchobullshit.mjs'
-import { achievements, massAchievementChecker } from './achievements.mjs';
+import { achievements } from './achievements.mjs';
 import { createCallableUpgrade } from './core/upgradebuilder.mjs';
 
 export function laggyAssFunction() {
@@ -89,7 +89,7 @@ export function S2() {
 }
 function ach21() {
     achievements.ach21 = true;
-    massAchievementChecker();
+    
 }
 export function S3() {
     if (gameData.seeds.gte(seedUpgradeCost.SU3)) {
@@ -229,7 +229,7 @@ export function S19() {
 }
 function ach34() {
     achievements.ach34 = true;
-    massAchievementChecker();
+    
 }
 export function S20() {
     if (gameData.seeds.gte(seedUpgradeCost.SU20)) {
@@ -410,7 +410,7 @@ export function S41() {
 }
 function ach83() {
 	achievements.ach83 = true;
-	massAchievementChecker();
+	
 	document.getElementById('S42').innerHTML = `S42 (Bought)<br>The Statue II<br>Unlock the Seeds repeatable upgrade<br>Cost: 1e1000 Seeds`;
     document.querySelector('.buttons-sru-holder').style.visibility = 'visible';
 }

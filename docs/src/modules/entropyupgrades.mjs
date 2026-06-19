@@ -1,6 +1,6 @@
 import { gameData, entropyUpgradeCost, entropyUpgradeFactor } from './core/bunchobullshit.mjs'
 import { createCallableUpgrade } from './core/upgradebuilder.mjs';
-import { achievements, massAchievementChecker } from './achievements.mjs';
+import { achievements } from './achievements.mjs';
 
 export function laggyAssFunction() {
     E1();
@@ -60,7 +60,7 @@ export var functions = {};
 
 function ach45() {
     achievements.ach45 = true;
-    massAchievementChecker();
+    
     document.querySelector('.buttons-cellular-lab-tab-color').style.visibility = 'visible';
 }
 export function E1() {
@@ -134,7 +134,7 @@ export function E7() {
 }
 function ach53() {
     achievements.ach53 = true;
-    massAchievementChecker();
+    
 }
 export function E8() {
     if (gameData.entropy.gte(entropyUpgradeCost.EU8) || entropyUpgradeFactor.E8Bought) {
@@ -229,7 +229,7 @@ export function E17() {
 function ach61() {
     document.getElementById("replicationAmount").style.visibility = 'visible';
     achievements.ach61 = true;
-    massAchievementChecker();
+    
 }
 export function E18() {
     if (gameData.entropy.gte(entropyUpgradeCost.EU18) || entropyUpgradeFactor.E18Bought) {
@@ -260,7 +260,7 @@ export function E20() {
 }
 function ach64() {
     achievements.ach64 = true;
-    massAchievementChecker();
+    
     document.querySelector('.buttons-radar-tab-color').style.visibility = 'visible';
     document.querySelector('.challenge-storm').style.visibility = 'visible';
 }
@@ -329,7 +329,7 @@ export function E27() {
 }
 function ach81() {
     achievements.ach81 = true;
-    massAchievementChecker();
+    
     document.querySelector('.challenge-wildfire').style.visibility = 'visible';
 }
 export function E28() {
@@ -388,7 +388,7 @@ export function E33() {
 }
 function ach101() {
 	achievements.ach101 = true;
-	massAchievementChecker();
+	
     document.querySelector('.challenge-drought').style.visibility = 'visible';
 }
 export function E34() {
@@ -432,7 +432,7 @@ export function E37() {
 }
 function ach111() {
 	achievements.ach111 = true;
-	massAchievementChecker();
+	
 }
 export function E38() {
     if (gameData.entropy.gte(entropyUpgradeCost.EU38) || entropyUpgradeFactor.E38Bought) {
@@ -472,7 +472,7 @@ export function E41() {
 }
 function ach113() {
 	achievements.ach113 = true;
-	massAchievementChecker();
+	
     document.querySelector('.challenge-blizzard').style.visibility = 'visible';
 }
 export function E42() {
@@ -505,7 +505,7 @@ export function E44() {
 function ach142() {
 	document.querySelector(".buttons-eru-holder").style.visibility = "visible";
 	achievements.ach142 = true;
-	massAchievementChecker();
+	
 }
 export function E45() {
     if (gameData.entropy.gte(entropyUpgradeCost.EU45) || entropyUpgradeFactor.E45Bought) {

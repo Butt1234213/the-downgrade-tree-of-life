@@ -1,5 +1,5 @@
 import * as storage from './core/bunchobullshit.mjs';
-import { achievements, massAchievementChecker } from './achievements.mjs';
+import { achievements } from './achievements.mjs';
 
 const mossMilestoneCost = {
     MM1: new Decimal(1e80),

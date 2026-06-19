@@ -1,4 +1,4 @@
-import { achievements, massAchievementChecker } from './achievements.mjs';
+import { achievements } from './achievements.mjs';
 import * as storage from './core/bunchobullshit.mjs';
 import * as leafUpgrades from './leafupgrades.mjs';
 import * as seedUpgrades from './seedupgrades.mjs';
@@ -96,7 +96,6 @@ function updateAutobuyerCircuits() {
     document.getElementById("upgradeAutomationFLOPSCounter").innerHTML = `computing ${storage.truncateToDecimalPlaces(flopsFormula(circuits.upgradeAutobuyer), 3)} FLOPs/s.`;
 
     achievements.ach54 = true;
-    massAchievementChecker();
 }
 
 export function loadCircuits(newValue) {

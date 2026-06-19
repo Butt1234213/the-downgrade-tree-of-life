@@ -702,7 +702,7 @@
 	top: 25px;
 	left: 335px;
 	height: 125px;
-	width: 527.5px;
+	width: 540px;
 	padding: 5px;
     background-color: #525252;
 	border-radius: 5px;
@@ -952,4 +952,35 @@
     line-height: 1.2;
     top: 300px;
     left: 10px;
+}
+.mining-background {
+    position: absolute;
+    left: 10px;
+    height: 1380px;
+    width: 1010px;
+    padding: 5px 10px;
+    background-color: #474747;
+    border-style: outset;
+    border-color: #262626;
+    color: #ffffffff;
+    font-size: 12px;
+}
+.mining-location {
+	position: absolute;
+	z-index: 10;
+	width: 15px;
+	height: 15px;
+	background-color: #ff0000;
+	border-color: #ffffff;
+	border-radius: 10px;
+	border-width: 2px;
+	border-style: solid;
+}
+.buttons-mining-color {
+    background-color: #d1af68;
+    font-size: 12px;
+    color: #ffffff;
+    transform: translateX(-50%);
+    border-style: outset;
+    border-color: #c59837;
 }

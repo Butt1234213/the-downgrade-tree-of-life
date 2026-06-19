@@ -1,6 +1,6 @@
 import * as storage from './core/bunchobullshit.mjs';
 import * as bacteria from './bacteria.mjs';
-import { achievements, massAchievementChecker } from './achievements.mjs';
+import { achievements } from './achievements.mjs';
 
 function stormChallenge() {
     if (!storage.gameData.isInChallengeStorm) {
@@ -39,7 +39,7 @@ function stormChallenge() {
 			storage.gameData.stormBaseRequirement = new Decimal(1e40).pow(storage.gameData.stormlevel);
             document.getElementById('stormLevelCounter').innerHTML = `The Storm^${storage.truncateToDecimalPlaces(storage.gameData.stormLevel, 3)}`;
             achievements.ach65 = true;
-            massAchievementChecker();
+            
             storage.gameData.suAutomationUnlocked = true;
         }
         document.querySelector('.challenge-storm').style.backgroundImage = 'radial-gradient(#3036b0, #151b88)';
@@ -113,7 +113,7 @@ function wildfireChallenge() {
             storage.gameData.fuAutomationUnlocked = true;
 
             achievements.ach82 = true;
-            massAchievementChecker();
+            
         }
 		storage.gameData.entropyComposterCost = new Decimal(1e6).pow(storage.gameData.entropyComposterCount.plus(new Decimal(1)));
         document.querySelector('.challenge-wildfire').style.backgroundImage = 'radial-gradient(#e3df20, #c55f1b)';

@@ -1,6 +1,6 @@
 import * as storage from './core/bunchobullshit.mjs';
 import * as fallenLeaves from './fallenleaves.mjs';
-import { achievements, massAchievementChecker } from './achievements.mjs';
+import { achievements } from './achievements.mjs';
 import { activeMicroorganismEffects } from './core/calculations.mjs';
 
 function entropyUpgradeSwitcher() {

@@ -1,5 +1,5 @@
 import { gameData, fruitUpgradeCost, fruitUpgradeFactor, truncateToDecimalPlaces } from './core/bunchobullshit.mjs'
-import { achievements, massAchievementChecker } from './achievements.mjs';
+import { achievements } from './achievements.mjs';
 import { createCallableUpgrade } from './core/upgradebuilder.mjs';
 
 export function laggyAssFunction() {
@@ -68,7 +68,7 @@ function ach24() {
     gameData.leafComposterUnlocked = true;
     gameData.totalComposters = new Decimal(1);
     achievements.ach24 = true;
-    massAchievementChecker();
+    
 }
 export function F1() {
     if (gameData.fruits.gte(fruitUpgradeCost.FU1)) {
@@ -84,7 +84,7 @@ function ach25() {
     gameData.seedComposterUnlocked = true;
     gameData.totalComposters = new Decimal(2);
     achievements.ach25 = true;
-    massAchievementChecker();
+    
 }
 export function F2() {
     if (gameData.fruits.gte(fruitUpgradeCost.FU2)) {
@@ -97,7 +97,7 @@ export function F2() {
 }
 function ach31() {
     achievements.ach31 = true;
-    massAchievementChecker();
+    
 }
 export function F3() {
     if (gameData.fruits.gte(fruitUpgradeCost.FU3)) {
@@ -136,7 +136,7 @@ function ach32() {
     gameData.fruitComposterUnlocked = true;
     gameData.totalComposters = new Decimal(3);
     achievements.ach32 = true;
-    massAchievementChecker();
+    
 }
 export function F7() {
     if (gameData.fruits.gte(fruitUpgradeCost.FU7)) {
@@ -222,7 +222,7 @@ export function F16() {
 function ach42() {
     document.querySelector('.entropy').style.visibility = 'visible';
     achievements.ach42 = true;
-    massAchievementChecker();
+    
 }
 export function F17() {
     if (gameData.fruits.gte(fruitUpgradeCost.FU17)) {
@@ -247,7 +247,7 @@ function ach43() {
     document.querySelector('.moss-milestone-background').style.visibility = 'visible';
     gameData.mossUnlocked = true;
     achievements.ach43 = true;
-    massAchievementChecker();
+    
 }
 export function F19() {
     if (gameData.fruits.gte(fruitUpgradeCost.FU19)) {
@@ -372,7 +372,7 @@ export function F33() {
 }
 function ach72() {
     achievements.ach72 = true;
-    massAchievementChecker();
+    
 }
 export function F34() {
     if (gameData.fruits.gte(fruitUpgradeCost.FU34)) {
@@ -434,7 +434,7 @@ function ach91() {
 	document.getElementById('F41').innerHTML = `F41 (Bought)<br>The Statue III<br>Unlock the Fruits repeatable upgrade<br>Cost: 1e1000 Fruits`;
     document.querySelector('.buttons-fru-holder').style.visibility = 'visible';
 	achievements.ach91 = true;
-	massAchievementChecker();
+	
 }
 export function F41() {
     if (gameData.fruits.gte(fruitUpgradeCost.FU41)) {
@@ -457,7 +457,7 @@ function ach105() {
     document.querySelector('.entropy-composter-background').style.visibility = 'visible';
 	gameData.entropyComposterUnlocked = true;
 	achievements.ach105 = true;
-	massAchievementChecker();
+	
 }
 export function F43() {
     if (gameData.fruits.gte(fruitUpgradeCost.FU43)) {
@@ -521,7 +521,7 @@ export function F49() {
 }
 function ach152() {
 	achievements.ach152 = true;
-	massAchievementChecker();
+	
     gameData.rootComposterUnlocked = true;
     gameData.totalComposters = new Decimal(5);
 	document.querySelector('.root-composter-background').style.visibility = 'visible';

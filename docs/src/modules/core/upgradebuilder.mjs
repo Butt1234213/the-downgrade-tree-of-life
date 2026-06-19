@@ -5,7 +5,7 @@ import * as fruitUpgrades from '../fruitupgrades.mjs'
 import * as entropyUpgrades from '../entropyupgrades.mjs'
 import * as rootUpgrades from '../rootupgrades.mjs'
 import { circuits } from '../automation.mjs'
-import { achievements, massAchievementChecker } from '../achievements.mjs';
+import { achievements } from '../achievements.mjs';
 
 export var decompolizationResetText = [];
 export var harvestResetText = [];
