@@ -4128,6 +4128,6 @@ document.getElementById('fontBarcode').addEventListener('click', function() {
 	gameData.font = 'Barcode';
 });
 
-setTimeout(function() {
+$(window).on("load", function() {
 	document.getElementById("titleScreen").style.display = 'none';
-}, 500);
+});
