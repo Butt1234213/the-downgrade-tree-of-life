@@ -874,7 +874,7 @@ export class MicroorganismOnReinforcement extends microorganismProperties(BaseMi
 				let id = $(ui.unselected).attr("id");
 			}
 		});
-		$(".microorganism-on-reinforcement-background").on("click", ".microorganism-individual-clickable", function() {
+		$(".microorganism-on-reinforcement-background").on("click touchstart", ".microorganism-individual-clickable", function() {
 			$('.microorganism-individual-clickable').removeClass('selected-item');
 			$(this).addClass('selected-item');
 			
