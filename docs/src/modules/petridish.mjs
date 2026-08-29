@@ -862,6 +862,15 @@ export class MicroorganismOnReinforcement extends microorganismProperties(BaseMi
 		}
 		natureEffects.innerHTML = natureText;
 		
+		clone.querySelector(".microorganism-individual-clickable").addEventListener('touchstart', () => {
+			microorganismTotalEffects.setAttribute("style", 'visibility: visible');
+			microorganismTotalEffects.setAttribute("style", 'zIndex: 50');
+		});
+		clone.querySelector(".microorganism-individual-clickable").addEventListener('touchend', () => {
+			microorganismTotalEffects.setAttribute("style", 'visibility: hidden');
+			microorganismTotalEffects.setAttribute("style", 'zIndex: 0');
+		});
+		
 		const container = document.getElementById(`microorganismsOnReinforcement${this.natureSource.slotID}`);
 		container.appendChild(clone);
 		
