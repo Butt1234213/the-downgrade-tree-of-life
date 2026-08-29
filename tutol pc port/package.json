@@ -18,7 +18,8 @@
       "break_eternity.js": "^2.1.2",
       "express": "^5.1.0",
       "globby": "^15.0.0",
-      "helmet": "^8.1.0"
+      "helmet": "^8.1.0",
+      "jquery-ui-touch-punch": "^0.2.3"
    },
    "devDependencies": {
       "webpack": "^5.101.3",
